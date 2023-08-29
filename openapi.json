@@ -2078,14 +2078,14 @@
     "/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}": {
       "get": {
         "operationId": "polkadot-transaction-status",
-        "summary": "Check Status Transaction",
-        "description": "Method to get transaction status",
+        "summary": "Status of the transaction",
+        "description": "Check the status of the transaction.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2099,6 +2099,7 @@
             "name": "blockHash",
             "required": true,
             "in": "path",
+            "description": "The hash of the checkpoint block.",
             "schema": {
               "type": "string"
             }
@@ -2107,6 +2108,7 @@
             "name": "transactionHash",
             "required": true,
             "in": "path",
+            "description": "Extrinsic transaction hash.",
             "schema": {
               "type": "string"
             }
@@ -2308,14 +2310,14 @@
     "/api/v1/polkadot/{network}/tx/send": {
       "post": {
         "operationId": "polkadot-transaction-send",
-        "summary": "Broadcast Transaction",
-        "description": "Method to send transaction",
+        "summary": "Broadcast transaction",
+        "description": "Broadcast transaction to the Polkadot network.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2580,14 +2582,14 @@
     "/api/v1/polkadot/{network}/account/add": {
       "post": {
         "operationId": "polkadot-account-add",
-        "summary": "Add Proxy",
-        "description": "Method to add proxy",
+        "summary": "Add staking proxy account",
+        "description": "Adding a staking proxy account allows users to utilize an account less frequently while maintaining active participation in the Polkadot network based on the weight of tokens held within that account.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2616,7 +2618,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemas/SuccessResponse"
+                      "$ref": "#/components/schemaAddRequests/SuccessResponse"
                     }
                   ],
                   "properties": {
@@ -2792,14 +2794,14 @@
     "/api/v1/polkadot/{network}/account/remove": {
       "post": {
         "operationId": "polkadot-account-remove",
-        "summary": "Remove Proxy",
-        "description": "Method to remove proxy",
+        "summary": "Remove staking proxy account",
+        "description": "Removing a proxy account involves discontinuing the delegation of staking responsibilities from one account to another. This action allows users to regain direct control over their staking activities and tokens in the Polkadot network.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3004,14 +3006,14 @@
     "/api/v1/polkadot/{network}/staking/bond": {
       "post": {
         "operationId": "polkadot-staking-bond",
-        "summary": "Submit Bond",
-        "description": "Method to bond",
+        "summary": "Submit bond",
+        "description": "Submitting a bond to the Polkadot network in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3226,14 +3228,14 @@
     "/api/v1/polkadot/{network}/staking/bond-extra": {
       "post": {
         "operationId": "polkadot-staking-bondExtra",
-        "summary": "Submit Extra Bond",
-        "description": "Method to bond extra",
+        "summary": "Submit extra bond",
+        "description": "Submitting an extra bond to the Polkadot network in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3438,14 +3440,14 @@
     "/api/v1/polkadot/{network}/staking/rebond": {
       "post": {
         "operationId": "polkadot-staking-rebond",
-        "summary": "Submit Rebond",
-        "description": "Method to rebond",
+        "summary": "Submit rebond",
+        "description": "Rebonding tokens within the Polkadot network involves the process of re-staking or redelegating tokens that were previously withdrawn from the staking mechanism.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3680,14 +3682,14 @@
     "/api/v1/polkadot/{network}/staking/nominate": {
       "post": {
         "operationId": "polkadot-staking-nominate",
-        "summary": "Submit Nomination",
-        "description": "Method to nominate",
+        "summary": "Submit nomination",
+        "description": "Submitting nomination is the action of choosing validators within the Polkadot network.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3882,14 +3884,14 @@
     "/api/v1/polkadot/{network}/staking/unbond": {
       "post": {
         "operationId": "polkadot-staking-unbond",
-        "summary": "Submit Unbound",
-        "description": "Method to unbond",
+        "summary": "Submit unbound",
+        "description": "Unbonding tokens within the Polkadot network refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -4095,13 +4097,13 @@
       "post": {
         "operationId": "polkadot-staking-withdrawUnbonded",
         "summary": "Withdraw Unbonded",
-        "description": "Method to withdraw unbonded",
+        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Polkadot network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5441,12 +5443,12 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction hash (sign this transaction and submit to the blockchain to perform the called action)"
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "createdAt": {
             "format": "datetime",
             "type": "string",
-            "description": "Complete ISO-8601 date of creating a call"
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           }
         },
         "required": [
@@ -5657,7 +5659,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction hash which needs to be broadcasted to the network",
+            "description": "Signed transaction in hex format for broadcast to the network. Learn more about [signing transactions in Polkadot]().",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
@@ -5738,12 +5740,12 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Proxied account (an address which transfer rights to anouther account). Do not worry a proxied account retains all its rights and a proxy account can be removed at any time",
+            "description": "Proxied account is an address that transfers rights to a proxy account. The original account retains all of its rights, and the proxy account can be removed at any time.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "proxyAccountAddress": {
             "type": "string",
-            "description": "Proxy account (an address to which the rights are transfered)",
+            "description": "Proxy account is an address that receives proxied account rights.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           }
         },
@@ -5801,11 +5803,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Proxied account (an address which transfer rights to anouther account). Do not worry a proxied account retains all its rights and a proxy account can be removed at any time"
+            "description": "Proxied account is an address that transfers rights to a proxy account. The original account retains all of its rights, and the proxy account can be removed at any time."
           },
           "proxyAccountAddress": {
             "type": "string",
-            "description": "Proxy account (an address to which the rights are transfered)"
+            "description": "Proxy account is an address that receives proxied account rights."
           }
         },
         "required": [
@@ -5862,11 +5864,11 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction hash (sign this transaction and submit to the blockchain to perform the called action)"
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding"
+            "description": "Main stash account address which keeps tokens for bonding."
           },
           "rewardDestinationType": {
             "type": "string",
@@ -5876,22 +5878,22 @@
               "controller",
               "account"
             ],
-            "description": "Selected staking rewards destination type"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — Pay into the stash account, increasing the amount at stake accordingly.</li><li>`stash` — Pay into the stash account, not increasing the amount at stake.</li><li>`controller` — Pay into the controller account.</li><li>`account` — Pay into a custom account.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
-            "description": "Selected staking rewards destination account"
+            "description": "Rewards destination account address."
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs)",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "minimum": 1,
             "example": 1
           },
           "createdAt": {
             "format": "datetime",
             "type": "string",
-            "description": "Complete ISO-8601 date of creating a call"
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           }
         },
         "required": [
@@ -5908,7 +5910,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "rewardDestinationType": {
@@ -5920,16 +5922,16 @@
               "account"
             ],
             "example": "account",
-            "description": "Rewards destination type"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — Pay into the stash account, increasing the amount at stake accordingly.</li><li>`stash` — Pay into the stash account, not increasing the amount at stake.</li><li>`controller` — Pay into the controller account.</li><li>`account` — Pay into a custom account.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
-            "description": "Rewards destination account",
+            "description": "Rewards destination account address.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs)",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "minimum": 1,
             "example": 1
           }
@@ -5967,12 +5969,12 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs)",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "minimum": 1,
             "example": 1
           }
@@ -6097,12 +6099,12 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs)",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "minimum": 1,
             "example": 1
           }
@@ -6139,14 +6141,14 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction hash (sign this transaction and submit to the blockchain to perform the called action)"
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding"
+            "description": "Main stash account address which keeps tokens for bonding."
           },
           "targets": {
-            "description": "Selected validators in targets",
+            "description": "Selected validators in the targets.",
             "items": {
               "type": "array"
             },
@@ -6155,7 +6157,7 @@
           "createdAt": {
             "format": "datetime",
             "type": "string",
-            "description": "Complete ISO-8601 date of creating a call"
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           }
         },
         "required": [
@@ -6170,7 +6172,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           }
         },
@@ -6227,12 +6229,12 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs)",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "minimum": 1,
             "example": 1
           }
@@ -6269,16 +6271,16 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction hash (sign this transaction and submit to the blockchain to perform the called action)"
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding"
+            "description": "Main stash account address which keeps tokens for bonding."
           },
           "createdAt": {
             "format": "datetime",
             "type": "string",
-            "description": "Complete ISO-8601 date of creating a call"
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           }
         },
         "required": [
@@ -6292,7 +6294,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main address which keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens for bonding.",
             "example": "5DvshfAyZW4EvBpHtfDP4jFm3HNiTMaLgd95UGNDkkqo8PSk"
           }
         },
