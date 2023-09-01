@@ -239,7 +239,7 @@
           }
         },
         "tags": [
-          "Data Validator"
+          "Validator Data"
         ],
         "security": [
           {
@@ -486,7 +486,7 @@
           }
         },
         "tags": [
-          "Data Validator"
+          "Validator Data"
         ],
         "security": [
           {
@@ -733,7 +733,7 @@
           }
         },
         "tags": [
-          "Data Validator"
+          "Validator Data"
         ],
         "security": [
           {
@@ -980,7 +980,7 @@
           }
         },
         "tags": [
-          "Data Validator"
+          "Validator Data"
         ],
         "security": [
           {
@@ -992,7 +992,7 @@
     "/api/v1/eth/staking/direct/validator/status": {
       "post": {
         "operationId": "eth-validator-status",
-        "summary": "Check Status Validator",
+        "summary": "Validator Status Check",
         "description": "Check the status of the validators.",
         "parameters": [],
         "requestBody": {
@@ -1137,7 +1137,7 @@
           }
         },
         "tags": [
-          "Ethereum Check Validator Status"
+          "Ethereum"
         ],
         "security": [
           {
@@ -1304,7 +1304,7 @@
           }
         },
         "tags": [
-          "Ethereum Construct Transaction"
+          "Ethereum"
         ],
         "security": [
           {
@@ -1511,7 +1511,7 @@
           }
         },
         "tags": [
-          "Ethereum Construct Transaction"
+          "Ethereum"
         ],
         "security": [
           {
@@ -1685,7 +1685,7 @@
           }
         },
         "tags": [
-          "Ethereum Staking"
+          "Ethereum"
         ],
         "security": [
           {
@@ -1886,7 +1886,7 @@
           }
         },
         "tags": [
-          "Ethereum Staking"
+          "Ethereum"
         ],
         "security": [
           {
@@ -2066,7 +2066,7 @@
           }
         },
         "tags": [
-          "Ethereum Staking"
+          "Ethereum"
         ],
         "security": [
           {
@@ -2298,7 +2298,7 @@
           }
         },
         "tags": [
-          "Polkadot Construct Transaction"
+          "Polkadot"
         ],
         "security": [
           {
@@ -2570,7 +2570,7 @@
           }
         },
         "tags": [
-          "Polkadot Construct Transaction"
+          "Polkadot"
         ],
         "security": [
           {
@@ -2618,7 +2618,7 @@
                 "schema": {
                   "allOf": [
                     {
-                      "$ref": "#/components/schemaAddRequests/SuccessResponse"
+                      "$ref": "#/components/schemas/SuccessResponse"
                     }
                   ],
                   "properties": {
@@ -2782,7 +2782,7 @@
           }
         },
         "tags": [
-          "Polkadot Account Proxy"
+          "Polkadot"
         ],
         "security": [
           {
@@ -2994,7 +2994,7 @@
           }
         },
         "tags": [
-          "Polkadot Account Proxy"
+          "Polkadot"
         ],
         "security": [
           {
@@ -3216,7 +3216,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
@@ -3428,7 +3428,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
@@ -3670,7 +3670,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
@@ -3872,7 +3872,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
@@ -4084,7 +4084,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
@@ -4306,7 +4306,7 @@
           }
         },
         "tags": [
-          "Polkadot Staking"
+          "Polkadot"
         ],
         "security": [
           {
