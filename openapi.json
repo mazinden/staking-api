@@ -260,12 +260,13 @@
       "get": {
         "operationId": "data-validator-rewards",
         "summary": "Get Validator Rewards",
-        "description": "Method to retrieve validator rewards.",
+        "description": "Get a list of validator rewards.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet.</li><li>`ethereum` — Ethereum mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -280,7 +281,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The quantity of resources within a single response page.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -292,7 +293,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The quantity of resources to exclude from a response page.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -303,6 +304,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
+            "description": "Transaction start timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -313,6 +315,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
+            "description": "Transaction finish timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -339,6 +342,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
+            "description": "Validator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -509,12 +513,13 @@
       "get": {
         "operationId": "data-validator-apy",
         "summary": "Get Validator APY",
-        "description": "Method to retrieve validator Annual Percentage Yield (APY).",
+        "description": "Get a list of validator annual percentage yield (APY).",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet.</li><li>`ethereum` — Ethereum mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -529,7 +534,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The quantity of resources within a single response page.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -541,7 +546,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The quantity of resources to exclude from a response page.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -552,6 +557,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
+            "description": "Transaction start timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -562,6 +568,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
+            "description": "Transaction finish timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -588,6 +595,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
+            "description": "Validator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -758,12 +766,13 @@
       "get": {
         "operationId": "data-validator-fee",
         "summary": "Get Validator Fee",
-        "description": "Method to retrieve validator fee.",
+        "description": "Get a list of validator fee.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet.</li><li>`ethereum` — Ethereum mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -778,7 +787,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The quantity of resources within a single response page.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -790,7 +799,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The quantity of resources to exclude from a response page.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -801,6 +810,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
+            "description": "Transaction start timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -811,6 +821,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
+            "description": "Transaction finish timestamp in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -837,6 +848,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
+            "description": "Validator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -5068,10 +5080,12 @@
             "type": "number"
           },
           "stakingPeriodStart": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking start timestamp in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking finish timestamp in the ISO 8601 format."
           },
           "stake": {
             "type": "number"
@@ -5168,10 +5182,12 @@
             "type": "number"
           },
           "stakingPeriodStart": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking start timestamp in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking finish timestamp in the ISO 8601 format."
           },
           "apy": {
             "type": "number"
@@ -5189,15 +5205,18 @@
         "properties": {
           "limit": {
             "type": "number",
+            "description": "The quantity of resources within a single response page.",
             "minimum": 1,
             "default": 50
           },
           "offset": {
             "type": "number",
+            "description": "The quantity of resources to exclude from a response page.",
             "minimum": 0
           },
           "totalCount": {
             "type": "number",
+            "description": "The total quantity of resources on the response page.",
             "minimum": 1
           },
           "list": {
@@ -5243,10 +5262,12 @@
             "type": "number"
           },
           "stakingPeriodStart": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking start timestamp in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
-            "type": "string"
+            "type": "string",
+            "description": "Staking finish timestamp in the ISO 8601 format."
           },
           "fee": {
             "type": "number"
@@ -5264,15 +5285,18 @@
         "properties": {
           "limit": {
             "type": "number",
+            "description": "The quantity of resources within a single response page.",
             "minimum": 1,
             "default": 50
           },
           "offset": {
             "type": "number",
+            "description": "The quantity of resources to exclude from a response page.",
             "minimum": 0
           },
           "totalCount": {
             "type": "number",
+            "description": "The total quantity of resources on the response page.",
             "minimum": 1
           },
           "list": {
