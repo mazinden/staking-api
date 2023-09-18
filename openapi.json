@@ -1000,7 +1000,7 @@
     "/api/v1/eth/staking/direct/validator/status": {
       "post": {
         "operationId": "eth-validator-status",
-        "summary": "Validator Status Check",
+        "summary": "Check Validator Status",
         "description": "Check the status of the validators.",
         "parameters": [],
         "requestBody": {
@@ -1157,7 +1157,7 @@
     "/api/v1/eth/staking/direct/tx/deposit": {
       "post": {
         "operationId": "eth-staking-deposit",
-        "summary": "Prepare Stake Transaction",
+        "summary": "Prepare Staking Transaction",
         "description": "Construct serialized transaction to deposit the stake amount, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
@@ -1705,7 +1705,7 @@
     "/api/v1/eth/staking/direct/nodes-request/status/{id}": {
       "get": {
         "operationId": "eth-nodes-request-status",
-        "summary": "Check Status Request",
+        "summary": "Check Request Status",
         "description": "Check the status of the node set-up operation.",
         "parameters": [
           {
@@ -1713,7 +1713,7 @@
             "required": true,
             "in": "path",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "The nodes request ID",
+            "description": "The nodes request ID.",
             "schema": {
               "format": "uuid",
               "type": "string"
@@ -1906,7 +1906,7 @@
     "/api/v1/eth/staking/direct/nodes-request": {
       "get": {
         "operationId": "eth-nodes-request-list",
-        "summary": "Check All Status Requests",
+        "summary": "Check the Status of All Requests",
         "description": "Check the status of all the node set-up operations created through the authorization token",
         "parameters": [
           {
@@ -5322,7 +5322,7 @@
           "amount": {
             "type": "number",
             "example": 1,
-            "description": "The validator current status"
+            "description": "The total stake amount for the validator at the moment."
           },
           "pubkey": {
             "type": "string",
@@ -5403,21 +5403,21 @@
         "properties": {
           "serializeTx": {
             "type": "string",
-            "description": "Serialized unsigned transaction",
+            "description": "Serialized unsigned transaction.",
             "example": "0x02f902d705808301674e8508530af16e830186a094681a1b3441c6bfb12f91651efd9f02c83c0702938901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000260000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000030aa5f27070a21d79455c4a9b73c0aa4a8b1a65a1fb530d7fd8e6cd23aa16660679ac43ee4861098f6d9166aed3a4d8abb0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002001000000000000000000000028c84612d37de9209018ad96167f12169b653e9a000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060978c565cd915f4e885b4201093d1501697610eb9ee99b9b60b70434dc330e98d5b42927725304ded48483a8b8f39506d09bcb22ee18d4f6b50257946ac5ee360385308d95c0e2bc963902d42e985c29ee489aa3c989ac1561c952a6424f107a800000000000000000000000000000000000000000000000000000000000000014cb452f6e3f10ba2175c86a0284f53fcb61404b458393391abc3d5622e3e55cdc0",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
           },
           "to": {
             "type": "string",
-            "description": "The address this transaction it to.",
+            "description": "The recipient address for this transaction.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "gasLimit": {
             "type": "string",
             "example": "0",
-            "description": "The maximum amount of gas that this block was permitted to use"
+            "description": "The maximum gas limit for this block."
           },
           "data": {
             "type": "string",
@@ -5427,27 +5427,27 @@
           "value": {
             "type": "string",
             "example": "0",
-            "description": "The amount (in wei) this transaction is sending"
+            "description": "The amount this transaction is sending in Wei."
           },
           "chainId": {
             "type": "string",
             "example": "0",
-            "description": "The chain ID this transaction is authorized on, as specified by EIP-155"
+            "description": "The chain ID this transaction is authorized on, as specified by EIP-155."
           },
           "type": {
             "type": "string",
             "example": "0",
-            "description": "The EIP-2718 type of this transaction envelope"
+            "description": "The EIP-2718 type of this transaction envelope."
           },
           "maxFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The maximum price (in wei) per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee"
+            "description": "The maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei."
           },
           "maxPriorityFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The price (in wei) per unit of gas this transaction will allow in addition to the EIP-1559 block's base fee to bribe miners into giving this transaction priority"
+            "description": "The price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction."
           }
         },
         "required": [
@@ -5473,13 +5473,13 @@
           },
           "signature": {
             "type": "string",
-            "description": "A valid signature",
+            "description": "Validator signature.",
             "example": "0x83D2E925AEAEdcB18db983Bd447db0BFc1Ee9a6Ead118E5BEfeBcb24BA8C0efd3BD19Cb1cE8e807Fc980a67bBbf8b11e039efe2DB71fcdF096fccac5B04dF80f6a1804cd8d492455D30abE27FcDbDA78AFE61856cad65ffF5cA48Ed4776edd88",
             "pattern": "^0x[a-fA-F0-9]{192}$"
           },
           "depositDataRoot": {
             "type": "string",
-            "description": "The deposit data",
+            "description": "Hash of the deposit data.",
             "example": "0x784bfffb4DfEFb457BA9187B38E49a1Bc0f4af50EDDDaca9581AA0aA7F98E96C",
             "pattern": "^0x[a-fA-F0-9]{64}$"
           }
@@ -5605,7 +5605,7 @@
         "type": "object",
         "properties": {
           "pubkeys": {
-            "description": "The List pubkey of validators",
+            "description": "The list of validators public keys.",
             "example": [
               "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
             ],
@@ -5781,19 +5781,19 @@
         "properties": {
           "pubkey": {
             "type": "string",
-            "description": " A public key",
+            "description": "Validator public key.",
             "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "signature": {
             "type": "string",
-            "description": "A valid signature",
+            "description": "Validator signature.",
             "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
             "pattern": "^0x[a-fA-F0-9]{192}$"
           },
           "depositDataRoot": {
             "type": "string",
-            "description": "The deposit data",
+            "description": "Hash of the deposit data.",
             "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
             "pattern": "^0x[a-fA-F0-9]{64}$"
           }
@@ -5821,7 +5821,7 @@
               "ready",
               "cancel"
             ],
-            "description": "Current status of the nodes request",
+            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node setup in progress.</li><li><i>processing</i> — ...</li><li><i>ready</i> — node setup was successful.</li><li><i>cancel</i> — node setup was cancelled.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
