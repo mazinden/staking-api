@@ -6023,7 +6023,7 @@
           },
           "blockHash": {
             "type": "string",
-            "description": "The block in which the transaction was included.",
+            "description": "Block hash in which the transaction was included.",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
           "blockId": {
@@ -6266,7 +6266,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Base64 encrypted transaction for unstake.",
+            "description": "Signed transaction in Base64 encrypted format.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           }
         },
@@ -6608,7 +6608,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "description": "Amount of tokens for bond operations (in usual DOTs/KSMs/WNDs).",
             "example": 3
           },
           "createdAt": {
@@ -6899,7 +6899,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
