@@ -2,7 +2,7 @@
 
 To initiate the withdrawal on the Ethereum network using the Staking API:
 
-1. Create a serialized transaction to initiate the withdrawal process for active validators and send it as a POST request to [/api/v1/eth/staking/direct/tx/withdrawal](). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+1. Create a serialized transaction to initiate the withdrawal process for active validators and send it as a POST request to [/api/v1/eth/staking/direct/tx/withdrawal](). Use https://api-test.p2p.org for testing or https://api.p2p.org for production.
 
    Example request:
 

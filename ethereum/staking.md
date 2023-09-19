@@ -16,7 +16,7 @@ A request examples is provided using [cURL](https://curl.se/).
    - [Online UUID Generator](https://www.uuidgenerator.net/)
    - [uuid npm package](https://www.npmjs.com/package/uuid)
 
-2. Set up staking nodes through P2P infrastructure by sending a POST request to [/api/v1/eth/staking/direct/nodes-request/create](ref:eth-nodes-request-create). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+2. Set up staking nodes through P2P infrastructure by sending a POST request to [/api/v1/eth/staking/direct/nodes-request/create](ref:eth-nodes-request-create). Use https://api-test.p2p.org for testing or https://api.p2p.org for production.
 
    Example request:
 
@@ -237,7 +237,7 @@ To check the transaction status, use the [Check Status Request]() method.
    - [Online UUID Generator](https://www.uuidgenerator.net/)
    - [uuid npm package](https://www.npmjs.com/package/uuid)
 
-2. Set up staking nodes through P2P infrastructure by sending a POST request to [/api/v1/eth/staking/direct/nodes-request/create](ref:eth-nodes-request-create). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+2. Set up staking nodes through P2P infrastructure by sending a POST request to [/api/v1/eth/staking/direct/nodes-request/create](ref:eth-nodes-request-create). Use https://api-test.p2p.org for testing or https://api.p2p.org for production.
 
    Example request:
 

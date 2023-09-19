@@ -20,7 +20,7 @@ The staking process consists of several steps:
 We provide two distinct endpoints for testing and production environments. The test environment is linked to the Goerli network (Ethereum).
 
 - PRODUCTION: https://api.p2p.org
-- TESTING: https://test-api.p2p.org
+- TESTING: https://api-test.p2p.org
 
 ## What's Next?
 

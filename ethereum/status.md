@@ -7,7 +7,7 @@ Using the Staking API for the Ethereum network, you can check the following stat
 
 ## Check Request Status
 
-Send a GET request to [/api/v1/eth/staking/direct/nodes-request/status/{id}](). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+Send a GET request to [/api/v1/eth/staking/direct/nodes-request/status/{id}](). Use https://api-test.p2p.org for testing or https://api.p2p.org for production.
 
 Example request:
 
@@ -56,7 +56,7 @@ Example response:
 
 ## Check Validator Status
 
-Send a POST request to [/api/v1/eth/staking/direct/validator/status](). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+Send a POST request to [/api/v1/eth/staking/direct/validator/status](). Use https://api-test.p2p.org for testing or https://api.p2p.org for production.
 
 Example request:
 
