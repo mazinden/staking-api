@@ -285,6 +285,5 @@ To check the transaction status, use the [Check Status Request]() method.
 
 ## What's Next?
 
-- [Staking API](ref:ethereum) reference.
-- [Check Status]().
 - [Withdrawal]().
+- [Staking API](ref:ethereum) reference.

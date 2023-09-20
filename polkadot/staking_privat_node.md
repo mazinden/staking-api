@@ -1,27 +1,21 @@
-# Getting Started
+# Getting Started Privat Node
 
-The staking process for Polkadot in Staking API consists of several steps:
+The staking process for Polkadot in the Staking API with a privat node consists of several main steps:
 
-1. Submit Bond: submitting a bond to the Polkadot network in exchange for some other benefit.
-2. Sign transaction: sign transaction before broadcasting.
-3. Send transaction: broadcast transaction to the Polkadot network.
-4. Submit Nomination: the action of choosing validators within the Polkadot network.
+1. Submit Bond: Submit a bond to the Polkadot network in exchange for certain benefits.
+2. Sign Transaction: Sign the transaction before broadcasting it.
+3. Send Transaction: Broadcast the transaction to the Polkadot network.
+4. Add Proxy Account: Staking proxies allow users to delegate their staking rights to another account, which can then sign transactions on their behalf.
 
 [Get an authentication token](doc:authentication) to start using Staking API.
-
-For Polkadot available several networks:
-
-- `mainnet` — the main network.
-- `kusama` — a canary network that holds real economic value.
-- `westend` — a testnet.
 
 A request examples is provided using [cURL](https://curl.se/).
 
 ## 1. Submit Bond
 
-Send a POST request to [/api/v1/polkadot/{network}/staking/bond](). Use https://test-api.p2p.org for testing or https://api.p2p.org for production.
+Send a POST request to [/api/v1/polkadot/{network}/staking/bond]().
 
-Example request (for `westend`):
+Example request (for `westend` network):
 
 ```curl
 curl --request POST \
@@ -86,11 +80,39 @@ Sign transaction using one of the following methods:
 
 As a result, you will get a signed transaction in Base64 encrypted format.
 
+To verify transaction status, send a GET request to [/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}]().
+
+Example request (for `westend` network):
+
+```curl
+curl --request GET \
+     --url https://api.p2p.org/api/v1/polkadot/westend/tx/status/0x2b235d960a1880661ecff07f8d3f017eedfb94526ab00e96ce5833d812c23b2b/0x9cd8514d3e6935426fe3ac8496307a0d8b5fdda035e22723e43045b7fa0896c6 \
+     --header 'accept: application/json' \
+     --header 'authorization: Bearer <token>' \
+     --header 'content-type: application/json'
+```
+
+Example response:
+
+```curl
+{
+  "result": {
+    "status": "success",
+    "blockHash": "0x2b235d960a1880661ecff07f8d3f017eedfb94526ab00e96ce5833d812c23b2b",
+    "blockId": 17138875,
+    "extrinsicId": 2,
+    "transactionHash": "0x9cd8514d3e6935426fe3ac8496307a0d8b5fdda035e22723e43045b7fa0896c6",
+    "signerAccount": "5GYwcZcx1i23AxtUEqTkUG7muLB9fYqoeHW5eMNVXhdNrZas",
+    "createdAt": "2023-09-20T07:34:20.433Z"
+  }
+}
+```
+
 ## 3. Send transaction
 
 Send a POST request to [/api/v1/polkadot/{network}/tx/send]().
 
-Example request (for `westend`):
+Example request (for `westend` network):
 
 ```curl
 curl --request POST \
@@ -130,52 +152,46 @@ Example response:
 - `signerAccount` — account that signed the transaction.
 - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
-## 4. Submit Nomination
+To verify transaction status, send a GET request to [/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}]().
 
-Send a POST request to [/api/v1/polkadot/{network}/staking/nominate]().
+## 4. Add Proxy Account
 
-Example request (for `westend`):
+Send a POST request to [/api/v1/polkadot/{network}/account/add]().
+
+Example request (for `westend` network):
 
 ```curl
 curl --request POST \
-     --url https://api.p2p.org/api/v1/polkadot/westend/staking/nominate \
+     --url https://api.p2p.org/api/v1/polkadot/westend/account/add \
      --header 'accept: application/json' \
      --header 'authorization: Bearer <token>' \
      --header 'content-type: application/json' \
      --data '
 {
-  "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+  "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+  "proxyAccountAddress": "5Ggpg3JepXM3ZrktNpoc5QA1sKaFVpUPWMRr7jppiMxTuU75"
 }'
 ```
 
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
+- `stashAccountAddress` — proxied account is an address that transfers rights to a proxy account. The original account retains all of its rights, and the proxy account can be removed at any time.
+- `proxyAccountAddress` — proxy account is an address that receives rights from the proxied account.
 
 Example response:
 
 ```curl
 {
   "result": {
-    "unsignedTransaction": "0x2102040605100096b33e0a9647f13198ad16a2812c549a363646a3a7ddbdcc5590f5839c408c6200767f36484b1e2acf5c265c7a64bfb46e95259c66a8189bbcd216195def43685200c21ad1e5198cc0dc3b0f9f43a50f292678f63235ea321e59385d7ee45a7208360018164fa6f9ce28792fb781185e8de4e6eaae34c0f545e5864952fe23c183df0c",
-    "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-    "targets": [
-      "5FUJHYEzKpVJfNbtXmR9HFqmcSEz6ak7ZUhBECz7GpsFkSYR",
-      "5Ek5JCnrRsyUGYNRaEvkufG1i1EUxEE9cytuWBBjA9oNZVsf",
-      "5GTD7ZeD823BjpmZBCSzBQp7cvHR1Gunq7oDkurZr9zUev2n",
-      "5CcHdjf6sPcEkTmXFzF2CfH7MFrVHyY5PZtSm1eZsxgsj1KC"
-    ],
+    "unsignedTransaction": "0xa404160100cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c0200000000",
     "createdAt": "2023-09-18T14:49:23.998Z"
   }
 }
 ```
 
 - `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
-- `targets` — selected validators in the targets.
 - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
 ## What's Next?
 
-- [Unbond]().
+- [Getting Started Public Node]().
 - [Withdrawal]().
-- [Proxy Accounts]().
 - [Staking API](ref:ethereum) reference.

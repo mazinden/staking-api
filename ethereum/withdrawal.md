@@ -59,6 +59,5 @@ To initiate the withdrawal on the Ethereum network using the Staking API:
 
 ## What's Next?
 
-- [Staking API](ref:ethereum) reference.
 - [Staking]().
-- [Check Status]().
+- [Staking API](ref:ethereum) reference.

@@ -1,6 +1,6 @@
 # Withdrawal
 
-The withdrawal process for Polkadot in Staking API consists of several steps:
+The withdrawal process in the Polkadot network using the Staking API can be done in several ways:
 
 1. Unbond tokens:
 
@@ -194,7 +194,6 @@ Example response:
 
 ## What's Next?
 
-- [Staking Bond]().
-- [Withdrawal]().
-- [Proxy Accounts]().
+- [Getting Started Public Node]().
+- [Getting Started Privat Node]().
 - [Staking API](ref:ethereum) reference.

@@ -1,15 +1,22 @@
 # Polkadot Staking Overview
 
-Staking API enables staking in the Polkadot network.
+Staking in the Polkadot network using the Staking API can be done in several ways:
+
+[**Public Node**]()
+
+1. Submit Bond: Submit a bond to the Polkadot network in exchange for certain benefits.
+2. Sign Transaction: Sign the transaction before broadcasting it.
+3. Send Transaction: Broadcast the transaction to the Polkadot network.
+4. Submit Nomination: The process of selecting validators within the Polkadot network.
+
+[**Privat Node**]()
+
+1. Submit Bond: Submit a bond to the Polkadot network in exchange for certain benefits.
+2. Sign Transaction: Sign the transaction before broadcasting it.
+3. Send Transaction: Broadcast the transaction to the Polkadot network.
+4. Add Proxy Account: Staking proxies allow users to delegate their staking rights to another account, which can then sign transactions on their behalf.
 
 [Get an authentication token](doc:authentication) to start using Staking API.
-
-The staking process consists of several steps:
-
-1. Submit Bond: submitting a bond to the Polkadot network in exchange for some other benefit.
-2. Sign transaction: sign transaction before broadcasting.
-3. Send transaction: broadcast transaction to the Polkadot network.
-4. Submit Nomination: the action of choosing validators within the Polkadot network.
 
 We provide two distinct endpoints for testing and production environments.
 
@@ -19,13 +26,12 @@ We provide two distinct endpoints for testing and production environments.
 For Polkadot available several networks:
 
 - `mainnet` — the main network.
-- `kusama` — a canary network that holds real economic value.
+- `kusama` — a canary network with real economic value.
 - `westend` — a testnet.
 
 ## What's Next?
 
-- [Staking Bond]().
-- [Unbond]().
+- [Getting Started Public Node]().
+- [Getting Started Privat Node]().
 - [Withdrawal]().
-- [Proxy Accounts]().
 - [Staking API](ref:ethereum) reference.

@@ -24,7 +24,6 @@ We provide two distinct endpoints for testing and production environments. The t
 
 ## What's Next?
 
-- [Staking]().
-- [Check Status]().
+- [Getting Started]().
 - [Withdrawal]().
 - [Staking API](ref:ethereum) reference.
