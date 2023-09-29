@@ -25,7 +25,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -37,7 +37,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -274,7 +274,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -286,7 +286,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -523,7 +523,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -535,7 +535,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -772,7 +772,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -784,7 +784,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -1907,14 +1907,14 @@
       "get": {
         "operationId": "eth-nodes-request-list",
         "summary": "Check the Status of All Requests",
-        "description": "Check the status of all the node set-up operations created through the authorization token",
+        "description": "Check the status of all the node set-up operations created through the authorization token.",
         "parameters": [
           {
             "name": "limit",
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -1926,7 +1926,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -2748,6 +2748,203 @@
         ]
       }
     },
+    "/api/v1/polkadot/{network}/tx": {
+      "get": {
+        "operationId": "polkadot-transaction-list",
+        "summary": "List of broadcasted transactions",
+        "description": "Get a list of broadcasted transactions.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetListTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 100120,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 100118,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionGetListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TransactionGetListException": {
+                    "value": {
+                      "code": 100206,
+                      "message": "Unable to get list of transaction",
+                      "type": "server"
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 100119,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot Transaction"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/polkadot/{network}/account/add": {
       "post": {
         "operationId": "polkadot-account-add",
@@ -3370,7 +3567,7 @@
                 "examples": {
                   "BondException": {
                     "value": {
-                      "code": 100206,
+                      "code": 100207,
                       "message": "Unable to request bond",
                       "type": "server"
                     }
@@ -3583,7 +3780,7 @@
                 "examples": {
                   "BondExtraException": {
                     "value": {
-                      "code": 100207,
+                      "code": 100208,
                       "message": "Unable to request bond extra",
                       "type": "server"
                     }
@@ -3816,7 +4013,7 @@
                 "examples": {
                   "RebondException": {
                     "value": {
-                      "code": 100209,
+                      "code": 100210,
                       "message": "Unable to request rebond",
                       "type": "server"
                     }
@@ -3845,7 +4042,7 @@
     },
     "/api/v1/polkadot/{network}/staking/nominate": {
       "get": {
-        "operationId": "eth-nodes-request-list",
+        "operationId": "polkadot-staking-nominate-list",
         "summary": "List of validators",
         "description": "Get a list of validators.",
         "parameters": [
@@ -4180,7 +4377,7 @@
                 "examples": {
                   "NominateException": {
                     "value": {
-                      "code": 100208,
+                      "code": 100209,
                       "message": "Unable to request nominate",
                       "type": "server"
                     }
@@ -4393,7 +4590,7 @@
                 "examples": {
                   "UnbondException": {
                     "value": {
-                      "code": 100210,
+                      "code": 100211,
                       "message": "Unable to request unbond",
                       "type": "server"
                     }
@@ -4616,7 +4813,7 @@
                 "examples": {
                   "WithdrawUnbondedException": {
                     "value": {
-                      "code": 100211,
+                      "code": 100212,
                       "message": "Unable to withdraw unbonded",
                       "type": "server"
                     }
@@ -5000,6 +5197,10 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
+    },
+    {
+      "url": "https://api.p2p.org",
+      "description": "ETH staking API"
     }
   ],
   "components": {
@@ -5241,15 +5442,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -5338,15 +5542,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -5413,15 +5620,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -6074,15 +6284,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -6215,7 +6428,7 @@
           "extrinsicId": {
             "type": "number",
             "description": "Unique extrinsic identifier.",
-            "example": "0xb838911d5a5f965f33b8ee134e1115b5b9902abfc567f0c3050073faf9d3c3e0"
+            "example": "17177570-2"
           },
           "transactionHash": {
             "type": "string",
@@ -6455,6 +6668,139 @@
           "signedTransaction"
         ]
       },
+      "TransactionGetListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100206
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to get list of transaction"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionGetListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "PolkadotTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "kusama",
+              "westend"
+            ],
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "example": "westend"
+          },
+          "signedTransaction": {
+            "type": "string",
+            "description": "Signed transaction hash which needs to be broadcasted to the network",
+            "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
+            "pattern": "^0x([A-Fa-f0-9])+$",
+            "nullable": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "failed"
+            ],
+            "description": "Transaction status",
+            "example": "success"
+          },
+          "blockHash": {
+            "type": "string",
+            "description": "Block in which the transaction was included",
+            "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
+          },
+          "blockId": {
+            "type": "number",
+            "description": "Unique block identifier",
+            "example": "17168395"
+          },
+          "extrinsicId": {
+            "type": "number",
+            "description": "Unique extrinsic identifier",
+            "example": "17177570-2"
+          },
+          "transactionHash": {
+            "type": "string",
+            "description": "Signed transaction hash",
+            "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402"
+          },
+          "signerAccount": {
+            "type": "string",
+            "description": "Account that signed the transaction",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "data": {
+            "type": "string",
+            "description": "Method data"
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Complete ISO-8601 date of creating a call",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "network",
+          "signedTransaction",
+          "status",
+          "blockHash",
+          "blockId",
+          "extrinsicId",
+          "transactionHash",
+          "signerAccount",
+          "data",
+          "createdAt"
+        ]
+      },
+      "GetListTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PolkadotTransactionResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
       "AddressIsInvalidException": {
         "type": "object",
         "properties": {
@@ -6650,7 +6996,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100206
+            "default": 100207
           },
           "message": {
             "type": "string",
@@ -6757,7 +7103,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100207
+            "default": 100208
           },
           "message": {
             "type": "string",
@@ -6896,7 +7242,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100209
+            "default": 100210
           },
           "message": {
             "type": "string",
@@ -6963,7 +7309,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100208
+            "default": 100209
           },
           "message": {
             "type": "string",
@@ -7057,7 +7403,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100210
+            "default": 100211
           },
           "message": {
             "type": "string",
@@ -7120,7 +7466,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100211
+            "default": 100212
           },
           "message": {
             "type": "string",
