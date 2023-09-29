@@ -3846,8 +3846,8 @@
     "/api/v1/polkadot/{network}/staking/nominate": {
       "get": {
         "operationId": "eth-nodes-request-list",
-        "summary": "Get list of public nodes",
-        "description": "Method to getting list of public nodes",
+        "summary": "List of validators",
+        "description": "Get a list of validators.",
         "parameters": [
           {
             "name": "network",
@@ -6937,7 +6937,7 @@
         "properties": {
           "nominate": {
             "type": "string",
-            "description": ""
+            "description": "Validator address."
           }
         },
         "required": [
