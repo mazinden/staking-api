@@ -25,7 +25,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -37,7 +37,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -274,7 +274,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -286,7 +286,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -523,7 +523,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -535,7 +535,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -772,7 +772,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -784,7 +784,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -1000,7 +1000,7 @@
     "/api/v1/eth/staking/direct/validator/status": {
       "post": {
         "operationId": "eth-validator-status",
-        "summary": "Validator Status Check",
+        "summary": "Check Validator Status",
         "description": "Check the status of the validators.",
         "parameters": [],
         "requestBody": {
@@ -1157,7 +1157,7 @@
     "/api/v1/eth/staking/direct/tx/deposit": {
       "post": {
         "operationId": "eth-staking-deposit",
-        "summary": "Prepare Stake Transaction",
+        "summary": "Prepare Staking Transaction",
         "description": "Construct serialized transaction to deposit the stake amount, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
@@ -1705,7 +1705,7 @@
     "/api/v1/eth/staking/direct/nodes-request/status/{id}": {
       "get": {
         "operationId": "eth-nodes-request-status",
-        "summary": "Check Status Request",
+        "summary": "Check Request Status",
         "description": "Check the status of the node set-up operation.",
         "parameters": [
           {
@@ -1713,7 +1713,7 @@
             "required": true,
             "in": "path",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "The nodes request ID",
+            "description": "The nodes request ID.",
             "schema": {
               "format": "uuid",
               "type": "string"
@@ -1906,15 +1906,15 @@
     "/api/v1/eth/staking/direct/nodes-request": {
       "get": {
         "operationId": "eth-nodes-request-list",
-        "summary": "Check All Status Requests",
-        "description": "Check the status of all the node set-up operations created through the authorization token",
+        "summary": "Check the Status of All Requests",
+        "description": "Check the status of all the node set-up operations created through the authorization token.",
         "parameters": [
           {
             "name": "limit",
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains",
+            "description": "The number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -1926,7 +1926,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response",
+            "description": "The number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -2267,7 +2267,7 @@
             "name": "blockHash",
             "required": true,
             "in": "path",
-            "description": "The hash of the checkpoint block.",
+            "description": "Block hash in which the transaction was included.",
             "schema": {
               "type": "string"
             }
@@ -2549,6 +2549,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ExtrinsicCouldNotFoundException"
                         }
                       ]
                     }
@@ -2566,6 +2569,13 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "ExtrinsicCouldNotFoundException": {
+                    "value": {
+                      "code": 100194,
+                      "message": "Transaction was retracted",
                       "type": "client"
                     }
                   }
@@ -2638,25 +2648,22 @@
                           "$ref": "#/components/schemas/TransactionRetractedException"
                         },
                         {
-                          "$ref": "#/components/schemas/TransactionInvalidException"
-                        },
-                        {
                           "$ref": "#/components/schemas/TransactionUsurpedException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/TransactionFinalityTimeoutException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/TransactionDroppedException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/ExtrinsicCouldNotFoundException"
                         },
                         {
                           "$ref": "#/components/schemas/CouldNotGetStateException"
                         },
                         {
                           "$ref": "#/components/schemas/ExtrinsicCouldNotSendException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionFinalityTimeoutException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionDroppedException"
                         }
                       ]
                     }
@@ -2684,38 +2691,10 @@
                       "type": "server"
                     }
                   },
-                  "TransactionInvalidException": {
-                    "value": {
-                      "code": 100195,
-                      "message": "Transaction is invalid",
-                      "type": "server"
-                    }
-                  },
                   "TransactionUsurpedException": {
                     "value": {
                       "code": 100196,
                       "message": "Transaction was usurped",
-                      "type": "server"
-                    }
-                  },
-                  "TransactionFinalityTimeoutException": {
-                    "value": {
-                      "code": 100197,
-                      "message": "Transaction was finality timeouted",
-                      "type": "server"
-                    }
-                  },
-                  "TransactionDroppedException": {
-                    "value": {
-                      "code": 100198,
-                      "message": "Transaction was dropped",
-                      "type": "server"
-                    }
-                  },
-                  "ExtrinsicCouldNotFoundException": {
-                    "value": {
-                      "code": 100194,
-                      "message": "Transaction was retracted",
                       "type": "server"
                     }
                   },
@@ -2732,6 +2711,27 @@
                       "message": "Extrinsic cannot be sent",
                       "type": "server"
                     }
+                  },
+                  "TransactionInvalidException": {
+                    "value": {
+                      "code": 100195,
+                      "message": "Transaction is invalid",
+                      "type": "server"
+                    }
+                  },
+                  "TransactionFinalityTimeoutException": {
+                    "value": {
+                      "code": 100197,
+                      "message": "Transaction was finality timeouted",
+                      "type": "server"
+                    }
+                  },
+                  "TransactionDroppedException": {
+                    "value": {
+                      "code": 100198,
+                      "message": "Transaction was dropped",
+                      "type": "server"
+                    }
                   }
                 }
               }
@@ -2740,6 +2740,203 @@
         },
         "tags": [
           "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/tx": {
+      "get": {
+        "operationId": "polkadot-transaction-list",
+        "summary": "List of broadcasted transactions",
+        "description": "Get a list of broadcasted transactions.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetListTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 100120,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 100118,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionGetListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TransactionGetListException": {
+                    "value": {
+                      "code": 100206,
+                      "message": "Unable to get list of transaction",
+                      "type": "server"
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 100119,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot Transaction"
         ],
         "security": [
           {
@@ -2943,7 +3140,7 @@
                     "value": {
                       "code": 100185,
                       "message": "Insufficient balance",
-                      "type": "server"
+                      "type": "client"
                     }
                   }
                 }
@@ -3251,6 +3448,12 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/StakeAmountTooSmallException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientBalanceException"
                         }
                       ]
                     }
@@ -3275,6 +3478,20 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "StakeAmountTooSmallException": {
+                    "value": {
+                      "code": 100189,
+                      "message": "Stake amount too small",
+                      "type": "client"
+                    }
+                  },
+                  "InsufficientBalanceException": {
+                    "value": {
+                      "code": 100185,
+                      "message": "Insufficient balance",
                       "type": "client"
                     }
                   }
@@ -3342,12 +3559,6 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/InsufficientBalanceException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/StakeAmountTooSmallException"
                         }
                       ]
                     }
@@ -3356,7 +3567,7 @@
                 "examples": {
                   "BondException": {
                     "value": {
-                      "code": 100206,
+                      "code": 100207,
                       "message": "Unable to request bond",
                       "type": "server"
                     }
@@ -3365,20 +3576,6 @@
                     "value": {
                       "code": 100119,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "InsufficientBalanceException": {
-                    "value": {
-                      "code": 100185,
-                      "message": "Insufficient balance",
-                      "type": "server"
-                    }
-                  },
-                  "StakeAmountTooSmallException": {
-                    "value": {
-                      "code": 100189,
-                      "message": "Stake amount too small",
                       "type": "server"
                     }
                   }
@@ -3474,6 +3671,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientBalanceException"
                         }
                       ]
                     }
@@ -3498,6 +3698,13 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "InsufficientBalanceException": {
+                    "value": {
+                      "code": 100185,
+                      "message": "Insufficient balance",
                       "type": "client"
                     }
                   }
@@ -3565,9 +3772,6 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/InsufficientBalanceException"
                         }
                       ]
                     }
@@ -3576,7 +3780,7 @@
                 "examples": {
                   "BondExtraException": {
                     "value": {
-                      "code": 100207,
+                      "code": 100208,
                       "message": "Unable to request bond extra",
                       "type": "server"
                     }
@@ -3585,13 +3789,6 @@
                     "value": {
                       "code": 100119,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "InsufficientBalanceException": {
-                    "value": {
-                      "code": 100185,
-                      "message": "Insufficient balance",
                       "type": "server"
                     }
                   }
@@ -3687,6 +3884,15 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/LedgerNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NotEnoughPendingAmountException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongControllerException"
                         }
                       ]
                     }
@@ -3711,6 +3917,27 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "LedgerNotFoundException": {
+                    "value": {
+                      "code": 100187,
+                      "message": "Ledger not found",
+                      "type": "client"
+                    }
+                  },
+                  "NotEnoughPendingAmountException": {
+                    "value": {
+                      "code": 100192,
+                      "message": "Not enough pending amount",
+                      "type": "client"
+                    }
+                  },
+                  "WrongControllerException": {
+                    "value": {
+                      "code": 100188,
+                      "message": "Wrong controller",
                       "type": "client"
                     }
                   }
@@ -3778,18 +4005,6 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/LedgerNotFoundException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/BondNotFoundException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongControllerException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/NotEnoughPendingAmountException"
                         }
                       ]
                     }
@@ -3798,7 +4013,7 @@
                 "examples": {
                   "RebondException": {
                     "value": {
-                      "code": 100209,
+                      "code": 100210,
                       "message": "Unable to request rebond",
                       "type": "server"
                     }
@@ -3807,34 +4022,6 @@
                     "value": {
                       "code": 100119,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "LedgerNotFoundException": {
-                    "value": {
-                      "code": 100187,
-                      "message": "Ledger not found",
-                      "type": "server"
-                    }
-                  },
-                  "BondNotFoundException": {
-                    "value": {
-                      "code": 100186,
-                      "message": "Bond not found",
-                      "type": "server"
-                    }
-                  },
-                  "WrongControllerException": {
-                    "value": {
-                      "code": 100188,
-                      "message": "Wrong controller",
-                      "type": "server"
-                    }
-                  },
-                  "NotEnoughPendingAmountException": {
-                    "value": {
-                      "code": 100192,
-                      "message": "Not enough pending amount",
                       "type": "server"
                     }
                   }
@@ -3854,6 +4041,167 @@
       }
     },
     "/api/v1/polkadot/{network}/staking/nominate": {
+      "get": {
+        "operationId": "polkadot-staking-nominate-list",
+        "summary": "List of validators",
+        "description": "Get a list of validators.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetListNominateResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 100120,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 100118,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 100119,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      },
       "post": {
         "operationId": "polkadot-staking-nominate",
         "summary": "Submit nomination",
@@ -4029,7 +4377,7 @@
                 "examples": {
                   "NominateException": {
                     "value": {
-                      "code": 100208,
+                      "code": 100209,
                       "message": "Unable to request nominate",
                       "type": "server"
                     }
@@ -4133,6 +4481,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NotEnoughBonedAmountException"
                         }
                       ]
                     }
@@ -4157,6 +4508,13 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "NotEnoughBonedAmountException": {
+                    "value": {
+                      "code": 100193,
+                      "message": "Not enough bonded amount",
                       "type": "client"
                     }
                   }
@@ -4224,9 +4582,6 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/NotEnoughBonedAmountException"
                         }
                       ]
                     }
@@ -4235,7 +4590,7 @@
                 "examples": {
                   "UnbondException": {
                     "value": {
-                      "code": 100210,
+                      "code": 100211,
                       "message": "Unable to request unbond",
                       "type": "server"
                     }
@@ -4244,13 +4599,6 @@
                     "value": {
                       "code": 100119,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "NotEnoughBonedAmountException": {
-                    "value": {
-                      "code": 100193,
-                      "message": "Not enough bonded amount",
                       "type": "server"
                     }
                   }
@@ -4346,6 +4694,12 @@
                         },
                         {
                           "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/BondNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongControllerException"
                         }
                       ]
                     }
@@ -4370,6 +4724,20 @@
                     "value": {
                       "code": 100177,
                       "message": "Network is not included in list (undefined)",
+                      "type": "client"
+                    }
+                  },
+                  "BondNotFoundException": {
+                    "value": {
+                      "code": 100186,
+                      "message": "Bond not found",
+                      "type": "client"
+                    }
+                  },
+                  "WrongControllerException": {
+                    "value": {
+                      "code": 100188,
+                      "message": "Wrong controller",
                       "type": "client"
                     }
                   }
@@ -4437,12 +4805,6 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/BondNotFoundException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongControllerException"
                         }
                       ]
                     }
@@ -4451,7 +4813,7 @@
                 "examples": {
                   "WithdrawUnbondedException": {
                     "value": {
-                      "code": 100211,
+                      "code": 100212,
                       "message": "Unable to withdraw unbonded",
                       "type": "server"
                     }
@@ -4460,20 +4822,6 @@
                     "value": {
                       "code": 100119,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "BondNotFoundException": {
-                    "value": {
-                      "code": 100186,
-                      "message": "Bond not found",
-                      "type": "server"
-                    }
-                  },
-                  "WrongControllerException": {
-                    "value": {
-                      "code": 100188,
-                      "message": "Wrong controller",
                       "type": "server"
                     }
                   }
@@ -4577,23 +4925,29 @@
             }
           },
           {
-            "name": "stakeAuthority",
-            "required": true,
+            "name": "stakeAuthorities",
+            "required": false,
             "in": "query",
-            "description": "Stake authority",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
+            "description": "Stake authority list",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           },
           {
-            "name": "withdrawAuthority",
-            "required": true,
+            "name": "withdrawAuthorities",
+            "required": false,
             "in": "query",
-            "description": "Withdraw authority",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
+            "description": "Withdraw authority list",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
-              "type": "string"
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -4697,11 +5051,11 @@
         ]
       }
     },
-    "/api/v1/solana/{network}/staking/unstake": {
+    "/api/v1/solana/{network}/staking/deactivate": {
       "post": {
-        "operationId": "solana-staking-unstake",
-        "summary": "Solana create unstake ",
-        "description": "Create unstake transaction",
+        "operationId": "solana-staking-deactivate",
+        "summary": "Solana create deactivate stake transaction",
+        "description": "Create deactivate stake transaction",
         "parameters": [
           {
             "name": "network",
@@ -4722,7 +5076,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/UnstakeRequest"
+                "$ref": "#/components/schemas/DeactivateRequest"
               }
             }
           }
@@ -4742,7 +5096,7 @@
                     "result": {
                       "oneOf": [
                         {
-                          "$ref": "#/components/schemas/UnstakeResult"
+                          "$ref": "#/components/schemas/DeactivateResult"
                         }
                       ]
                     }
@@ -4807,7 +5161,7 @@
                     "result": {
                       "oneOf": [
                         {
-                          "$ref": "#/components/schemas/UnstakeResult"
+                          "$ref": "#/components/schemas/DeactivateResult"
                         }
                       ]
                     }
@@ -4843,6 +5197,10 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
+    },
+    {
+      "url": "https://api.p2p.org",
+      "description": "ETH staking API"
     }
   ],
   "components": {
@@ -5084,15 +5442,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -5181,15 +5542,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -5256,15 +5620,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -5322,7 +5689,7 @@
           "amount": {
             "type": "number",
             "example": 1,
-            "description": "The validator current status"
+            "description": "The total stake amount for the validator at the moment."
           },
           "pubkey": {
             "type": "string",
@@ -5403,21 +5770,21 @@
         "properties": {
           "serializeTx": {
             "type": "string",
-            "description": "Serialized unsigned transaction",
+            "description": "Serialized unsigned transaction.",
             "example": "0x02f902d705808301674e8508530af16e830186a094681a1b3441c6bfb12f91651efd9f02c83c0702938901bc16d674ec800000b902a44f498c730000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000012000000000000000000000000000000000000000000000000000000000000001a00000000000000000000000000000000000000000000000000000000000000260000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000030aa5f27070a21d79455c4a9b73c0aa4a8b1a65a1fb530d7fd8e6cd23aa16660679ac43ee4861098f6d9166aed3a4d8abb0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000000000002001000000000000000000000028c84612d37de9209018ad96167f12169b653e9a000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000060978c565cd915f4e885b4201093d1501697610eb9ee99b9b60b70434dc330e98d5b42927725304ded48483a8b8f39506d09bcb22ee18d4f6b50257946ac5ee360385308d95c0e2bc963902d42e985c29ee489aa3c989ac1561c952a6424f107a800000000000000000000000000000000000000000000000000000000000000014cb452f6e3f10ba2175c86a0284f53fcb61404b458393391abc3d5622e3e55cdc0",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
           },
           "to": {
             "type": "string",
-            "description": "The address this transaction it to.",
+            "description": "The recipient address for this transaction.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "gasLimit": {
             "type": "string",
             "example": "0",
-            "description": "The maximum amount of gas that this block was permitted to use"
+            "description": "The maximum gas limit for this block."
           },
           "data": {
             "type": "string",
@@ -5427,27 +5794,27 @@
           "value": {
             "type": "string",
             "example": "0",
-            "description": "The amount (in wei) this transaction is sending"
+            "description": "The amount this transaction is sending in Wei."
           },
           "chainId": {
             "type": "string",
             "example": "0",
-            "description": "The chain ID this transaction is authorized on, as specified by EIP-155"
+            "description": "The chain ID this transaction is authorized on, as specified by EIP-155."
           },
           "type": {
             "type": "string",
             "example": "0",
-            "description": "The EIP-2718 type of this transaction envelope"
+            "description": "The EIP-2718 type of this transaction envelope."
           },
           "maxFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The maximum price (in wei) per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee"
+            "description": "The maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei."
           },
           "maxPriorityFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The price (in wei) per unit of gas this transaction will allow in addition to the EIP-1559 block's base fee to bribe miners into giving this transaction priority"
+            "description": "The price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction."
           }
         },
         "required": [
@@ -5473,13 +5840,13 @@
           },
           "signature": {
             "type": "string",
-            "description": "A valid signature",
+            "description": "Validator signature.",
             "example": "0x83D2E925AEAEdcB18db983Bd447db0BFc1Ee9a6Ead118E5BEfeBcb24BA8C0efd3BD19Cb1cE8e807Fc980a67bBbf8b11e039efe2DB71fcdF096fccac5B04dF80f6a1804cd8d492455D30abE27FcDbDA78AFE61856cad65ffF5cA48Ed4776edd88",
             "pattern": "^0x[a-fA-F0-9]{192}$"
           },
           "depositDataRoot": {
             "type": "string",
-            "description": "The deposit data",
+            "description": "Hash of the deposit data.",
             "example": "0x784bfffb4DfEFb457BA9187B38E49a1Bc0f4af50EDDDaca9581AA0aA7F98E96C",
             "pattern": "^0x[a-fA-F0-9]{64}$"
           }
@@ -5605,7 +5972,7 @@
         "type": "object",
         "properties": {
           "pubkeys": {
-            "description": "The List pubkey of validators",
+            "description": "The list of validators public keys.",
             "example": [
               "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
             ],
@@ -5781,21 +6148,45 @@
         "properties": {
           "pubkey": {
             "type": "string",
-            "description": " A public key",
+            "description": "Validator public key.",
             "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "signature": {
             "type": "string",
-            "description": "A valid signature",
+            "description": "Validator signature.",
             "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
             "pattern": "^0x[a-fA-F0-9]{192}$"
           },
           "depositDataRoot": {
             "type": "string",
-            "description": "The deposit data",
+            "description": "Hash of the deposit data.",
             "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
             "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "withdrawalCredentials": {
+            "type": "string",
+            "description": "The withdrawal credentials"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Amount"
+          },
+          "depositMessageRoot": {
+            "type": "string",
+            "description": "The deposit message root"
+          },
+          "forkVersion": {
+            "type": "string",
+            "description": "The fork version chain the deposit"
+          },
+          "eth2NetworkName": {
+            "type": "string",
+            "description": "Eth2 network name"
+          },
+          "depositCliVersion": {
+            "type": "string",
+            "description": "The version of the deposit command-line interface"
           }
         },
         "required": [
@@ -5821,7 +6212,7 @@
               "ready",
               "cancel"
             ],
-            "description": "Current status of the nodes request",
+            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node setup in progress.</li><li><i>processing</i> — ...</li><li><i>ready</i> — node setup was successful.</li><li><i>cancel</i> — node setup was cancelled.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
@@ -5893,15 +6284,18 @@
           "limit": {
             "type": "number",
             "minimum": 1,
-            "default": 50
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
-            "minimum": 0
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
-            "minimum": 1
+            "minimum": 1,
+            "description": "Total count of resources."
           },
           "list": {
             "type": "array",
@@ -6023,7 +6417,7 @@
           },
           "blockHash": {
             "type": "string",
-            "description": "The block in which the transaction was included.",
+            "description": "Block hash in which the transaction was included.",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
           "blockId": {
@@ -6034,11 +6428,11 @@
           "extrinsicId": {
             "type": "number",
             "description": "Unique extrinsic identifier.",
-            "example": "0xb838911d5a5f965f33b8ee134e1115b5b9902abfc567f0c3050073faf9d3c3e0"
+            "example": "17177570-2"
           },
           "transactionHash": {
             "type": "string",
-            "description": "Signed transaction in hex format.",
+            "description": "Signed extrinsic transaction in hex format.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402"
           },
           "signerAccount": {
@@ -6061,6 +6455,28 @@
           "transactionHash",
           "signerAccount",
           "createdAt"
+        ]
+      },
+      "ExtrinsicCouldNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100199
+          },
+          "message": {
+            "type": "string",
+            "default": "Extrinsic cannot be found"
+          },
+          "name": {
+            "type": "string",
+            "default": "ExtrinsicCouldNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
         ]
       },
       "SendException": {
@@ -6107,28 +6523,6 @@
           "name"
         ]
       },
-      "TransactionInvalidException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100195
-          },
-          "message": {
-            "type": "string",
-            "default": "Transaction is invalid"
-          },
-          "name": {
-            "type": "string",
-            "default": "TransactionInvalidException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
       "TransactionUsurpedException": {
         "type": "object",
         "properties": {
@@ -6143,72 +6537,6 @@
           "name": {
             "type": "string",
             "default": "TransactionUsurpedException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "TransactionFinalityTimeoutException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100197
-          },
-          "message": {
-            "type": "string",
-            "default": "Transaction was finality timeouted"
-          },
-          "name": {
-            "type": "string",
-            "default": "TransactionFinalityTimeoutException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "TransactionDroppedException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100198
-          },
-          "message": {
-            "type": "string",
-            "default": "Transaction was dropped"
-          },
-          "name": {
-            "type": "string",
-            "default": "TransactionDroppedException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "ExtrinsicCouldNotFoundException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100199
-          },
-          "message": {
-            "type": "string",
-            "default": "Extrinsic cannot be found"
-          },
-          "name": {
-            "type": "string",
-            "default": "ExtrinsicCouldNotFoundException"
           }
         },
         "required": [
@@ -6261,17 +6589,216 @@
           "name"
         ]
       },
+      "TransactionInvalidException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100195
+          },
+          "message": {
+            "type": "string",
+            "default": "Transaction is invalid"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionInvalidException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "TransactionFinalityTimeoutException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100197
+          },
+          "message": {
+            "type": "string",
+            "default": "Transaction was finality timeouted"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionFinalityTimeoutException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "TransactionDroppedException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100198
+          },
+          "message": {
+            "type": "string",
+            "default": "Transaction was dropped"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionDroppedException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "SendRequest": {
         "type": "object",
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Base64 encrypted transaction for unstake.",
+            "description": "Signed transaction in Base64 encrypted format.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           }
         },
         "required": [
           "signedTransaction"
+        ]
+      },
+      "TransactionGetListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100206
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to get list of transaction"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionGetListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "PolkadotTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "kusama",
+              "westend"
+            ],
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "example": "westend"
+          },
+          "signedTransaction": {
+            "type": "string",
+            "description": "Signed transaction hash which needs to be broadcasted to the network",
+            "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
+            "pattern": "^0x([A-Fa-f0-9])+$",
+            "nullable": false
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "success",
+              "failed"
+            ],
+            "description": "Transaction status",
+            "example": "success"
+          },
+          "blockHash": {
+            "type": "string",
+            "description": "Block in which the transaction was included",
+            "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
+          },
+          "blockId": {
+            "type": "number",
+            "description": "Unique block identifier",
+            "example": "17168395"
+          },
+          "extrinsicId": {
+            "type": "number",
+            "description": "Unique extrinsic identifier",
+            "example": "17177570-2"
+          },
+          "transactionHash": {
+            "type": "string",
+            "description": "Signed transaction hash",
+            "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402"
+          },
+          "signerAccount": {
+            "type": "string",
+            "description": "Account that signed the transaction",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "data": {
+            "type": "string",
+            "description": "Method data"
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Complete ISO-8601 date of creating a call",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "network",
+          "signedTransaction",
+          "status",
+          "blockHash",
+          "blockId",
+          "extrinsicId",
+          "transactionHash",
+          "signerAccount",
+          "data",
+          "createdAt"
+        ]
+      },
+      "GetListTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PolkadotTransactionResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
         ]
       },
       "AddressIsInvalidException": {
@@ -6442,28 +6969,6 @@
           "proxyAccountAddress"
         ]
       },
-      "BondException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100206
-          },
-          "message": {
-            "type": "string",
-            "default": "Unable to request bond"
-          },
-          "name": {
-            "type": "string",
-            "default": "BondException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
       "StakeAmountTooSmallException": {
         "type": "object",
         "properties": {
@@ -6478,6 +6983,28 @@
           "name": {
             "type": "string",
             "default": "StakeAmountTooSmallException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "BondException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100207
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to request bond"
+          },
+          "name": {
+            "type": "string",
+            "default": "BondException"
           }
         },
         "required": [
@@ -6576,7 +7103,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 100207
+            "default": 100208
           },
           "message": {
             "type": "string",
@@ -6608,7 +7135,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "description": "Amount of tokens for bond operations (in usual DOTs/KSMs/WNDs).",
             "example": 3
           },
           "createdAt": {
@@ -6644,28 +7171,6 @@
           "amount"
         ]
       },
-      "RebondException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100209
-          },
-          "message": {
-            "type": "string",
-            "default": "Unable to request rebond"
-          },
-          "name": {
-            "type": "string",
-            "default": "RebondException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
       "LedgerNotFoundException": {
         "type": "object",
         "properties": {
@@ -6680,50 +7185,6 @@
           "name": {
             "type": "string",
             "default": "LedgerNotFoundException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "BondNotFoundException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100186
-          },
-          "message": {
-            "type": "string",
-            "default": "Bond not found"
-          },
-          "name": {
-            "type": "string",
-            "default": "BondNotFoundException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "WrongControllerException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100188
-          },
-          "message": {
-            "type": "string",
-            "default": "Wrong controller"
-          },
-          "name": {
-            "type": "string",
-            "default": "WrongControllerException"
           }
         },
         "required": [
@@ -6754,6 +7215,50 @@
           "name"
         ]
       },
+      "WrongControllerException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100188
+          },
+          "message": {
+            "type": "string",
+            "default": "Wrong controller"
+          },
+          "name": {
+            "type": "string",
+            "default": "WrongControllerException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "RebondException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100210
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to request rebond"
+          },
+          "name": {
+            "type": "string",
+            "default": "RebondException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "RebondRequest": {
         "type": "object",
         "properties": {
@@ -6773,12 +7278,38 @@
           "amount"
         ]
       },
+      "NominateResponse": {
+        "type": "object",
+        "properties": {
+          "nominate": {
+            "type": "string",
+            "description": "Validator address."
+          }
+        },
+        "required": [
+          "nominate"
+        ]
+      },
+      "GetListNominateResponse": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NominateResponse"
+            }
+          }
+        },
+        "required": [
+          "list"
+        ]
+      },
       "NominateException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 100208
+            "default": 100209
           },
           "message": {
             "type": "string",
@@ -6845,28 +7376,6 @@
           "stashAccountAddress"
         ]
       },
-      "UnbondException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 100210
-          },
-          "message": {
-            "type": "string",
-            "default": "Unable to request unbond"
-          },
-          "name": {
-            "type": "string",
-            "default": "UnbondException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
       "NotEnoughBonedAmountException": {
         "type": "object",
         "properties": {
@@ -6889,6 +7398,28 @@
           "name"
         ]
       },
+      "UnbondException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100211
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to request unbond"
+          },
+          "name": {
+            "type": "string",
+            "default": "UnbondException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "UnbondRequest": {
         "type": "object",
         "properties": {
@@ -6899,7 +7430,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
@@ -6908,12 +7439,34 @@
           "amount"
         ]
       },
+      "BondNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 100186
+          },
+          "message": {
+            "type": "string",
+            "default": "Bond not found"
+          },
+          "name": {
+            "type": "string",
+            "default": "BondNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "WithdrawUnbondedException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 100211
+            "default": 100212
           },
           "message": {
             "type": "string",
@@ -6969,20 +7522,25 @@
       "SendResponse": {
         "type": "object",
         "properties": {
-          "transactionHash": {
+          "transactionId": {
             "type": "string",
             "description": "Block in which the transaction was included",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
-          "blockId": {
+          "slot": {
             "type": "number",
             "description": "Unique block identifier",
             "example": "17168395"
           },
-          "signerAccount": {
-            "type": "string",
+          "signerAccounts": {
             "description": "First signer of transaction",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            "example": [
+              "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "createdAt": {
             "format": "datetime",
@@ -6992,19 +7550,19 @@
           }
         },
         "required": [
-          "transactionHash",
-          "blockId",
-          "signerAccount",
+          "transactionId",
+          "slot",
+          "signerAccounts",
           "createdAt"
         ]
       },
-      "StakeAccount": {
+      "GetStakingResponse": {
         "type": "object",
         "properties": {
           "stakeAccount": {
             "type": "string",
-            "description": "Stake account address",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            "description": "Stake account public key",
+            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
           },
           "stakeAuthority": {
             "type": "string",
@@ -7055,7 +7613,7 @@
             "description": "List of stake accounts",
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/StakeAccount"
+              "$ref": "#/components/schemas/GetStakingResponse"
             }
           }
         },
@@ -7071,7 +7629,7 @@
             "description": "From public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "accountPublicKey": {
+          "stakeAccount": {
             "type": "string",
             "description": "Account public key",
             "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E"
@@ -7106,7 +7664,7 @@
         },
         "required": [
           "fromPublicKey",
-          "accountPublicKey",
+          "stakeAccount",
           "stakerPublicKey",
           "withdrawerPublicKey",
           "amount",
@@ -7122,45 +7680,37 @@
             "description": "From public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "accountPublicKey": {
+          "stakeAuthority": {
             "type": "string",
-            "description": "Account public key",
+            "description": "Stacker authority public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "stakerPublicKey": {
+          "withdrawAuthority": {
             "type": "string",
-            "description": "Stacker public key",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawerPublicKey": {
-            "type": "string",
-            "description": "Withdrawer public key",
+            "description": "Withdrawer authority public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to stake",
+            "description": "Amount of lamports to stake. 1 lamport equal 10^-9 SOL",
             "minimum": 1,
             "example": 1
           }
         },
         "required": [
           "fromPublicKey",
-          "accountPublicKey",
-          "stakerPublicKey",
-          "withdrawerPublicKey",
           "amount"
         ]
       },
-      "UnstakeResult": {
+      "DeactivateResult": {
         "type": "object",
         "properties": {
-          "accountPublicKey": {
+          "stakeAccount": {
             "type": "string",
-            "description": "Account public key",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            "description": "Stake account public key",
+            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
           },
-          "authorizedPublicKey": {
+          "stakeAuthority": {
             "type": "string",
             "description": "Public key staker",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
@@ -7178,60 +7728,55 @@
           }
         },
         "required": [
-          "accountPublicKey",
-          "authorizedPublicKey",
           "unsignedTransaction",
           "createdAt"
         ]
       },
-      "UnstakeRequest": {
+      "DeactivateRequest": {
         "type": "object",
         "properties": {
-          "accountPublicKey": {
+          "stakeAccount": {
             "type": "string",
             "description": "Account public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "authorizedPublicKey": {
+          "stakeAuthority": {
             "type": "string",
             "description": "Stacker public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
         "required": [
-          "accountPublicKey",
-          "authorizedPublicKey"
+          "stakeAccount",
+          "stakeAuthority"
         ]
       },
       "WithdrawRequest": {
         "type": "object",
         "properties": {
-          "accountPublicKey": {
+          "stakeAccount": {
             "type": "string",
             "description": "Account public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "authorizedPublicKey": {
+          "withdrawAuthority": {
             "type": "string",
             "description": "Withdrawer public key",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
-          "toPublicKey": {
+          "recipient": {
             "type": "string",
             "description": "Public key for withdraw amount",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to withdraw",
+            "description": "Amount of lamports to withdraw. 1 lamport equal 10^-9 SOL",
             "minimum": 1,
             "example": 1
           }
         },
         "required": [
-          "accountPublicKey",
-          "authorizedPublicKey",
-          "toPublicKey",
           "amount"
         ]
       }
