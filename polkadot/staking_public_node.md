@@ -1,206 +1,128 @@
-# Getting Started Public Node
+# Getting Started
 
 The staking process for Polkadot in the Staking API with a public node consists of several main steps:
 
 1. Submit Bond: Submit a bond to the Polkadot network in exchange for certain benefits.
-2. Sign Transaction: Sign the transaction before broadcasting it.
-3. Send Transaction: Broadcast the transaction to the Polkadot network.
-4. Submit Nomination: The process of selecting validators within the Polkadot network.
+2. Submit Nomination: The process of selecting validators within the Polkadot network.
 
 [Get an authentication token](doc:authentication) to start using Staking API.
 
-A request examples is provided using [cURL](https://curl.se/).
+A request example is provided using [cURL](https://curl.se/).
 
 ## 1. Submit Bond
 
-Send a POST request to [/api/v1/polkadot/{network}/staking/bond]().
+1. Send a POST request to [/api/v1/polkadot/{network}/staking/bond](ref:polkadot-staking-bond).
 
-Example request (for `westend` network):
+   Example request (for `westend` network):
 
-```curl
-curl --request POST \
-     --url https://api.p2p.org/api/v1/polkadot/westend/staking/bond \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer <token>' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-  "rewardDestinationType": "account",
-  "rewardDestination": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-  "amount": 3
-}'
-```
+   ```curl
+   curl --request POST \
+        --url https://api.p2p.org/api/v1/polkadot/westend/staking/bond \
+        --header 'accept: application/json' \
+        --header 'authorization: Bearer <token>' \
+        --header 'content-type: application/json' \
+        --data '
+   {
+     "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+     "rewardDestinationType": "account",
+     "rewardDestination": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+     "amount": 3
+   }'
+   ```
 
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
-- `rewardDestinationType` — rewards destination type:
+  - `stashAccountAddress` — main stash account address which keeps tokens for bonding.
 
-   - `staked` — Pay into the stash account, increasing the amount at stake accordingly.
-   - `stash` — Pay into the stash account, not increasing the amount at stake.
-   - `controller` — Pay into the controller account.
-   - `account` — Pay into a custom account.
+  - `rewardDestinationType` — rewards destination type:
 
-- `rewardDestination` — rewards destination account address.
-- `amount` — amount of tokens to bond. In usual DOT for main network, KSM for Kusama, and WND for Westend.
+    - `staked` — Rewards will be sent to your Stash account and added to your current bond (compounding rewards).
+    - `stash` — Rewards will be sent to your Stash account as transferrable balance (not compounding rewards).
+    - `controller` — Rewards will be sent to the controller account.
+    - `account` — Rewards will be sent to any account you specify as transferrable balance.
 
-Example response:
+  - `rewardDestination` — rewards destination account address.
 
-```curl
-{
-  "result": {
-    "unsignedTransaction": "0xac0406000b00487835a302032c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f",
-    "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-    "rewardDestinationType": "account",
-    "rewardDestination": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-    "amount": 3,
-    "createdAt": "2023-08-15T15:07:54.795Z"
-  }
-}
-```
+  - `amount` — amount of tokens to bond. In usual DOT for the main network, KSM for Kusama, and WND for Westend.
 
-- `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
-- `rewardDestinationType` — rewards destination type:
+   Example response:
+
+   ```curl
+   {
+     "result": {
+       "unsignedTransaction": "0xac0406000b00487835a302032c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f",
+       "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+       "rewardDestinationType": "account",
+       "rewardDestination": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+       "amount": 3,
+       "createdAt": "2023-08-15T15:07:54.795Z"
+     }
+   }
+   ```
+
+  - `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
+
+  - `stashAccountAddress` — main stash account address which keeps tokens for bonding.
+
+  - `rewardDestinationType` — rewards destination type:
 
     - `staked` — Pay into the stash account, increasing the amount at stake accordingly.
     - `stash` — Pay into the stash account, not increasing the amount at stake.
     - `controller` — Pay into the controller account.
     - `account` — Pay into a custom account.
 
-- `rewardDestination` — rewards destination account address.
-- `amount` — amount of tokens to bond. In usual DOT for main network, KSM for Kusama, and WND for Westend.
-- `createdAt` — timestamp of the transaction in the ISO 8601 format.
+  - `rewardDestination` — rewards destination account address.
 
-## 2. Sign transaction
+  - `amount` — the amount of tokens to bond, in usual DOT for the main network, KSM for Kusama, and WND for Westend.
 
-Sign transaction using one of the following methods:
+  - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
-- https://github.com/Kron0S/sign-polkadot
-- https://github.com/dmitrytarassov/polkadot_sign_demo
+2. [Sign and broadcast](doc:signing-transaction-polkadot) `unsignedTransaction` to the Polkadot network.
 
-As a result, you will get a signed transaction in Base64 encrypted format.
+## 2. Submit Nomination
 
-To verify transaction status, send a GET request to [/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}]().
+1. Send a POST request to [/api/v1/polkadot/{network}/staking/nominate](ref:polkadot-staking-nominate).
 
-Example request (for `westend` network):
+   Example request (for `westend` network):
 
-```curl
-curl --request GET \
-     --url https://api.p2p.org/api/v1/polkadot/westend/tx/status/0x2b235d960a1880661ecff07f8d3f017eedfb94526ab00e96ce5833d812c23b2b/0x9cd8514d3e6935426fe3ac8496307a0d8b5fdda035e22723e43045b7fa0896c6 \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer <token>' \
-     --header 'content-type: application/json'
-```
+   ```curl
+   curl --request POST \
+        --url https://api.p2p.org/api/v1/polkadot/westend/staking/nominate \
+        --header 'accept: application/json' \
+        --header 'authorization: Bearer <token>' \
+        --header 'content-type: application/json' \
+        --data '
+   {
+     "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+   }'
+   ```
 
-Example response:
+  - `stashAccountAddress` — main stash account address which keeps tokens for bonding.
 
-```curl
-{
-  "result": {
-    "status": "success",
-    "blockHash": "0x2b235d960a1880661ecff07f8d3f017eedfb94526ab00e96ce5833d812c23b2b",
-    "blockId": 17138875,
-    "extrinsicId": 2,
-    "transactionHash": "0x9cd8514d3e6935426fe3ac8496307a0d8b5fdda035e22723e43045b7fa0896c6",
-    "signerAccount": "5GYwcZcx1i23AxtUEqTkUG7muLB9fYqoeHW5eMNVXhdNrZas",
-    "createdAt": "2023-09-20T07:34:20.433Z"
-  }
-}
-```
+   Example response:
 
-## 3. Send transaction
+   ```curl
+   {
+     "result": {
+       "unsignedTransaction": "0x2102040605100096b33e0a9647f13198ad16a2812c549a363646a3a7ddbdcc5590f5839c408c6200767f36484b1e2acf5c265c7a64bfb46e95259c66a8189bbcd216195def43685200c21ad1e5198cc0dc3b0f9f43a50f292678f63235ea321e59385d7ee45a7208360018164fa6f9ce28792fb781185e8de4e6eaae34c0f545e5864952fe23c183df0c",
+       "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
+       "targets": [
+         "5FUJHYEzKpVJfNbtXmR9HFqmcSEz6ak7ZUhBECz7GpsFkSYR",
+         "5Ek5JCnrRsyUGYNRaEvkufG1i1EUxEE9cytuWBBjA9oNZVsf",
+         "5GTD7ZeD823BjpmZBCSzBQp7cvHR1Gunq7oDkurZr9zUev2n",
+         "5CcHdjf6sPcEkTmXFzF2CfH7MFrVHyY5PZtSm1eZsxgsj1KC"
+       ],
+       "createdAt": "2023-09-18T14:49:23.998Z"
+     }
+   }
+   ```
 
-Send a POST request to [/api/v1/polkadot/{network}/tx/send]().
+  - `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
+  - `stashAccountAddress` — main stash account address which keeps tokens for bonding.
+  - `targets` — selected validators in the targets.
+  - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
-Example request (for `westend` network):
-
-```curl
-curl --request POST \
-     --url https://api.p2p.org/api/v1/polkadot/westend/tx/send \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer <token>' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "signedTransaction": "0x450284002c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f01befdb7fa39c5a995a8d58676a0513d082be"
-}'
-```
-
-- `signedTransaction` — signed transaction in Base64 encrypted format.
-
-Example response:
-
-```curl
-{
-  "result": {
-    "status": "success",
-    "blockHash": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f",
-    "blockId": "17168395",
-    "extrinsicId": "0xb838911d5a5f965f33b8ee134e1115b5b9902abfc567f0c3050073faf9d3c3e0",
-    "transactionHash": "0x450284002c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f01befdb7fa39c5a995a8d58676a0513d082be",
-    "signerAccount": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-    "createdAt": "2023-08-15T15:07:54.795Z"
-  }
-}
-```
-
-- `staus` — transaction status.
-- `blockHash` — block hash in which the transaction was included.
-- `blockId` — unique block identifier.
-- `extrinsicId` — unique extrinsic identifier.
-- `transactionHash` — signed transaction in hex format.
-- `signerAccount` — account that signed the transaction.
-- `createdAt` — timestamp of the transaction in the ISO 8601 format.
-
-To verify transaction status, send a GET request to [/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}]().
-
-## 4. Submit Nomination
-
-Send a POST request to [/api/v1/polkadot/{network}/staking/nominate]().
-
-Example request (for `westend` network):
-
-```curl
-curl --request POST \
-     --url https://api.p2p.org/api/v1/polkadot/westend/staking/nominate \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer <token>' \
-     --header 'content-type: application/json' \
-     --data '
-{
-  "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
-}'
-```
-
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
-
-Example response:
-
-```curl
-{
-  "result": {
-    "unsignedTransaction": "0x2102040605100096b33e0a9647f13198ad16a2812c549a363646a3a7ddbdcc5590f5839c408c6200767f36484b1e2acf5c265c7a64bfb46e95259c66a8189bbcd216195def43685200c21ad1e5198cc0dc3b0f9f43a50f292678f63235ea321e59385d7ee45a7208360018164fa6f9ce28792fb781185e8de4e6eaae34c0f545e5864952fe23c183df0c",
-    "stashAccountAddress": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5",
-    "targets": [
-      "5FUJHYEzKpVJfNbtXmR9HFqmcSEz6ak7ZUhBECz7GpsFkSYR",
-      "5Ek5JCnrRsyUGYNRaEvkufG1i1EUxEE9cytuWBBjA9oNZVsf",
-      "5GTD7ZeD823BjpmZBCSzBQp7cvHR1Gunq7oDkurZr9zUev2n",
-      "5CcHdjf6sPcEkTmXFzF2CfH7MFrVHyY5PZtSm1eZsxgsj1KC"
-    ],
-    "createdAt": "2023-09-18T14:49:23.998Z"
-  }
-}
-```
-
-- `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
-- `stashAccountAddress` — main stash account address which keeps tokens for bonding.
-- `targets` — selected validators in the targets.
-- `createdAt` — timestamp of the transaction in the ISO 8601 format.
-
-To verify transaction status, send a GET request to [/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}]().
+2. [Sign and broadcast](doc:signing-transaction-polkadot) `unsignedTransaction` to the Polkadot network.
 
 ## What's Next?
 
-- [Getting Started Privat Node]().
-- [Withdrawal]().
-- [Staking API](ref:ethereum) reference.
+- [Staking API](ref:polkadot) reference.
+- [Withdrawal](doc:withdrawal-polkadot).
