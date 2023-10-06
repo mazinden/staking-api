@@ -342,7 +342,7 @@
     "/api/v1/eth/staking/direct/validator/status": {
       "post": {
         "operationId": "eth-validator-status",
-        "summary": "Check Status Validator",
+        "summary": "Get Validator Status",
         "description": "Check the status of the validators.",
         "parameters": [],
         "requestBody": {
@@ -2043,7 +2043,7 @@
     "/api/v1/eth/staking/direct/nodes-request/status/{id}": {
       "get": {
         "operationId": "eth-nodes-request-status",
-        "summary": "Check Request Status",
+        "summary": "Get Request Status",
         "description": "Check the status of the node set-up operation.",
         "parameters": [
           {
@@ -2244,7 +2244,7 @@
     "/api/v1/eth/staking/direct/nodes-request": {
       "get": {
         "operationId": "eth-nodes-request-list",
-        "summary": "Check the Status of All Requests",
+        "summary": "Get All Request Statuses",
         "description": "Check the status of all the node set-up operations created through the authorization token.",
         "parameters": [
           {
@@ -2583,7 +2583,7 @@
     "/api/v1/polkadot/{network}/tx/status/{blockHash}/{transactionHash}": {
       "get": {
         "operationId": "polkadot-transaction-status",
-        "summary": "Status of the transaction",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "parameters": [
           {
@@ -2816,7 +2816,7 @@
     "/api/v1/polkadot/{network}/tx/send": {
       "post": {
         "operationId": "polkadot-transaction-send",
-        "summary": "Broadcast transaction",
+        "summary": "Broadcast Transaction",
         "description": "Broadcast transaction to the Polkadot network.",
         "parameters": [
           {
@@ -3089,7 +3089,7 @@
     "/api/v1/polkadot/{network}/tx": {
       "get": {
         "operationId": "polkadot-transaction-list",
-        "summary": "List of broadcasted transactions",
+        "summary": "List Broadcasted Transactions",
         "description": "Get a list of broadcasted transactions.",
         "parameters": [
           {
@@ -3286,7 +3286,7 @@
     "/api/v1/polkadot/{network}/account/add": {
       "post": {
         "operationId": "polkadot-account-add",
-        "summary": "Add staking proxy account",
+        "summary": "Add Staking Proxy Account",
         "description": "Adding a staking proxy account allows users to utilize an account less frequently while maintaining active participation in the Polkadot network based on the weight of tokens held within that account.",
         "parameters": [
           {
@@ -3499,7 +3499,7 @@
     "/api/v1/polkadot/{network}/account/remove": {
       "post": {
         "operationId": "polkadot-account-remove",
-        "summary": "Remove staking proxy account",
+        "summary": "Remove Staking Proxy Account",
         "description": "Removing a proxy account involves discontinuing the delegation of staking responsibilities from one account to another. This action allows users to regain direct control over their staking activities and tokens in the Polkadot network.",
         "parameters": [
           {
@@ -3712,7 +3712,7 @@
     "/api/v1/polkadot/{network}/staking/bond": {
       "post": {
         "operationId": "polkadot-staking-bond",
-        "summary": "Submit bond",
+        "summary": "Create Bond Request",
         "description": "Submitting a bond to the Polkadot network in exchange for some other benefit.",
         "parameters": [
           {
@@ -3935,7 +3935,7 @@
     "/api/v1/polkadot/{network}/staking/bond-extra": {
       "post": {
         "operationId": "polkadot-staking-bondExtra",
-        "summary": "Submit extra bond",
+        "summary": "Create Extra Bond Request",
         "description": "Submitting an extra bond to the Polkadot network in exchange for some other benefit.",
         "parameters": [
           {
@@ -4148,7 +4148,7 @@
     "/api/v1/polkadot/{network}/staking/rebond": {
       "post": {
         "operationId": "polkadot-staking-rebond",
-        "summary": "Submit rebond",
+        "summary": "Create Rebond Request",
         "description": "Rebonding tokens within the Polkadot network involves the process of re-staking or redelegating tokens that were previously withdrawn from the staking mechanism.",
         "parameters": [
           {
@@ -4381,7 +4381,7 @@
     "/api/v1/polkadot/{network}/staking/nominate": {
       "get": {
         "operationId": "polkadot-staking-nominate-list",
-        "summary": "List of validators",
+        "summary": "Get List Validators",
         "description": "Get a list of validators.",
         "parameters": [
           {
@@ -4542,7 +4542,7 @@
       },
       "post": {
         "operationId": "polkadot-staking-nominate",
-        "summary": "Submit nomination",
+        "summary": "Create Nomination Request",
         "description": "Submitting nomination is the action of choosing validators within the Polkadot network.",
         "parameters": [
           {
@@ -4745,7 +4745,7 @@
     "/api/v1/polkadot/{network}/staking/unbond": {
       "post": {
         "operationId": "polkadot-staking-unbond",
-        "summary": "Submit unbound",
+        "summary": "Create Unbond Request",
         "description": "Unbonding tokens within the Polkadot network refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
         "parameters": [
           {
