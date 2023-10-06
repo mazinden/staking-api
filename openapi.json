@@ -2426,8 +2426,8 @@
     "/api/v1/eth/staking/direct/options/relays-sets": {
       "get": {
         "operationId": "eth-nodes-request-relays-sets",
-        "summary": "Check All Status Requests",
-        "description": "Check the status of all the node set-up operations created through the authorization token",
+        "summary": "Get List MEV Relays",
+        "description": "Get the list of MEV relays.",
         "parameters": [],
         "responses": {
           "200": {
