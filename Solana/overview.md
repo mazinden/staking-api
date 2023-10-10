@@ -3,8 +3,7 @@
 Staking in the Solana network using the Staking API consists of several main steps:
 
 1. Create stake transaction.
-2. Sign unsigned transaction.
-3. Send signed transaction.
+2. Sign and send transaction to the network.
 
 [Get an authentication token](doc:authentication) to start using Staking API.
 
@@ -22,5 +21,5 @@ For Solana available several networks:
 
 - [Getting Started](doc:staking-solana).
 - [Withdrawal](doc:withdrawal-solana).
-- [Sign and Broadcast Transaction](doc:signing-transaction-solana)
+- [Sign and Send Transaction](doc:)
 - [Staking API](ref:solana) reference.

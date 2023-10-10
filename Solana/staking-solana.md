@@ -3,8 +3,7 @@
 Staking in the Solana network using the Staking API consists of several main steps:
 
 1. Create stake transaction.
-2. Sign unsigned transaction.
-3. Send signed transaction.
+2. Sign and send transaction to the network.
 
 [Get an authentication token](doc:authentication) to start using Staking API.
 
@@ -33,10 +32,10 @@ curl --request POST \
 ```
 
 - `feePayer` — account address that will pay the fee for the transaction.
-- `fromPublicKey` — 
-- `amount` — the amount of tokens to stake in lamports (1 SOl = 10^9 lamports).
-- `stakeAuthority` —
-- `withdrawAuthority` —
+- `fromPublicKey` — account address from which the staking account will be created.
+- `amount` — amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.
+- `stakeAuthority` — account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.
+- `withdrawAuthority` — account address that can perform withdrawal operation with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.
 
 Example response:
 
@@ -56,57 +55,19 @@ Example response:
 ```
 
 - `feePayer` — account address that will pay the fee for the transaction.
-- `fromPublicKey` —
-- `stakeAccount` — main stash account address which keeps tokens for bonding.
-- `stakeAuthority` —
-- `withdrawAuthority` —
-- `amount` — in lamports (1 SOl = 10^9 lamports)
-- `unsignedTransaction` — unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.
+- `fromPublicKey` — account address from which the staking account will be created.
+- `stakeAccount` — account address that stores tokens for staking.
+- `stakeAuthority` — account address that can perform staking operations with staking account.
+- `withdrawAuthority` — account address that can perform withdrawal operation with staking account.
+- `amount` — amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.
+- `unsignedTransaction` — unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.
 - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
-## 2. Sign Unsigned Transaction
+> The transaction exists for one minute.
 
+## 2. Sign and Send Transaction
 
-## 3. Send Signed Transaction
-
-Send a POST request to [/api/v1/solana/{network}/tx/send](ref:).
-
-Example request (for `testnet` network):
-
-```curl
-curl --request POST \
-     --url https://api-test.p2p.org/api/v1/solana/testnet/tx/send \
-     --header 'accept: application/json' \
-     --header 'authorization: Bearer <token>' \
-     --header 'content-type: application/json' \
-     --data '
-     {
-       "signedTransaction": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
-     }'
-```
-
-- `signedTransaction` — 
-
-
-Example response:
-
-```json
-{
-  "result": {
-    "transactionId": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f",
-    "slot": 17168395,
-    "signerAccounts": [
-      "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-    ],
-    "createdAt": "2023-08-15T15:07:54.795Z"
-  }
-}
-```
-
-- `transactionId` — 
-- `slot` —
-- `signerAccounts` — 
-- `createdAt` — timestamp of the transaction in the ISO 8601 format.
+Use `unsignedTransaction` to [sign and send](doc:signing-transaction-polkadot) signed transaction to the Solana network.
 
 To check transaction status, send GET request to [/api/v1/solana/{network}/account/staking](ref:).
 
@@ -120,8 +81,8 @@ curl --request GET \
      --header 'content-type: application/json'
 ```
 
-- `stakeAuthority` —
-- `withdrawAuthority` —
+- `stakeAuthorities` — list of account addresses that can perform staking operations with staking accounts.
+- `withdrawAuthorities` — list of account addresses that can perform withdrawal operation with staking accounts.
 
 Example response:
 
@@ -140,16 +101,17 @@ Example response:
 }
 ```
 
-- `accounts` —
+- `accounts` — list of stake accounts.
 
-   - `amount` —
-   - `stakeAccount` —
-   - `withdrawAuthority`
-   - `stakeAuthority`
-   - `voteAccount`
-   - `status`
+   - `amount` — amount of tokens to stake in lamports (1 SOl = 10^9 lamports).
+   - `stakeAccount` — account address that stores tokens for staking.
+   - `stakeAuthority` — account address that can perform staking operations with staking account.
+   - `withdrawAuthority` — account address that can perform withdrawal operation with staking account.
+   - `voteAccount` — vote account address.
+   - `status` — stake account status: `active`, `inactive`, `activating`, `deactivating`.
 
 ## What's Next?
 
-- [Staking API](ref:solana) reference.
+- [Sign and Send Transaction](doc:).
 - [Withdrawal](doc:withdrawal-solana).
+- [Staking API](ref:solana) reference.
