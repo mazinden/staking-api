@@ -5543,13 +5543,13 @@
       "post": {
         "operationId": "solana-staking-split",
         "summary": "Split",
-        "description": "Create split transaction",
+        "description": "Split staking account.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5607,14 +5607,14 @@
     "/api/v1/solana/{network}/staking/merge": {
       "post": {
         "operationId": "solana-staking-merge",
-        "summary": "Solana create merge",
-        "description": "Create merge transaction",
+        "summary": "Merge",
+        "description": "Merge staking accounts.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5672,14 +5672,14 @@
     "/api/v1/solana/{network}/staking/delegate": {
       "post": {
         "operationId": "solana-staking-merge",
-        "summary": "Solana create merge",
-        "description": "Create merge transaction",
+        "summary": "Delegate",
+        "description": "Delegate staking account.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8536,27 +8536,27 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "baseAccount": {
             "type": "string",
-            "description": "From public key",
+            "description": "Account address to split tokens from.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Account for split",
+            "description": "Account address that will receive split tokens for staking.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "authority": {
             "type": "string",
-            "description": "Stacker authority public key",
+            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `baseAccount`.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports move to . 1 lamport equal 10^-9 SOL",
+            "description": "Amount of tokens to move in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
           }
@@ -8573,22 +8573,22 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Stake account public key",
+            "description": "Account address that will merge split tokens for staking.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "sourseStakeAccount": {
             "type": "string",
-            "description": "Source stake account",
+            "description": "Account address to merge tokens from.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "authority": {
             "type": "string",
-            "description": "Authority",
+            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `sourseStakeAccount`.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
@@ -8604,17 +8604,17 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Account public key",
+            "description": "Account address that will be delegated.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Stacker authority public key",
+            "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
