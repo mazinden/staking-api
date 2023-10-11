@@ -5181,7 +5181,7 @@
     "/api/v1/solana/{network}/tx/send": {
       "post": {
         "operationId": "solana-staking-send",
-        "summary": "Send Transaction ",
+        "summary": "Send Transaction",
         "description": "Send signed transaction.",
         "parameters": [
           {
@@ -5477,7 +5477,7 @@
     "/api/v1/solana/{network}/staking/withdraw": {
       "post": {
         "operationId": "solana-staking-withdraw",
-        "summary": "Withdraw ",
+        "summary": "Withdraw",
         "description": "Withdraw deactivated stake transaction.",
         "parameters": [
           {
@@ -5542,7 +5542,7 @@
     "/api/v1/solana/{network}/staking/split": {
       "post": {
         "operationId": "solana-staking-split",
-        "summary": "Solana create split",
+        "summary": "Split",
         "description": "Create split transaction",
         "parameters": [
           {
@@ -8248,17 +8248,17 @@
         "properties": {
           "transactionId": {
             "type": "string",
-            "description": "Block in which the transaction was included.",
+            "description": "Block hash in which the transaction was included.",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
           "slot": {
             "type": "number",
-            "description": "Unique block identifier.",
+            "description": "Period of time during which each leader collects transactions and creates a block in the Solana network.",
             "example": "17168395"
           },
           "signerAccounts": {
             "type": "string",
-            "description": "First signer of the transaction.",
+            "description": "Account addresses that signed the transaction.",
             "example": [
               "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
             ]
