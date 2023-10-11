@@ -62,9 +62,9 @@ To sign and send a transaction to the Solana network, follow these steps:
    }
    ```
 
-   - `transactionId` — block in which the transaction was included.
-   - `slot` — unique block identifier.
-   - `signerAccounts` — first signer of the transaction.
+   - `transactionId` — block hash in which the transaction was included.
+   - `slot` — period of time during which each leader collects transactions and creates a block in the Solana network.
+   - `signerAccounts` — account addresses that signed the transaction.
    - `createdAt` — timestamp of the transaction in the ISO 8601 format.
 
 ## What's Next?

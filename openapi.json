@@ -5181,14 +5181,14 @@
     "/api/v1/solana/{network}/tx/send": {
       "post": {
         "operationId": "solana-staking-send",
-        "summary": "Solana send transaction ",
-        "description": "Send signed transaction",
+        "summary": "Send Transaction ",
+        "description": "Send signed transaction.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5246,14 +5246,14 @@
     "/api/v1/solana/{network}/account/staking": {
       "get": {
         "operationId": "solana-staking-get-staking-account",
-        "summary": "Solana get staking account",
-        "description": "Get staking account",
+        "summary": "Get Staking Account",
+        "description": "Get information about staking accounts.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5266,7 +5266,7 @@
             "name": "stakeAuthorities",
             "required": false,
             "in": "query",
-            "description": "Stake authority list",
+            "description": "List of account addresses that can perform staking operations with staking accounts.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "type": "string"
@@ -5276,7 +5276,7 @@
             "name": "stakeAccounts",
             "required": false,
             "in": "query",
-            "description": "Stake account list",
+            "description": "List of staking account addresses.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "type": "string"
@@ -5286,7 +5286,7 @@
             "name": "withdrawAuthorities",
             "required": false,
             "in": "query",
-            "description": "Withdraw authority list",
+            "description": "List of account addresses that can perform withdrawal operation with staking accounts.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "type": "string"
@@ -5296,7 +5296,7 @@
             "name": "status",
             "required": false,
             "in": "query",
-            "description": "Stake account status",
+            "description": "Staking account status: `active`, `inactive`, `activating`, `deactivating`.",
             "example": "active",
             "schema": {
               "enum": [
@@ -5347,14 +5347,14 @@
     "/api/v1/solana/{network}/staking/stake": {
       "post": {
         "operationId": "solana-staking-stake",
-        "summary": "Solana create stake",
-        "description": "Create stake transaction",
+        "summary": "Create Stake",
+        "description": "Create stake transaction.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5412,14 +5412,14 @@
     "/api/v1/solana/{network}/staking/deactivate": {
       "post": {
         "operationId": "solana-staking-deactivate",
-        "summary": "Solana create deactivate stake transaction",
-        "description": "Create deactivate stake transaction",
+        "summary": "Deactivate Stake",
+        "description": "Deactivate stake transaction.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -5477,14 +5477,14 @@
     "/api/v1/solana/{network}/staking/withdraw": {
       "post": {
         "operationId": "solana-staking-withdraw",
-        "summary": "Solana create withdraw ",
-        "description": "Create withdraw transaction",
+        "summary": "Withdraw ",
+        "description": "Withdraw deactivated stake transaction.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Solana network",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8243,22 +8243,22 @@
           "stashAccountAddress"
         ]
       },
-      "SendResponse": {
+        "SendResponse": {
         "type": "object",
         "properties": {
           "transactionId": {
             "type": "string",
-            "description": "Block in which the transaction was included",
+            "description": "Block in which the transaction was included.",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
           "slot": {
             "type": "number",
-            "description": "Unique block identifier",
+            "description": "Unique block identifier.",
             "example": "17168395"
           },
           "signerAccounts": {
             "type": "string",
-            "description": "First signer of transaction",
+            "description": "First signer of the transaction.",
             "example": [
               "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
             ]
@@ -8282,22 +8282,22 @@
         "properties": {
           "stakeAccount": {
             "type": "string",
-            "description": "Stake account public key",
+            "description": "Account address that stores tokens for staking.",
             "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Stake authority",
+            "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "withdrawAuthority": {
             "type": "string",
-            "description": "Withdraw authority",
+            "description": "Account address that can perform withdrawal operation with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "voteAccount": {
             "type": "string",
-            "description": "Vote account",
+            "description": "Vote account address.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "status": {
@@ -8308,12 +8308,12 @@
               "activating",
               "deactivating"
             ],
-            "description": "Stake account status",
+            "description": "Stake account status: `active`, `inactive`, `activating`, `deactivating`.",
             "example": "active"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to stake",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
           }
@@ -8331,7 +8331,7 @@
         "type": "object",
         "properties": {
           "accounts": {
-            "description": "List of stake accounts",
+            "description": "List of stake accounts.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/GetStakingResponse"
@@ -8347,38 +8347,38 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "fromPublicKey": {
             "type": "string",
-            "description": "From public key",
+            "description": "Account address from which the staking account will be created.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Account public key",
+            "description": "Account address that stores tokens for staking.",
             "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Stacker public key",
+            "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "withdrawAuthority": {
             "type": "string",
-            "description": "Withdrawer public key",
+            "description": "Account address that can perform withdrawal operation with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to stake",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
             "minimum": 1,
             "example": 1
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Base64 encrypted transaction for stake",
+            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           },
           "createdAt": {
@@ -8404,27 +8404,27 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "fromPublicKey": {
             "type": "string",
-            "description": "From public key",
+            "description": "Account address from which the staking account will be created.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Stacker authority public key",
+            "description": "Account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "withdrawAuthority": {
             "type": "string",
-            "description": "Withdrawer authority public key",
+            "description": "Account address that can perform withdrawal operation with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to stake. 1 lamport equal 10^-9 SOL",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
             "minimum": 1,
             "example": 1
           }
@@ -8440,22 +8440,22 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Stake account public key",
+            "description": "Account address that stores tokens for staking.",
             "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Public key staker",
+            "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Base64 encrypted transaction for unstake",
+            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           },
           "createdAt": {
@@ -8476,17 +8476,17 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Account public key",
+            "description": "Account address that stores tokens for staking.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAuthority": {
             "type": "string",
-            "description": "Stacker public key",
+            "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
@@ -8501,27 +8501,27 @@
         "properties": {
           "feePayer": {
             "type": "string",
-            "description": "Fee payer",
+            "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Account public key",
+            "description": "Account address that stores tokens for staking.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "withdrawAuthority": {
             "type": "string",
-            "description": "Withdrawer public key",
+            "description": "Account address that can perform withdrawal operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "recipient": {
             "type": "string",
-            "description": "Public key for withdraw amount",
+            "description": "Account address to which tokens will be sent.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of lamports to withdraw. 1 lamport equal 10^-9 SOL",
+            "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
           }

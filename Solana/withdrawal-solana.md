@@ -83,7 +83,7 @@ It normally takes up to three days to unstake your Solana. This is because Solan
    - `stakeAccount` — account address that stores tokens for staking.
    - `withdrawAuthority` — account address that can perform withdrawal operations with staking account.
    - `recipient` — account address to which tokens will be sent.
-   - `amount` — amount of tokens to withdrawal in lamports (1 SOl = 10^9 lamports).
+   - `amount` — amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).
 
    Example response:
 

@@ -82,7 +82,9 @@ curl --request GET \
 ```
 
 - `stakeAuthorities` — list of account addresses that can perform staking operations with staking accounts.
+- `stakeAccounts` — list of staking account addresses.
 - `withdrawAuthorities` — list of account addresses that can perform withdrawal operation with staking accounts.
+- `status` — staking account status: `active`, `inactive`, `activating`, `deactivating`.
 
 Example response:
 
