@@ -5273,12 +5273,38 @@
             }
           },
           {
+            "name": "stakeAccounts",
+            "required": false,
+            "in": "query",
+            "description": "Stake account list",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
             "name": "withdrawAuthorities",
             "required": false,
             "in": "query",
             "description": "Withdraw authority list",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "status",
+            "required": false,
+            "in": "query",
+            "description": "Stake account status",
+            "example": "active",
+            "schema": {
+              "enum": [
+                "active",
+                "inactive",
+                "activating",
+                "deactivating"
+              ],
               "type": "string"
             }
           }
@@ -5635,6 +5661,71 @@
         },
         "tags": [
           "Solana (beta)"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/solana/{network}/staking/delegate": {
+      "post": {
+        "operationId": "solana-staking-merge",
+        "summary": "Solana create merge",
+        "description": "Create merge transaction",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "Solana network",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DelegateRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/DeactivateResult"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Solana Staking"
         ],
         "security": [
           {
@@ -7667,7 +7758,7 @@
               "controller",
               "account"
             ],
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — Pay into the stash account, increasing the amount at stake accordingly.</li><li>`stash` — Pay into the stash account, not increasing the amount at stake.</li><li>`controller` — Pay into the controller account.</li><li>`account` — Pay into a custom account.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -7712,7 +7803,7 @@
               "account"
             ],
             "example": "account",
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — Pay into the stash account, increasing the amount at stake accordingly.</li><li>`stash` — Pay into the stash account, not increasing the amount at stake.</li><li>`controller` — Pay into the controller account.</li><li>`account` — Pay into a custom account.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -8506,6 +8597,31 @@
           "stakeAccount",
           "sourseStakeAccount",
           "authority"
+        ]
+      },
+      "DelegateRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Fee payer",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account public key",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Stacker authority public key",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "stakeAuthority"
         ]
       }
     }
