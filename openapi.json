@@ -5671,7 +5671,7 @@
     },
     "/api/v1/solana/{network}/staking/delegate": {
       "post": {
-        "operationId": "solana-staking-merge",
+        "operationId": "solana-staking-delegate",
         "summary": "Delegate",
         "description": "Delegate staking account.",
         "parameters": [
