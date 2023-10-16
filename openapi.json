@@ -5,12 +5,13 @@
       "get": {
         "operationId": "data-network-exit-queue",
         "summary": "Get Network Exit Queue",
-        "description": "Method to retrieve network exit queue.",
+        "description": "Method to retrieve the network exit queue — a queue of validators who have requested to exit the network. Validators in the queue must wait for a certain period before they can safely exit.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
+            "description": "Network parameter. Data will be returned from the mainnet.",
             "schema": {
               "type": "string",
               "enum": [
@@ -174,12 +175,13 @@
       "get": {
         "operationId": "data-network-staking-queue",
         "summary": "Get Network Staking Queue",
-        "description": "Method to retrieve network staking queue.",
+        "description": "Method to retrieve the network staking queue — a queue where validators who are requesting to unstake their deposits are placed. Validators in the queue must wait for a certain period before they can safely complete the unstaking process and retrieve their deposits.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
+            "description": "Network parameter. Data will be returned from the mainnet.",
             "schema": {
               "type": "string",
               "enum": [
@@ -544,7 +546,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
-            "description": "Transaction start timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -555,7 +557,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
-            "description": "Transaction finish timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -566,7 +568,7 @@
             "name": "startNumber",
             "required": false,
             "in": "query",
-            "description": "",
+            "description": "Start number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -575,7 +577,7 @@
             "name": "finishNumber",
             "required": false,
             "in": "query",
-            "description": "",
+            "description": "Finish number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -799,7 +801,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
-            "description": "Transaction start timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -810,7 +812,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
-            "description": "Transaction finish timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -821,6 +823,7 @@
             "name": "startNumber",
             "required": false,
             "in": "query",
+            "description": "Start number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -829,6 +832,7 @@
             "name": "finishNumber",
             "required": false,
             "in": "query",
+            "description": "Finish number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -1052,7 +1056,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
-            "description": "Transaction start timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -1063,7 +1067,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
-            "description": "Transaction finish timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -1074,6 +1078,7 @@
             "name": "startNumber",
             "required": false,
             "in": "query",
+            "description": "Start number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -1082,6 +1087,7 @@
             "name": "finishNumber",
             "required": false,
             "in": "query",
+            "description": "Finish number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -1305,7 +1311,7 @@
             "name": "startAt",
             "required": true,
             "in": "query",
-            "description": "Transaction start timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -1316,7 +1322,7 @@
             "name": "finishAt",
             "required": true,
             "in": "query",
-            "description": "Transaction finish timestamp in the ISO 8601 format.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
@@ -1327,6 +1333,7 @@
             "name": "startNumber",
             "required": false,
             "in": "query",
+            "description": "Start number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -1335,6 +1342,7 @@
             "name": "finishNumber",
             "required": false,
             "in": "query",
+            "description": "Finish number of the staking period.",
             "schema": {
               "type": "number"
             }
@@ -5868,7 +5876,8 @@
         "type": "object",
         "properties": {
           "queueLength": {
-            "type": "number"
+            "type": "number",
+            "description": "Length of the queue."
           }
         },
         "required": [
@@ -6048,18 +6057,20 @@
         "type": "object",
         "properties": {
           "stakingPeriod": {
-            "type": "number"
+            "type": "number",
+            "description": "Number of the staking period."
           },
           "stakingPeriodStart": {
             "type": "string",
-            "description": "Staking start timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
             "type": "string",
-            "description": "Staking finish timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
           "stake": {
-            "type": "number"
+            "type": "number",
+            "description": "Total stake balance of the validator."
           }
         },
         "required": [
@@ -6074,7 +6085,6 @@
         "properties": {
           "limit": {
             "type": "number",
-            "description": "The quantity of resources within a single response page.",
             "minimum": 1,
             "default": 50,
             "description": "The number of resources that a single response page contains."
@@ -6087,7 +6097,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources."
+            "description": "Total count of resources in the response."
           },
           "list": {
             "type": "array",
@@ -6129,14 +6139,17 @@
         "type": "object",
         "properties": {
           "type": {
-            "type": "string"
+            "type": "string",
+            "description": "Reward type: `consensus`, `execution`."
           },
           "amount": {
             "type": "number",
-            "format": "float"
+            "format": "float",
+            "description": "Amount of tokens in the stake."
           },
           "currency": {
             "type": "string",
+            "description": "Currency of the tokens.",
             "enum": [
               "ETH",
               "SOL",
@@ -6144,7 +6157,8 @@
             ]
           },
           "recipient": {
-            "type": "string"
+            "type": "string",
+            "description": "The rewards recipient address."
           }
         },
         "required": [
@@ -6158,15 +6172,16 @@
         "type": "object",
         "properties": {
           "stakingPeriod": {
-            "type": "number"
+            "type": "number",
+            "description": "Number of the staking period."
           },
           "stakingPeriodStart": {
             "type": "string",
-            "description": "Staking start timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
             "type": "string",
-            "description": "Staking finish timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
           "rewards": {
             "type": "array",
@@ -6187,18 +6202,18 @@
         "properties": {
           "limit": {
             "type": "number",
-            "description": "The quantity of resources within a single response page.",
+            "description": "The number of resources that a single response page contains.",
             "minimum": 1,
             "default": 50
           },
           "offset": {
             "type": "number",
-            "description": "The quantity of resources to exclude from a response page.",
+            "description": "The number of resources to exclude from a response.",
             "minimum": 0
           },
           "totalCount": {
             "type": "number",
-            "description": "The total quantity of resources on the response page.",
+            "description": "Total count of resources in the response.",
             "minimum": 1
           },
           "list": {
@@ -6241,18 +6256,20 @@
         "type": "object",
         "properties": {
           "stakingPeriod": {
-            "type": "number"
+            "type": "number",
+            "description": "Number of the staking period."
           },
           "stakingPeriodStart": {
             "type": "string",
-            "description": "Staking start timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
             "type": "string",
-            "description": "Staking finish timestamp in the ISO 8601 format."
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
           "apy": {
-            "type": "number"
+            "type": "number",
+            "description": "Validator annual percentage yield (APY)."
           }
         },
         "required": [
@@ -6267,7 +6284,6 @@
         "properties": {
           "limit": {
             "type": "number",
-            "description": "The quantity of resources within a single response page.",
             "minimum": 1,
             "default": 50,
             "description": "The number of resources that a single response page contains."
@@ -6280,7 +6296,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources."
+            "description": "Total count of resources in the response."
           },
           "list": {
             "type": "array",
@@ -6322,16 +6338,20 @@
         "type": "object",
         "properties": {
           "stakingPeriod": {
-            "type": "number"
+            "type": "number",
+            "description": "Number of the staking period."
           },
           "stakingPeriodStart": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
           },
           "stakingPeriodEnd": {
-            "type": "string"
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
           "fee": {
-            "type": "number"
+            "type": "number",
+            "description": "Validator fee."
           }
         },
         "required": [
@@ -6358,7 +6378,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources."
+            "description": "Total count of resources in the response."
           },
           "list": {
             "type": "array",
@@ -6933,7 +6953,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources."
+            "description": "Total count of resources in the response."
           },
           "list": {
             "type": "array",
@@ -7447,7 +7467,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources."
+            "description": "Total count of resources in the response."
           },
           "list": {
             "type": "array",
