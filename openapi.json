@@ -11,7 +11,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Network parameter. Data will be returned from the mainnet.",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -181,7 +181,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Network parameter. Data will be returned from the mainnet.",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
