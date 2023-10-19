@@ -7162,7 +7162,7 @@
               "kusama",
               "westend"
             ],
-            "description": "Network",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "example": "westend"
           },
           "signedTransaction": {
@@ -7489,42 +7489,42 @@
               "success",
               "failed"
             ],
-            "description": "Transaction status",
+            "description": "Transaction status.",
             "example": "success"
           },
           "blockHash": {
             "type": "string",
-            "description": "Block in which the transaction was included",
+            "description": "Block hash in which the transaction was included.",
             "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
           },
           "blockId": {
             "type": "number",
-            "description": "Unique block identifier",
+            "description": "Unique block identifier.",
             "example": "17168395"
           },
           "extrinsicId": {
             "type": "number",
-            "description": "Unique extrinsic identifier",
+            "description": "Unique extrinsic identifier.",
             "example": "17177570-2"
           },
           "transactionHash": {
             "type": "string",
-            "description": "Signed transaction hash",
+            "description": "Signed extrinsic transaction in hex format.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402"
           },
           "signerAccount": {
             "type": "string",
-            "description": "Account that signed the transaction",
+            "description": "Account that signed the transaction.",
             "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
           },
           "data": {
             "type": "string",
-            "description": "Method data"
+            "description": "Method data."
           },
           "createdAt": {
             "format": "datetime",
             "type": "string",
-            "description": "Complete ISO-8601 date of creating a call",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2023-08-24T08:14:50.455Z"
           }
         },
