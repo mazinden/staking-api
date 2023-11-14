@@ -6033,23 +6033,23 @@
               "slashed",
               "exited"
             ],
-            "description": "State of the validator",
+            "description": "<p>State of the validator:</p><ul><li>`not_found` — the specified validator could not be located.</li><li>`deposited` — the user deposited 32 ETH, and the deposit was processed by the Ethereum Beacon Chain.</li><li>`pending` — the validator entered a queue for activation.</li><li>`active_online` — the validator was activated and participating in attesting and proposing blocks.</li><li>`active_offline` — the validator is offline and not participating in the validator activities.</li><li>`slashed` — the validator was slashed due to misbehaviors.</li><li>`exited` — the validator has exited the network and is no longer acting as a validator.</li></ul>",
             "example": "active_online"
           },
           "amount": {
             "type": "number",
             "example": 1,
-            "description": "The validator current status"
+            "description": "Total stake amount for the validator at the moment."
           },
           "pubkey": {
             "type": "string",
-            "description": "A public key",
+            "description": "Validator public key.",
             "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The withdrawal address for the given validator",
+            "description": "Withdrawal address of the validator.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
@@ -6519,44 +6519,44 @@
           },
           "to": {
             "type": "string",
-            "description": "The recipient address for this transaction.",
+            "description": "Recipient address for this transaction.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "gasLimit": {
             "type": "string",
             "example": "0",
-            "description": "The maximum gas limit for this block."
+            "description": "Maximum gas limit for this block."
           },
           "data": {
             "type": "string",
             "example": "",
-            "description": "The transaction data"
+            "description": "Transaction data."
           },
           "value": {
             "type": "string",
             "example": "0",
-            "description": "The amount this transaction is sending in Wei."
+            "description": "Amount of tokens to send in Wei."
           },
           "chainId": {
             "type": "string",
             "example": "0",
-            "description": "The chain ID this transaction is authorized on, as specified by EIP-155."
+            "description": "Chain ID this transaction is authorized on, as specified by EIP-155."
           },
           "type": {
             "type": "string",
             "example": "0",
-            "description": "The EIP-2718 type of this transaction envelope."
+            "description": "EIP-2718 type of this transaction envelope."
           },
           "maxFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei."
+            "description": "Maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei."
           },
           "maxPriorityFeePerGas": {
             "type": "string",
             "example": "0",
-            "description": "The price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction."
+            "description": "Price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction."
           }
         },
         "required": [
@@ -6714,7 +6714,7 @@
         "type": "object",
         "properties": {
           "pubkeys": {
-            "description": "The list of validators public keys.",
+            "description": "List of validators public keys.",
             "example": [
               "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
             ],
@@ -6959,7 +6959,7 @@
           },
           "validatorsCount": {
             "type": "number",
-            "description": "The number of validators",
+            "description": "Number of validators.",
             "default": 1,
             "minimum": 1,
             "maximum": 3125,
@@ -6967,19 +6967,19 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The withdrawal address for the given validator",
+            "description": "Withdrawal address of the validator.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "controllerAddress": {
             "type": "string",
-            "description": "The controller address for the given validator",
+            "description": "Controller address of the validator.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "The fee recipient address for the given validator",
+            "description": "Fee recipient address of the validator.",
             "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -7087,7 +7087,7 @@
         "properties": {
           "relaysSet": {
             "type": "string",
-            "description": "Name of relays set"
+            "description": "Name of the MEV relay set."
           }
         },
         "required": [
