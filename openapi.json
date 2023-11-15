@@ -5208,7 +5208,7 @@
       "post": {
         "operationId": "solana-staking-send",
         "summary": "Send Transaction",
-        "description": "Send signed transaction.",
+        "description": "Send signed transaction to the Solana network.",
         "parameters": [
           {
             "name": "network",
@@ -5273,7 +5273,7 @@
       "get": {
         "operationId": "solana-staking-get-staking-account",
         "summary": "Get Staking Account",
-        "description": "Get information about staking accounts.",
+        "description": "Return information about staking accounts.",
         "parameters": [
           {
             "name": "network",
@@ -5373,8 +5373,8 @@
     "/api/v1/solana/{network}/staking/stake": {
       "post": {
         "operationId": "solana-staking-stake",
-        "summary": "Create Stake Request",
-        "description": "Create stake request transaction.",
+        "summary": "Create Staking Request",
+        "description": "Create staking request transaction.",
         "parameters": [
           {
             "name": "network",
