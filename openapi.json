@@ -6782,12 +6782,12 @@
               "any"
             ],
             "example": "any",
-            "description": "Nodes location. Currently, only any is supported.",
+            "description": "Nodes location. Currently, only `any` is supported.",
             "default": "any"
           },
           "relaysSet": {
             "type": "string",
-            "description": "MEV Relay Selection.",
+            "description": "MEV Relay selection.",
             "example": null
           }
         },
@@ -6908,27 +6908,27 @@
           },
           "withdrawalCredentials": {
             "type": "string",
-            "description": "The withdrawal credentials"
+            "description": "Public key for withdrawing balance."
           },
           "amount": {
             "type": "string",
-            "description": "Amount"
+            "description": "Deposit amount."
           },
           "depositMessageRoot": {
             "type": "string",
-            "description": "The deposit message root"
+            "description": "Cryptographic hash of the Merkle tree’s root."
           },
           "forkVersion": {
             "type": "string",
-            "description": "The fork version chain the deposit"
+            "description": "Version of the Ethereum fork that the deposit is for."
           },
           "eth2NetworkName": {
             "type": "string",
-            "description": "Eth2 network name"
+            "description": "Eth2 network name."
           },
           "depositCliVersion": {
             "type": "string",
-            "description": "The version of the deposit command-line interface"
+            "description": "Version of the deposit command-line interface."
           }
         },
         "required": [
@@ -6954,7 +6954,7 @@
               "ready",
               "cancel"
             ],
-            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node setup in progress.</li><li><i>processing</i> — ...</li><li><i>ready</i> — node setup was successful.</li><li><i>cancel</i> — node setup was cancelled.</li></ul>",
+            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
