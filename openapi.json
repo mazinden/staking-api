@@ -175,7 +175,7 @@
       "get": {
         "operationId": "data-network-staking-queue",
         "summary": "Get Network Staking Queue",
-        "description": "Method to retrieve the network staking queue — a queue where validators who are requesting to unstake their deposits are placed. Validators in the queue must wait for a certain period before they can safely complete the unstaking process and retrieve their deposits.",
+        "description": "Get network staking queue.",
         "parameters": [
           {
             "name": "network",
@@ -502,7 +502,7 @@
       "get": {
         "operationId": "data-validator-stakes",
         "summary": "Get Validator Stake",
-        "description": "Get a list of validator stakes.",
+        "description": "Get a current validator stake.",
         "parameters": [
           {
             "name": "network",
@@ -586,7 +586,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network.",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -841,7 +841,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network.",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -1096,7 +1096,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network.",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -1351,7 +1351,7 @@
             "name": "validatorAddress",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network.",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
