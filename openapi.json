@@ -6249,7 +6249,7 @@
           },
           "recipient": {
             "type": "string",
-            "description": "The rewards recipient address."
+            "description": "Rewards recipient address."
           }
         },
         "required": [
