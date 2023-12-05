@@ -7262,7 +7262,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -12500,6 +12500,7 @@
         "properties": {
           "messages": {
             "type": "array",
+            "description": "...",
             "items": {
               "$ref": "#/components/schemas/Message"
             }
@@ -12529,11 +12530,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Main stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used to construct the staking transactions.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12542,14 +12543,17 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens to stake in ATOM."
           },
           "currency": {
             "type": "string",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos mainnet.</li><li>`uatom` — Cosmos testnet.</li><li>`matom` — Cosmos testnet.</li></ul>",
             "enum": [
               "atom",
               "uatom",
@@ -12558,13 +12562,13 @@
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to which tokens is delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "rewardDestinationAddress": {
             "type": "string",
-            "description": "Reward destination account address in cosmos network",
+            "description": "Reward destination account address. ...",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           }
         },
@@ -12583,17 +12587,17 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Main stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
-            "description": "",
+            "description": "Arbitrary text data to add to the transactions.",
             "example": "This is your memo message"
           },
           "amount": {
             "type": "number",
-            "description": "",
+            "description": "Amount of tokens to stake in ATOM.",
             "format": "decimal"
           }
         },
