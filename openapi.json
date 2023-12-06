@@ -12423,6 +12423,7 @@
         "properties": {
           "typeUrl": {
             "type": "string",
+            "description": "Cosmos network operation type",
             "enum": [
               "/cosmos.staking.v1beta1.MsgDelegate",
               "/cosmos.staking.v1beta1.MsgUndelegate",
@@ -12462,6 +12463,7 @@
         "properties": {
           "denom": {
             "type": "string",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — ATOM, Cosmos network native asset.</li><li>`uatom` — microATOM, i.e., 1 ATOM = 1 000 000 uATOM.</li><li>`matom` — megaATOM, i.e., 1 ATOM = 0.000001 mATOM.</li></ul>",
             "enum": [
               "atom",
               "uatom",
@@ -12469,7 +12471,8 @@
             ]
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens operated in the transaction."
           }
         },
         "required": [
@@ -12479,6 +12482,7 @@
       },
       "TransactionFee": {
         "type": "object",
+        "description": "Amount of fee charged for transaction.",
         "properties": {
           "amount": {
             "type": "array",
@@ -12487,7 +12491,8 @@
             }
           },
           "gas": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of gas spent for transaction."
           }
         },
         "required": [
@@ -12506,16 +12511,20 @@
             }
           },
           "fee": {
+            "description": "Transaction fee in ATOM",
             "$ref": "#/components/schemas/TransactionFee"
           },
           "memo": {
-            "type": "string"
+            "type": "string",
+            "description": "Arbitrary text data to add to the transaction."
           },
           "encodedBody": {
-            "type": "string"
+            "type": "string",
+            "description": "Processable transaction data encoded in the hexadecimal format."
           },
           "encodedAuthInfo": {
-            "type": "string"
+            "type": "string",
+            "description": "Authorization related transaction data, including fee, encoded in the hexadecimal format."
           }
         },
         "required": [
@@ -12553,7 +12562,7 @@
           },
           "currency": {
             "type": "string",
-            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos mainnet.</li><li>`uatom` — Cosmos testnet.</li><li>`matom` — Cosmos testnet.</li></ul>",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — ATOM, Cosmos network native asset.</li><li>`uatom` — microATOM, i.e., 1 ATOM = 1 000 000 uATOM.</li><li>`matom` — megaATOM, i.e., 1 ATOM = 0.000001 mATOM.</li></ul>",
             "enum": [
               "atom",
               "uatom",
