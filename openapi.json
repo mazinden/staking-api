@@ -12314,12 +12314,14 @@
       },
       "Coin": {
         "type": "object",
+        "description": "Currency of the tokens.",
         "properties": {
           "denom": {
             "type": "string"
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens."
           }
         },
         "required": [
