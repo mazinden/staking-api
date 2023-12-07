@@ -12854,7 +12854,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Cosmos stash account address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
