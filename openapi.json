@@ -7464,7 +7464,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8060,7 +8060,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -12518,7 +12518,7 @@
           },
           "memo": {
             "type": "string",
-            "description": "Arbitrary text data to add to the transaction."
+            "description": "Arbitrary text data to add to the transactions."
           },
           "encodedBody": {
             "type": "string",
@@ -12859,7 +12859,8 @@
           },
           "memo": {
             "type": "string",
-            "example": "This is your memo message"
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
           }
         },
         "required": [
