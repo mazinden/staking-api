@@ -12313,11 +12313,11 @@
         ]
       },
       "Coin": {
-        "type": "object",
-        "description": "Currency of the tokens.",
+        "type": "object",        
         "properties": {
           "denom": {
-            "type": "string"
+            "type": "string",
+            "description": "Currency of the tokens."
           },
           "amount": {
             "type": "string",
@@ -12474,7 +12474,7 @@
           },
           "amount": {
             "type": "string",
-            "description": "Amount of tokens operated in the transaction."
+            "description": "Amount of tokens."
           }
         },
         "required": [
@@ -12484,7 +12484,7 @@
       },
       "TransactionFee": {
         "type": "object",
-        "description": "Amount of fee charged for transaction.",
+        "description": "Amount of fee charged for the transaction.",
         "properties": {
           "amount": {
             "type": "array",
@@ -12494,7 +12494,7 @@
           },
           "gas": {
             "type": "string",
-            "description": "Amount of gas spent for transaction."
+            "description": "Amount of gas spent for the transaction."
           }
         },
         "required": [
@@ -12507,7 +12507,6 @@
         "properties": {
           "messages": {
             "type": "array",
-            "description": "...",
             "items": {
               "$ref": "#/components/schemas/Message"
             }
@@ -12560,7 +12559,7 @@
           "amount": {
             "type": "number",
             "format": "decimal",
-            "description": "Amount of tokens to stake in ATOM."
+            "description": "Amount of tokens to stake."
           },
           "currency": {
             "type": "string",
@@ -12579,7 +12578,7 @@
           },
           "rewardDestinationAddress": {
             "type": "string",
-            "description": "Reward destination account address. ...",
+            "description": "Reward destination account address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           }
         },
@@ -12598,7 +12597,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address which keeps tokens.",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
