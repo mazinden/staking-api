@@ -12314,7 +12314,7 @@
         ]
       },
       "Coin": {
-        "type": "object",        
+        "type": "object",
         "properties": {
           "denom": {
             "type": "string",
@@ -12561,7 +12561,7 @@
           "amount": {
             "type": "number",
             "format": "decimal",
-            "description": "Amount of tokens to stake."
+            "description": "Amount of tokens."
           },
           "currency": {
             "type": "string",
@@ -12574,7 +12574,7 @@
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address to which tokens is delegated.",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
@@ -12711,7 +12711,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address which keeps tokens.",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
@@ -12730,7 +12730,7 @@
           "amount": {
             "type": "number",
             "format": "decimal",
-            "description": "Amount of tokens to stake in ATOM."
+            "description": "Amount of tokens."
           },
           "currency": {
             "type": "string",
@@ -12769,7 +12769,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address which keeps tokens.",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
@@ -12840,7 +12840,7 @@
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address.",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12857,7 +12857,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address.",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
