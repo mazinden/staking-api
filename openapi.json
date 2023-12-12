@@ -12513,7 +12513,6 @@
             }
           },
           "fee": {
-            "description": "Transaction fee in ATOM.",
             "$ref": "#/components/schemas/TransactionFee"
           },
           "memo": {
@@ -12730,7 +12729,7 @@
           "amount": {
             "type": "number",
             "format": "decimal",
-            "description": "Amount of tokens."
+            "description": "Amount of tokens to stake."
           },
           "currency": {
             "type": "string",
