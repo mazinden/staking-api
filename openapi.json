@@ -3166,7 +3166,7 @@
             "required": true,
             "in": "path",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "The SSV request ID",
+            "description": "SSV request UUID.",
             "schema": {
               "format": "uuid",
               "type": "string"
@@ -10262,13 +10262,13 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The client’s withdrawal address.",
+            "description": "Withdrawal address of the client.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "ETH1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -10280,7 +10280,7 @@
             ],
             "example": "with-encrypt-key",
             "default": "with-encrypt-key",
-            "description": "Request type: with a encryptKey, without a encryptKey."
+            "description": "Request type: `with-encrypt-key`, `without-encrypt-key`. If `with-encrypt-key` is specified, you need to fill the `ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -10292,7 +10292,7 @@
           "ecdhPublicKey": {
             "type": "string",
             "example": null,
-            "description": "The public key for getting the encrypted validator private key."
+            "description": "Your ECDH public key for getting the encrypted validator private key."
           }
         },
         "required": [
@@ -10359,7 +10359,7 @@
             "type": "string",
             "format": "uuid",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID that was specified in the ssv set-up request."
+            "description": "UUID that was specified in the SSV set-up request."
           },
           "status": {
             "type": "string",
@@ -10369,12 +10369,12 @@
               "ready",
               "cancel"
             ],
-            "description": "Current status of the request",
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — .</li><li><i>processing</i> — .</li><li><i>ready</i> — .</li><li><i>cancel</i> — .</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
             "type": "number",
-            "description": "The number of validators",
+            "description": "Number of validators.",
             "default": 1,
             "minimum": 1,
             "maximum": 1,
@@ -10388,7 +10388,7 @@
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "ETH1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -10415,7 +10415,7 @@
           "ecdhPublicKey": {
             "type": "string",
             "example": null,
-            "description": "The public key for getting the encrypted validator private key."
+            "description": "Your ECDH public key for getting the encrypted validator private key."
           },
           "validatorRegistrationTxs": {
             "example": null,
