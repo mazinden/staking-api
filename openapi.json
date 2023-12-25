@@ -3166,7 +3166,7 @@
             "required": true,
             "in": "path",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "SSV request UUID.",
+            "description": "UUID of the SSV request.",
             "schema": {
               "format": "uuid",
               "type": "string"
@@ -3532,13 +3532,13 @@
       "get": {
         "operationId": "transaction-set-feeRecipientAddress",
         "summary": "Prepare Change feeRecipientAddress Transaction",
-        "description": "Construct serialized transaction to set feeRecipientAddress on SSV cluster.",
+        "description": "Construct a serialized transaction to set the `feeRecipientAddress` on the SSV cluster.",
         "parameters": [
           {
             "name": "feeRecipientAddress",
             "required": true,
             "in": "query",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "schema": {
               "pattern": "^0x[a-fA-F0-9]{40}$",
@@ -3723,14 +3723,14 @@
       "get": {
         "operationId": "transaction-get-operator-fee",
         "summary": "Get Operator Fee",
-        "description": "Check the operator on SSV cluster.",
+        "description": "Check the operator on the SSV cluster.",
         "parameters": [
           {
             "name": "operatorId",
             "required": true,
             "in": "query",
             "example": 1,
-            "description": "Operator Id",
+            "description": "ID of the SSV operator.",
             "schema": {
               "type": "number"
             }
@@ -3919,6 +3919,7 @@
             "name": "id",
             "required": true,
             "in": "path",
+            "description": "UUID of the SSV cluster.",
             "schema": {
               "type": "string"
             }
@@ -10268,7 +10269,7 @@
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -10280,7 +10281,7 @@
             ],
             "example": "with-encrypt-key",
             "default": "with-encrypt-key",
-            "description": "Request type: `with-encrypt-key`, `without-encrypt-key`. If `with-encrypt-key` is specified, you need to fill the `ecdhPublicKey` field."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the 'ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -10331,19 +10332,19 @@
         "properties": {
           "publicKey": {
             "type": "string",
-            "description": "Validator public key"
+            "description": "Validator public key."
           },
           "nonce": {
             "type": "string",
-            "description": "Nonce for signature in sharesData in registerValidator"
+            "description": "Nonce used for signature in `sharesData`."
           },
           "sharesData": {
             "type": "string",
-            "description": "SharesData for registerValidator"
+            "description": "Data used in the `registerValidator` Ethereum transaction from the SSV contract to create a validator."
           },
           "ecdhEncryptedPrivateKey": {
             "type": "string",
-            "description": "Encoded private keys"
+            "description": "Encrypted validator private key."
           }
         },
         "required": [
@@ -10369,7 +10370,7 @@
               "ready",
               "cancel"
             ],
-            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — .</li><li><i>processing</i> — .</li><li><i>ready</i> — .</li><li><i>cancel</i> — .</li></ul>",
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
@@ -10382,7 +10383,7 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The wallet address of the cluster owner.",
+            "description": "Withdrawal address of the cluster owner.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -10400,7 +10401,7 @@
             ],
             "example": "without-encrypt-key",
             "default": "without-encrypt-key",
-            "description": "Request type: with a encryptKey, without a encryptKey."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the 'ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -10419,7 +10420,7 @@
           },
           "validatorRegistrationTxs": {
             "example": null,
-            "description": "Array tx about validator registration.",
+            "description": "An array of transactions related to validator registration.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10427,7 +10428,7 @@
           },
           "ssvFeeTxs": {
             "example": null,
-            "description": "Array tx about deposit ssv fees in the cluster balance.",
+            "description": "An array of transactions related to depositing SSV fees into the cluster balance.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10435,7 +10436,7 @@
           },
           "feeRecipientTx": {
             "example": null,
-            "description": "Tx about set fee recipient address.",
+            "description": "An array of transaction for setting the fee recipient address.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10443,7 +10444,7 @@
           },
           "approveTx": {
             "example": null,
-            "description": "Tx for approve SSV transfer.",
+            "description": "An array of transaction to approve SSV transfer.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10582,12 +10583,12 @@
           "fee": {
             "type": "string",
             "example": "1000",
-            "description": "The fee charged by the operator"
+            "description": "Fee charged by the operator, denominated in SSV tokens."
           },
           "balance": {
             "type": "string",
             "example": "1000",
-            "description": "Operators outstanding earnings in $SSV tokens"
+            "description": "Operator outstanding earnings, denominated in SSV tokens."
           }
         },
         "required": [
@@ -10622,7 +10623,7 @@
         "properties": {
           "balances": {
             "example": "1000",
-            "description": "Clusters outstanding balance denominated in $SSV tokens",
+            "description": "Clusters outstanding balance, denominated in SSV tokens.",
             "type": "array",
             "items": {
               "type": "string"
