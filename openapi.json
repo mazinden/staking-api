@@ -7262,7 +7262,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -7464,7 +7464,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -7649,14 +7649,14 @@
       "post": {
         "operationId": "create-cosmos-redelegate-from-transaction",
         "summary": "Create Redelegate From Request",
-        "description": "Create redelegate from default validator request transaction.",
+        "description": "Create redelegate request transaction from default P2P validator.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -7851,14 +7851,14 @@
       "post": {
         "operationId": "create-cosmos-redelegate-to-transaction",
         "summary": "Create Redelegate To Request",
-        "description": "Create redelegate to default validator request transaction.",
+        "description": "Create redelegate request transaction to default P2P validator.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8060,7 +8060,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8252,7 +8252,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8444,7 +8444,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -8458,6 +8458,7 @@
             "required": true,
             "in": "path",
             "example": "EDDA3AE81ACBF56CB1F154F4957779C04F10B6F4C23B13597EFFC61FE05A02D2",
+            "description": "Hash of the transaction.",
             "schema": {
               "format": "[A-Z0-9]{64}",
               "type": "string"
@@ -12316,10 +12317,12 @@
         "type": "object",
         "properties": {
           "denom": {
-            "type": "string"
+            "type": "string",
+            "description": "Currency of the tokens."
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens."
           }
         },
         "required": [
@@ -12332,12 +12335,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -12354,12 +12357,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -12376,17 +12379,17 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorSrcAddress": {
             "type": "string",
-            "description": "Source validator address",
+            "description": "Source validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "validatorDstAddress": {
             "type": "string",
-            "description": "Destination validator address",
+            "description": "Destination validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -12404,12 +12407,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
         },
@@ -12423,6 +12426,7 @@
         "properties": {
           "typeUrl": {
             "type": "string",
+            "description": "Cosmos network operation type.",
             "enum": [
               "/cosmos.staking.v1beta1.MsgDelegate",
               "/cosmos.staking.v1beta1.MsgUndelegate",
@@ -12462,6 +12466,7 @@
         "properties": {
           "denom": {
             "type": "string",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>",
             "enum": [
               "atom",
               "uatom",
@@ -12469,7 +12474,8 @@
             ]
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens."
           }
         },
         "required": [
@@ -12479,6 +12485,7 @@
       },
       "TransactionFee": {
         "type": "object",
+        "description": "Amount of fee charged for the transaction.",
         "properties": {
           "amount": {
             "type": "array",
@@ -12487,7 +12494,8 @@
             }
           },
           "gas": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of gas spent for the transaction."
           }
         },
         "required": [
@@ -12508,14 +12516,18 @@
             "$ref": "#/components/schemas/TransactionFee"
           },
           "memo": {
-            "type": "string"
+            "type": "string",
+            "description": "Arbitrary text data to add to the transactions."
           },
           "encodedBody": {
-            "type": "string"
+            "type": "string",
+            "description": "Processable transaction data encoded in the hexadecimal format."
           },
           "encodedAuthInfo": {
-            "type": "string"
+            "type": "string",
+            "description": "Authorization data, including fee, encoded in the hexadecimal format."
           }
+
         },
         "required": [
           "messages",
@@ -12529,11 +12541,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used to construct the staking transactions.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12542,14 +12554,17 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens."
           },
           "currency": {
             "type": "string",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>",
             "enum": [
               "atom",
               "uatom",
@@ -12558,13 +12573,13 @@
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "rewardDestinationAddress": {
             "type": "string",
-            "description": "Reward destination account address in cosmos network",
+            "description": "Reward destination account address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           }
         },
@@ -12583,17 +12598,17 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
-            "description": "",
+            "description": "Arbitrary text data to add to the transactions.",
             "example": "This is your memo message"
           },
           "amount": {
             "type": "number",
-            "description": "",
+            "description": "Amount of tokens to stake in ATOM.",
             "format": "decimal"
           }
         },
@@ -12695,11 +12710,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used in constructing the redelegate transaction.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12708,14 +12723,17 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens to stake."
           },
           "currency": {
             "type": "string",
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>",
             "enum": [
               "atom",
               "uatom",
@@ -12724,13 +12742,13 @@
           },
           "sourceValidatorAddress": {
             "type": "string",
-            "description": "Redelegate source validator address",
+            "description": "Redelegate source validator address.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "destinationValidatorAddress": {
             "type": "string",
-            "description": "Redelegate destination validator address",
+            "description": "Redelegate destination validator address.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12750,20 +12768,22 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
+            "description": "Arbitrary text data to add to the transactions.",
             "example": "This is your memo message"
           },
           "amount": {
             "type": "number",
+            "description": "Amount of tokens to stake in ATOM.",
             "format": "decimal"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to perform the operation with.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12801,11 +12821,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator stash account address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used in constructing the staking transaction.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12814,11 +12834,12 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12835,11 +12856,12 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
+            "description": "Arbitrary text data to add to the transactions.",
             "example": "This is your memo message"
           }
         },
@@ -12871,12 +12893,15 @@
       },
       "Gas": {
         "type": "object",
+        "description": "Computational effort required to execute the transaction measured in gas units.",
         "properties": {
           "used": {
-            "type": "number"
+            "type": "number",
+            "description": "Amount of gas spent for the transaction."
           },
           "wanted": {
-            "type": "number"
+            "type": "number",
+            "description": "Maximum gas limit for the transaction."
           }
         },
         "required": [
@@ -12889,24 +12914,27 @@
         "properties": {
           "status": {
             "type": "string",
+            "description": "Transaction status.",
             "enum": [
               "success",
               "failed"
             ]
           },
           "blockId": {
-            "type": "number"
+            "type": "number",
+            "description": "Unique block identifier."
           },
           "fee": {
             "type": "number",
-            "description": "Transaction fee in ATOM"
+            "description": "Total fee in ATOM charged for processing the transaction."
           },
           "gas": {
             "$ref": "#/components/schemas/Gas"
           },
           "transactionHash": {
             "type": "string",
-            "pattern": "[A-Z0-9]{64}"
+            "pattern": "[A-Z0-9]{64}",
+            "description": "Hash of the transaction."
           }
         },
         "required": [
@@ -12922,7 +12950,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction hash which needs to be broadcast to the network"
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network."
           }
         },
         "required": [
