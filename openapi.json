@@ -2270,7 +2270,7 @@
     "/api/v1/eth/staking/direct/nodes-request": {
       "get": {
         "operationId": "eth-nodes-request-list",
-        "summary": "Get All Request Statuses",
+        "summary": "Get All Requests Status",
         "description": "Check the status of all the node set-up operations created through the authorization token.",
         "parameters": [
           {
@@ -4429,8 +4429,8 @@
                   },
                   "ExtrinsicCouldNotFoundException": {
                     "value": {
-                      "code": 107111,
-                      "message": "Transaction was retracted",
+                      "code": 107116,
+                      "message": "Extrinsic cannot be found",
                       "type": "client"
                     }
                   }
@@ -4500,9 +4500,6 @@
                           "$ref": "#/components/schemas/TokenGuardException"
                         },
                         {
-                          "$ref": "#/components/schemas/TransactionRetractedException"
-                        },
-                        {
                           "$ref": "#/components/schemas/TransactionUsurpedException"
                         },
                         {
@@ -4536,13 +4533,6 @@
                     "value": {
                       "code": 101110,
                       "message": "Token guard error",
-                      "type": "server"
-                    }
-                  },
-                  "TransactionRetractedException": {
-                    "value": {
-                      "code": 107111,
-                      "message": "Transaction was retracted",
                       "type": "server"
                     }
                   },
@@ -8661,6 +8651,10 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
+    },
+    {
+      "url": "https://api.p2p.org",
+      "description": "ETH staking API"
     }
   ],
   "components": {
@@ -10799,28 +10793,6 @@
           "name"
         ]
       },
-      "TransactionRetractedException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 107111
-          },
-          "message": {
-            "type": "string",
-            "default": "Transaction was retracted"
-          },
-          "name": {
-            "type": "string",
-            "default": "TransactionRetractedException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
       "TransactionUsurpedException": {
         "type": "object",
         "properties": {
@@ -12588,12 +12560,10 @@
           },
           "memo": {
             "type": "string",
-            "description": "",
             "example": "This is your memo message"
           },
           "amount": {
             "type": "number",
-            "description": "",
             "format": "decimal"
           }
         },
