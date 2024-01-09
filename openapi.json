@@ -10281,7 +10281,7 @@
             ],
             "example": "with-encrypt-key",
             "default": "with-encrypt-key",
-            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the 'ecdhPublicKey` field."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -10389,7 +10389,7 @@
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -10401,7 +10401,7 @@
             ],
             "example": "without-encrypt-key",
             "default": "without-encrypt-key",
-            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the 'ecdhPublicKey` field."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -10428,7 +10428,7 @@
           },
           "ssvFeeTxs": {
             "example": null,
-            "description": "An array of transactions related to depositing SSV fees into the cluster balance.",
+            "description": "Array of transactions related to depositing SSV fees into the cluster balance.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10436,7 +10436,7 @@
           },
           "feeRecipientTx": {
             "example": null,
-            "description": "An array of transaction for setting the fee recipient address.",
+            "description": "Array of transaction for setting the fee recipient address.",
             "type": "array",
             "items": {
               "type": "string"
@@ -10444,7 +10444,7 @@
           },
           "approveTx": {
             "example": null,
-            "description": "An array of transaction to approve SSV transfer.",
+            "description": "Array of transaction to approve SSV transfer.",
             "type": "array",
             "items": {
               "type": "string"
