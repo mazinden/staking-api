@@ -12,7 +12,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -214,7 +214,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -406,7 +406,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -608,7 +608,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -810,7 +810,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -1002,7 +1002,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -1194,7 +1194,7 @@
             "required": true,
             "in": "path",
             "example": "theta-testnet-001",
-            "description": "Cosmos network names",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -1208,6 +1208,7 @@
             "required": true,
             "in": "path",
             "example": "EDDA3AE81ACBF56CB1F154F4957779C04F10B6F4C23B13597EFFC61FE05A02D2",
+            "description": "Hash of the transaction.",
             "schema": {
               "format": "[A-Z0-9]{64}",
               "type": "string"
@@ -4435,6 +4436,163 @@
                     "value": {
                       "code": 103125,
                       "message": "Error getting relays sets",
+                      "type": "server"
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 101110,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/tx/create-pod": {
+      "post": {
+        "operationId": "eth-staking-create-pod",
+        "summary": "Construct serialized transaction to initiate the create eigen pod process.",
+        "description": "Prepare Create Pod Transaction",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 101111,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 101109,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "code": 103104,
+                      "message": "Could not create transaction",
                       "type": "server"
                     }
                   },
@@ -7711,7 +7869,7 @@
       "get": {
         "operationId": "polkadot-staking-nominate-list",
         "summary": "Get List Validators",
-        "description": "Return list of P2P.org public validators to nominate.",
+        "description": "Return list of P2P.org public validators to nominate",
         "parameters": [
           {
             "name": "network",
@@ -10647,7 +10805,7 @@
       "get": {
         "operationId": "ssv-request-list",
         "summary": "Check All Status Requests",
-        "description": "Check the status of all the set-up operations created through the authorization token",
+        "description": "Check the status of all the set-up operations created through the authorization token.",
         "parameters": [
           {
             "name": "limit",
@@ -10825,17 +10983,405 @@
         ]
       }
     },
+    "/api/v1/eth/staking/ssv/tx/remove-validator/{id}": {
+      "get": {
+        "operationId": "transaction-remove-validator",
+        "summary": "Prepare removeValidator Transaction",
+        "description": "Construct serialized transaction to removeValidator.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID of the SSV request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 101111,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 101109,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/RemoveValidatorException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "RemoveValidatorException": {
+                    "value": {
+                      "code": 111121,
+                      "message": "Failed to create remove validator transaction",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 101110,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SSV"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/ssv/tx/withdraw/{id}": {
+      "get": {
+        "operationId": "transaction-withdraw",
+        "summary": "Prepare withdraw Transaction",
+        "description": "Construct serialized transaction to withdraw amount.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID of the SSV request.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "amount",
+            "required": true,
+            "in": "query",
+            "example": "1000",
+            "description": "Amount to be withdrawn",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "code": 100101,
+                      "message": "Validation error",
+                      "type": "client"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "code": 101111,
+                      "message": "No token",
+                      "type": "authentication"
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "code": 101109,
+                      "message": "Wrong token",
+                      "type": "authentication"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/WithdrawException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "WithdrawException": {
+                    "value": {
+                      "code": 111122,
+                      "message": "Failed to create withdraw transaction",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "code": 101110,
+                      "message": "Token guard error",
+                      "type": "server"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SSV"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/eth/staking/ssv/tx/fee-recipient-address": {
       "get": {
         "operationId": "transaction-set-feeRecipientAddress",
         "summary": "Prepare Change feeRecipientAddress Transaction",
-        "description": "Construct serialized transaction to set feeRecipientAddress on SSV cluster.",
+        "description": "Construct a serialized transaction to set the `feeRecipientAddress` on the SSV cluster.",
         "parameters": [
           {
             "name": "feeRecipientAddress",
             "required": true,
             "in": "query",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "schema": {
               "pattern": "^0x[a-fA-F0-9]{40}$",
@@ -11228,7 +11774,7 @@
             "required": true,
             "in": "query",
             "example": 1,
-            "description": "Operator Id",
+            "description": "ID of the SSV operator.",
             "schema": {
               "type": "number"
             }
@@ -11847,10 +12393,12 @@
         "type": "object",
         "properties": {
           "denom": {
-            "type": "string"
+            "type": "string",
+            "description": "Currency of the tokens."
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens."
           }
         },
         "required": [
@@ -11863,12 +12411,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -11885,12 +12433,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -11907,17 +12455,17 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorSrcAddress": {
             "type": "string",
-            "description": "Source validator address",
+            "description": "Source validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "validatorDstAddress": {
             "type": "string",
-            "description": "Destination validator address",
+            "description": "Destination validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "amount": {
@@ -11935,12 +12483,12 @@
         "properties": {
           "delegatorAddress": {
             "type": "string",
-            "description": "Delegator address",
+            "description": "Delegator address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Validator address",
+            "description": "Validator address.",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
         },
@@ -11961,7 +12509,8 @@
               "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
               "/cosmos.crypto.secp256k1.PubKey"
             ],
-            "example": "/cosmos.staking.v1beta1.Tx"
+            "example": "/cosmos.staking.v1beta1.Tx",
+            "description": "Cosmos network operation type."
           },
           "value": {
             "oneOf": [
@@ -11997,10 +12546,12 @@
               "atom",
               "uatom",
               "matom"
-            ]
+            ],
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "amount": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of tokens."
           }
         },
         "required": [
@@ -12018,7 +12569,8 @@
             }
           },
           "gas": {
-            "type": "string"
+            "type": "string",
+            "description": "Amount of gas spent for the transaction."
           }
         },
         "required": [
@@ -12036,16 +12588,24 @@
             }
           },
           "fee": {
-            "$ref": "#/components/schemas/TransactionFee"
+            "description": "Amount of fee charged for the transaction.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionFee"
+              }
+            ]
           },
           "memo": {
-            "type": "string"
+            "type": "string",
+            "description": "Arbitrary text data to add to the transactions."
           },
           "encodedBody": {
-            "type": "string"
+            "type": "string",
+            "description": "Processable transaction data encoded in the hexadecimal format."
           },
           "encodedAuthInfo": {
-            "type": "string"
+            "type": "string",
+            "description": "Authorization data, including fee, encoded in the hexadecimal format."
           }
         },
         "required": [
@@ -12060,11 +12620,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used to construct the staking transactions.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12073,11 +12633,13 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens."
           },
           "currency": {
             "type": "string",
@@ -12085,17 +12647,18 @@
               "atom",
               "uatom",
               "matom"
-            ]
+            ],
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "rewardDestinationAddress": {
             "type": "string",
-            "description": "Reward destination account address in cosmos network",
+            "description": "Reward destination account address.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           }
         },
@@ -12114,16 +12677,18 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
-            "example": "This is your memo message"
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens to stake in ATOM."
           }
         },
         "required": [
@@ -12224,11 +12789,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used to construct the staking transactions.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12237,11 +12802,13 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens to stake."
           },
           "currency": {
             "type": "string",
@@ -12249,17 +12816,18 @@
               "atom",
               "uatom",
               "matom"
-            ]
+            ],
+            "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "sourceValidatorAddress": {
             "type": "string",
-            "description": "Redelegate source validator address",
+            "description": "Redelegate source validator address.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           },
           "destinationValidatorAddress": {
             "type": "string",
-            "description": "Redelegate destination validator address",
+            "description": "Redelegate destination validator address.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12279,20 +12847,22 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
-            "example": "This is your memo message"
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
           },
           "amount": {
             "type": "number",
-            "format": "decimal"
+            "format": "decimal",
+            "description": "Amount of tokens to stake in ATOM."
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to perform the operation with.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12330,11 +12900,11 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Main stash account address witch keeps tokens for bonding",
+            "description": "Delegator stash account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "transactionData": {
-            "description": "Transaction data with messages, fee and memo",
+            "description": "List of data fields to be used to construct the staking transactions.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/TransactionData"
@@ -12343,11 +12913,12 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
           },
           "validatorAddress": {
             "type": "string",
-            "description": "Cosmos validator address",
+            "description": "Validator address to which tokens are delegated.",
             "example": "cosmosvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
@@ -12364,12 +12935,13 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
-            "example": "This is your memo message"
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
           }
         },
         "required": [
@@ -12424,10 +12996,12 @@
         "type": "object",
         "properties": {
           "used": {
-            "type": "number"
+            "type": "number",
+            "description": "Amount of gas spent for the transaction."
           },
           "wanted": {
-            "type": "number"
+            "type": "number",
+            "description": "Maximum gas limit for the transaction."
           }
         },
         "required": [
@@ -12443,21 +13017,29 @@
             "enum": [
               "success",
               "failed"
-            ]
+            ],
+            "description": "Transaction status."
           },
           "blockId": {
-            "type": "number"
+            "type": "number",
+            "description": "Unique block identifier."
           },
           "fee": {
             "type": "number",
-            "description": "Transaction fee in ATOM"
+            "description": "Total fee in ATOM charged for processing the transaction."
           },
           "gas": {
-            "$ref": "#/components/schemas/Gas"
+            "description": "Computational effort required to execute the transaction measured in gas units.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Gas"
+              }
+            ]
           },
           "transactionHash": {
             "type": "string",
-            "pattern": "[A-Z0-9]{64}"
+            "pattern": "[A-Z0-9]{64}",
+            "description": "Hash of the transaction."
           }
         },
         "required": [
@@ -12473,7 +13055,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction hash which needs to be broadcast to the network"
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network."
           }
         },
         "required": [
@@ -13691,6 +14273,15 @@
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             "description": "UUID that was specified in the node set-up request."
           },
+          "type": {
+            "type": "string",
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
+            "description": "Type of nodes request",
+            "example": "REGULAR"
+          },
           "status": {
             "type": "string",
             "enum": [
@@ -13713,6 +14304,18 @@
           "withdrawalAddress": {
             "type": "string",
             "description": "Withdrawal address of the validator.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "podAddress": {
+            "type": "string",
+            "description": "EigenPod address.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "podOwnerAddress": {
+            "type": "string",
+            "description": "EigenPod owner address.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -13745,9 +14348,9 @@
         },
         "required": [
           "id",
+          "type",
           "status",
           "validatorsCount",
-          "withdrawalAddress",
           "feeRecipientAddress",
           "createdAt"
         ]
@@ -13883,7 +14486,7 @@
           "type": {
             "type": "string",
             "example": "0",
-            "description": "The EIP-2718 type of this transaction envelope"
+            "description": "EIP-2718 type of this transaction envelope."
           },
           "maxFeePerGas": {
             "type": "string",
@@ -13941,7 +14544,7 @@
         "properties": {
           "withdrawalAddress": {
             "type": "string",
-            "description": "Withdrawal address.",
+            "description": "Withdrawal address for direct staking or podAddress for restaking.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -14218,6 +14821,15 @@
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
           },
+          "type": {
+            "type": "string",
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
+            "description": "Kind of request",
+            "example": "REGULAR"
+          },
           "validatorsCount": {
             "type": "number",
             "description": "Number of validators. One validator is equal to 32 ETH.",
@@ -14229,6 +14841,12 @@
           "withdrawalAddress": {
             "type": "string",
             "description": "Withdrawal address for the validators.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "podOwnerAddress": {
+            "type": "string",
+            "description": "EigenPod owner address.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -14251,7 +14869,6 @@
         "required": [
           "id",
           "validatorsCount",
-          "withdrawalAddress",
           "nodesOptions"
         ]
       },
@@ -16247,7 +16864,7 @@
       "RedelegateRequestDto": {
         "type": "object",
         "properties": {
-          "formValidatorId": {
+          "fromValidatorId": {
             "type": "string",
             "description": "From validator ID",
             "example": "12"
@@ -16270,7 +16887,7 @@
           }
         },
         "required": [
-          "formValidatorId",
+          "fromValidatorId",
           "toValidatorId",
           "amount",
           "stakerAddress"
@@ -16286,7 +16903,7 @@
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
           },
-          "stackerAddress": {
+          "stakerAddress": {
             "type": "string",
             "description": "Stacker address",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
@@ -16295,7 +16912,7 @@
         },
         "required": [
           "signedTransaction",
-          "stackerAddress"
+          "stakerAddress"
         ]
       },
       "SsvRequestIdAlreadyExistException": {
@@ -16360,13 +16977,19 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The client’s withdrawal address.",
+            "description": "Withdrawal address of the client.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "ssvOwnerAddress": {
+            "type": "string",
+            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -16378,7 +17001,7 @@
             ],
             "example": "with-encrypt-key",
             "default": "with-encrypt-key",
-            "description": "Request type: with a encryptKey, without a encryptKey."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -16390,7 +17013,7 @@
           "ecdhPublicKey": {
             "type": "string",
             "example": null,
-            "description": "The public key for getting the encrypted validator private key."
+            "description": "Your ECDH public key for getting the encrypted validator private key."
           }
         },
         "required": [
@@ -16398,6 +17021,7 @@
           "validatorsCount",
           "withdrawalAddress",
           "feeRecipientAddress",
+          "ssvOwnerAddress",
           "type",
           "operationPeriodInDays"
         ]
@@ -16433,15 +17057,15 @@
           },
           "nonce": {
             "type": "string",
-            "description": "Nonce for signature in sharesData in registerValidator"
+            "description": "Nonce used for signature in `sharesData`."
           },
           "sharesData": {
             "type": "string",
-            "description": "SharesData for registerValidator"
+            "description": "Data used in the `registerValidator` Ethereum transaction from the SSV contract to create a validator."
           },
           "ecdhEncryptedPrivateKey": {
             "type": "string",
-            "description": "Encoded private keys"
+            "description": "Encrypted validator private key."
           }
         },
         "required": [
@@ -16467,12 +17091,12 @@
               "ready",
               "cancel"
             ],
-            "description": "Current status of the request",
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
             "type": "number",
-            "description": "The number of validators",
+            "description": "Number of validators.",
             "default": 1,
             "minimum": 1,
             "maximum": 1,
@@ -16480,13 +17104,19 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "The wallet address of the cluster owner.",
+            "description": "Withdrawal address of the cluster owner.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "An ETH1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives fee recipient rewards.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "ssvOwnerAddress": {
+            "type": "string",
+            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -16498,7 +17128,7 @@
             ],
             "example": "without-encrypt-key",
             "default": "without-encrypt-key",
-            "description": "Request type: with a encryptKey, without a encryptKey."
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
           },
           "operationPeriodInDays": {
             "type": "number",
@@ -16513,11 +17143,11 @@
           "ecdhPublicKey": {
             "type": "string",
             "example": null,
-            "description": "The public key for getting the encrypted validator private key."
+            "description": "Your ECDH public key for getting the encrypted validator private key."
           },
           "validatorRegistrationTxs": {
             "example": null,
-            "description": "Array tx about validator registration.",
+            "description": "Array of transactions related to validator registration.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16525,7 +17155,7 @@
           },
           "ssvFeeTxs": {
             "example": null,
-            "description": "Array tx about deposit ssv fees in the cluster balance.",
+            "description": "Array of transactions related to depositing SSV fees into the cluster balance.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16533,7 +17163,7 @@
           },
           "feeRecipientTx": {
             "example": null,
-            "description": "Tx about set fee recipient address.",
+            "description": "Array of transaction for setting the fee recipient address.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16541,7 +17171,7 @@
           },
           "approveTx": {
             "example": null,
-            "description": "Tx for approve SSV transfer.",
+            "description": "Array of transaction to approve SSV transfer.",
             "type": "array",
             "items": {
               "type": "string"
@@ -16568,6 +17198,7 @@
           "validatorsCount",
           "withdrawalAddress",
           "feeRecipientAddress",
+          "ssvOwnerAddress",
           "type",
           "operationPeriodInDays",
           "liquidationPeriodInDays",
@@ -16630,6 +17261,64 @@
           "list"
         ]
       },
+      "RemoveValidatorException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111121
+          },
+          "message": {
+            "type": "string",
+            "default": "Failed to create remove validator transaction"
+          },
+          "name": {
+            "type": "string",
+            "default": "RemoveValidatorException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "EthereumUnsignedTransactionListResponse": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+            }
+          }
+        },
+        "required": [
+          "list"
+        ]
+      },
+      "WithdrawException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111122
+          },
+          "message": {
+            "type": "string",
+            "default": "Failed to create withdraw transaction"
+          },
+          "name": {
+            "type": "string",
+            "default": "WithdrawException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "SetFeeRecipientAddressException": {
         "type": "object",
         "properties": {
@@ -16674,20 +17363,6 @@
           "name"
         ]
       },
-      "EthereumUnsignedTransactionListResponse": {
-        "type": "object",
-        "properties": {
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
-            }
-          }
-        },
-        "required": [
-          "list"
-        ]
-      },
       "GetOperatorFeeException": {
         "type": "object",
         "properties": {
@@ -16716,12 +17391,12 @@
           "fee": {
             "type": "string",
             "example": "1000",
-            "description": "The fee charged by the operator"
+            "description": "Fee charged by the operator, denominated in SSV tokens."
           },
           "balance": {
             "type": "string",
             "example": "1000",
-            "description": "Operators outstanding earnings in $SSV tokens"
+            "description": "Operator outstanding earnings, denominated in SSV tokens."
           }
         },
         "required": [
@@ -16756,7 +17431,7 @@
         "properties": {
           "balances": {
             "example": "1000",
-            "description": "Clusters outstanding balance denominated in $SSV tokens",
+            "description": "Clusters outstanding balance, denominated in SSV tokens.",
             "type": "array",
             "items": {
               "type": "string"
