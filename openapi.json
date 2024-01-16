@@ -9224,7 +9224,7 @@
       "post": {
         "operationId": "StakingController_delegate",
         "summary": "Delegate Tokens to Stake",
-        "description": "Delegate MATIC tokens to P2P validator and buy vouchers to stake.",
+        "description": "Delegate MATIC tokens to P2P validator to stake.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9381,7 +9381,7 @@
       "post": {
         "operationId": "StakingController_undelegate",
         "summary": "Undelegate Staked Tokens",
-        "description": "Sell vouchers and prepare previously staked MATIC tokens to unstake.",
+        "description": "Prepare previously staked MATIC tokens to unstake.",
         "parameters": [],
         "requestBody": {
           "required": true,
