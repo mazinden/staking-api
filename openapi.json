@@ -1802,7 +1802,7 @@
     },
     "/api/v1/{network}/data/network/supply-data": {
       "get": {
-        "operationId": "data-network-staking-queue",
+        "operationId": "data-network-supply-data",
         "summary": "Get Network Supply Data",
         "description": "Method to retrieve network supply data.",
         "parameters": [
