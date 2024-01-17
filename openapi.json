@@ -9067,7 +9067,7 @@
       "post": {
         "operationId": "StakingController_approve",
         "summary": "Allow Polygon to Manage Tokens",
-        "description": "Allow Polygon smart contract to manage MATIC tokens.",
+        "description": "Allow Polygon smart contract to manage tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9224,7 +9224,7 @@
       "post": {
         "operationId": "StakingController_delegate",
         "summary": "Delegate Tokens to Stake",
-        "description": "Delegate MATIC tokens to P2P validator to stake.",
+        "description": "Delegate tokens to P2P validator to stake.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9381,7 +9381,7 @@
       "post": {
         "operationId": "StakingController_undelegate",
         "summary": "Undelegate Staked Tokens",
-        "description": "Prepare previously staked MATIC tokens to unstake.",
+        "description": "Prepare previously staked tokens to unstake.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9538,7 +9538,7 @@
       "post": {
         "operationId": "StakingController_unstake",
         "summary": "Unstake Tokens",
-        "description": "Unstake MATIC tokens.",
+        "description": "Unstake tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9695,7 +9695,7 @@
       "post": {
         "operationId": "StakingController_withdraw",
         "summary": "Withdraw Unstaked Tokens",
-        "description": "Withdraw unstaked MATIC tokens.",
+        "description": "Withdraw unstaked tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -9852,7 +9852,7 @@
       "post": {
         "operationId": "StakingController_restake",
         "summary": "Withdraw and Restake Rewards",
-        "description": "Withdraw rewards in MATIC tokens and then stake it.",
+        "description": "Withdraw rewards in tokens and then stake it.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10009,7 +10009,7 @@
       "post": {
         "operationId": "StakingController_redelegate",
         "summary": "Create Redelegate Transaction",
-        "description": "Redelegate MATIC tokens from another validator.",
+        "description": "Redelegate tokens from another validator.",
         "parameters": [],
         "requestBody": {
           "required": true,
