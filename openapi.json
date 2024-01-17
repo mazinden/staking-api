@@ -9066,8 +9066,8 @@
     "/api/v1/polygon/staking/approve": {
       "post": {
         "operationId": "StakingController_approve",
-        "summary": "Approve Managing of Tokens",
-        "description": "Approve managing of tokens by the Polygon smart contract.",
+        "summary": "Approve Token Management",
+        "description": "Allows the Polygon smart contract to manage tokens by obtaining approval.",
         "parameters": [],
         "requestBody": {
           "required": true,
