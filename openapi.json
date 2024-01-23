@@ -2213,7 +2213,7 @@
       "post": {
         "operationId": "data-network-apy",
         "summary": "Get network APY by staking period",
-        "description": "Method to retrive network APY by staking period",
+        "description": "Method to retrieve network APY by staking period.",
         "parameters": [
           {
             "name": "network",
@@ -2428,7 +2428,7 @@
       "post": {
         "operationId": "data-network-validator-count",
         "summary": "Get network validators count by staking period",
-        "description": "Method to retrive network validators count by staking period",
+        "description": "Method to retrieve network validators count by staking period.",
         "parameters": [
           {
             "name": "network",
@@ -2643,7 +2643,7 @@
       "post": {
         "operationId": "data-network-delegators-count",
         "summary": "Get network delegators count by staking period",
-        "description": "Method to retrive network delegators count by staking period",
+        "description": "Method to retrieve network delegators count by staking period.",
         "parameters": [
           {
             "name": "network",
@@ -2858,7 +2858,7 @@
       "post": {
         "operationId": "data-network-stake",
         "summary": "Get network stake by staking period",
-        "description": "Method to retrive network stake by staking period",
+        "description": "Method to retrieve network stake by staking period.",
         "parameters": [
           {
             "name": "network",
@@ -3073,7 +3073,7 @@
       "post": {
         "operationId": "data-network-rewards",
         "summary": "Get network rewards by staking period",
-        "description": "Method to retrive network rewards by staking period",
+        "description": "Method to retrieve network rewards by staking period.",
         "parameters": [
           {
             "name": "network",
@@ -4464,8 +4464,8 @@
     "/api/v1/eth/staking/direct/tx/create-pod": {
       "post": {
         "operationId": "eth-staking-create-pod",
-        "summary": "Construct serialized transaction to initiate the create eigen pod process.",
-        "description": "Prepare Create Pod Transaction",
+        "summary": "Prepare Create Pod Transaction",
+        "description": "Construct a serialized transaction to initiate the create eigen pod process.",
         "parameters": [],
         "responses": {
           "200": {
@@ -4622,7 +4622,7 @@
       "post": {
         "operationId": "eth-staking-deposit",
         "summary": "Prepare Staking Transaction",
-        "description": "Construct serialized transaction to deposit the stake amount, utilizing the functionalities of P2P smart contract.",
+        "description": "Construct a serialized transaction to deposit the stake amount, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -4789,7 +4789,7 @@
       "post": {
         "operationId": "eth-staking-withdrawal",
         "summary": "Prepare Withdrawal Transaction",
-        "description": "Construct serialized transaction to initiate the withdrawal process for active validators, utilizing the functionalities of P2P smart contract.",
+        "description": "Construct a serialized transaction to initiate the withdrawal process for active validators, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -5526,7 +5526,7 @@
       "get": {
         "operationId": "eth-nodes-request-list",
         "summary": "Get All Requests Status",
-        "description": "Check the status of all the node set-up operations created through the authorization token",
+        "description": "Check the status of all the node set-up operations created through the authorization token.",
         "parameters": [
           {
             "name": "limit",
@@ -5708,7 +5708,7 @@
       "post": {
         "operationId": "eth-vem-create",
         "summary": "Create VEM Request",
-        "description": "Set up VEM request.",
+        "description": "Set up a VEM request.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -7200,7 +7200,7 @@
       "post": {
         "operationId": "polkadot-staking-bond",
         "summary": "Create Bond Request",
-        "description": "Submitting a bond to the Polkadot network in exchange for some other benefit.",
+        "description": "Creating a bond request in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
@@ -7423,7 +7423,7 @@
       "post": {
         "operationId": "polkadot-staking-bondExtra",
         "summary": "Create Extra Bond Request",
-        "description": "Submitting an extra bond to the Polkadot network in exchange for some other benefit.",
+        "description": "Creating an extra bond request in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
@@ -7869,7 +7869,7 @@
       "get": {
         "operationId": "polkadot-staking-nominate-list",
         "summary": "Get List Validators",
-        "description": "Return list of P2P.org public validators to nominate",
+        "description": "Return a list of P2P.org public validators to nominate.",
         "parameters": [
           {
             "name": "network",
@@ -8669,7 +8669,7 @@
       "post": {
         "operationId": "solana-staking-send",
         "summary": "Send Transaction",
-        "description": "Send signed transaction to the Solana network.",
+        "description": "Send the signed transaction to the Solana network.",
         "parameters": [
           {
             "name": "network",
@@ -10442,7 +10442,7 @@
       "post": {
         "operationId": "ssv-request-create",
         "summary": "Create SSV Request",
-        "description": "Set up request for run a distributed validator and staking.",
+        "description": "Set up a request for running a distributed validator and making a stake",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10987,7 +10987,7 @@
       "get": {
         "operationId": "transaction-remove-validator",
         "summary": "Prepare removeValidator Transaction",
-        "description": "Construct serialized transaction to removeValidator.",
+        "description": "Construct a serialized transaction to removeValidator.",
         "parameters": [
           {
             "name": "id",
@@ -11176,7 +11176,7 @@
       "get": {
         "operationId": "transaction-withdraw",
         "summary": "Prepare withdraw Transaction",
-        "description": "Construct serialized transaction to withdraw amount.",
+        "description": "Construct a serialized transaction to withdraw amount.",
         "parameters": [
           {
             "name": "id",
@@ -11566,7 +11566,7 @@
       "get": {
         "operationId": "transaction-deposit",
         "summary": "Prepare Top-Up Cluster Balance Transaction",
-        "description": "Construct serialized transaction to deposit SSV tokens on the cluster balance.",
+        "description": "Construct a serialized transaction to deposit SSV tokens in the cluster balance.",
         "parameters": [
           {
             "name": "operationPeriodInDays",
@@ -11767,7 +11767,7 @@
       "get": {
         "operationId": "transaction-get-operator-fee",
         "summary": "Get Operator Fee",
-        "description": "Check the operator on SSV cluster.",
+        "description": "Check the operator on the SSV cluster.",
         "parameters": [
           {
             "name": "operatorId",
