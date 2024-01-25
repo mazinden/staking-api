@@ -13283,7 +13283,7 @@
         "properties": {
           "period": {
             "type": "number",
-            "description": "Last staking period",
+            "description": "Last staking period.",
             "example": 244333
           },
           "updatedAt": {
