@@ -1068,8 +1068,8 @@
     "/api/v1/cosmos/{network}/transaction/encode": {
       "post": {
         "operationId": "encode-cosmos-transaction",
-        "summary": "Sign Transaction",
-        "description": "Method for signing transaction.",
+        "summary": "Encode Transaction",
+        "description": "Encode the transaction for broadcasting on the Cosmos network.",
         "parameters": [
           {
             "name": "network",
@@ -13552,7 +13552,7 @@
           },
           "encodedBody": {
             "type": "string",
-            "description": "Processable transaction data encoded in the hexadecimal format."
+            "description": "Transaction data encoded in hexadecimal format."
           },
           "encodedAuthInfo": {
             "type": "string",
@@ -13898,7 +13898,7 @@
         "properties": {
           "encodedTransaction": {
             "type": "string",
-            "description": "Encoded transaction hash which needs to be broadcast to the network"
+            "description": "Encoded transaction hash that needs to be broadcasted to the network."
           }
         },
         "required": ["encodedTransaction"]
@@ -13908,20 +13908,20 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Cosmos stash account address",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^cosmos[a-zA-Z0-9]{39}$"
           },
           "signature": {
             "type": "string",
-            "example": "Transaction signature"
+            "example": "Transaction signature."
           },
           "encodedBody": {
             "type": "string",
-            "description": "Encoded transaction body"
+            "description": "Transaction data encoded in hexadecimal format."
           },
           "encodedAuthInfo": {
             "type": "string",
-            "description": "Encoded transaction auth info"
+            "description": "Authorization data, including fee, encoded in the hexadecimal format."
           }
         },
         "required": ["stashAccountAddress", "encodedBody", "encodedAuthInfo"]
