@@ -15,7 +15,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -211,7 +214,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -233,7 +238,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -416,7 +424,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -438,7 +448,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -634,7 +647,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -656,7 +671,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -852,7 +870,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -874,7 +894,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -1057,7 +1080,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -1079,7 +1104,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -1262,7 +1290,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -1284,7 +1314,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           }
         ],
@@ -1467,7 +1500,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -1489,7 +1524,10 @@
             "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["cosmoshub-4", "theta-testnet-001"]
+              "enum": [
+                "cosmoshub-4",
+                "theta-testnet-001"
+              ]
             }
           },
           {
@@ -1699,7 +1737,9 @@
             }
           }
         },
-        "tags": ["Cosmos"],
+        "tags": [
+          "Cosmos"
+        ],
         "security": [
           {
             "bearer": []
@@ -1720,7 +1760,9 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum"]
+              "enum": [
+                "ethereum"
+              ]
             }
           }
         ],
@@ -1915,7 +1957,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -1936,7 +1980,9 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum"]
+              "enum": [
+                "ethereum"
+              ]
             }
           }
         ],
@@ -2131,7 +2177,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -2152,7 +2200,11 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub"
+              ]
             }
           }
         ],
@@ -2347,7 +2399,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -2368,7 +2422,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -2563,7 +2622,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -2584,7 +2645,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -2789,7 +2855,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -2810,7 +2878,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -3015,7 +3088,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -3036,7 +3111,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -3241,7 +3321,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -3262,7 +3344,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -3467,7 +3554,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -3488,7 +3577,12 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["ethereum", "solana", "cosmoshub", "polkadot"]
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
             }
           }
         ],
@@ -3693,7 +3787,9 @@
             }
           }
         },
-        "tags": ["Network"],
+        "tags": [
+          "Network"
+        ],
         "security": [
           {
             "bearer": []
@@ -3714,7 +3810,11 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["solana", "ethereum", "polkadot"]
+              "enum": [
+                "solana",
+                "ethereum",
+                "polkadot"
+              ]
             }
           },
           {
@@ -3960,7 +4060,9 @@
             }
           }
         },
-        "tags": ["Validator"],
+        "tags": [
+          "Validator"
+        ],
         "security": [
           {
             "bearer": []
@@ -3981,7 +4083,11 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["solana", "ethereum", "polkadot"]
+              "enum": [
+                "solana",
+                "ethereum",
+                "polkadot"
+              ]
             }
           },
           {
@@ -4227,7 +4333,9 @@
             }
           }
         },
-        "tags": ["Validator"],
+        "tags": [
+          "Validator"
+        ],
         "security": [
           {
             "bearer": []
@@ -4248,7 +4356,11 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["solana", "ethereum", "polkadot"]
+              "enum": [
+                "solana",
+                "ethereum",
+                "polkadot"
+              ]
             }
           },
           {
@@ -4494,7 +4606,9 @@
             }
           }
         },
-        "tags": ["Validator"],
+        "tags": [
+          "Validator"
+        ],
         "security": [
           {
             "bearer": []
@@ -4515,7 +4629,11 @@
             "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["solana", "ethereum", "polkadot"]
+              "enum": [
+                "solana",
+                "ethereum",
+                "polkadot"
+              ]
             }
           },
           {
@@ -4761,7 +4879,9 @@
             }
           }
         },
-        "tags": ["Validator"],
+        "tags": [
+          "Validator"
+        ],
         "security": [
           {
             "bearer": []
@@ -4931,7 +5051,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -4942,8 +5064,8 @@
     "/api/v1/eth/staking/direct/tx/create-pod": {
       "post": {
         "operationId": "eth-staking-create-pod",
-        "summary": "Construct serialized transaction to initiate the create eigen pod process.",
-        "description": "Prepare Create Pod Transaction",
+        "summary": "Construct serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
+        "description": "Prepare Create EigenPod Transaction",
         "parameters": [],
         "responses": {
           "200": {
@@ -5101,7 +5223,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -5281,7 +5405,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -5513,7 +5639,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -5680,7 +5808,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -5883,7 +6013,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -6098,7 +6230,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -6143,7 +6277,12 @@
             "description": "Status of node request",
             "example": "ready",
             "schema": {
-              "enum": ["init", "processing", "ready", "cancel"],
+              "enum": [
+                "init",
+                "processing",
+                "ready",
+                "cancel"
+              ],
               "type": "string"
             }
           },
@@ -6154,7 +6293,10 @@
             "description": "Sort direction by field createAt",
             "example": "ASC",
             "schema": {
-              "enum": ["ASC", "DESC"],
+              "enum": [
+                "ASC",
+                "DESC"
+              ],
               "type": "string"
             }
           }
@@ -6315,7 +6457,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -6505,7 +6649,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -6720,7 +6866,9 @@
             }
           }
         },
-        "tags": ["Ethereum"],
+        "tags": [
+          "Ethereum"
+        ],
         "security": [
           {
             "bearer": []
@@ -6742,7 +6890,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           },
           {
@@ -6968,7 +7120,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -6990,7 +7144,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -7264,7 +7422,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -7286,7 +7446,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           },
           {
@@ -7470,7 +7634,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -7492,7 +7658,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -7701,7 +7871,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -7723,7 +7895,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -7932,7 +8108,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -7954,7 +8132,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -8176,7 +8358,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -8198,7 +8382,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -8407,7 +8595,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -8429,7 +8619,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -8664,7 +8858,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -8686,7 +8882,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -8833,7 +9033,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -8853,7 +9055,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -9049,7 +9255,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -9071,7 +9279,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -9280,7 +9492,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -9302,7 +9516,11 @@
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet", "kusama", "westend"]
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ]
             }
           }
         ],
@@ -9524,7 +9742,9 @@
             }
           }
         },
-        "tags": ["Polkadot"],
+        "tags": [
+          "Polkadot"
+        ],
         "security": [
           {
             "bearer": []
@@ -9545,7 +9765,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9584,7 +9807,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9605,7 +9830,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           },
           {
@@ -9645,7 +9873,12 @@
             "description": "Staking account status: `active`, `inactive`, `activating`, `deactivating`.",
             "example": "active",
             "schema": {
-              "enum": ["active", "inactive", "activating", "deactivating"],
+              "enum": [
+                "active",
+                "inactive",
+                "activating",
+                "deactivating"
+              ],
               "type": "string"
             }
           }
@@ -9675,7 +9908,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9696,7 +9931,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9735,7 +9973,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9756,7 +9996,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9795,7 +10038,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9816,7 +10061,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9855,7 +10103,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9876,7 +10126,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9915,7 +10168,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9936,7 +10191,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -9975,7 +10233,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -9996,7 +10256,10 @@
             "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
             "schema": {
               "type": "string",
-              "enum": ["mainnet-beta", "testnet"]
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ]
             }
           }
         ],
@@ -10035,7 +10298,9 @@
             }
           }
         },
-        "tags": ["Solana"],
+        "tags": [
+          "Solana"
+        ],
         "security": [
           {
             "bearer": []
@@ -10045,7 +10310,9 @@
     },
     "/api/v1/polygon/staking/approve": {
       "post": {
-        "operationId": "StakingController_approve",
+        "operationId": "polygon-staking-approve",
+        "summary": "Approve Token Management",
+        "description": "Allows the Polygon smart contract to manage tokens by obtaining approval.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10200,7 +10467,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -10210,7 +10479,9 @@
     },
     "/api/v1/polygon/staking/delegate": {
       "post": {
-        "operationId": "StakingController_delegate",
+        "operationId": "polygon-staking-delegate",
+        "summary": "Delegate Tokens to Stake",
+        "description": "Delegate tokens to P2P validator to stake.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10365,7 +10636,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -10375,7 +10648,9 @@
     },
     "/api/v1/polygon/staking/undelegate": {
       "post": {
-        "operationId": "StakingController_undelegate",
+        "operationId": "polygon-staking-undelegate",
+        "summary": "Undelegate Staked Tokens",
+        "description": "Prepare previously staked tokens to unstake.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10530,7 +10805,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -10540,7 +10817,9 @@
     },
     "/api/v1/polygon/staking/unstake": {
       "post": {
-        "operationId": "StakingController_unstake",
+        "operationId": "polygon-staking-unstake",
+        "summary": "Unstake Tokens",
+        "description": "Unstake tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10695,7 +10974,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -10705,7 +10986,9 @@
     },
     "/api/v1/polygon/staking/withdraw": {
       "post": {
-        "operationId": "StakingController_withdraw",
+        "operationId": "polygon-staking-withdraw",
+        "summary": "Withdraw Unstaked Tokens",
+        "description": "Withdraw unstaked tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -10860,7 +11143,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -10870,7 +11155,9 @@
     },
     "/api/v1/polygon/staking/restake": {
       "post": {
-        "operationId": "StakingController_restake",
+        "operationId": "polygon-staking-restake",
+        "summary": "Withdraw and Restake Rewards",
+        "description": "Withdraw rewards in tokens and then stake it.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -11025,7 +11312,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -11035,7 +11324,9 @@
     },
     "/api/v1/polygon/staking/redelegate": {
       "post": {
-        "operationId": "StakingController_redelegate",
+        "operationId": "polygon-staking-redelegate",
+        "summary": "Create Redelegate Transaction",
+        "description": "Redelegate tokens from another validator.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -11190,7 +11481,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -11200,7 +11493,9 @@
     },
     "/api/v1/polygon/transaction/send": {
       "post": {
-        "operationId": "TransactionController_send",
+        "operationId": "polygon-transaction-send",
+        "summary": "Send Transaction",
+        "description": "Send signed transaction to the Polygon network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -11332,7 +11627,9 @@
             }
           }
         },
-        "tags": ["Polygon"],
+        "tags": [
+          "Polygon"
+        ],
         "security": [
           {
             "bearer": []
@@ -11522,7 +11819,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -11724,7 +12023,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -11919,7 +12220,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -12121,7 +12424,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -12333,7 +12638,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -12537,7 +12844,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -12751,7 +13060,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -12954,7 +13265,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -13156,7 +13469,9 @@
             }
           }
         },
-        "tags": ["SSV"],
+        "tags": [
+          "SSV"
+        ],
         "security": [
           {
             "bearer": []
@@ -13199,7 +13514,10 @@
             "default": null
           }
         },
-        "required": ["error", "result"]
+        "required": [
+          "error",
+          "result"
+        ]
       },
       "NoTokenException": {
         "type": "object",
@@ -13217,7 +13535,11 @@
             "default": "NoTokenException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "WrongTokenException": {
         "type": "object",
@@ -13235,7 +13557,11 @@
             "default": "WrongTokenException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ValidationErrorResponse": {
         "type": "object",
@@ -13253,7 +13579,10 @@
             }
           }
         },
-        "required": ["property", "constraints"]
+        "required": [
+          "property",
+          "constraints"
+        ]
       },
       "ValidationException": {
         "type": "object",
@@ -13277,7 +13606,12 @@
             }
           }
         },
-        "required": ["code", "message", "name", "errors"]
+        "required": [
+          "code",
+          "message",
+          "name",
+          "errors"
+        ]
       },
       "NetworkIsNotIncludedInListException": {
         "type": "object",
@@ -13295,7 +13629,11 @@
             "default": "NetworkIsNotIncludedInListException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SimulationTransactionOnCosmosException": {
         "type": "object",
@@ -13313,7 +13651,11 @@
             "default": "SimulationTransactionOnCosmosException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "InsufficientFundsOnCosmosAccountException": {
         "type": "object",
@@ -13331,7 +13673,11 @@
             "default": "InsufficientFundsOnCosmosAccountException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CreateStakeTransactionException": {
         "type": "object",
@@ -13349,7 +13695,11 @@
             "default": "CreateStakeTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SuccessResponse": {
         "type": "object",
@@ -13363,7 +13713,10 @@
             "type": "object"
           }
         },
-        "required": ["error", "result"]
+        "required": [
+          "error",
+          "result"
+        ]
       },
       "Coin": {
         "type": "object",
@@ -13377,7 +13730,10 @@
             "description": "Amount of tokens."
           }
         },
-        "required": ["denom", "amount"]
+        "required": [
+          "denom",
+          "amount"
+        ]
       },
       "MsgDelegate": {
         "type": "object",
@@ -13396,7 +13752,10 @@
             "$ref": "#/components/schemas/Coin"
           }
         },
-        "required": ["delegatorAddress", "validatorAddress"]
+        "required": [
+          "delegatorAddress",
+          "validatorAddress"
+        ]
       },
       "MsgUndelegate": {
         "type": "object",
@@ -13415,7 +13774,10 @@
             "$ref": "#/components/schemas/Coin"
           }
         },
-        "required": ["delegatorAddress", "validatorAddress"]
+        "required": [
+          "delegatorAddress",
+          "validatorAddress"
+        ]
       },
       "MsgBeginRedelegate": {
         "type": "object",
@@ -13459,7 +13821,10 @@
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
         },
-        "required": ["delegatorAddress", "validatorAddress"]
+        "required": [
+          "delegatorAddress",
+          "validatorAddress"
+        ]
       },
       "Message": {
         "type": "object",
@@ -13496,14 +13861,21 @@
             }
           }
         },
-        "required": ["typeUrl", "value"]
+        "required": [
+          "typeUrl",
+          "value"
+        ]
       },
       "Amount": {
         "type": "object",
         "properties": {
           "denom": {
             "type": "string",
-            "enum": ["atom", "uatom", "matom"],
+            "enum": [
+              "atom",
+              "uatom",
+              "matom"
+            ],
             "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "amount": {
@@ -13511,7 +13883,10 @@
             "description": "Amount of tokens."
           }
         },
-        "required": ["denom", "amount"]
+        "required": [
+          "denom",
+          "amount"
+        ]
       },
       "TransactionFee": {
         "type": "object",
@@ -13527,7 +13902,10 @@
             "description": "Amount of gas spent for the transaction."
           }
         },
-        "required": ["amount", "gas"]
+        "required": [
+          "amount",
+          "gas"
+        ]
       },
       "TransactionData": {
         "type": "object",
@@ -13552,14 +13930,19 @@
           },
           "encodedBody": {
             "type": "string",
-            "description": "Transaction data encoded in hexadecimal format."
+            "description": "Processable transaction data encoded in the hexadecimal format."
           },
           "encodedAuthInfo": {
             "type": "string",
             "description": "Authorization data, including fee, encoded in the hexadecimal format."
           }
         },
-        "required": ["messages", "fee", "encodedBody", "encodedAuthInfo"]
+        "required": [
+          "messages",
+          "fee",
+          "encodedBody",
+          "encodedAuthInfo"
+        ]
       },
       "StakeOrUnstakeTransactionStakingCosmosResponse": {
         "type": "object",
@@ -13589,7 +13972,11 @@
           },
           "currency": {
             "type": "string",
-            "enum": ["atom", "uatom", "matom"],
+            "enum": [
+              "atom",
+              "uatom",
+              "matom"
+            ],
             "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "validatorAddress": {
@@ -13633,7 +14020,10 @@
             "description": "Amount of tokens to stake in ATOM."
           }
         },
-        "required": ["stashAccountAddress", "amount"]
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
       },
       "InsufficientFundsOnCosmosValidatorException": {
         "type": "object",
@@ -13651,7 +14041,11 @@
             "default": "InsufficientFundsOnCosmosValidatorException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CreateUnstakeTransactionException": {
         "type": "object",
@@ -13669,7 +14063,11 @@
             "default": "CreateUnstakeTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RedelegationTransactionInProcessException": {
         "type": "object",
@@ -13687,7 +14085,11 @@
             "default": "RedelegationTransactionInProcessException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CreateRedelegateTransactionException": {
         "type": "object",
@@ -13705,7 +14107,11 @@
             "default": "CreateRedelegateTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RedelegateTransactionStakingCosmosResponse": {
         "type": "object",
@@ -13735,7 +14141,11 @@
           },
           "currency": {
             "type": "string",
-            "enum": ["atom", "uatom", "matom"],
+            "enum": [
+              "atom",
+              "uatom",
+              "matom"
+            ],
             "description": "<p>Currency of the tokens:</p><ul><li>`atom` — Cosmos native staking token.</li><li>`uatom` — 1 ATOM = 10^-6 UATOM.</li><li>`matom` — 1 ATOM = 10^-3 MATOM.</li></ul>"
           },
           "sourceValidatorAddress": {
@@ -13786,7 +14196,11 @@
             "pattern": "^cosmosvaloper[a-zA-Z0-9]{39}$"
           }
         },
-        "required": ["stashAccountAddress", "amount", "validatorAddress"]
+        "required": [
+          "stashAccountAddress",
+          "amount",
+          "validatorAddress"
+        ]
       },
       "CreateClaimRewardsTransactionException": {
         "type": "object",
@@ -13804,7 +14218,11 @@
             "default": "CreateClaimRewardsTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ClaimRewardsTransactionStakingCosmosResponse": {
         "type": "object",
@@ -13855,7 +14273,9 @@
             "description": "Arbitrary text data to add to the transactions."
           }
         },
-        "required": ["stashAccountAddress"]
+        "required": [
+          "stashAccountAddress"
+        ]
       },
       "TransactionNotFoundException": {
         "type": "object",
@@ -13873,7 +14293,11 @@
             "default": "TransactionNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "EncodeTransactionFailedException": {
         "type": "object",
@@ -13891,7 +14315,11 @@
             "default": "EncodeTransactionFailedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "EncodeTransactionResponse": {
         "type": "object",
@@ -13901,7 +14329,9 @@
             "description": "Encoded transaction in the hexadecimal format that needs to be broadcasted to the network."
           }
         },
-        "required": ["encodedTransaction"]
+        "required": [
+          "encodedTransaction"
+        ]
       },
       "EncodeTransactionRequest": {
         "type": "object",
@@ -13924,7 +14354,11 @@
             "description": "Authorization data, including fee, encoded in the hexadecimal format."
           }
         },
-        "required": ["stashAccountAddress", "encodedBody", "encodedAuthInfo"]
+        "required": [
+          "stashAccountAddress",
+          "encodedBody",
+          "encodedAuthInfo"
+        ]
       },
       "BroadcastTransactionFailedException": {
         "type": "object",
@@ -13942,7 +14376,11 @@
             "default": "BroadcastTransactionFailedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "Gas": {
         "type": "object",
@@ -13956,14 +14394,20 @@
             "description": "Maximum gas limit for the transaction."
           }
         },
-        "required": ["used", "wanted"]
+        "required": [
+          "used",
+          "wanted"
+        ]
       },
       "TransactionStatusResponse": {
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
-            "enum": ["success", "failed"],
+            "enum": [
+              "success",
+              "failed"
+            ],
             "description": "Transaction status."
           },
           "blockId": {
@@ -13988,7 +14432,13 @@
             "description": "Hash of the transaction."
           }
         },
-        "required": ["status", "blockId", "fee", "gas", "transactionHash"]
+        "required": [
+          "status",
+          "blockId",
+          "fee",
+          "gas",
+          "transactionHash"
+        ]
       },
       "BroadcastTransactionRequest": {
         "type": "object",
@@ -13998,7 +14448,9 @@
             "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network."
           }
         },
-        "required": ["signedTransaction"]
+        "required": [
+          "signedTransaction"
+        ]
       },
       "InvalidTransactionHashException": {
         "type": "object",
@@ -14016,7 +14468,11 @@
             "default": "InvalidTransactionHashException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionAlreadyBroadcastException": {
         "type": "object",
@@ -14034,7 +14490,11 @@
             "default": "TransactionAlreadyBroadcastException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetTransactionStatusFailedException": {
         "type": "object",
@@ -14052,7 +14512,11 @@
             "default": "GetTransactionStatusFailedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkStatsNotFoundException": {
         "type": "object",
@@ -14070,7 +14534,11 @@
             "default": "GetNetworkStatsNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkExitQueueException": {
         "type": "object",
@@ -14088,7 +14556,11 @@
             "default": "GetNetworkExitQueueException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkQueueResponse": {
         "type": "object",
@@ -14105,7 +14577,10 @@
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
-        "required": ["length", "updatedAt"]
+        "required": [
+          "length",
+          "updatedAt"
+        ]
       },
       "GetNetworkStakingQueueException": {
         "type": "object",
@@ -14123,7 +14598,11 @@
             "default": "GetNetworkStakingQueueException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkSupplyDataException": {
         "type": "object",
@@ -14141,7 +14620,11 @@
             "default": "GetNetworkSupplyDataException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkSupplyDataResponse": {
         "type": "object",
@@ -14158,7 +14641,10 @@
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
-        "required": ["percent", "updatedAt"]
+        "required": [
+          "percent",
+          "updatedAt"
+        ]
       },
       "GetNetworkLastStakingPeriodException": {
         "type": "object",
@@ -14176,7 +14662,11 @@
             "default": "GetNetworkLastStakingPeriodException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkLastStakingPeriodResponse": {
         "type": "object",
@@ -14193,7 +14683,10 @@
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
-        "required": ["period", "updatedAt"]
+        "required": [
+          "period",
+          "updatedAt"
+        ]
       },
       "GetNetworkStatsHistoryException": {
         "type": "object",
@@ -14211,7 +14704,11 @@
             "default": "GetNetworkStatsHistoryException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkAPYResponse": {
         "type": "object",
@@ -14291,7 +14788,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetNetworkStatsHistoryRequest": {
         "type": "object",
@@ -14346,7 +14848,11 @@
             "default": "GetNetworkStatsHistoryNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkValidatorsCountResponse": {
         "type": "object",
@@ -14414,7 +14920,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetNetworkDelegatorsCountResponse": {
         "type": "object",
@@ -14482,7 +14993,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetNetworkStakeResponse": {
         "type": "object",
@@ -14550,7 +15066,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetNetworkRewardsStatsHistoryException": {
         "type": "object",
@@ -14568,7 +15089,11 @@
             "default": "GetNetworkRewardsStatsHistoryException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetNetworkRewardsResponse": {
         "type": "object",
@@ -14678,7 +15203,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "InvalidValidatorAddressException": {
         "type": "object",
@@ -14702,7 +15232,12 @@
             }
           }
         },
-        "required": ["code", "message", "name", "errors"]
+        "required": [
+          "code",
+          "message",
+          "name",
+          "errors"
+        ]
       },
       "GetValidatorStakesException": {
         "type": "object",
@@ -14720,7 +15255,11 @@
             "default": "GetValidatorStakesException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ValidatorStake": {
         "type": "object",
@@ -14775,7 +15314,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetValidatorRewardsException": {
         "type": "object",
@@ -14793,7 +15337,11 @@
             "default": "GetValidatorRewardsException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "Reward": {
         "type": "object",
@@ -14809,7 +15357,11 @@
           },
           "currency": {
             "type": "string",
-            "enum": ["ETH", "SOL", "POL"],
+            "enum": [
+              "ETH",
+              "SOL",
+              "POL"
+            ],
             "description": "Currency of the tokens."
           },
           "recipient": {
@@ -14817,7 +15369,12 @@
             "description": "Rewards recipient address."
           }
         },
-        "required": ["type", "amount", "currency", "recipient"]
+        "required": [
+          "type",
+          "amount",
+          "currency",
+          "recipient"
+        ]
       },
       "ValidatorRewards": {
         "type": "object",
@@ -14874,7 +15431,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetValidatorApyException": {
         "type": "object",
@@ -14892,7 +15454,11 @@
             "default": "GetValidatorApyException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ValidatorAPY": {
         "type": "object",
@@ -14947,7 +15513,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetValidatorFeeException": {
         "type": "object",
@@ -14965,7 +15536,11 @@
             "default": "GetValidatorFeeException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ValidatorFee": {
         "type": "object",
@@ -15020,7 +15595,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "GetRelaysSetsException": {
         "type": "object",
@@ -15038,7 +15618,11 @@
             "default": "GetRelaysSetsException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TokenGuardException": {
         "type": "object",
@@ -15056,7 +15640,11 @@
             "default": "TokenGuardException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RelaysSetResponse": {
         "type": "object",
@@ -15066,7 +15654,9 @@
             "description": "Name of the MEV relay set."
           }
         },
-        "required": ["relaysSet"]
+        "required": [
+          "relaysSet"
+        ]
       },
       "GetRelaysSetsRequestResponse": {
         "type": "object",
@@ -15078,7 +15668,9 @@
             }
           }
         },
-        "required": ["list"]
+        "required": [
+          "list"
+        ]
       },
       "Web3CreateTransactionException": {
         "type": "object",
@@ -15096,7 +15688,11 @@
             "default": "Web3CreateTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "EthereumUnsignedTransactionResponse": {
         "type": "object",
@@ -15184,7 +15780,11 @@
             "pattern": "^0x[a-fA-F0-9]{64}$"
           }
         },
-        "required": ["pubkey", "signature", "depositDataRoot"]
+        "required": [
+          "pubkey",
+          "signature",
+          "depositDataRoot"
+        ]
       },
       "StakeEthereumRequest": {
         "type": "object",
@@ -15204,7 +15804,10 @@
             }
           }
         },
-        "required": ["withdrawalAddress", "depositData"]
+        "required": [
+          "withdrawalAddress",
+          "depositData"
+        ]
       },
       "InvalidDepositDataSignException": {
         "type": "object",
@@ -15222,7 +15825,11 @@
             "default": "InvalidDepositDataSignException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "PubkeyDoNotExistsException": {
         "type": "object",
@@ -15240,7 +15847,11 @@
             "default": "PubkeyDoNotExistsException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ValidatorNotActiveException": {
         "type": "object",
@@ -15258,7 +15869,11 @@
             "default": "ValidatorNotActiveException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "WithdrawalTransactionException": {
         "type": "object",
@@ -15276,7 +15891,11 @@
             "default": "WithdrawalTransactionException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "UnstakeEthereumRequest": {
         "type": "object",
@@ -15293,7 +15912,9 @@
             }
           }
         },
-        "required": ["pubkeys"]
+        "required": [
+          "pubkeys"
+        ]
       },
       "ValidatorResponse": {
         "type": "object",
@@ -15333,7 +15954,11 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["status", "amount", "pubkey"]
+        "required": [
+          "status",
+          "amount",
+          "pubkey"
+        ]
       },
       "ValidatorsResponse": {
         "type": "object",
@@ -15345,7 +15970,9 @@
             }
           }
         },
-        "required": ["list"]
+        "required": [
+          "list"
+        ]
       },
       "ValidatorsRequest": {
         "type": "object",
@@ -15362,7 +15989,9 @@
             }
           }
         },
-        "required": ["pubkeys"]
+        "required": [
+          "pubkeys"
+        ]
       },
       "NodesRequestIdAlreadyExistException": {
         "type": "object",
@@ -15380,7 +16009,11 @@
             "default": "NodesRequestIdAlreadyExistException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CannotGetPodAddressException": {
         "type": "object",
@@ -15398,7 +16031,11 @@
             "default": "CannotGetPodAddressException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "NodesRequestCreateException": {
         "type": "object",
@@ -15416,14 +16053,20 @@
             "default": "NodesRequestCreateException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "NodesOptionsRequest": {
         "type": "object",
         "properties": {
           "location": {
             "type": "string",
-            "enum": ["any"],
+            "enum": [
+              "any"
+            ],
             "example": "any",
             "description": "Nodes location. Currently, only `any` is supported.",
             "default": "any"
@@ -15434,7 +16077,9 @@
             "example": null
           }
         },
-        "required": ["location"]
+        "required": [
+          "location"
+        ]
       },
       "CreateNodesRequestRequest": {
         "type": "object",
@@ -15447,7 +16092,10 @@
           },
           "type": {
             "type": "string",
-            "enum": ["REGULAR", "RESTAKING"],
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
             "description": "Kind of request",
             "example": "REGULAR"
           },
@@ -15487,7 +16135,11 @@
             "$ref": "#/components/schemas/NodesOptionsRequest"
           }
         },
-        "required": ["id", "validatorsCount", "nodesOptions"]
+        "required": [
+          "id",
+          "validatorsCount",
+          "nodesOptions"
+        ]
       },
       "NodesRequestNotFoundException": {
         "type": "object",
@@ -15505,7 +16157,11 @@
             "default": "NodesRequestNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "NodesRequestGetException": {
         "type": "object",
@@ -15523,7 +16179,11 @@
             "default": "NodesRequestGetException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "DepositDataResponse": {
         "type": "object",
@@ -15571,7 +16231,11 @@
             "description": "Version of the deposit command-line interface."
           }
         },
-        "required": ["pubkey", "signature", "depositDataRoot"]
+        "required": [
+          "pubkey",
+          "signature",
+          "depositDataRoot"
+        ]
       },
       "NodesRequestResponse": {
         "type": "object",
@@ -15584,13 +16248,21 @@
           },
           "type": {
             "type": "string",
-            "enum": ["REGULAR", "RESTAKING"],
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
             "description": "Type of nodes request",
             "example": "REGULAR"
           },
           "status": {
             "type": "string",
-            "enum": ["init", "processing", "ready", "cancel"],
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "cancel"
+            ],
             "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
             "example": "processing"
           },
@@ -15672,7 +16344,11 @@
             "default": "NodesRequestGetListException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetListNodesRequestResponse": {
         "type": "object",
@@ -15700,7 +16376,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "VemIdAlreadyExistException": {
         "type": "object",
@@ -15718,7 +16399,11 @@
             "default": "VemIdAlreadyExistException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "VemCreateException": {
         "type": "object",
@@ -15736,7 +16421,11 @@
             "default": "VemCreateException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CreateVemRequest": {
         "type": "object",
@@ -15749,7 +16438,10 @@
           },
           "type": {
             "type": "string",
-            "enum": ["off_chain", "on_chain"],
+            "enum": [
+              "off_chain",
+              "on_chain"
+            ],
             "description": "<p>Type of the VEM request:</p><ul><li>`off_chain` — off-chain signature.</li><li>`on_chain` — on-chain signature.</li></ul>",
             "example": "off_chain",
             "default": "off_chain"
@@ -15780,7 +16472,10 @@
             "example": null
           }
         },
-        "required": ["id", "type"]
+        "required": [
+          "id",
+          "type"
+        ]
       },
       "VemNotFoundException": {
         "type": "object",
@@ -15798,7 +16493,11 @@
             "default": "VemNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "VemGetException": {
         "type": "object",
@@ -15816,7 +16515,11 @@
             "default": "VemGetException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "VemResponse": {
         "type": "object",
@@ -15829,13 +16532,21 @@
           },
           "status": {
             "type": "string",
-            "enum": ["processing", "success", "error", "fault"],
+            "enum": [
+              "processing",
+              "success",
+              "error",
+              "fault"
+            ],
             "description": "<p>Current status of the VEM request:</p><ul><li>`processing` — requst is in progress.</li><li>`success` — answer is ready.</li><li>`error` — there is an issue with the data, unable to create VEM.</li><li>`fault` — error occurred on the server side.</li></ul>",
             "example": "processing"
           },
           "type": {
             "type": "string",
-            "enum": ["off_chain", "on_chain"],
+            "enum": [
+              "off_chain",
+              "on_chain"
+            ],
             "description": "<p>Type of the VEM request:</p><ul><li>`off_chain` — off-chain signature.</li><li>`on_chain` — on-chain signature.</li></ul>",
             "example": "off_chain"
           },
@@ -15879,7 +16590,11 @@
             "description": "Version of the Ethereum fork."
           }
         },
-        "required": ["id", "status", "type"]
+        "required": [
+          "id",
+          "status",
+          "type"
+        ]
       },
       "StatusException": {
         "type": "object",
@@ -15897,14 +16612,22 @@
             "default": "StatusException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SignTransactionResponse": {
         "type": "object",
         "properties": {
           "network": {
             "type": "string",
-            "enum": ["mainnet", "kusama", "westend"],
+            "enum": [
+              "mainnet",
+              "kusama",
+              "westend"
+            ],
             "example": "westend",
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>"
           },
@@ -15917,7 +16640,10 @@
           },
           "status": {
             "type": "string",
-            "enum": ["success", "failed"],
+            "enum": [
+              "success",
+              "failed"
+            ],
             "description": "Transaction status.",
             "example": "success"
           },
@@ -15986,7 +16712,11 @@
             "default": "ExtrinsicCouldNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SendException": {
         "type": "object",
@@ -16004,7 +16734,11 @@
             "default": "SendException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionUsurpedException": {
         "type": "object",
@@ -16022,7 +16756,11 @@
             "default": "TransactionUsurpedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CouldNotGetStateException": {
         "type": "object",
@@ -16040,7 +16778,11 @@
             "default": "CouldNotGetStateException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "ExtrinsicCouldNotSendException": {
         "type": "object",
@@ -16058,7 +16800,11 @@
             "default": "ExtrinsicCouldNotSendException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionInvalidException": {
         "type": "object",
@@ -16076,7 +16822,11 @@
             "default": "TransactionInvalidException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionFinalityTimeoutException": {
         "type": "object",
@@ -16094,7 +16844,11 @@
             "default": "TransactionFinalityTimeoutException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionDroppedException": {
         "type": "object",
@@ -16112,7 +16866,11 @@
             "default": "TransactionDroppedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SendRequest": {
         "type": "object",
@@ -16123,7 +16881,9 @@
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           }
         },
-        "required": ["signedTransaction"]
+        "required": [
+          "signedTransaction"
+        ]
       },
       "TransactionGetListException": {
         "type": "object",
@@ -16141,14 +16901,22 @@
             "default": "TransactionGetListException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "PolkadotTransactionResponse": {
         "type": "object",
         "properties": {
           "network": {
             "type": "string",
-            "enum": ["mainnet", "kusama", "westend"],
+            "enum": [
+              "mainnet",
+              "kusama",
+              "westend"
+            ],
             "example": "westend",
             "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>"
           },
@@ -16161,7 +16929,10 @@
           },
           "status": {
             "type": "string",
-            "enum": ["success", "failed"],
+            "enum": [
+              "success",
+              "failed"
+            ],
             "description": "Transaction status.",
             "example": "success"
           },
@@ -16240,7 +17011,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "AddressIsInvalidException": {
         "type": "object",
@@ -16258,7 +17034,11 @@
             "default": "AddressIsInvalidException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "AddException": {
         "type": "object",
@@ -16276,7 +17056,11 @@
             "default": "AddException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "InsufficientBalanceException": {
         "type": "object",
@@ -16294,7 +17078,11 @@
             "default": "InsufficientBalanceException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "TransactionResponse": {
         "type": "object",
@@ -16311,7 +17099,10 @@
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
-        "required": ["unsignedTransaction", "createdAt"]
+        "required": [
+          "unsignedTransaction",
+          "createdAt"
+        ]
       },
       "AddRequest": {
         "type": "object",
@@ -16327,7 +17118,10 @@
             "example": "5Ggpg3JepXM3ZrktNpoc5QA1sKaFVpUPWMRr7jppiMxTuU75"
           }
         },
-        "required": ["stashAccountAddress", "proxyAccountAddress"]
+        "required": [
+          "stashAccountAddress",
+          "proxyAccountAddress"
+        ]
       },
       "ProxyNotFoundException": {
         "type": "object",
@@ -16345,7 +17139,11 @@
             "default": "ProxyNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RemoveException": {
         "type": "object",
@@ -16363,7 +17161,11 @@
             "default": "RemoveException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RemoveRequest": {
         "type": "object",
@@ -16379,7 +17181,10 @@
             "example": "5Ca1Bqfzc4DdU6zMXLu5UhpRtdX5EzCseDXW9YisVm25ATeJ"
           }
         },
-        "required": ["stashAccountAddress", "proxyAccountAddress"]
+        "required": [
+          "stashAccountAddress",
+          "proxyAccountAddress"
+        ]
       },
       "StakeAmountTooSmallException": {
         "type": "object",
@@ -16397,7 +17202,11 @@
             "default": "StakeAmountTooSmallException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "BondException": {
         "type": "object",
@@ -16415,7 +17224,11 @@
             "default": "BondException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "PolkadotUnsignedBondTransactionResponse": {
         "type": "object",
@@ -16432,7 +17245,12 @@
           },
           "rewardDestinationType": {
             "type": "string",
-            "enum": ["staked", "stash", "controller", "account"],
+            "enum": [
+              "staked",
+              "stash",
+              "controller",
+              "account"
+            ],
             "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
@@ -16471,7 +17289,12 @@
           },
           "rewardDestinationType": {
             "type": "string",
-            "enum": ["staked", "stash", "controller", "account"],
+            "enum": [
+              "staked",
+              "stash",
+              "controller",
+              "account"
+            ],
             "example": "account",
             "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
@@ -16486,7 +17309,11 @@
             "example": 3
           }
         },
-        "required": ["stashAccountAddress", "rewardDestinationType", "amount"]
+        "required": [
+          "stashAccountAddress",
+          "rewardDestinationType",
+          "amount"
+        ]
       },
       "BondExtraException": {
         "type": "object",
@@ -16504,7 +17331,11 @@
             "default": "BondExtraException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "PolkadotUnsignedTransactionResponse": {
         "type": "object",
@@ -16552,7 +17383,10 @@
             "example": 1
           }
         },
-        "required": ["stashAccountAddress", "amount"]
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
       },
       "LedgerNotFoundException": {
         "type": "object",
@@ -16570,7 +17404,11 @@
             "default": "LedgerNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "NotEnoughPendingAmountException": {
         "type": "object",
@@ -16588,7 +17426,11 @@
             "default": "NotEnoughPendingAmountException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "WrongControllerException": {
         "type": "object",
@@ -16606,7 +17448,11 @@
             "default": "WrongControllerException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RebondException": {
         "type": "object",
@@ -16624,7 +17470,11 @@
             "default": "RebondException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "RebondRequest": {
         "type": "object",
@@ -16640,7 +17490,10 @@
             "example": 3
           }
         },
-        "required": ["stashAccountAddress", "amount"]
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
       },
       "NominateResponse": {
         "type": "object",
@@ -16650,7 +17503,9 @@
             "description": "Validator address."
           }
         },
-        "required": ["nominate"]
+        "required": [
+          "nominate"
+        ]
       },
       "GetListNominateResponse": {
         "type": "object",
@@ -16662,7 +17517,9 @@
             }
           }
         },
-        "required": ["list"]
+        "required": [
+          "list"
+        ]
       },
       "NominateException": {
         "type": "object",
@@ -16680,7 +17537,11 @@
             "default": "NominateException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "NominateTransactionResponse": {
         "type": "object",
@@ -16728,7 +17589,9 @@
             "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
           }
         },
-        "required": ["stashAccountAddress"]
+        "required": [
+          "stashAccountAddress"
+        ]
       },
       "NotEnoughBonedAmountException": {
         "type": "object",
@@ -16746,7 +17609,11 @@
             "default": "NotEnoughBonedAmountException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "UnbondException": {
         "type": "object",
@@ -16764,7 +17631,11 @@
             "default": "UnbondException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "UnbondRequest": {
         "type": "object",
@@ -16780,7 +17651,10 @@
             "example": 3
           }
         },
-        "required": ["stashAccountAddress", "amount"]
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
       },
       "BondNotFoundException": {
         "type": "object",
@@ -16798,7 +17672,11 @@
             "default": "BondNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "WithdrawUnbondedException": {
         "type": "object",
@@ -16816,7 +17694,11 @@
             "default": "WithdrawUnbondedException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "WithdrawalTransactionResponse": {
         "type": "object",
@@ -16835,7 +17717,11 @@
             "description": "Timestamp of the transaction in the ISO 8601 format."
           }
         },
-        "required": ["unsignedTransaction", "stashAccountAddress", "createdAt"]
+        "required": [
+          "unsignedTransaction",
+          "stashAccountAddress",
+          "createdAt"
+        ]
       },
       "WithdrawUnbondedRequest": {
         "type": "object",
@@ -16846,7 +17732,9 @@
             "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
           }
         },
-        "required": ["stashAccountAddress"]
+        "required": [
+          "stashAccountAddress"
+        ]
       },
       "SendResponse": {
         "type": "object",
@@ -16864,7 +17752,9 @@
           "signerAccounts": {
             "type": "string",
             "description": "Account addresses that signed the transaction.",
-            "example": ["C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"]
+            "example": [
+              "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            ]
           },
           "createdAt": {
             "format": "datetime",
@@ -16873,7 +17763,12 @@
             "example": "2023-08-24T08:14:50.455Z"
           }
         },
-        "required": ["transactionId", "slot", "signerAccounts", "createdAt"]
+        "required": [
+          "transactionId",
+          "slot",
+          "signerAccounts",
+          "createdAt"
+        ]
       },
       "GetStakingResponse": {
         "type": "object",
@@ -16900,7 +17795,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["active", "inactive", "activating", "deactivating"],
+            "enum": [
+              "active",
+              "inactive",
+              "activating",
+              "deactivating"
+            ],
             "description": "Stake account status: `active`, `inactive`, `activating`, `deactivating`.",
             "example": "active"
           },
@@ -16931,7 +17831,9 @@
             }
           }
         },
-        "required": ["accounts"]
+        "required": [
+          "accounts"
+        ]
       },
       "StakeResult": {
         "type": "object",
@@ -17020,7 +17922,11 @@
             "example": 1
           }
         },
-        "required": ["feePayer", "fromPublicKey", "amount"]
+        "required": [
+          "feePayer",
+          "fromPublicKey",
+          "amount"
+        ]
       },
       "DeactivateResult": {
         "type": "object",
@@ -17052,7 +17958,11 @@
             "example": "2023-08-24T08:14:50.455Z"
           }
         },
-        "required": ["feePayer", "unsignedTransaction", "createdAt"]
+        "required": [
+          "feePayer",
+          "unsignedTransaction",
+          "createdAt"
+        ]
       },
       "DeactivateRequest": {
         "type": "object",
@@ -17073,7 +17983,11 @@
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
-        "required": ["feePayer", "stakeAccount", "stakeAuthority"]
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "stakeAuthority"
+        ]
       },
       "WithdrawResult": {
         "type": "object",
@@ -17116,7 +18030,12 @@
             "example": "2023-08-24T08:14:50.455Z"
           }
         },
-        "required": ["feePayer", "amount", "unsignedTransaction", "createdAt"]
+        "required": [
+          "feePayer",
+          "amount",
+          "unsignedTransaction",
+          "createdAt"
+        ]
       },
       "WithdrawRequest": {
         "type": "object",
@@ -17148,7 +18067,10 @@
             "example": 1
           }
         },
-        "required": ["feePayer", "amount"]
+        "required": [
+          "feePayer",
+          "amount"
+        ]
       },
       "SplitRequestDto": {
         "type": "object",
@@ -17180,7 +18102,12 @@
             "example": 1
           }
         },
-        "required": ["feePayer", "baseAccount", "stakeAccount", "amount"]
+        "required": [
+          "feePayer",
+          "baseAccount",
+          "stakeAccount",
+          "amount"
+        ]
       },
       "MergeRequest": {
         "type": "object",
@@ -17232,7 +18159,11 @@
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           }
         },
-        "required": ["feePayer", "stakeAccount", "stakeAuthority"]
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "stakeAuthority"
+        ]
       },
       "ApproveRequestDto": {
         "type": "object",
@@ -17249,7 +18180,10 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["amount", "stakerAddress"]
+        "required": [
+          "amount",
+          "stakerAddress"
+        ]
       },
       "DelegateRequestDto": {
         "type": "object",
@@ -17266,7 +18200,10 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["amount", "stakerAddress"]
+        "required": [
+          "amount",
+          "stakerAddress"
+        ]
       },
       "UndelegateRequestDto": {
         "type": "object",
@@ -17283,7 +18220,10 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["claimAmount", "stakerAddress"]
+        "required": [
+          "claimAmount",
+          "stakerAddress"
+        ]
       },
       "UnstakeRequestDto": {
         "type": "object",
@@ -17300,7 +18240,10 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["unbondNonce", "stakerAddress"]
+        "required": [
+          "unbondNonce",
+          "stakerAddress"
+        ]
       },
       "WithdrawRequestDto": {
         "type": "object",
@@ -17312,7 +18255,9 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["stakerAddress"]
+        "required": [
+          "stakerAddress"
+        ]
       },
       "RestakeRequestDto": {
         "type": "object",
@@ -17324,7 +18269,9 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["stakerAddress"]
+        "required": [
+          "stakerAddress"
+        ]
       },
       "RedelegateRequestDto": {
         "type": "object",
@@ -17375,7 +18322,10 @@
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
-        "required": ["signedTransaction", "stakerAddress"]
+        "required": [
+          "signedTransaction",
+          "stakerAddress"
+        ]
       },
       "SsvRequestIdAlreadyExistException": {
         "type": "object",
@@ -17393,7 +18343,11 @@
             "default": "SsvRequestIdAlreadyExistException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SsvRequestCreateException": {
         "type": "object",
@@ -17411,7 +18365,11 @@
             "default": "SsvRequestCreateException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "CreateSsvRequestRequest": {
         "type": "object",
@@ -17449,7 +18407,10 @@
           },
           "type": {
             "type": "string",
-            "enum": ["with-encrypt-key", "without-encrypt-key"],
+            "enum": [
+              "with-encrypt-key",
+              "without-encrypt-key"
+            ],
             "example": "with-encrypt-key",
             "default": "with-encrypt-key",
             "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
@@ -17493,7 +18454,11 @@
             "default": "SsvRequestNotFoundException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "EncryptedShareResponse": {
         "type": "object",
@@ -17515,7 +18480,11 @@
             "description": "Encrypted validator private key."
           }
         },
-        "required": ["publicKey", "nonce", "sharesData"]
+        "required": [
+          "publicKey",
+          "nonce",
+          "sharesData"
+        ]
       },
       "SsvRequestResponse": {
         "type": "object",
@@ -17528,7 +18497,12 @@
           },
           "status": {
             "type": "string",
-            "enum": ["init", "processing", "ready", "cancel"],
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "cancel"
+            ],
             "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
             "example": "processing"
           },
@@ -17560,7 +18534,10 @@
           },
           "type": {
             "type": "string",
-            "enum": ["with-encrypt-key", "without-encrypt-key"],
+            "enum": [
+              "with-encrypt-key",
+              "without-encrypt-key"
+            ],
             "example": "without-encrypt-key",
             "default": "without-encrypt-key",
             "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
@@ -17649,7 +18626,11 @@
             "default": "SsvRequestGetListException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetListSsvRequestResponse": {
         "type": "object",
@@ -17677,7 +18658,12 @@
             }
           }
         },
-        "required": ["limit", "offset", "totalCount", "list"]
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
       },
       "RemoveValidatorException": {
         "type": "object",
@@ -17695,7 +18681,11 @@
             "default": "RemoveValidatorException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "EthereumUnsignedTransactionListResponse": {
         "type": "object",
@@ -17707,7 +18697,9 @@
             }
           }
         },
-        "required": ["list"]
+        "required": [
+          "list"
+        ]
       },
       "WithdrawException": {
         "type": "object",
@@ -17725,7 +18717,11 @@
             "default": "WithdrawException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "SetFeeRecipientAddressException": {
         "type": "object",
@@ -17743,7 +18739,11 @@
             "default": "SetFeeRecipientAddressException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "DepositException": {
         "type": "object",
@@ -17761,7 +18761,11 @@
             "default": "DepositException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetOperatorFeeException": {
         "type": "object",
@@ -17779,7 +18783,11 @@
             "default": "GetOperatorFeeException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetOperatorFeeResponse": {
         "type": "object",
@@ -17795,7 +18803,10 @@
             "description": "Operator outstanding earnings, denominated in SSV tokens."
           }
         },
-        "required": ["fee", "balance"]
+        "required": [
+          "fee",
+          "balance"
+        ]
       },
       "GetBalanceException": {
         "type": "object",
@@ -17813,7 +18824,11 @@
             "default": "GetBalanceException"
           }
         },
-        "required": ["code", "message", "name"]
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
       },
       "GetBalanceResponse": {
         "type": "object",
@@ -17827,7 +18842,9 @@
             }
           }
         },
-        "required": ["balances"]
+        "required": [
+          "balances"
+        ]
       }
     }
   }
