@@ -13898,7 +13898,7 @@
         "properties": {
           "encodedTransaction": {
             "type": "string",
-            "description": "Encoded transaction hash that needs to be broadcasted to the network."
+            "description": "Encoded transaction in the hexadecimal format that needs to be broadcasted to the network."
           }
         },
         "required": ["encodedTransaction"]
@@ -13913,7 +13913,7 @@
           },
           "signature": {
             "type": "string",
-            "example": "Transaction signature."
+            "example": "Signature of the sender of the transaction."
           },
           "encodedBody": {
             "type": "string",
