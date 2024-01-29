@@ -13489,8 +13489,12 @@
   "tags": [],
   "servers": [
     {
-      "url": "http://127.0.0.1:3000",
-      "description": "Local server"
+      "url": "https://api.p2p.org",
+      "description": "Staking API"
+    },
+    {
+      "url": "https://api-test.p2p.org",
+      "description": "Testnet Staking API"
     }
   ],
   "components": {
