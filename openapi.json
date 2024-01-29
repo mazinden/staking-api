@@ -5064,8 +5064,8 @@
     "/api/v1/eth/staking/direct/tx/create-pod": {
       "post": {
         "operationId": "eth-staking-create-pod",
-        "summary": "Construct serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
-        "description": "Prepare Create EigenPod Transaction",
+        "summary": "Prepare Create EigenPod Transaction",
+        "description": "Construct serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
         "parameters": [],
         "responses": {
           "200": {
