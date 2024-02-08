@@ -1094,7 +1094,7 @@
       "post": {
         "operationId": "encode-cosmos-transaction",
         "summary": "Encode Transaction",
-        "description": "Encode the transaction for broadcasting on the Cosmos network.",
+        "description": "Prepare encoded transaction in the hexidecimal format that needs to be broadcasted to the Cosmos network.",
         "parameters": [
           {
             "name": "network",
@@ -1750,7 +1750,7 @@
     "/api/v1/{network}/data/network/exit-queue": {
       "get": {
         "operationId": "data-network-exit-queue",
-        "summary": "Get Network Exit Queue",
+        "summary": "Get Exit Queue",
         "description": "Method to retrieve the network exit queue — a queue of validators who have requested to exit the network. Validators in the queue must wait for a certain period before they can safely exit.",
         "parameters": [
           {
@@ -1970,7 +1970,7 @@
     "/api/v1/{network}/data/network/staking-queue": {
       "get": {
         "operationId": "data-network-staking-queue",
-        "summary": "Get Network Staking Queue",
+        "summary": "Get Staking Queue",
         "description": "Method to retrieve network staking queue.",
         "parameters": [
           {
@@ -2190,14 +2190,14 @@
     "/api/v1/{network}/data/network/supply-data": {
       "get": {
         "operationId": "data-network-supply-data",
-        "summary": "Get Network Supply Data",
+        "summary": "Get Supply Data",
         "description": "Method to retrieve network supply data.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2412,14 +2412,14 @@
     "/api/v1/{network}/data/network/last-staking-period": {
       "get": {
         "operationId": "data-network-last-staking-period",
-        "summary": "Get Network Last Staking Period",
+        "summary": "Get Last Staking Period",
         "description": "Method to retrieve network last staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2633,16 +2633,16 @@
       }
     },
     "/api/v1/{network}/data/network/apy": {
-      "post": {
+      "get": {
         "operationId": "data-network-apy",
-        "summary": "Get network APY by staking period",
-        "description": "Method to retrive network APY by staking period",
+        "summary": "Get Network APY",
+        "description": "Method to retrieve network APY by staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2652,18 +2652,72 @@
                 "polkadot"
               ]
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetNetworkStatsHistoryRequest"
-              }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -2866,16 +2920,16 @@
       }
     },
     "/api/v1/{network}/data/network/validators-count": {
-      "post": {
+      "get": {
         "operationId": "data-network-validator-count",
-        "summary": "Get network validators count by staking period",
-        "description": "Method to retrive network validators count by staking period",
+        "summary": "Get Validators Count",
+        "description": "Method to retrieve network validators count by staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -2885,18 +2939,72 @@
                 "polkadot"
               ]
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetNetworkStatsHistoryRequest"
-              }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3043,7 +3151,7 @@
                       "error": {
                         "code": 115102,
                         "message": "Network stats history not found",
-                        "type": "server"
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -3099,16 +3207,16 @@
       }
     },
     "/api/v1/{network}/data/network/delegators-count": {
-      "post": {
+      "get": {
         "operationId": "data-network-delegators-count",
-        "summary": "Get network delegators count by staking period",
-        "description": "Method to retrive network delegators count by staking period",
+        "summary": "Get Delegators Count",
+        "description": "Method to retrieve network delegators count by staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3118,18 +3226,72 @@
                 "polkadot"
               ]
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetNetworkStatsHistoryRequest"
-              }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3276,7 +3438,7 @@
                       "error": {
                         "code": 115102,
                         "message": "Network stats history not found",
-                        "type": "server"
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -3332,16 +3494,16 @@
       }
     },
     "/api/v1/{network}/data/network/stake": {
-      "post": {
+      "get": {
         "operationId": "data-network-stake",
-        "summary": "Get network stake by staking period",
-        "description": "Method to retrive network stake by staking period",
+        "summary": "Get Network Stake",
+        "description": "Method to retrieve network stake by staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3351,18 +3513,72 @@
                 "polkadot"
               ]
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetNetworkStatsHistoryRequest"
-              }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3509,7 +3725,7 @@
                       "error": {
                         "code": 115102,
                         "message": "Network stats history not found",
-                        "type": "server"
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -3565,16 +3781,16 @@
       }
     },
     "/api/v1/{network}/data/network/rewards": {
-      "post": {
+      "get": {
         "operationId": "data-network-rewards",
-        "summary": "Get network rewards by staking period",
-        "description": "Method to retrive network rewards by staking period",
+        "summary": "Get Network Rewards",
+        "description": "Method to retrieve network rewards by staking period.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -3584,18 +3800,72 @@
                 "polkadot"
               ]
             }
-          }
-        ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GetNetworkStatsHistoryRequest"
-              }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -3742,7 +4012,7 @@
                       "error": {
                         "code": 115102,
                         "message": "Network stats history not found",
-                        "type": "server"
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -3807,19 +4077,19 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
-                "solana",
                 "ethereum",
+                "solana",
                 "polkadot"
               ]
             }
           },
           {
             "name": "limit",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 50,
             "description": "The number of resources that a single response page contains.",
@@ -3831,7 +4101,7 @@
           },
           {
             "name": "offset",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 0,
             "description": "The number of resources to exclude from a response.",
@@ -3843,7 +4113,7 @@
           },
           {
             "name": "startAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Start timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -3854,7 +4124,7 @@
           },
           {
             "name": "finishAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Finish timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -3882,7 +4152,7 @@
             }
           },
           {
-            "name": "validatorAddress",
+            "name": "address",
             "required": true,
             "in": "query",
             "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
@@ -4080,19 +4350,19 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
-                "solana",
                 "ethereum",
+                "solana",
                 "polkadot"
               ]
             }
           },
           {
             "name": "limit",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 50,
             "description": "The number of resources that a single response page contains.",
@@ -4104,7 +4374,7 @@
           },
           {
             "name": "offset",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 0,
             "description": "The number of resources to exclude from a response.",
@@ -4116,7 +4386,7 @@
           },
           {
             "name": "startAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Start timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4127,7 +4397,7 @@
           },
           {
             "name": "finishAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Finish timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4155,7 +4425,7 @@
             }
           },
           {
-            "name": "validatorAddress",
+            "name": "address",
             "required": true,
             "in": "query",
             "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
@@ -4353,19 +4623,19 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
-                "solana",
                 "ethereum",
+                "solana",
                 "polkadot"
               ]
             }
           },
           {
             "name": "limit",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 50,
             "description": "The number of resources that a single response page contains.",
@@ -4377,7 +4647,7 @@
           },
           {
             "name": "offset",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 0,
             "description": "The number of resources to exclude from a response.",
@@ -4389,7 +4659,7 @@
           },
           {
             "name": "startAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Start timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4400,7 +4670,7 @@
           },
           {
             "name": "finishAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Finish timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4428,7 +4698,7 @@
             }
           },
           {
-            "name": "validatorAddress",
+            "name": "address",
             "required": true,
             "in": "query",
             "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
@@ -4626,19 +4896,19 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
-                "solana",
                 "ethereum",
+                "solana",
                 "polkadot"
               ]
             }
           },
           {
             "name": "limit",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 50,
             "description": "The number of resources that a single response page contains.",
@@ -4650,7 +4920,7 @@
           },
           {
             "name": "offset",
-            "required": true,
+            "required": false,
             "in": "query",
             "example": 0,
             "description": "The number of resources to exclude from a response.",
@@ -4662,7 +4932,7 @@
           },
           {
             "name": "startAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Start timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4673,7 +4943,7 @@
           },
           {
             "name": "finishAt",
-            "required": true,
+            "required": false,
             "in": "query",
             "description": "Finish timestamp for the report data period in ISO 8601 format.",
             "example": "2020-01-01T00:00:00.000Z",
@@ -4701,7 +4971,7 @@
             }
           },
           {
-            "name": "validatorAddress",
+            "name": "address",
             "required": true,
             "in": "query",
             "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
@@ -4881,6 +5151,2097 @@
         },
         "tags": [
           "Validator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/validator/name": {
+      "get": {
+        "operationId": "data-validator-name",
+        "summary": "Get Validator Name",
+        "description": "Get a validator name.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorNameResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidValidatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidValidatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorInfoException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetValidatorInfoException": {
+                    "value": {
+                      "error": {
+                        "code": 115115,
+                        "message": "Get validator info failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Validator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/validator/state": {
+      "get": {
+        "operationId": "data-validator-state",
+        "summary": "Get Validator State",
+        "description": "Get a validator state.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorStateResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidValidatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidValidatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorInfoNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetValidatorInfoNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 115116,
+                        "message": "Validator info not found",
+                        "type": "not_found"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorInfoException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetValidatorInfoException": {
+                    "value": {
+                      "error": {
+                        "code": 115115,
+                        "message": "Get validator info failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Validator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/validator/delegators-count": {
+      "get": {
+        "operationId": "data-validator-delegators-count",
+        "summary": "Get Validator Delegators Count",
+        "description": "Get a validator delegators count.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorDelegatorsCountResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidValidatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidValidatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorDelegatorsCountException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetValidatorDelegatorsCountException": {
+                    "value": {
+                      "error": {
+                        "code": 115117,
+                        "message": "Get validator delegators count failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Validator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/stakes": {
+      "get": {
+        "operationId": "data-delegator-stakes",
+        "summary": "Get Delegator Stake",
+        "description": "Get a current delegator stake.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorStakesResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Delegator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorStakesException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorStakesException": {
+                    "value": {
+                      "error": {
+                        "code": 115120,
+                        "message": "Get delegator stakes failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/rewards": {
+      "get": {
+        "operationId": "data-delegator-rewards",
+        "summary": "Get Delegator Rewards",
+        "description": "Get a list of delegator rewards.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorRewardsResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Delegator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorRewardsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorRewardsException": {
+                    "value": {
+                      "error": {
+                        "code": 115121,
+                        "message": "Get delegator rewards failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/apy": {
+      "get": {
+        "operationId": "data-delegator-apy",
+        "summary": "Get Delegator APY",
+        "description": "Get a list of delegator annual percentage yield (APY).",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li><li>`solana` — Solana mainnet.</li><li>`cosmoshub` — Cosmos mainnet.</li><li>`polkadot` — Polkadot mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum",
+                "solana",
+                "cosmoshub",
+                "polkadot"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorAPYResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Delegator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorApyException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorApyException": {
+                    "value": {
+                      "error": {
+                        "code": 115122,
+                        "message": "Get delegator apy failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/total-rewards": {
+      "get": {
+        "operationId": "data-delegator-total-rewards",
+        "summary": "Get Total Delegator Rewards",
+        "description": "Get total delegator rewards.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorRewardsResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Delegator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorTotalRewardsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorTotalRewardsException": {
+                    "value": {
+                      "error": {
+                        "code": 115124,
+                        "message": "Get delegator total rewards failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/apr": {
+      "get": {
+        "operationId": "data-delegator-apr",
+        "summary": "Get Delegator APR",
+        "description": "Get delegator apr.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "ethereum"
+              ]
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "The number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "The number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Start timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Finish timestamp for the report data period in ISO 8601 format.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorRewardsResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Delegator address is not valid for the specified network",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorTotalRewardsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorTotalRewardsException": {
+                    "value": {
+                      "error": {
+                        "code": 115124,
+                        "message": "Get delegator total rewards failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator"
         ],
         "security": [
           {
@@ -14799,43 +17160,6 @@
           "list"
         ]
       },
-      "GetNetworkStatsHistoryRequest": {
-        "type": "object",
-        "properties": {
-          "limit": {
-            "type": "number",
-            "minimum": 1,
-            "maximum": 1000,
-            "example": 50,
-            "description": "The number of resources that a single response page contains."
-          },
-          "offset": {
-            "type": "number",
-            "example": 0,
-            "minimum": 0,
-            "maximum": 100000,
-            "description": "The number of resources to exclude from a response."
-          },
-          "stakingPeriodStart": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Complete ISO-8601 date of staking period start",
-            "example": "2023-08-24T08:23:18.830Z"
-          },
-          "stakingPeriodEnd": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Complete ISO-8601 date of staking period end",
-            "example": "2023-08-24T08:23:18.830Z"
-          }
-        },
-        "required": [
-          "limit",
-          "offset",
-          "stakingPeriodStart",
-          "stakingPeriodEnd"
-        ]
-      },
       "GetNetworkStatsHistoryNotFoundException": {
         "type": "object",
         "properties": {
@@ -15352,7 +17676,11 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "Reward type: `consensus`, `execution`."
+            "description": "Reward type.",
+            "enum": [
+              "consensus",
+              "execution"
+            ]
           },
           "amount": {
             "type": "number",
@@ -15604,6 +17932,465 @@
           "offset",
           "totalCount",
           "list"
+        ]
+      },
+      "GetValidatorInfoException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115115
+          },
+          "message": {
+            "type": "string",
+            "default": "Get validator info failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetValidatorInfoException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "GetValidatorNameResponse": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Validator name."
+          }
+        },
+        "required": [
+          "name"
+        ]
+      },
+      "GetValidatorInfoNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115116
+          },
+          "message": {
+            "type": "string",
+            "default": "Validator info not found"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetValidatorInfoNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "GetValidatorStateResponse": {
+        "type": "object",
+        "properties": {
+          "state": {
+            "type": "string",
+            "description": "Validator state."
+          },
+          "activatedAt": {
+            "type": "string",
+            "description": "Timestamp of the validator activated date in the ISO 8601 format."
+          },
+          "activatedStakingPeriodNum": {
+            "type": "number",
+            "description": "Timestamp of the validator activated staking period."
+          }
+        },
+        "required": [
+          "state",
+          "activatedAt",
+          "activatedStakingPeriodNum"
+        ]
+      },
+      "GetValidatorDelegatorsCountException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115117
+          },
+          "message": {
+            "type": "string",
+            "default": "Get validator delegators count failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetValidatorDelegatorsCountException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ValidatorDelegatorsCount": {
+        "type": "object",
+        "properties": {
+          "stakingPeriod": {
+            "type": "number",
+            "description": "Number of the staking period."
+          },
+          "stakingPeriodStart": {
+            "type": "string",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
+          },
+          "stakingPeriodEnd": {
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
+          },
+          "count": {
+            "type": "number",
+            "description": "Validator annual percentage yield (APY)."
+          }
+        },
+        "required": [
+          "stakingPeriod",
+          "stakingPeriodStart",
+          "stakingPeriodEnd",
+          "count"
+        ]
+      },
+      "GetValidatorDelegatorsCountResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidatorDelegatorsCount"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
+      "InvalidDelegatorAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115119
+          },
+          "message": {
+            "type": "string",
+            "default": "Delegator address is not valid for the specified network"
+          },
+          "name": {
+            "type": "string",
+            "default": "InvalidDelegatorAddressException"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationErrorResponse"
+            }
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name",
+          "errors"
+        ]
+      },
+      "GetDelegatorStakesException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115120
+          },
+          "message": {
+            "type": "string",
+            "default": "Get delegator stakes failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetDelegatorStakesException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DelegatorStake": {
+        "type": "object",
+        "properties": {
+          "stakingPeriod": {
+            "type": "number",
+            "description": "Number of the staking period."
+          },
+          "stakingPeriodStart": {
+            "type": "string",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
+          },
+          "stakingPeriodEnd": {
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
+          },
+          "stake": {
+            "type": "number",
+            "description": "Total stake balance of the delegator."
+          }
+        },
+        "required": [
+          "stakingPeriod",
+          "stakingPeriodStart",
+          "stakingPeriodEnd",
+          "stake"
+        ]
+      },
+      "GetDelegatorStakesResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DelegatorStake"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
+      "GetDelegatorRewardsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115121
+          },
+          "message": {
+            "type": "string",
+            "default": "Get delegator rewards failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetDelegatorRewardsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DelegatorRewards": {
+        "type": "object",
+        "properties": {
+          "stakingPeriod": {
+            "type": "number",
+            "description": "Number of the staking period."
+          },
+          "stakingPeriodStart": {
+            "type": "string",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
+          },
+          "stakingPeriodEnd": {
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
+          },
+          "rewards": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Reward"
+            }
+          }
+        },
+        "required": [
+          "stakingPeriod",
+          "stakingPeriodStart",
+          "stakingPeriodEnd",
+          "rewards"
+        ]
+      },
+      "GetDelegatorRewardsResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DelegatorRewards"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
+      "GetDelegatorApyException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115122
+          },
+          "message": {
+            "type": "string",
+            "default": "Get delegator apy failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetDelegatorApyException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DelegatorAPY": {
+        "type": "object",
+        "properties": {
+          "stakingPeriod": {
+            "type": "number",
+            "description": "Number of the staking period."
+          },
+          "stakingPeriodStart": {
+            "type": "string",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
+          },
+          "stakingPeriodEnd": {
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
+          },
+          "apy": {
+            "type": "number",
+            "description": "Delegator annual percentage yield (APY)."
+          }
+        },
+        "required": [
+          "stakingPeriod",
+          "stakingPeriodStart",
+          "stakingPeriodEnd",
+          "apy"
+        ]
+      },
+      "GetDelegatorAPYResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "The number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "The number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DelegatorAPY"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
+      "GetDelegatorTotalRewardsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115124
+          },
+          "message": {
+            "type": "string",
+            "default": "Get delegator total rewards failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetDelegatorTotalRewardsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
         ]
       },
       "GetRelaysSetsException": {
