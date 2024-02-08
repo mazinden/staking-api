@@ -6983,7 +6983,7 @@
       "get": {
         "operationId": "data-delegator-apr",
         "summary": "Get Delegator APR",
-        "description": "Get delegator apr.",
+        "description": "Get delegator APR (Annual Percentage Rate).",
         "parameters": [
           {
             "name": "network",
