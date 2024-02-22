@@ -16708,7 +16708,7 @@
           },
           "signature": {
             "type": "string",
-            "example": "Signature of the sender of the transaction."
+            "description": "Signature of the sender of the transaction."
           },
           "encodedBody": {
             "type": "string",
