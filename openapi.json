@@ -1747,6 +1747,1752 @@
         ]
       }
     },
+    "/api/v1/celestia/{network}/staking/stake": {
+      "post": {
+        "operationId": "create-celestia-stake-transaction",
+        "summary": "Create Staking Request",
+        "description": "Create stake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeOrUnstakeStakingCelestiaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeOrUnstakeTransactionStakingCelestiaResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientFundsOnCosmosAccountException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "Simulation transaction failed",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientFundsOnCosmosAccountException": {
+                    "value": {
+                      "error": {
+                        "code": 110101,
+                        "message": "There are not enough funds in your account to make a stake",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateStakeTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateStakeTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110103,
+                        "message": "Create stake transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/staking/unstake": {
+      "post": {
+        "operationId": "create-celestia-unstake-transaction",
+        "summary": "Create Unstake Request",
+        "description": "Create unstake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeOrUnstakeStakingCelestiaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeOrUnstakeTransactionStakingCelestiaResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientFundsOnCosmosValidatorException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientFundsOnCosmosValidatorException": {
+                    "value": {
+                      "error": {
+                        "code": 110102,
+                        "message": "The validator does not have enough funds to complete the unstake operation",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateUnstakeTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateUnstakeTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110104,
+                        "message": "Create stake transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/staking/redelegate/from": {
+      "post": {
+        "operationId": "create-celestia-redelegate-from-transaction",
+        "summary": "Create Redelegate From Request",
+        "description": "Create redelegate from default validator request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RedelegateTransactionStakingCelestiaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/RedelegateTransactionStakingCelestiaResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/RedelegationTransactionInProcessException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "Simulation transaction failed",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "RedelegationTransactionInProcessException": {
+                    "value": {
+                      "error": {
+                        "code": 110114,
+                        "message": "Redelegation to this validator already in progress; first redelegation to this validator must complete before next redelegation",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateRedelegateTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateRedelegateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110105,
+                        "message": "Create redelegate transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/staking/redelegate/to": {
+      "post": {
+        "operationId": "create-celestia-redelegate-to-transaction",
+        "summary": "Create Redelegate To Request",
+        "description": "Create redelegate to default validator request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RedelegateTransactionStakingCelestiaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/RedelegateTransactionStakingCelestiaResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/RedelegationTransactionInProcessException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "Simulation transaction failed",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "RedelegationTransactionInProcessException": {
+                    "value": {
+                      "error": {
+                        "code": 110114,
+                        "message": "Redelegation to this validator already in progress; first redelegation to this validator must complete before next redelegation",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateRedelegateTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateRedelegateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110105,
+                        "message": "Create redelegate transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/staking/claim-rewards": {
+      "post": {
+        "operationId": "create-celestia-claim-rewards-transaction",
+        "summary": "Create Claim Rewards Request",
+        "description": "Create claim rewards request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseStakingCelestiaRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/ClaimRewardsTransactionStakingCelestiaResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "Simulation transaction failed",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateClaimRewardsTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateClaimRewardsTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110106,
+                        "message": "Create claim rewards transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/transaction/encode": {
+      "post": {
+        "operationId": "encode-celestia-transaction",
+        "summary": "Sign Transaction",
+        "description": "Method for signing transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncodeTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EncodeTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "Transaction not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EncodeTransactionFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "EncodeTransactionFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110115,
+                        "message": "Sign transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/transaction/send": {
+      "post": {
+        "operationId": "broadcast-celestia-transaction",
+        "summary": "Broadcast Transaction",
+        "description": "Broadcast transaction to the Cosmos network.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BroadcastTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionStatusResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "Transaction not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BroadcastTransactionFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "BroadcastTransactionFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110109,
+                        "message": "Broadcast transaction failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/celestia/{network}/transaction/status/{transactionHash}": {
+      "get": {
+        "operationId": "get-celestia-transaction-status",
+        "summary": "Check Transaction Status",
+        "description": "Check the status of the transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "celestia-mainnet-beta",
+            "description": "<p>Celestia network:</p><ul><li>`mainnet-beta` — Celestia mainnet.</li><li>`mocha-testnet` — Celestia testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "celestia-mainnet-beta",
+                "celestia-mocha-testnet"
+              ]
+            }
+          },
+          {
+            "name": "transactionHash",
+            "required": true,
+            "in": "path",
+            "example": "EDDA3AE81ACBF56CB1F154F4957779C04F10B6F4C23B13597EFFC61FE05A02D2",
+            "description": "Hash of the transaction.",
+            "schema": {
+              "format": "[A-Z0-9]{64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionStatusResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidTransactionHashException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionAlreadyBroadcastException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "Transaction not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidTransactionHashException": {
+                    "value": {
+                      "error": {
+                        "code": 110111,
+                        "message": "The transaction hash must satisfy the regular expression (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionAlreadyBroadcastException": {
+                    "value": {
+                      "error": {
+                        "code": 110110,
+                        "message": "Transaction already broadcast",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetTransactionStatusFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetTransactionStatusFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110108,
+                        "message": "Get transaction status failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Celestia"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/{network}/data/network/exit-queue": {
       "get": {
         "operationId": "data-network-exit-queue",
@@ -4155,7 +5901,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -4428,7 +6174,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -4701,7 +6447,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -4974,7 +6720,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -5701,7 +7447,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key",
+            "description": "Validator address in the required network. For the Ethereum network, it is a public validator key.",
             "schema": {
               "type": "string"
             }
@@ -5979,6 +7725,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "addressType",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address type in the required network.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6250,6 +8005,15 @@
             "required": true,
             "in": "query",
             "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addressType",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address type in the required network.",
             "schema": {
               "type": "string"
             }
@@ -6527,6 +8291,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "addressType",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address type in the required network.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -6798,6 +8571,15 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "addressType",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address type in the required network.",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "responses": {
@@ -7066,6 +8848,15 @@
             "required": true,
             "in": "query",
             "description": "Delegator address in the required network",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "addressType",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address type in the required network.",
             "schema": {
               "type": "string"
             }
@@ -8612,7 +10403,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -8624,7 +10415,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -9819,7 +11610,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -9831,7 +11622,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -14053,6 +15844,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/SsvRequestIdAlreadyExistException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ClusterIsLiquidatedException"
                         }
                       ]
                     }
@@ -14074,6 +15868,16 @@
                       "error": {
                         "code": 111103,
                         "message": "The SSV request id already exists",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ClusterIsLiquidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 111123,
+                        "message": "Cluster is liquidated",
                         "type": "client"
                       },
                       "result": null
@@ -14149,6 +15953,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/OperatorsNotEnoughException"
                         }
                       ]
                     }
@@ -14170,6 +15977,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "OperatorsNotEnoughException": {
+                    "value": {
+                      "error": {
+                        "code": 111124,
+                        "message": "Not enough available operators",
                         "type": "server"
                       },
                       "result": null
@@ -14328,6 +16145,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/SsvRequestNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ClusterIsLiquidatedException"
                         }
                       ]
                     }
@@ -14340,6 +16160,16 @@
                         "code": 111104,
                         "message": "The SSV request not found",
                         "type": "not_found"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ClusterIsLiquidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 111123,
+                        "message": "Cluster is liquidated",
+                        "type": "client"
                       },
                       "result": null
                     }
@@ -14405,7 +16235,7 @@
             "required": true,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -14417,7 +16247,7 @@
             "required": true,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -14728,19 +16558,19 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/RemoveValidatorException"
+                          "$ref": "#/components/schemas/SsvRequestNotFoundException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "RemoveValidatorException": {
+                  "SsvRequestNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 111121,
-                        "message": "Failed to create remove validator transaction",
-                        "type": "server"
+                        "code": 111104,
+                        "message": "The SSV request not found",
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -14764,6 +16594,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/RemoveValidatorException"
                         }
                       ]
                     }
@@ -14775,6 +16608,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "RemoveValidatorException": {
+                    "value": {
+                      "error": {
+                        "code": 111121,
+                        "message": "Failed to create remove validator transaction",
                         "type": "server"
                       },
                       "result": null
@@ -14942,19 +16785,19 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/WithdrawException"
+                          "$ref": "#/components/schemas/SsvRequestNotFoundException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "WithdrawException": {
+                  "SsvRequestNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 111122,
-                        "message": "Failed to create withdraw transaction",
-                        "type": "server"
+                        "code": 111104,
+                        "message": "The SSV request not found",
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -14978,6 +16821,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WithdrawException"
                         }
                       ]
                     }
@@ -14989,6 +16835,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WithdrawException": {
+                    "value": {
+                      "error": {
+                        "code": 111122,
+                        "message": "Failed to create withdraw transaction",
                         "type": "server"
                       },
                       "result": null
@@ -15364,19 +17220,19 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/DepositException"
+                          "$ref": "#/components/schemas/SsvRequestNotFoundException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "DepositException": {
+                  "SsvRequestNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 111120,
-                        "message": "Error creating deposit tx",
-                        "type": "server"
+                        "code": 111104,
+                        "message": "The SSV request not found",
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -15400,6 +17256,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/DepositException"
                         }
                       ]
                     }
@@ -15411,6 +17270,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "DepositException": {
+                    "value": {
+                      "error": {
+                        "code": 111120,
+                        "message": "Error creating deposit tx",
                         "type": "server"
                       },
                       "result": null
@@ -15691,6 +17560,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ClusterIsLiquidatedException"
                         }
                       ]
                     }
@@ -15702,6 +17574,16 @@
                       "error": {
                         "code": 100101,
                         "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ClusterIsLiquidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 111123,
+                        "message": "Cluster is liquidated",
                         "type": "client"
                       },
                       "result": null
@@ -15773,19 +17655,19 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/GetBalanceException"
+                          "$ref": "#/components/schemas/SsvRequestNotFoundException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "GetBalanceException": {
+                  "SsvRequestNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 111110,
-                        "message": "Failed to get operator balance",
-                        "type": "server"
+                        "code": 111104,
+                        "message": "The SSV request not found",
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -15809,6 +17691,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/GetBalanceException"
                         }
                       ]
                     }
@@ -15820,6 +17705,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "GetBalanceException": {
+                    "value": {
+                      "error": {
+                        "code": 111110,
+                        "message": "Failed to get operator balance",
                         "type": "server"
                       },
                       "result": null
@@ -16204,7 +18099,7 @@
               "/cosmos.crypto.secp256k1.PubKey"
             ],
             "example": "/cosmos.staking.v1beta1.Tx",
-            "description": "Cosmos network operation type."
+            "description": "Cosmos-based network operation type."
           },
           "value": {
             "oneOf": [
@@ -16704,7 +18599,7 @@
           "stashAccountAddress": {
             "type": "string",
             "description": "Delegator account address which keeps tokens.",
-            "pattern": "^cosmos[a-zA-Z0-9]{39}$"
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
           },
           "signature": {
             "type": "string",
@@ -16883,6 +18778,229 @@
           "name"
         ]
       },
+      "StakeOrUnstakeTransactionStakingCelestiaResponse": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator stash account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "transactionData": {
+            "description": "List of data fields to be used to construct the staking transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionData"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "tia",
+              "utia",
+              "mtia"
+            ],
+            "description": "<p>Currency of the tokens:</p><ul><li>`tia` — Celestia native staking token.</li><li>`utia` — 1 TIA = 10^-6 UTIA.</li><li>`mtia` — 1 TIA = 10^-3 MTIA.</li></ul>"
+          },
+          "validatorAddress": {
+            "type": "string",
+            "description": "Validator address to which tokens are delegated.",
+            "example": "celestiavaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^celestiavaloper[a-zA-Z0-9]{39}$"
+          },
+          "rewardDestinationAddress": {
+            "type": "string",
+            "description": "Reward destination account address.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "transactionData",
+          "createdAt",
+          "amount",
+          "currency",
+          "validatorAddress",
+          "rewardDestinationAddress"
+        ]
+      },
+      "StakeOrUnstakeStakingCelestiaRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "memo": {
+            "type": "string",
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens to stake in TIA."
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
+      },
+      "RedelegateTransactionStakingCelestiaResponse": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator stash account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "transactionData": {
+            "description": "List of data fields to be used to construct the staking transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionData"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens to stake."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "tia",
+              "utia",
+              "mtia"
+            ],
+            "description": "<p>Currency of the tokens:</p><ul><li>`tia` — Celestia native staking token.</li><li>`uatom` — 1 TIA = 10^-6 UTIA.</li><li>`mtia` — 1 TIA = 10^-3 MTIA.</li></ul>"
+          },
+          "sourceValidatorAddress": {
+            "type": "string",
+            "description": "Redelegate source validator address.",
+            "example": "celestiavaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^celestiavaloper[a-zA-Z0-9]{39}$"
+          },
+          "destinationValidatorAddress": {
+            "type": "string",
+            "description": "Redelegate destination validator address.",
+            "example": "celestiavaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^celestiavaloper[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "transactionData",
+          "createdAt",
+          "amount",
+          "currency",
+          "sourceValidatorAddress",
+          "destinationValidatorAddress"
+        ]
+      },
+      "RedelegateTransactionStakingCelestiaRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "memo": {
+            "type": "string",
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens to stake in TIA."
+          },
+          "validatorAddress": {
+            "type": "string",
+            "description": "Validator address to perform the operation with.",
+            "example": "celestiavaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^celestiavaloper[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "amount",
+          "validatorAddress"
+        ]
+      },
+      "ClaimRewardsTransactionStakingCelestiaResponse": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator stash account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "transactionData": {
+            "description": "List of data fields to be used to construct the staking transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionData"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          },
+          "validatorAddress": {
+            "type": "string",
+            "description": "Validator address to which tokens are delegated.",
+            "example": "celestiavaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^celestiavaloper[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "transactionData",
+          "createdAt",
+          "validatorAddress"
+        ]
+      },
+      "BaseStakingCelestiaRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator account address which keeps tokens.",
+            "pattern": "^celestia[a-zA-Z0-9]{39}$"
+          },
+          "memo": {
+            "type": "string",
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
+          }
+        },
+        "required": [
+          "stashAccountAddress"
+        ]
+      },
       "GetNetworkStatsNotFoundException": {
         "type": "object",
         "properties": {
@@ -16938,7 +19056,7 @@
           "updatedAt": {
             "format": "date-time",
             "type": "string",
-            "description": "The timestamp of the last update to the queue.",
+            "description": "Timestamp of the last update to the queue.",
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
@@ -16996,13 +19114,13 @@
         "properties": {
           "percent": {
             "type": "number",
-            "description": "Supply staked percent",
+            "description": "Percentage of the total available supply that is currently staked.",
             "example": 18.645613
           },
           "updatedAt": {
             "format": "date-time",
             "type": "string",
-            "description": "The timestamp of the last update to the queue.",
+            "description": "Timestamp of the last update to the queue.",
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
@@ -17044,7 +19162,7 @@
           "updatedAt": {
             "format": "date-time",
             "type": "string",
-            "description": "The timestamp of the last update to the queue.",
+            "description": "Timestamp of the last update to the queue.",
             "example": "2023-08-24T08:23:18.830Z"
           }
         },
@@ -17086,13 +19204,13 @@
           "stakingPeriodStart": {
             "format": "date-time",
             "type": "string",
-            "description": "Start date of the staking period, indicating when it began.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stakingPeriodEnd": {
             "format": "date-time",
             "type": "string",
-            "description": "End date of the staking period, marking its scheduled conclusion.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "networkApy": {
@@ -17134,12 +19252,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17193,13 +19311,13 @@
           "stakingPeriodStart": {
             "format": "date-time",
             "type": "string",
-            "description": "Start date of the staking period, indicating when it began.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stakingPeriodEnd": {
             "format": "date-time",
             "type": "string",
-            "description": "End date of the staking period, marking its scheduled conclusion.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "validatorsCount": {
@@ -17229,12 +19347,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17266,13 +19384,13 @@
           "stakingPeriodStart": {
             "format": "date-time",
             "type": "string",
-            "description": "Start date of the staking period, indicating when it began.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stakingPeriodEnd": {
             "format": "date-time",
             "type": "string",
-            "description": "End date of the staking period, marking its scheduled conclusion.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "delegatorsCount": {
@@ -17302,12 +19420,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17339,13 +19457,13 @@
           "stakingPeriodStart": {
             "format": "date-time",
             "type": "string",
-            "description": "Start date of the staking period, indicating when it began.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stakingPeriodEnd": {
             "format": "date-time",
             "type": "string",
-            "description": "End date of the staking period, marking its scheduled conclusion.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stake": {
@@ -17375,12 +19493,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17434,13 +19552,13 @@
           "stakingPeriodStart": {
             "format": "date-time",
             "type": "string",
-            "description": "Start date of the staking period, indicating when it began.",
+            "description": "Timestamp of the staking period start in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "stakingPeriodEnd": {
             "format": "date-time",
             "type": "string",
-            "description": "End date of the staking period, marking its scheduled conclusion.",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format.",
             "example": "2023-08-24T08:23:18.830Z"
           },
           "rewardType": {
@@ -17512,12 +19630,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17623,12 +19741,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17744,12 +19862,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17826,12 +19944,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -17908,12 +20026,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -18068,12 +20186,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -18179,12 +20297,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -18263,12 +20381,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -18345,12 +20463,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -19148,12 +21266,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -19783,12 +21901,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
@@ -21140,6 +23258,28 @@
           "name"
         ]
       },
+      "ClusterIsLiquidatedException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111123
+          },
+          "message": {
+            "type": "string",
+            "default": "Cluster is liquidated"
+          },
+          "name": {
+            "type": "string",
+            "default": "ClusterIsLiquidatedException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "SsvRequestCreateException": {
         "type": "object",
         "properties": {
@@ -21154,6 +23294,28 @@
           "name": {
             "type": "string",
             "default": "SsvRequestCreateException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "OperatorsNotEnoughException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111124
+          },
+          "message": {
+            "type": "string",
+            "default": "Not enough available operators"
+          },
+          "name": {
+            "type": "string",
+            "default": "OperatorsNotEnoughException"
           }
         },
         "required": [
@@ -21430,12 +23592,12 @@
             "type": "number",
             "minimum": 1,
             "default": 50,
-            "description": "The number of resources that a single response page contains."
+            "description": "Number of resources that a single response page contains."
           },
           "offset": {
             "type": "number",
             "minimum": 0,
-            "description": "The number of resources to exclude from a response."
+            "description": "Number of resources to exclude from a response."
           },
           "totalCount": {
             "type": "number",
