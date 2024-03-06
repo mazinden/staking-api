@@ -6942,7 +6942,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li></ul>",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -7400,7 +7400,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li></ul>",
+            "description": "<p>Network:</p><ul><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li></ul>",
             "schema": {
               "type": "string",
               "enum": [
@@ -9170,7 +9170,21 @@
         "operationId": "eth-nodes-request-relays-sets",
         "summary": "Get List MEV Relays",
         "description": "Get the list of MEV relays.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "goerli",
+            "description": "<p>Ethereum network:</p><ul><li>`mainnet` — Ethereum mainnet.</li><li>`goerli` — Ethereum Goerli testnet.</li><li>`holesky` — Ethereum Holesky testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "goerli"
+              ]
+            }
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -9972,7 +9986,21 @@
         "operationId": "eth-validator-status",
         "summary": "Get Validator Status",
         "description": "Check the status of the validators.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "goerli",
+            "description": "<p>Ethereum network:</p><ul><li>`mainnet` — Ethereum mainnet.</li><li>`goerli` — Ethereum Goerli testnet.</li><li>`holesky` — Ethereum Holesky testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "goerli"
+              ]
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -10830,7 +10858,21 @@
         "operationId": "eth-vem-create",
         "summary": "Create VEM Request",
         "description": "Set up a VEM request.",
-        "parameters": [],
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "goerli",
+            "description": "<p>Ethereum network:</p><ul><li>`mainnet` — Ethereum mainnet.</li><li>`goerli` — Ethereum Goerli testnet.</li><li>`holesky` — Ethereum Holesky testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "goerli"
+              ]
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
@@ -11023,6 +11065,19 @@
         "summary": "Get VEM Request Status",
         "description": "Check the status of the VEM request.",
         "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "goerli",
+            "description": "<p>Ethereum network:</p><ul><li>`mainnet` — Ethereum mainnet.</li><li>`goerli` — Ethereum Goerli testnet.</li><li>`holesky` — Ethereum Holesky testnet.</li></ul>",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "goerli"
+              ]
+            }
+          },
           {
             "name": "id",
             "required": true,
@@ -18185,8 +18240,12 @@
       "description": "Staking API"
     },
     {
+      "url": "https://api-test-holesky.p2p.org",
+      "description": "Testnet Holesky Staking API"
+    },
+    {
       "url": "https://api-test.p2p.org",
-      "description": "Testnet Staking API"
+      "description": "Testnet Goerli Staking API"
     }
   ],
   "components": {
@@ -23649,7 +23708,7 @@
           },
           "amount": {
             "type": "string",
-            "description": "Amount of tokens to delegate, specified in 10^(-18) MATIC.",
+            "description": "Amount of tokens to delegate, specified in 10^(-18) MATIC",
             "example": "100000000000000000"
           },
           "stakerAddress": {
