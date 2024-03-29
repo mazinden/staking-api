@@ -18079,6 +18079,16 @@
                       },
                       "result": null
                     }
+                  },
+                  "ClusterIsLiquidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 111123,
+                        "message": "Cluster is liquidated",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
                   }
                 }
               }
