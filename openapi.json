@@ -4956,7 +4956,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum"
@@ -5176,7 +5176,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet.</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum"
@@ -5396,7 +5396,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -5624,7 +5624,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -5852,7 +5852,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -6144,7 +6144,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -6436,7 +6436,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -6728,7 +6728,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -7020,7 +7020,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -7312,7 +7312,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -7591,7 +7591,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -7870,7 +7870,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -8149,7 +8149,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -8428,8 +8428,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
-            "schema": {
+            "description": "Network name.", "schema": {
               "enum": [
                 "solana",
                 "cosmoshub",
@@ -8642,7 +8641,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -8892,7 +8891,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "cosmoshub",
@@ -9168,7 +9167,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -9473,7 +9472,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -9778,7 +9777,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li><li>`solana` — Solana mainnet</li><li>`cosmoshub` — Cosmos mainnet</li><li>`polkadot` — Polkadot mainnet</li><li>`sui` — Sui mainnet</li><li>`polygon` — Polygon mainnet</li><li>kusama — Kusama network, a canary network for Polkadot, providing an experimental playground for blockchain projects</li><li>moonbeam — Moonbeam network, a Polkadot parachain offering Ethereum compatibility and facilitating interoperability and scalability</li><li>vara — Vara Network, a blockchain based on the Gear Protocol</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum",
@@ -10083,7 +10082,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum"
@@ -10380,7 +10379,7 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "<p>Network:</p><ul><li>`ethereum` — Ethereum mainnet</li></ul>",
+            "description": "Network name.",
             "schema": {
               "enum": [
                 "ethereum"
@@ -10671,7 +10670,7 @@
       "post": {
         "operationId": "eth-staking-create-pod",
         "summary": "Prepare Create EigenPod Transaction",
-        "description": "Construct serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
+        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
         "parameters": [],
         "responses": {
           "200": {
@@ -17969,16 +17968,6 @@
                       },
                       "result": null
                     }
-                  },
-                  "ClusterIsLiquidatedException": {
-                    "value": {
-                      "error": {
-                        "code": 111123,
-                        "message": "Cluster is liquidated",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
                   }
                 }
               }
@@ -21936,7 +21925,7 @@
               "withdrawal_possible",
               "withdrawal_done"
             ],
-            "description": "<p>State of the validator:</p><ul><li>`not_found` — the specified validator could not be located.</li><li>`deposited` — the user deposited 32 ETH, and the deposit was processed by the Ethereum Beacon Chain.</li><li>`pending` — the validator entered a queue for activation.</li><li>`active_online` — the validator was activated and participating in attesting and proposing blocks.</li><li>`active_offline` — the validator is offline and not participating in the validator activities.</li><li>`slashed` — the validator was slashed due to misbehaviors.</li><li>`exited` — the validator has exited the network and is no longer acting as a validator.</li></ul>",
+            "description": "<p>State of the validator:</p><ul><li>`not_found` — specified validator could not be located.</li><li>`pending_initialized` — validator is initialized but not yet in the queue for activation.</li><li>`pending_queued` — validator entered a queue for activation.</li><li>`active_ongoing` — validator was activated and currently participates in attesting and proposing blocks.</li><li>`active_exiting` — validator is in process of exiting the network while participating in the validator activities.</li><li>`active_slashed` — validator was slashed due to misbehaviors.</li><li>`exited_unslashed` — validator has exited the network without being slashed and is no longer acting as a validator.</li><li>`exited_slashed` — validator has exited the network after being slashed and is no longer acting as a validator.</li><li>`withdrawal_possible` — validator has a non-zero balance.</li><li>`withdrawal_done` — validator completed the withdrawal process.</li></ul>",
             "example": "active_ongoing"
           },
           "amount": {
