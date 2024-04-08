@@ -5931,30 +5931,6 @@
               "maximum": 100000,
               "type": "number"
             }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "example": 50,
-            "description": "The number of resources that a single response page contains.",
-            "schema": {
-              "minimum": 1,
-              "maximum": 1000,
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "example": 0,
-            "description": "The number of resources to exclude from a response.",
-            "schema": {
-              "minimum": 0,
-              "maximum": 100000,
-              "type": "number"
-            }
           }
         ],
         "responses": {
@@ -6513,30 +6489,6 @@
             "in": "query",
             "description": "Finish number of the staking period.",
             "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "example": 50,
-            "description": "The number of resources that a single response page contains.",
-            "schema": {
-              "minimum": 1,
-              "maximum": 1000,
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "example": 0,
-            "description": "The number of resources to exclude from a response.",
-            "schema": {
-              "minimum": 0,
-              "maximum": 100000,
               "type": "number"
             }
           },
@@ -7692,30 +7644,6 @@
             "in": "query",
             "description": "Finish number of the staking period.",
             "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "example": 50,
-            "description": "The number of resources that a single response page contains.",
-            "schema": {
-              "minimum": 1,
-              "maximum": 1000,
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "example": 0,
-            "description": "The number of resources to exclude from a response.",
-            "schema": {
-              "minimum": 0,
-              "maximum": 100000,
               "type": "number"
             }
           },
@@ -16888,19 +16816,6 @@
         "summary": "Prepare exitValidator Transaction",
         "description": "Construct a serialized transaction to `exitValidator`.",
         "parameters": [
-          {
-            "name": "network",
-            "required": true,
-            "in": "path",
-            "example": "holesky",
-            "description": "<p>Ethereum network:</p><ul><li>`mainnet` — Ethereum mainnet.</li><li>`goerli` — Ethereum Goerli testnet.</li><li>`holesky` — Ethereum Holesky testnet.</li></ul>",
-            "schema": {
-              "enum": [
-                "holesky"
-              ],
-              "type": "string"
-            }
-          },
           {
             "name": "id",
             "required": true,
