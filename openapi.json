@@ -405,6 +405,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidEncryptedShardesCountException"
                         }
                       ]
                     }
@@ -416,6 +419,16 @@
                       "error": {
                         "code": 101110,
                         "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidEncryptedShardesCountException": {
+                    "value": {
+                      "error": {
+                        "code": 111127,
+                        "message": "Invalid shardes count",
                         "type": "server"
                       },
                       "result": null
@@ -14950,7 +14963,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -15187,7 +15200,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -15424,7 +15437,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -15661,7 +15674,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -15924,7 +15937,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -16174,7 +16187,7 @@
           }
         },
         "tags": [
-          "Polkadot"
+          "Polkadot (Nomination Pools)"
         ],
         "security": [
           {
@@ -18244,6 +18257,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/RemoveValidatorException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidEncryptedShardesCountException"
                         }
                       ]
                     }
@@ -18265,6 +18281,16 @@
                       "error": {
                         "code": 111121,
                         "message": "Failed to create remove validator transaction",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidEncryptedShardesCountException": {
+                    "value": {
+                      "error": {
+                        "code": 111127,
+                        "message": "Invalid shardes count",
                         "type": "server"
                       },
                       "result": null
@@ -18461,6 +18487,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/ExitValidatorException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidEncryptedShardesCountException"
                         }
                       ]
                     }
@@ -18482,6 +18511,16 @@
                       "error": {
                         "code": 111125,
                         "message": "Failed to create exit validator transaction",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidEncryptedShardesCountException": {
+                    "value": {
+                      "error": {
+                        "code": 111127,
+                        "message": "Invalid shardes count",
                         "type": "server"
                       },
                       "result": null
@@ -19883,6 +19922,7 @@
             "description": "Number of validators. One validator is equal to 32 ETH.",
             "default": 1,
             "minimum": 1,
+            "maximum": 50,
             "example": 1
           },
           "withdrawalAddress": {
@@ -19951,6 +19991,28 @@
           "name": {
             "type": "string",
             "default": "SsvRequestNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "InvalidEncryptedShardesCountException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111127
+          },
+          "message": {
+            "type": "string",
+            "default": "Invalid shardes count"
+          },
+          "name": {
+            "type": "string",
+            "default": "InvalidEncryptedShardesCountException"
           }
         },
         "required": [
