@@ -8428,7 +8428,8 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "description": "Network name.", "schema": {
+            "description": "Network name.",
+            "schema": {
               "enum": [
                 "solana",
                 "cosmoshub",
@@ -14708,6 +14709,1480 @@
         ]
       }
     },
+    "/api/v1/polkadot/{network}/staking/pool/bond": {
+      "post": {
+        "operationId": "polkadot-pool-bond",
+        "summary": "Create Bond Request",
+        "description": "Submitting a bond to the Polkadot network in exchange for some other benefit.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoolBondRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PolkadotUnsignedPoolBondTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientBalanceException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PolkadotPoolDoesNotExistsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientBalanceException": {
+                    "value": {
+                      "error": {
+                        "code": 107102,
+                        "message": "Insufficient balance. Min balance is undefined",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PolkadotPoolDoesNotExistsException": {
+                    "value": {
+                      "error": {
+                        "code": 107138,
+                        "message": "Unable to withdraw unbonded",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BondException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "BondException": {
+                    "value": {
+                      "error": {
+                        "code": 107131,
+                        "message": "Unable to request bond",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/staking/pool/set-claim-permission": {
+      "post": {
+        "operationId": "polkadot-pool-set-claim-permission",
+        "summary": "Set Claim Permission Request",
+        "description": "Set claim permission.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SetClaimPermissionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientBalanceException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientBalanceException": {
+                    "value": {
+                      "error": {
+                        "code": 107102,
+                        "message": "Insufficient balance. Min balance is undefined",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/SetClaimPermissionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "SetClaimPermissionException": {
+                    "value": {
+                      "error": {
+                        "code": 107137,
+                        "message": "Unable to setClaimPermission",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/staking/pool/bond-extra": {
+      "post": {
+        "operationId": "polkadot-pool-bond-extra",
+        "summary": "Create Extra Bond Request",
+        "description": "Submitting an extra bond to the Polkadot network in exchange for some other benefit.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoolBondExtraRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PolkadotUnsignedPoolTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientBalanceException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientBalanceException": {
+                    "value": {
+                      "error": {
+                        "code": 107102,
+                        "message": "Insufficient balance. Min balance is undefined",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BondExtraException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "BondExtraException": {
+                    "value": {
+                      "error": {
+                        "code": 107132,
+                        "message": "Unable to request bond extra",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/staking/pool/unbond": {
+      "post": {
+        "operationId": "polkadot-pool-unbond",
+        "summary": "Create Unbond Request",
+        "description": "Unbonding tokens within the Polkadot network refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoolUnbondRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PolkadotUnsignedPoolTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NotEnoughBonedAmountException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NotEnoughBonedAmountException": {
+                    "value": {
+                      "error": {
+                        "code": 107110,
+                        "message": "Not enough bonded amount",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/UnbondException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "UnbondException": {
+                    "value": {
+                      "error": {
+                        "code": 107134,
+                        "message": "Unable to request unbond",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/staking/pool/withdraw-unbonded": {
+      "post": {
+        "operationId": "polkadot-pool-withdraw-unbonded",
+        "summary": "Withdraw Unbonded Request",
+        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PoolWithdrawUnbondedRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/PoolWithdrawalTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/BondNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongControllerException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PolkadotPoolDoesNotExistsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "BondNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 107103,
+                        "message": "Bond not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongControllerException": {
+                    "value": {
+                      "error": {
+                        "code": 107105,
+                        "message": "Wrong controller",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PolkadotPoolDoesNotExistsException": {
+                    "value": {
+                      "error": {
+                        "code": 107138,
+                        "message": "Unable to withdraw unbonded",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/WithdrawUnbondedException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "WithdrawUnbondedException": {
+                    "value": {
+                      "error": {
+                        "code": 107135,
+                        "message": "Unable to withdraw unbonded",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/polkadot/{network}/staking/pool/claim-payout": {
+      "post": {
+        "operationId": "polkadot-pool-claim-payout",
+        "summary": "Claim Payout Request",
+        "description": "Claim payout.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "westend",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "kusama",
+                "westend"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ClaimPayoutRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/AddressIsInvalidException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/BondNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongControllerException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "AddressIsInvalidException": {
+                    "value": {
+                      "error": {
+                        "code": 107101,
+                        "message": "Polkadot address (undefined) is invalid",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 107119,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "BondNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 107103,
+                        "message": "Bond not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongControllerException": {
+                    "value": {
+                      "error": {
+                        "code": 107105,
+                        "message": "Wrong controller",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ClaimPayoutException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ClaimPayoutException": {
+                    "value": {
+                      "error": {
+                        "code": 107136,
+                        "message": "Unable to claim payout",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Polkadot"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/solana/{network}/tx/send": {
       "post": {
         "operationId": "solana-staking-send",
@@ -17968,6 +19443,16 @@
                       },
                       "result": null
                     }
+                  },
+                  "ClusterIsLiquidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 111123,
+                        "message": "Cluster is liquidated",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
                   }
                 }
               }
@@ -18127,6 +19612,10 @@
     {
       "url": "https://api.p2p.org",
       "description": "Staking API"
+    },
+    {
+      "url": "https://api-test.p2p.org",
+      "description": "Testnet Staking API"
     },
     {
       "url": "https://api-test-holesky.p2p.org",
@@ -22815,7 +24304,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 107125
+            "default": 107131
           },
           "message": {
             "type": "string",
@@ -22922,7 +24411,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 107126
+            "default": 107132
           },
           "message": {
             "type": "string",
@@ -23222,7 +24711,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 107129
+            "default": 107134
           },
           "message": {
             "type": "string",
@@ -23285,7 +24774,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 107130
+            "default": 107135
           },
           "message": {
             "type": "string",
@@ -23326,6 +24815,277 @@
         ]
       },
       "WithdrawUnbondedRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          }
+        },
+        "required": [
+          "stashAccountAddress"
+        ]
+      },
+      "PolkadotPoolDoesNotExistsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 107138
+          },
+          "message": {
+            "type": "string",
+            "default": "Pool id does not exists"
+          },
+          "name": {
+            "type": "string",
+            "default": "PolkadotPoolDoesNotExistsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "PolkadotUnsignedPoolBondTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "example": 3
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "unsignedTransaction",
+          "amount",
+          "createdAt"
+        ]
+      },
+      "PoolBondRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "poolId": {
+            "type": "number",
+            "description": "Nomination Pool Id.",
+            "example": 1
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
+            "example": 3,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "poolId",
+          "amount"
+        ]
+      },
+      "SetClaimPermissionException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 107137
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to setClaimPermission"
+          },
+          "name": {
+            "type": "string",
+            "default": "SetClaimPermissionException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SetClaimPermissionRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "permission": {
+            "type": "string",
+            "enum": [
+              "Permissioned",
+              "PermissionlessCompound",
+              "PermissionlessWithdraw",
+              "PermissionlessAll"
+            ],
+            "example": "PermissionlessAll",
+            "default": "PermissionlessAll",
+            "description": "permission."
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "permission"
+        ]
+      },
+      "PolkadotUnsignedPoolTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens for bond operations (in usual DOTs/KSMs/WNDs).",
+            "example": 3
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "unsignedTransaction",
+          "amount",
+          "createdAt"
+        ]
+      },
+      "PoolBondExtraRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount to bond (in usual DOTs/KSMs/WNDs).",
+            "example": 1,
+            "minimum": 0
+          },
+          "amountType": {
+            "type": "string",
+            "enum": [
+              "rewards",
+              "freeBalance"
+            ],
+            "description": "Rewards to bond (in usual DOTs/KSMs/WNDs).",
+            "example": "freeBalance",
+            "default": "freeBalance"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "amount",
+          "amountType"
+        ]
+      },
+      "PoolUnbondRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
+            "example": 3,
+            "minimum": 0
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
+      },
+      "PoolWithdrawalTransactionResponse": {
+        "type": "object",
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          }
+        },
+        "required": [
+          "unsignedTransaction",
+          "createdAt"
+        ]
+      },
+      "PoolWithdrawUnbondedRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Main stash account address which keeps tokens for bonding.",
+            "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
+          },
+          "poolId": {
+            "type": "number",
+            "description": "Nomination Pool Id.",
+            "example": 1
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "poolId"
+        ]
+      },
+      "ClaimPayoutException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 107136
+          },
+          "message": {
+            "type": "string",
+            "default": "Unable to claim payout"
+          },
+          "name": {
+            "type": "string",
+            "default": "ClaimPayoutException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ClaimPayoutRequest": {
         "type": "object",
         "properties": {
           "stashAccountAddress": {
