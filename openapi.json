@@ -11857,7 +11857,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -12111,7 +12111,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -12413,7 +12413,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -12625,7 +12625,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -12862,7 +12862,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -13099,7 +13099,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -13349,7 +13349,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -13586,7 +13586,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -13849,7 +13849,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -14022,7 +14022,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -14246,7 +14246,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -14483,7 +14483,7 @@
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -14725,15 +14725,15 @@
     "/api/v1/polkadot/{network}/staking/pool/bond": {
       "post": {
         "operationId": "polkadot-pool-bond",
-        "summary": "Create Bond Request",
-        "description": "Submitting a bond to the Polkadot network in exchange for some other benefit.",
+        "summary": "Create Pool Bond Request",
+        "description": "Creating a bond request on the Polkadot nomination pool where the user has membership in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -14963,7 +14963,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -14975,15 +14975,15 @@
     "/api/v1/polkadot/{network}/staking/pool/set-claim-permission": {
       "post": {
         "operationId": "polkadot-pool-set-claim-permission",
-        "summary": "Set Claim Permission Request",
-        "description": "Set claim permission.",
+        "summary": "Create Claim Permission Request",
+        "description": "Creating a claim permission request allows users having membership in the nomination pool to grant permission to any other pool member account to claim, bond or withdraw rewards on the user's behalf.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -15200,7 +15200,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -15212,15 +15212,15 @@
     "/api/v1/polkadot/{network}/staking/pool/bond-extra": {
       "post": {
         "operationId": "polkadot-pool-bond-extra",
-        "summary": "Create Extra Bond Request",
-        "description": "Submitting an extra bond to the Polkadot network in exchange for some other benefit.",
+        "summary": "Create Pool Extra Bond Request",
+        "description": "Creating an extra bond request on the Polkadot nomination pool where the user has membership in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -15437,7 +15437,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -15449,15 +15449,15 @@
     "/api/v1/polkadot/{network}/staking/pool/unbond": {
       "post": {
         "operationId": "polkadot-pool-unbond",
-        "summary": "Create Unbond Request",
-        "description": "Unbonding tokens within the Polkadot network refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
+        "summary": "Create Pool Unbond Request",
+        "description": "Unbonding tokens within a Polkadot nomination pool where a user has membership refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -15674,7 +15674,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -15686,15 +15686,15 @@
     "/api/v1/polkadot/{network}/staking/pool/withdraw-unbonded": {
       "post": {
         "operationId": "polkadot-pool-withdraw-unbonded",
-        "summary": "Withdraw Unbonded Request",
-        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded.",
+        "summary": "Withdraw Pool Unbonded Request",
+        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded and exiting the nomination pool.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -15937,7 +15937,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -15949,15 +15949,15 @@
     "/api/v1/polkadot/{network}/staking/pool/claim-payout": {
       "post": {
         "operationId": "polkadot-pool-claim-payout",
-        "summary": "Claim Payout Request",
-        "description": "Claim payout.",
+        "summary": "Create Claim Payout Request",
+        "description": "Creating a claim payout request refers to the process of issuing a payout from the validator to the nomination pool members for further rewards claiming.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>",
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -16187,7 +16187,7 @@
           }
         },
         "tags": [
-          "Polkadot (Nomination Pools)"
+          "Polkadot"
         ],
         "security": [
           {
@@ -23782,7 +23782,7 @@
               "westend"
             ],
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>"
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>"
           },
           "signedTransaction": {
             "type": "string",
@@ -24071,7 +24071,7 @@
               "westend"
             ],
             "example": "westend",
-            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — a canary network that holds real economic value.</li><li>`westend` — Polkadot testnet.</li></ul>"
+            "description": "<p>Polkadot network:</p><ul><li>`mainnet` — Polkadot mainnet.</li><li>`kusama` — Kusama mainnet.</li><li>`westend` — Polkadot testnet.</li></ul>"
           },
           "signedTransaction": {
             "type": "string",
@@ -24947,7 +24947,7 @@
           },
           "poolId": {
             "type": "number",
-            "description": "Nomination Pool Id.",
+            "description": "ID of the nomination pool.",
             "example": 1
           },
           "amount": {
@@ -25003,7 +25003,7 @@
             ],
             "example": "PermissionlessAll",
             "default": "PermissionlessAll",
-            "description": "permission."
+            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — user grants permission to any other pool member account to claim and bond their rewards on the user's behalf.</li><li>`PermissionlessWithdraw` — user grants permission to any other pool member account to claim and withdraw their rewards on the user's behalf.</li><li>`PermissionlessAll` — user grants permission to any other pool member account to claim, bond or withdraw their rewards on the user's behalf.</li></ul>"
           }
         },
         "required": [
@@ -25057,7 +25057,7 @@
               "rewards",
               "freeBalance"
             ],
-            "description": "Rewards to bond (in usual DOTs/KSMs/WNDs).",
+            "description": "<p>Type of tokens to bond (in usual DOTs/KSMs/WNDs):</p><ul><li>`freeBalance` — amount of a balance that is not reserved for any operations.</li><li>`rewards` — amount of claimed rewards tokens.</li></ul>",
             "example": "freeBalance",
             "default": "freeBalance"
           }
@@ -25116,7 +25116,7 @@
           },
           "poolId": {
             "type": "number",
-            "description": "Nomination Pool Id.",
+            "description": "ID of the nomination pool.",
             "example": 1
           }
         },
