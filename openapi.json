@@ -14725,8 +14725,8 @@
     "/api/v1/polkadot/{network}/staking/pool/bond": {
       "post": {
         "operationId": "polkadot-pool-bond",
-        "summary": "Create Pool Bond Request",
-        "description": "Creating a bond request on the Polkadot nomination pool where the user has membership in exchange for some other benefit.",
+        "summary": "Create Bond Request",
+        "description": "Creating a bond request on the Polkadot nomination pool where a user has membership in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
@@ -14976,7 +14976,7 @@
       "post": {
         "operationId": "polkadot-pool-set-claim-permission",
         "summary": "Create Claim Permission Request",
-        "description": "Creating a claim permission request allows users having membership in the nomination pool to grant permission to any other pool member account to claim, bond or withdraw rewards on the user's behalf.",
+        "description": "Creating a claim permission request allows users having membership in the Polkadot nomination pool to grant permission to any other pool member account for claiming, bonding or withdrawing rewards on the users' behalf.",
         "parameters": [
           {
             "name": "network",
@@ -15212,8 +15212,8 @@
     "/api/v1/polkadot/{network}/staking/pool/bond-extra": {
       "post": {
         "operationId": "polkadot-pool-bond-extra",
-        "summary": "Create Pool Extra Bond Request",
-        "description": "Creating an extra bond request on the Polkadot nomination pool where the user has membership in exchange for some other benefit.",
+        "summary": "Create Extra Bond Request",
+        "description": "Creating an extra bond request on the Polkadot nomination pool where a user has membership in exchange for some other benefit.",
         "parameters": [
           {
             "name": "network",
@@ -15449,7 +15449,7 @@
     "/api/v1/polkadot/{network}/staking/pool/unbond": {
       "post": {
         "operationId": "polkadot-pool-unbond",
-        "summary": "Create Pool Unbond Request",
+        "summary": "Create Unbond Request",
         "description": "Unbonding tokens within a Polkadot nomination pool where a user has membership refers to the process of withdrawing or releasing tokens that were previously staked or bonded.",
         "parameters": [
           {
@@ -15686,8 +15686,8 @@
     "/api/v1/polkadot/{network}/staking/pool/withdraw-unbonded": {
       "post": {
         "operationId": "polkadot-pool-withdraw-unbonded",
-        "summary": "Withdraw Pool Unbonded Request",
-        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded and exiting the nomination pool.",
+        "summary": "Withdraw Unbonded Request",
+        "description": "Withdrawing tokens within the Polkadot network that were previously unbonded and the following exiting the nomination pool.",
         "parameters": [
           {
             "name": "network",
@@ -25003,7 +25003,7 @@
             ],
             "example": "PermissionlessAll",
             "default": "PermissionlessAll",
-            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — user grants permission to any other pool member account to claim and bond their rewards on the user's behalf.</li><li>`PermissionlessWithdraw` — user grants permission to any other pool member account to claim and withdraw their rewards on the user's behalf.</li><li>`PermissionlessAll` — user grants permission to any other pool member account to claim, bond or withdraw their rewards on the user's behalf.</li></ul>"
+            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — claiming and bonding rewards on the user's behalf are permitted.</li><li>`PermissionlessWithdraw` — claiming and withdrawing rewards on the user's behalf are permitted.</li><li>`PermissionlessAll` — claiming, bonding and withdrawing rewards on the user's behalf are permitted.</li></ul>"
           }
         },
         "required": [
