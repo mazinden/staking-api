@@ -14976,7 +14976,7 @@
       "post": {
         "operationId": "polkadot-pool-set-claim-permission",
         "summary": "Create Claim Permission Request",
-        "description": "Creating a claim permission request allows users having membership in the Polkadot nomination pool to grant permission to any other pool member account for claiming, bonding or withdrawing rewards on the users' behalf.",
+        "description": "Creating a claim permission request allows users having membership in the Polkadot nomination pool to grant permission to any other pool member account for claiming, bonding or withdrawing rewards on behalf of the user.",
         "parameters": [
           {
             "name": "network",
@@ -25003,7 +25003,7 @@
             ],
             "example": "PermissionlessAll",
             "default": "PermissionlessAll",
-            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — claiming and bonding rewards on the user's behalf are permitted.</li><li>`PermissionlessWithdraw` — claiming and withdrawing rewards on the user's behalf are permitted.</li><li>`PermissionlessAll` — claiming, bonding and withdrawing rewards on the user's behalf are permitted.</li></ul>"
+            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — claiming and bonding rewards on behalf of the user are permitted.</li><li>`PermissionlessWithdraw` — claiming and withdrawing rewards on behalf of the user are permitted.</li><li>`PermissionlessAll` — claiming, bonding and withdrawing rewards on behalf of the user are permitted.</li></ul>"
           }
         },
         "required": [
@@ -25057,7 +25057,7 @@
               "rewards",
               "freeBalance"
             ],
-            "description": "<p>Type of tokens to bond (in usual DOTs/KSMs/WNDs):</p><ul><li>`freeBalance` — amount of a balance that is not reserved for any operations.</li><li>`rewards` — amount of claimed rewards tokens.</li></ul>",
+            "description": "<p>Type of tokens to bond (in usual DOTs/KSMs/WNDs):</p><ul><li>`freeBalance` — portion of a balance that is not reserved for any operations.</li><li>`rewards` — claimed rewards tokens.</li></ul>",
             "example": "freeBalance",
             "default": "freeBalance"
           }
