@@ -5926,7 +5926,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -5938,7 +5938,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -6218,7 +6218,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -6230,7 +6230,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -6510,7 +6510,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -6522,7 +6522,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -6802,7 +6802,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -6814,7 +6814,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -7094,7 +7094,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -7106,7 +7106,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -7386,7 +7386,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -7398,7 +7398,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -7665,7 +7665,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -7677,7 +7677,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -7944,7 +7944,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -7956,7 +7956,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -8223,7 +8223,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -8235,7 +8235,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -8963,7 +8963,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -8975,7 +8975,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -9171,6 +9171,191 @@
         ]
       }
     },
+    "/api/v1/{network}/data/validator/statuses": {
+      "get": {
+        "operationId": "data-validator-statuses",
+        "summary": "Get Validator Statuses",
+        "description": "Get a list of validator statuses.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "Network name.",
+            "schema": {
+              "enum": [
+                "ethereum"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorStatusesResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Network is not included in list (undefined)",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetValidatorStatusesException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetValidatorStatusesException": {
+                    "value": {
+                      "error": {
+                        "code": 115119,
+                        "message": "Get validator statuses failed",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Validator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/{network}/data/delegator/stakes": {
       "get": {
         "operationId": "data-delegator-stakes",
@@ -9242,7 +9427,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -9254,7 +9439,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -9454,7 +9639,7 @@
                   "GetDelegatorStakesException": {
                     "value": {
                       "error": {
-                        "code": 115121,
+                        "code": 115122,
                         "message": "Get delegator stakes failed",
                         "type": "server"
                       },
@@ -9547,7 +9732,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -9559,7 +9744,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -9759,7 +9944,7 @@
                   "GetDelegatorRewardsException": {
                     "value": {
                       "error": {
-                        "code": 115122,
+                        "code": 115123,
                         "message": "Get delegator rewards failed",
                         "type": "server"
                       },
@@ -9852,7 +10037,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -9864,7 +10049,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -10064,7 +10249,7 @@
                   "GetDelegatorApyException": {
                     "value": {
                       "error": {
-                        "code": 115123,
+                        "code": 115124,
                         "message": "Get delegator apy failed",
                         "type": "server"
                       },
@@ -10149,7 +10334,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -10161,7 +10346,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -10351,18 +10536,18 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/GetDelegatorTotalRewardsException"
+                          "$ref": "#/components/schemas/GetDelegatorAutostakingDataException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "GetDelegatorTotalRewardsException": {
+                  "GetDelegatorAutostakingDataException": {
                     "value": {
                       "error": {
-                        "code": 115125,
-                        "message": "Get delegator total rewards failed",
+                        "code": 115126,
+                        "message": "Get delegator stats failed",
                         "type": "server"
                       },
                       "result": null
@@ -10446,7 +10631,7 @@
             "required": false,
             "in": "query",
             "example": 50,
-            "description": "The number of resources that a single response page contains.",
+            "description": "Number of resources that a single response page contains.",
             "schema": {
               "minimum": 1,
               "maximum": 1000,
@@ -10458,7 +10643,7 @@
             "required": false,
             "in": "query",
             "example": 0,
-            "description": "The number of resources to exclude from a response.",
+            "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
               "maximum": 100000,
@@ -10648,18 +10833,18 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/GetDelegatorTotalRewardsException"
+                          "$ref": "#/components/schemas/GetDelegatorAutostakingDataException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "GetDelegatorTotalRewardsException": {
+                  "GetDelegatorAutostakingDataException": {
                     "value": {
                       "error": {
-                        "code": 115125,
-                        "message": "Get delegator total rewards failed",
+                        "code": 115126,
+                        "message": "Get delegator stats failed",
                         "type": "server"
                       },
                       "result": null
@@ -20669,11 +20854,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 107119
+            "default": 115101
           },
           "message": {
             "type": "string",
-            "default": "Network is not included in list ([ 'mainnet', 'kusama', 'westend' ])"
+            "default": "Network is not included in list (solana, ethereum, polkadot, kusama, vara, moonbeam, cosmoshub, polygon, sui)"
           },
           "name": {
             "type": "string",
@@ -22930,12 +23115,90 @@
           "list"
         ]
       },
-      "InvalidDelegatorAddressException": {
+      "GetValidatorStatusesException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
             "default": 115119
+          },
+          "message": {
+            "type": "string",
+            "default": "Get validator statuses failed"
+          },
+          "name": {
+            "type": "string",
+            "default": "GetValidatorStatusesException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ValidatorStatuses": {
+        "type": "object",
+        "properties": {
+          "pending_initialized": {
+            "type": "number",
+            "description": "Number of validators which are initialized but not yet in the queue for activation."
+          },
+          "pending_queued": {
+            "type": "number",
+            "description": "Number of validators that entered a queue for activation."
+          },
+          "active_ongoing": {
+            "type": "number",
+            "description": "Number of validators that were activated and currently participate in attesting and proposing blocks."
+          },
+          "active_slashed": {
+            "type": "number",
+            "description": "Number of validators that were slashed due to misbehaviors."
+          },
+          "exited_unslashed": {
+            "type": "number",
+            "description": "Number of validators that have exited the network without being slashed and are no longer acting as validators."
+          },
+          "exited_slashed": {
+            "type": "number",
+            "description": "Number of validators that have exited the network after being slashed and are no longer acting as validators."
+          },
+          "withdrawal_possible": {
+            "type": "number",
+            "description": "Number of validators having a non-zero balance."
+          },
+          "withdrawal_done": {
+            "type": "number",
+            "description": "Number of validators completed the withdrawal process."
+          }
+        }
+      },
+      "GetValidatorStatusesResponse": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "description": "Total count of validators."
+          },
+          "by_status": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidatorStatuses"
+            }
+          }
+        },
+        "required": [
+          "total",
+          "by_status"
+        ]
+      },
+      "InvalidDelegatorAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115120
           },
           "message": {
             "type": "string",
@@ -22964,7 +23227,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 115121
+            "default": 115122
           },
           "message": {
             "type": "string",
@@ -23040,7 +23303,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 115122
+            "default": 115123
           },
           "message": {
             "type": "string",
@@ -23118,7 +23381,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 115123
+            "default": 115124
           },
           "message": {
             "type": "string",
@@ -23193,20 +23456,20 @@
           "list"
         ]
       },
-      "GetDelegatorTotalRewardsException": {
+      "GetDelegatorAutostakingDataException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 115125
+            "default": 115126
           },
           "message": {
             "type": "string",
-            "default": "Get delegator total rewards failed"
+            "default": "Get delegator stats failed"
           },
           "name": {
             "type": "string",
-            "default": "GetDelegatorTotalRewardsException"
+            "default": "GetDelegatorAutostakingDataException"
           }
         },
         "required": [
