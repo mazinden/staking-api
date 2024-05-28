@@ -650,7 +650,7 @@
       "post": {
         "operationId": "eth-nodes-request-create",
         "summary": "Create Staking Request",
-        "description": "Set up nodes for staking using P2P infrastructure.",
+        "description": "Set up nodes for staking using P2P infrastructure. ",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -25266,7 +25266,7 @@
             ],
             "example": "PermissionlessAll",
             "default": "PermissionlessAll",
-            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — user needs to claim, bond or withdraw rewards by themselves.</li><li>`PermissionlessCompound` — claiming and bonding rewards on behalf of the user are permitted.</li><li>`PermissionlessWithdraw` — claiming and withdrawing rewards on behalf of the user are permitted.</li><li>`PermissionlessAll` — claiming, bonding and withdrawing rewards on behalf of the user are permitted.</li></ul>"
+            "description": "<p>State of the permission to claim rewards:</p><ul><li>`Permissioned` — only stash account can claim, bond or withdraw rewards.</li><li>`PermissionlessCompound` — allow claiming and bonding rewards on behalf of the stash account.</li><li>`PermissionlessWithdraw` — allow claiming and withdrawing rewards on behalf of the stash account.</li><li>`PermissionlessAll` — allow claiming, bonding and withdrawing rewards on behalf of the stash account.</li></ul>"
           }
         },
         "required": [
