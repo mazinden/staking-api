@@ -650,7 +650,7 @@
       "post": {
         "operationId": "eth-nodes-request-create",
         "summary": "Create Staking Request",
-        "description": "Set up nodes for staking using P2P infrastructure. ",
+        "description": "Set up nodes for staking using P2P infrastructure. For each node request operation, a unique id is needed as an identifier of the operation, see the [guides](doc:staking-eth) for details.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -855,7 +855,7 @@
       "get": {
         "operationId": "eth-nodes-request-status",
         "summary": "Get Request Status",
-        "description": "Check the status of the node set-up operation.",
+        "description": "Check the status of the node set-up operation and retrieve the details of the validator by using the node request operation identifier. For several requests, see the [Get All Requests Status](ref:eth-nodes-request-list) method.",
         "parameters": [
           {
             "name": "id",
@@ -10869,7 +10869,7 @@
       "post": {
         "operationId": "eth-staking-create-pod",
         "summary": "Prepare Create EigenPod Transaction",
-        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
+        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow, see the [guides](doc:restaking-overview) for details.",
         "parameters": [],
         "responses": {
           "200": {
@@ -20112,13 +20112,13 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "Withdrawal address of the client.",
+            "description": "0x01 prefixed withdrawal address that gets scheduled rewards as a result of Beacon chain sweeps.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "Eth1 address that receives fee recipient rewards.",
+            "description": "Eth1 address that receives priority fees and MEV rewards that are not related to Beacon chain partial withdrawal sweeps.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
