@@ -408,6 +408,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/InvalidEncryptedShardesCountException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SsvRequestGetException"
                         }
                       ]
                     }
@@ -429,6 +432,259 @@
                       "error": {
                         "code": 111127,
                         "message": "Invalid shardes count",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SsvRequestGetException": {
+                    "value": {
+                      "error": {
+                        "code": 111102,
+                        "message": "Error getting the SSV request",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "SSV"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/ssv/request/deposit-data/{id}": {
+      "get": {
+        "operationId": "ssv-request-deposit-data",
+        "summary": "Get Request Deposit Data",
+        "description": "Check the deposit data of the SSV request.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID of the SSV request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/SsvDepositDataResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SsvValidatorErrorException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SsvValidatorNotReadyException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SsvValidatorErrorException": {
+                    "value": {
+                      "error": {
+                        "code": 111129,
+                        "message": "The validator was not correctly registered on SSV. Please remove the validator from the cluster",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SsvValidatorNotReadyException": {
+                    "value": {
+                      "error": {
+                        "code": 111130,
+                        "message": "We cannot confirm the correct registration of the validator on SSV. This could be due to invalid registration or an issue with the SSV API. Please ensure you have correctly broadcasted the validatorRegistrationTxs before calling this endpoint.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/SsvRequestNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "SsvRequestNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 111104,
+                        "message": "The SSV (undefined) request not found",
+                        "type": "not_found"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SsvRequestGetDepositdataException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SsvRequestGetDepositdataException": {
+                    "value": {
+                      "error": {
+                        "code": 111131,
+                        "message": "Error getting deposit data",
                         "type": "server"
                       },
                       "result": null
@@ -4305,8 +4561,8 @@
     "/api/v1/celestia/{network}/transaction/encode": {
       "post": {
         "operationId": "encode-celestia-transaction",
-        "summary": "Sign Transaction",
-        "description": "Method for signing transaction.",
+        "summary": "Encode Transaction",
+        "description": "Prepare encoded transaction in the hexidecimal format that needs to be broadcasted to the Celestia network.",
         "parameters": [
           {
             "name": "network",
@@ -5941,7 +6197,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           }
@@ -6233,7 +6489,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           }
@@ -6525,7 +6781,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           }
@@ -6817,7 +7073,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           }
@@ -7109,7 +7365,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           }
@@ -7401,7 +7657,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -7680,7 +7936,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -7959,7 +8215,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -8238,7 +8494,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -8978,7 +9234,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -9442,7 +9698,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -9478,6 +9734,18 @@
             "in": "query",
             "description": "Validator address in the required network for this delegator",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "Group the output data by an enum field",
+            "schema": {
+              "enum": [
+                "stakingPeriod"
+              ],
               "type": "string"
             }
           }
@@ -9747,7 +10015,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -9783,6 +10051,18 @@
             "in": "query",
             "description": "Validator address in the required network for this delegator",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "Group the output data by an enum field",
+            "schema": {
+              "enum": [
+                "stakingPeriod"
+              ],
               "type": "string"
             }
           }
@@ -10052,7 +10332,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -10088,6 +10368,18 @@
             "in": "query",
             "description": "Validator address in the required network for this delegator",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "Group the output data by an enum field",
+            "schema": {
+              "enum": [
+                "stakingPeriod"
+              ],
               "type": "string"
             }
           }
@@ -10349,7 +10641,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -10385,6 +10677,18 @@
             "in": "query",
             "description": "Validator address in the required network for this delegator",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "Group the output data by an enum field",
+            "schema": {
+              "enum": [
+                "stakingPeriod"
+              ],
               "type": "string"
             }
           }
@@ -10646,7 +10950,7 @@
             "description": "Number of resources to exclude from a response.",
             "schema": {
               "minimum": 0,
-              "maximum": 100000,
+              "maximum": 10000000,
               "type": "number"
             }
           },
@@ -10682,6 +10986,18 @@
             "in": "query",
             "description": "Validator address in the required network for this delegator",
             "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "Group the output data by an enum field",
+            "schema": {
+              "enum": [
+                "stakingPeriod"
+              ],
               "type": "string"
             }
           }
@@ -16940,8 +17256,8 @@
     "/api/v1/polygon/staking/approve": {
       "post": {
         "operationId": "polygon-staking-approve",
-        "summary": "Approve Token Management",
-        "description": "Allows the Polygon smart contract to manage tokens by obtaining approval.",
+        "summary": "Create Approve Request",
+        "description": "Allow the Polygon smart contract to manage tokens.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17109,8 +17425,8 @@
     "/api/v1/polygon/staking/delegate": {
       "post": {
         "operationId": "polygon-staking-delegate",
-        "summary": "Delegate Tokens to Stake",
-        "description": "Delegate tokens to P2P validator to stake.",
+        "summary": "Create Delegate Request",
+        "description": "Delegate tokens to a P2P validator for staking.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17278,8 +17594,8 @@
     "/api/v1/polygon/staking/undelegate": {
       "post": {
         "operationId": "polygon-staking-undelegate",
-        "summary": "Undelegate Staked Tokens",
-        "description": "Prepare previously staked tokens to unstake.",
+        "summary": "Create Undelegate Request",
+        "description": "Prepare previously staked tokens for unstaking.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17447,7 +17763,7 @@
     "/api/v1/polygon/staking/unstake": {
       "post": {
         "operationId": "polygon-staking-unstake",
-        "summary": "Unstake Tokens",
+        "summary": "Create Unstake Request",
         "description": "Unstake tokens.",
         "parameters": [],
         "requestBody": {
@@ -17616,7 +17932,7 @@
     "/api/v1/polygon/staking/withdraw": {
       "post": {
         "operationId": "polygon-staking-withdraw",
-        "summary": "Withdraw Unstaked Tokens",
+        "summary": "Create Withdraw Request",
         "description": "Withdraw unstaked tokens.",
         "parameters": [],
         "requestBody": {
@@ -17785,8 +18101,8 @@
     "/api/v1/polygon/staking/restake": {
       "post": {
         "operationId": "polygon-staking-restake",
-        "summary": "Withdraw and Restake Rewards",
-        "description": "Withdraw rewards in tokens and then stake it.",
+        "summary": "Create Restake Request",
+        "description": "Withdraw rewards in tokens and then stake them.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17954,7 +18270,7 @@
     "/api/v1/polygon/staking/redelegate": {
       "post": {
         "operationId": "polygon-staking-redelegate",
-        "summary": "Create Redelegate Transaction",
+        "summary": "Create Redelegate Request",
         "description": "Redelegate tokens from another validator.",
         "parameters": [],
         "requestBody": {
@@ -18123,8 +18439,8 @@
     "/api/v1/polygon/transaction/send": {
       "post": {
         "operationId": "polygon-transaction-send",
-        "summary": "Send Transaction",
-        "description": "Send signed transaction to the Polygon network.",
+        "summary": "Broadcast Transaction",
+        "description": "Broadcast a signed transaction to the Polygon network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -18729,8 +19045,8 @@
     "/api/v1/eth/staking/ssv/tx/withdraw/{id}": {
       "get": {
         "operationId": "transaction-withdraw",
-        "summary": "Prepare withdraw Transaction",
-        "description": "Construct a serialized transaction to withdraw amount.",
+        "summary": "Prepare Withdraw Transaction",
+        "description": "Construct a serialized transaction to withdraw a specified amount.",
         "parameters": [
           {
             "name": "id",
@@ -20206,56 +20522,26 @@
           "name"
         ]
       },
-      "DepositDataResponse": {
+      "SsvRequestGetException": {
         "type": "object",
         "properties": {
-          "pubkey": {
-            "type": "string",
-            "description": "Validator public key.",
-            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
-            "pattern": "^0x[a-fA-F0-9]{96}$"
+          "code": {
+            "type": "number",
+            "default": 111102
           },
-          "signature": {
+          "message": {
             "type": "string",
-            "description": "Validator signature.",
-            "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
-            "pattern": "^0x[a-fA-F0-9]{192}$"
+            "default": "Error getting the SSV request"
           },
-          "depositDataRoot": {
+          "name": {
             "type": "string",
-            "description": "Hash of the deposit data.",
-            "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
-            "pattern": "^0x[a-fA-F0-9]{64}$"
-          },
-          "withdrawalCredentials": {
-            "type": "string",
-            "description": "Public key for withdrawing balance."
-          },
-          "amount": {
-            "type": "string",
-            "description": "Deposit amount."
-          },
-          "depositMessageRoot": {
-            "type": "string",
-            "description": "Cryptographic hash of the Merkle tree’s root."
-          },
-          "forkVersion": {
-            "type": "string",
-            "description": "Version of the Ethereum fork that the deposit is for."
-          },
-          "eth2NetworkName": {
-            "type": "string",
-            "description": "Eth2 network name."
-          },
-          "depositCliVersion": {
-            "type": "string",
-            "description": "Version of the deposit command-line interface."
+            "default": "SsvRequestGetException"
           }
         },
         "required": [
-          "pubkey",
-          "signature",
-          "depositDataRoot"
+          "code",
+          "message",
+          "name"
         ]
       },
       "EncryptedShareResponse": {
@@ -20263,7 +20549,7 @@
         "properties": {
           "publicKey": {
             "type": "string",
-            "description": "Validator public key"
+            "description": "Validator public key."
           },
           "nonce": {
             "type": "string",
@@ -20299,9 +20585,11 @@
               "init",
               "processing",
               "ready",
+              "validator-ready",
+              "validator-error",
               "cancel"
             ],
-            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
             "example": "processing"
           },
           "validatorsCount": {
@@ -20379,14 +20667,6 @@
               "type": "string"
             }
           },
-          "depositData": {
-            "minItems": 1,
-            "maxItems": 400,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DepositDataResponse"
-            }
-          },
           "encryptedShares": {
             "type": "array",
             "items": {
@@ -20404,8 +20684,162 @@
           "type",
           "operationPeriodInDays",
           "liquidationPeriodInDays",
-          "depositData",
           "encryptedShares"
+        ]
+      },
+      "SsvValidatorErrorException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111129
+          },
+          "message": {
+            "type": "string",
+            "default": "The validator was not correctly registered on SSV. Please remove the validator from the cluster"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvValidatorErrorException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvValidatorNotReadyException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111130
+          },
+          "message": {
+            "type": "string",
+            "default": "We cannot confirm the correct registration of the validator on SSV. This could be due to invalid registration or an issue with the SSV API. Please ensure you have correctly broadcasted the validatorRegistrationTxs before calling this endpoint."
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvValidatorNotReadyException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvRequestGetDepositdataException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111131
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting deposit data"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestGetDepositdataException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DepositDataResponse": {
+        "type": "object",
+        "properties": {
+          "pubkey": {
+            "type": "string",
+            "description": "Validator public key.",
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
+            "pattern": "^0x[a-fA-F0-9]{96}$"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Validator signature.",
+            "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
+            "pattern": "^0x[a-fA-F0-9]{192}$"
+          },
+          "depositDataRoot": {
+            "type": "string",
+            "description": "Hash of the deposit data.",
+            "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
+            "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "withdrawalCredentials": {
+            "type": "string",
+            "description": "Public key for withdrawing balance."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Deposit amount."
+          },
+          "depositMessageRoot": {
+            "type": "string",
+            "description": "Cryptographic hash of the Merkle tree’s root."
+          },
+          "forkVersion": {
+            "type": "string",
+            "description": "Version of the Ethereum fork that the deposit is for."
+          },
+          "eth2NetworkName": {
+            "type": "string",
+            "description": "Eth2 network name."
+          },
+          "depositCliVersion": {
+            "type": "string",
+            "description": "Version of the deposit command-line interface."
+          }
+        },
+        "required": [
+          "pubkey",
+          "signature",
+          "depositDataRoot"
+        ]
+      },
+      "SsvDepositDataResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID that was specified in the SSV set-up request."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "validator-ready",
+              "validator-error",
+              "cancel"
+            ],
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
+            "example": "processing"
+          },
+          "depositData": {
+            "minItems": 1,
+            "maxItems": 400,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepositDataResponse"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "depositData"
         ]
       },
       "SsvRequestGetListException": {
@@ -20566,7 +21000,7 @@
               "REGULAR",
               "RESTAKING"
             ],
-            "description": "Kind of request",
+            "description": "Type of the nodes request.",
             "example": "REGULAR"
           },
           "validatorsCount": {
@@ -20597,7 +21031,7 @@
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "The fee recipient address",
+            "description": "Fee recipient address.",
             "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -20670,7 +21104,7 @@
               "REGULAR",
               "RESTAKING"
             ],
-            "description": "Type of nodes request",
+            "description": "Type of the nodes request.",
             "example": "REGULAR"
           },
           "status": {
@@ -20854,11 +21288,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 115101
+            "default": 107119
           },
           "message": {
             "type": "string",
-            "default": "Network is not included in list (solana, ethereum, polkadot, kusama, vara, moonbeam, cosmoshub, polygon, sui)"
+            "default": "Network is not included in list ([ 'mainnet', 'kusama', 'westend' ])"
           },
           "name": {
             "type": "string",
