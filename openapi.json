@@ -12730,8 +12730,8 @@
     "/api/v1/eth/staking/direct/eigenlayer/tx/verify-withdrawal-credentials-request": {
       "post": {
         "operationId": "eth-eigen-verify-withdrawal-credentials-request",
-        "summary": "Request Activate Restake Transaction",
-        "description": "Create a request for constructing a serialized transaction to verify withdrawal credentials.",
+        "summary": "Create Activate Restake Request",
+        "description": "Set up a request for constructing a serialized transaction to verify withdrawal credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -12923,13 +12923,13 @@
       "get": {
         "operationId": "eth-eigen-verify-withdrawal-credentials-status",
         "summary": "Get Activate Restake Transaction",
-        "description": "Get a previously requested serialized transaction to verify withdrawal credentials.",
+        "description": "Retrieve a previously requested serialized transaction to verify withdrawal credentials.",
         "parameters": [
           {
             "name": "id",
             "required": true,
             "in": "path",
-            "description": "UUID of the verify withdrawal credentials request.",
+            "description": "UUID that was specified in the node set-up request.",
             "schema": {
               "type": "string"
             }
@@ -25719,7 +25719,7 @@
         "properties": {
           "operatorAddress": {
             "type": "string",
-            "description": "Operator address.",
+            "description": "Address of the EigenLayer node operator to delegate the restaked assets.",
             "example": "0xb1bd1266ec811048161424f534e74c76c48e6ce2",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
@@ -25870,7 +25870,7 @@
           },
           "message": {
             "type": "string",
-            "description": "Comment on the activate restake status if not `ready`."
+            "description": "Additional comment on the Beacon chain node status."
           },
           "list": {
             "type": "array",
