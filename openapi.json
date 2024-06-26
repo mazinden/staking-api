@@ -906,7 +906,7 @@
       "post": {
         "operationId": "eth-nodes-request-create",
         "summary": "Create Staking Request",
-        "description": "Set up nodes for staking using P2P infrastructure. For each node request operation, a unique id is needed as an identifier of the operation, see the [guides](doc:staking-eth) for details.",
+        "description": "Set up nodes for staking using P2P infrastructure. For each node request operation, a unique ID is needed as an identifier of the operation, see the [guides](doc:staking-eth) for details.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -2816,7 +2816,7 @@
       "post": {
         "operationId": "encode-cosmos-transaction",
         "summary": "Encode Transaction",
-        "description": "Prepare encoded transaction in the hexidecimal format that needs to be broadcasted to the Cosmos network.",
+        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
         "parameters": [
           {
             "name": "network",
@@ -4562,7 +4562,7 @@
       "post": {
         "operationId": "encode-celestia-transaction",
         "summary": "Encode Transaction",
-        "description": "Prepare encoded transaction in the hexidecimal format that needs to be broadcasted to the Celestia network.",
+        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
         "parameters": [
           {
             "name": "network",
@@ -11183,9 +11183,10 @@
     },
     "/api/v1/eth/staking/direct/tx/create-pod": {
       "post": {
-        "operationId": "eth-staking-create-pod",
+        "operationId": "eth-staking-create-pod-deprecated",
         "summary": "Prepare Create EigenPod Transaction",
-        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow, see the [guides](doc:restaking-overview) for details.",
+        "deprecated": true,
+        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
         "parameters": [],
         "responses": {
           "200": {
@@ -12339,6 +12340,1170 @@
         },
         "tags": [
           "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/operator": {
+      "get": {
+        "operationId": "eth-eigen-operator-list",
+        "summary": "Get Operator List",
+        "description": "Get the list of EigenLayer node operators.",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetListEigenOperatorResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EigenOperatorGetListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "EigenOperatorGetListException": {
+                    "value": {
+                      "error": {
+                        "code": 103120,
+                        "message": "Error getting eigen operator list",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/tx/delegate-to": {
+      "post": {
+        "operationId": "eth-eigen-delegate-to",
+        "summary": "Prepare Delegate Transaction",
+        "description": "Construct a serialized transaction to delegate the restaked amount of tokens to a node operator.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DelegateToRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "Could not create transaction",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/tx/verify-withdrawal-credentials-request": {
+      "post": {
+        "operationId": "eth-eigen-verify-withdrawal-credentials-request",
+        "summary": "Request Activate Restake Transaction",
+        "description": "Create a request for constructing a serialized transaction to verify withdrawal credentials.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyWithdrawalCredentialsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsAlreadyExistsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "VerifyWithdrawalCredentialsAlreadyExistsException": {
+                    "value": {
+                      "error": {
+                        "code": 103206,
+                        "message": "Verify withdrawal credentials request already exists",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "VerifyWithdrawalCredentialsException": {
+                    "value": {
+                      "error": {
+                        "code": 103202,
+                        "message": "Error creating verify withdrawal credentials request",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/tx/verify-withdrawal-credentials-status/{id}": {
+      "get": {
+        "operationId": "eth-eigen-verify-withdrawal-credentials-status",
+        "summary": "Get Activate Restake Transaction",
+        "description": "Get a previously requested serialized transaction to verify withdrawal credentials.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID of the verify withdrawal credentials request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/CredentialRequestResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "VerifyWithdrawalCredentialsNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 103201,
+                        "message": "Verify withdrawal credentials request not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsStatusException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "VerifyWithdrawalCredentialsStatusException": {
+                    "value": {
+                      "error": {
+                        "code": 103200,
+                        "message": "Error getting verify withdrawal credentials status",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/tx/add-timestamp/{id}": {
+      "get": {
+        "operationId": "eth-nodes-add-timestamp",
+        "summary": "Prepare addTimestamp Transaction",
+        "description": "Request a serialized transaction to add timestamp into oracle.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID that was specified in the node set-up request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/CredentialRequestResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "VerifyWithdrawalCredentialsNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 103201,
+                        "message": "Verify withdrawal credentials request not found",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/eigenlayer/tx/create-pod": {
+      "post": {
+        "operationId": "eth-eigen-create-pod",
+        "summary": "Prepare Create EigenPod Transaction",
+        "description": "Construct a serialized transaction to initiate the process of creating the EigenPod address.",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "Validation error",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "Wrong token",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "Could not create transaction",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "Token guard error",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
         ],
         "security": [
           {
@@ -18586,7 +19751,7 @@
       "get": {
         "operationId": "transaction-remove-validator",
         "summary": "Prepare removeValidator Transaction",
-        "description": "Construct a serialized transaction to `removeValidator`.",
+        "description": "Construct a serialized transaction to remove a validator from the cluster.",
         "parameters": [
           {
             "name": "id",
@@ -18816,7 +19981,7 @@
       "get": {
         "operationId": "transaction-exit-validator",
         "summary": "Prepare exitValidator Transaction",
-        "description": "Construct a serialized transaction to `exitValidator`.",
+        "description": "Construct a serialized transaction to initiate the validator exit from the cluster.",
         "parameters": [
           {
             "name": "id",
@@ -20428,19 +21593,19 @@
           },
           "withdrawalAddress": {
             "type": "string",
-            "description": "0x01 prefixed withdrawal address that gets scheduled rewards as a result of Beacon chain sweeps.",
+            "description": "A 0x01 prefixed withdrawal address that gets scheduled rewards as a result of the Beacon chain sweeps.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "feeRecipientAddress": {
             "type": "string",
-            "description": "Eth1 address that receives priority fees and MEV rewards that are not related to Beacon chain partial withdrawal sweeps.",
+            "description": "An ETH1 address that receives priority fees and MEV rewards that are not related to Beacon chain partial withdrawal sweeps.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "ssvOwnerAddress": {
             "type": "string",
-            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
+            "description": "An ETH1 address from which the registerValidator method of the SSV contract will be called.",
             "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
@@ -20570,6 +21735,20 @@
           "sharesData"
         ]
       },
+      "ClusterResponse": {
+        "type": "object",
+        "properties": {
+          "operators": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "operators"
+        ]
+      },
       "SsvRequestResponse": {
         "type": "object",
         "properties": {
@@ -20672,6 +21851,12 @@
             "items": {
               "$ref": "#/components/schemas/EncryptedShareResponse"
             }
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClusterResponse"
+            }
           }
         },
         "required": [
@@ -20684,7 +21869,8 @@
           "type",
           "operationPeriodInDays",
           "liquidationPeriodInDays",
-          "encryptedShares"
+          "encryptedShares",
+          "clusters"
         ]
       },
       "SsvValidatorErrorException": {
@@ -24444,6 +25630,260 @@
           "id",
           "status",
           "type"
+        ]
+      },
+      "EigenOperatorGetListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103130
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting eigen operator list"
+          },
+          "name": {
+            "type": "string",
+            "default": "EigenOperatorGetListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "EigenOperatorResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID of the EigenLayer node operator."
+          },
+          "address": {
+            "type": "string",
+            "description": "Node operator address.",
+            "example": "0xb1bd1266ec811048161424f534e74c76c48e6ce2",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "name": {
+            "type": "string",
+            "example": "P2P",
+            "description": "Node operator name."
+          }
+        },
+        "required": [
+          "id",
+          "address",
+          "name"
+        ]
+      },
+      "GetListEigenOperatorResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EigenOperatorResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
+      "DelegateToRequest": {
+        "type": "object",
+        "properties": {
+          "operatorAddress": {
+            "type": "string",
+            "description": "Operator address.",
+            "example": "0xb1bd1266ec811048161424f534e74c76c48e6ce2",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "operatorAddress"
+        ]
+      },
+      "VerifyWithdrawalCredentialsAlreadyExistsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103206
+          },
+          "message": {
+            "type": "string",
+            "default": "Verify withdrawal credentials request already exists"
+          },
+          "name": {
+            "type": "string",
+            "default": "VerifyWithdrawalCredentialsAlreadyExistsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "VerifyWithdrawalCredentialsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103202
+          },
+          "message": {
+            "type": "string",
+            "default": "Error creating verify withdrawal credentials request"
+          },
+          "name": {
+            "type": "string",
+            "default": "VerifyWithdrawalCredentialsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "VerifyWithdrawalCredentialsRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "Arbitrary UUID that was specified in the node set-up request."
+          },
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "Owner of the EigenPod address.",
+            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "pubkeys": {
+            "description": "Validator public keys.",
+            "example": [
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
+            ],
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^0x[a-fA-F0-9]{96}$"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "eigenPodOwnerAddress",
+          "pubkeys"
+        ]
+      },
+      "VerifyWithdrawalCredentialsNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103201
+          },
+          "message": {
+            "type": "string",
+            "default": "Verify withdrawal credentials request not found"
+          },
+          "name": {
+            "type": "string",
+            "default": "VerifyWithdrawalCredentialsNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "VerifyWithdrawalCredentialsStatusException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103200
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting verify withdrawal credentials status"
+          },
+          "name": {
+            "type": "string",
+            "default": "VerifyWithdrawalCredentialsStatusException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "CredentialRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID that was specified in the request."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "ready",
+              "cancel"
+            ],
+            "description": "<p>Current status of the request:</p><ul><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
+            "example": "processing"
+          },
+          "message": {
+            "type": "string",
+            "description": "Comment on the activate restake status if not `ready`."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "message",
+          "list"
         ]
       },
       "StatusException": {
