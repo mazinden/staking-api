@@ -10312,7 +10312,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field.",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -10326,7 +10326,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
@@ -10643,7 +10643,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -10657,7 +10657,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
@@ -10974,7 +10974,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -10988,7 +10988,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
@@ -11305,7 +11305,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -11319,7 +11319,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
@@ -11628,7 +11628,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -11642,7 +11642,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
@@ -11951,7 +11951,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "Group the output data by an enum field",
+            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -11965,7 +11965,7 @@
             "name": "skip",
             "required": false,
             "in": "query",
-            "description": "Skip the output data by an enum field.",
+            "description": "Exclude breakdown by `validator` from the data report.",
             "schema": {
               "enum": [
                 "validator"
