@@ -10002,7 +10002,7 @@
       "get": {
         "operationId": "data-validator-statuses",
         "summary": "Get Validator Statuses",
-        "description": "Get a list of validator statuses.",
+        "description": "Get a list of validators created via Staking API based on their statuses.",
         "parameters": [
           {
             "name": "network",
@@ -10187,7 +10187,7 @@
       "get": {
         "operationId": "data-validator-statuses-detailed",
         "summary": "Get Validator Statuses Detailed",
-        "description": "Get a detailed list of validator statuses.",
+        "description": "Get a detailed status information for each individual validator along with their total count.",
         "parameters": [
           {
             "name": "network",
@@ -30065,7 +30065,7 @@
         "properties": {
           "total": {
             "type": "number",
-            "description": "Total count of validators."
+            "description": "Total count of provisioned validator statuses."
           },
           "by_status": {
             "type": "array",
