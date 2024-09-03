@@ -17487,7 +17487,7 @@
                     "value": {
                       "error": {
                         "code": 107139,
-                        "message": "The withdrawal request could not be performed because the internal server error occurred.",
+                        "message": "The request could not be performed because the ID provided is not found. Please specify the correct ID of the nomination pool.",
                         "type": "client"
                       },
                       "result": null
@@ -18461,7 +18461,7 @@
                     "value": {
                       "error": {
                         "code": 107139,
-                        "message": "The withdrawal request could not be performed because the internal server error occurred.",
+                        "message": "The request could not be performed because the ID provided is not found. Please specify the correct ID of the nomination pool.",
                         "type": "client"
                       },
                       "result": null
@@ -19852,7 +19852,6 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "testnet",
             "example": "testnet",
             "description": "<p>Avail network:</p><ul><li>`mainnet` — Avail mainnet.</li><li>`testnet` — Avail testnet.</li></ul>",
             "schema": {
@@ -21620,7 +21619,7 @@
                     "value": {
                       "error": {
                         "code": 119139,
-                        "message": "The withdrawal request could not be performed because the internal server error occurred.",
+                        "message": "The request could not be performed because the ID provided is not found. Please specify the correct ID of the nomination pool.",
                         "type": "client"
                       },
                       "result": null
@@ -22600,7 +22599,7 @@
                     "value": {
                       "error": {
                         "code": 119139,
-                        "message": "The withdrawal request could not be performed because the internal server error occurred.",
+                        "message": "The request could not be performed because the ID provided is not found. Please specify the correct ID of the nomination pool.",
                         "type": "client"
                       },
                       "result": null
@@ -30177,9 +30176,13 @@
             "type": "string",
             "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
-          "apy": {
+          "grossApy": {
             "type": "number",
-            "description": "Delegator annual percentage yield (APY)."
+            "description": "Delegator gross annual percentage yield (APY)."
+          },
+          "netApy": {
+            "type": "number",
+            "description": "Delegator net annual percentage yield (APY)."
           },
           "stake": {
             "type": "number",
@@ -30204,7 +30207,8 @@
           "stakingPeriod",
           "stakingPeriodStart",
           "stakingPeriodEnd",
-          "apy",
+          "grossApy",
+          "netApy",
           "stake",
           "rewards",
           "recipient"
@@ -30436,16 +30440,21 @@
             "type": "string",
             "description": "Timestamp of the staking period finish in the ISO 8601 format."
           },
-          "apy": {
+          "grossApy": {
             "type": "number",
-            "description": "Delegator annual percentage yield (APY)."
+            "description": "Delegator gross annual percentage yield (APY)."
+          },
+          "netApy": {
+            "type": "number",
+            "description": "Delegator net annual percentage yield (APY)."
           }
         },
         "required": [
           "stakingPeriod",
           "stakingPeriodStart",
           "stakingPeriodEnd",
-          "apy"
+          "grossApy",
+          "netApy"
         ]
       },
       "GetDelegatorAPYResponse": {
@@ -32512,8 +32521,7 @@
           "amount": {
             "type": "number",
             "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
-            "example": 3,
-            "minimum": 1
+            "example": 3
           }
         },
         "required": [
@@ -32638,8 +32646,7 @@
           "amount": {
             "type": "number",
             "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
-            "example": 3,
-            "minimum": 0
+            "example": 3
           }
         },
         "required": [
@@ -33217,8 +33224,7 @@
           "amount": {
             "type": "number",
             "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
-            "example": 3,
-            "minimum": 1
+            "example": 3
           }
         },
         "required": [
@@ -33321,8 +33327,7 @@
           "amount": {
             "type": "number",
             "description": "Amount of tokens to unbond. AVAIL is used for the mainnet network.",
-            "example": 3,
-            "minimum": 0
+            "example": 3
           }
         },
         "required": [
@@ -33739,17 +33744,17 @@
           },
           "baseAccount": {
             "type": "string",
-            "description": "Base account for create split account.",
+            "description": "Account address to split tokens from.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "stakeAccount": {
             "type": "string",
-            "description": "Staking account for split.",
+            "description": "Account address that will receive split tokens for staking.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "authority": {
             "type": "string",
-            "description": "Account address that can perform withdrawal operations with `stakeAccount` and new generated account.",
+            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `baseAccount`.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
