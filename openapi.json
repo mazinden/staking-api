@@ -24923,6 +24923,1390 @@
         ]
       }
     },
+    "/api/v1/babylon-btc/{network}/staking/stake": {
+      "post": {
+        "operationId": "babylon-stake",
+        "summary": "Create Staking Request",
+        "description": "Create staking request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidAddressException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 120104,
+                        "message": "The provided address undefined is invalid.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/staking/withdrawal": {
+      "post": {
+        "operationId": "babylon-withdrawal",
+        "summary": "Create Withdrawal Request",
+        "description": "Withdraw staked assets within the Bitcoin network, the time-lock period for those has expired or those that were previously unbonded for early withdrawal.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawalRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/WithdrawalResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The requested transaction was not found.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/staking/unstake": {
+      "post": {
+        "operationId": "babylon-unstake",
+        "summary": "Create Unstake Request",
+        "description": "Unstake locked assets within the Bitcoin network before the expiration of their time-lock period.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnstakeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnstakeResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionIsNotStake"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionIsNotStake": {
+                    "value": {
+                      "error": {
+                        "code": 120102,
+                        "message": "The requested transaction is not a stake transaction. %s",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The requested transaction was not found.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/transaction/send": {
+      "post": {
+        "operationId": "babylon-transaction-send",
+        "summary": "Broadcast Transaction",
+        "description": "Broadcast a signed transaction to the Bitcoin network.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/SendResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/transaction/unbonding": {
+      "post": {
+        "operationId": "babylon-transaction-unbonding",
+        "summary": "Broadcast Unbonding Transaction",
+        "description": "Broadcast the unstaking transaction to the Bitcoin network to release the unbonded assets for early withdrawal.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnbondingRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnbondingResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/transaction/get-by-address/{address}": {
+      "get": {
+        "operationId": "babylon-transaction-get-by-address",
+        "summary": "Get List Transactions",
+        "description": "Retrieve a list of all Babylon transactions on the Bitcoin network for a specific staker address.",
+        "parameters": [
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetByAddressResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidAddressException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 120104,
+                        "message": "The provided address undefined is invalid.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon-btc/{network}/transaction/get-by-tx-hash/{txHash}": {
+      "get": {
+        "operationId": "babylon-transaction-get-by-tx-hash",
+        "summary": "Check Transaction Status",
+        "description": "Retrieve a specific transaction from the Bitcoin network by its hash to check the status.",
+        "parameters": [
+          {
+            "name": "txHash",
+            "required": true,
+            "in": "path",
+            "description": "Transaction hash.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "Babylon network:</p><ul><li>`mainnet` — Babylon main production environment and Bitcoin mainnet (only locking BTC is currently available).</li><li>`testnet` — Babylon testing environment and Bitcoin testnet called sigNet.</li></ul>",
+            "schema": {
+              "enum": [
+                "testnet",
+                "mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetByHashResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionIsNotStake"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 120104,
+                        "message": "The provided address undefined is invalid.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 120100,
+                        "message": "The requested transaction was not found.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionIsNotStake": {
+                    "value": {
+                      "error": {
+                        "code": 120102,
+                        "message": "The requested transaction is not a stake transaction. %s",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/eth/staking/ssv/tx/remove-validator/{id}": {
       "get": {
         "operationId": "transaction-remove-validator",
@@ -26512,6 +27896,480 @@
       }
     },
     "schemas": {
+      "SuccessResponse": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "nullable": true,
+            "default": null
+          },
+          "result": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "error",
+          "result"
+        ]
+      },
+      "SendResponse": {
+        "type": "object",
+        "properties": {
+          "transactionId": {
+            "type": "string",
+            "description": "Block hash in which the transaction was included.",
+            "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
+          },
+          "slot": {
+            "type": "number",
+            "description": "Period of time during which each leader collects transactions and creates a block in the Solana network.",
+            "example": "17168395"
+          },
+          "signerAccounts": {
+            "type": "string",
+            "description": "Account addresses that signed the transaction.",
+            "example": [
+              "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+            ]
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "transactionId",
+          "slot",
+          "signerAccounts",
+          "createdAt"
+        ]
+      },
+      "SendRequest": {
+        "type": "object",
+        "properties": {
+          "signedTransaction": {
+            "type": "string",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
+            "pattern": "^0x([A-Fa-f0-9])+$",
+            "nullable": false
+          }
+        },
+        "required": [
+          "signedTransaction"
+        ]
+      },
+      "GetStakingResponse": {
+        "type": "object",
+        "properties": {
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "withdrawAuthority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operation with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "voteAccount": {
+            "type": "string",
+            "description": "Vote account address.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "active",
+              "inactive",
+              "activating",
+              "deactivating"
+            ],
+            "description": "Stake account status: `active`, `inactive`, `activating`, `deactivating`.",
+            "example": "active"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports).",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "stakeAccount",
+          "stakeAuthority",
+          "withdrawAuthority",
+          "voteAccount",
+          "status",
+          "amount"
+        ]
+      },
+      "StakingResponse": {
+        "type": "object",
+        "properties": {
+          "accounts": {
+            "description": "List of stake accounts.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetStakingResponse"
+            }
+          }
+        },
+        "required": [
+          "accounts"
+        ]
+      },
+      "StatusesResponse": {
+        "type": "object",
+        "properties": {
+          "statuses": {
+            "type": "string",
+            "description": "Status of the vote account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "statuses"
+        ]
+      },
+      "StakeResult": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "fromPublicKey": {
+            "type": "string",
+            "description": "Account address from which the staking account will be created.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "withdrawAuthority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operation with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
+            "minimum": 1,
+            "example": 1
+          },
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "feePayer",
+          "fromPublicKey",
+          "stakeAccount",
+          "stakeAuthority",
+          "withdrawAuthority",
+          "amount",
+          "unsignedTransaction",
+          "createdAt"
+        ]
+      },
+      "StakeRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "fromPublicKey": {
+            "type": "string",
+            "description": "Account address from which the staking account will be created.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "withdrawAuthority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operation with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "feePayer",
+          "fromPublicKey",
+          "amount"
+        ]
+      },
+      "DeactivateResult": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "feePayer",
+          "unsignedTransaction",
+          "createdAt"
+        ]
+      },
+      "DeactivateRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "stakeAuthority"
+        ]
+      },
+      "WithdrawResult": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "withdrawAuthority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operation with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "recipient": {
+            "type": "string",
+            "description": "Account address to which tokens will be sent.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
+            "minimum": 1,
+            "example": 1
+          },
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "feePayer",
+          "amount",
+          "unsignedTransaction",
+          "createdAt"
+        ]
+      },
+      "WithdrawRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that stores tokens for staking.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "withdrawAuthority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "recipient": {
+            "type": "string",
+            "description": "Account address to which tokens will be sent.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "feePayer",
+          "amount"
+        ]
+      },
+      "SplitRequestDto": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "baseAccount": {
+            "type": "string",
+            "description": "Base account for create split account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Staking account for split.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "authority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operations with `stakeAccount` and new generated account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to move in lamports (1 SOl = 10^9 lamports).",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "feePayer",
+          "baseAccount",
+          "stakeAccount",
+          "amount"
+        ]
+      },
+      "MergeRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that will merge split tokens for staking.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "sourceStakeAccount": {
+            "type": "string",
+            "description": "Account address to merge tokens from.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "authority": {
+            "type": "string",
+            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `sourseStakeAccount`.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "sourceStakeAccount",
+          "authority"
+        ]
+      },
+      "DelegateRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAccount": {
+            "type": "string",
+            "description": "Account address that will be delegated.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "stakeAuthority": {
+            "type": "string",
+            "description": "Account address that can perform staking operations with staking account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "feePayer",
+          "stakeAccount",
+          "stakeAuthority"
+        ]
+      },
       "ExceptionResponse": {
         "type": "object",
         "properties": {
@@ -26623,1038 +28481,16 @@
           "errors"
         ]
       },
-      "SsvRequestIdAlreadyExistException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111103
-          },
-          "message": {
-            "type": "string",
-            "default": "The SSV request id already exists"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestIdAlreadyExistException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "ClusterIsLiquidatedException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111123
-          },
-          "message": {
-            "type": "string",
-            "default": "Cluster is liquidated"
-          },
-          "name": {
-            "type": "string",
-            "default": "ClusterIsLiquidatedException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "SsvRequestCreateException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111100
-          },
-          "message": {
-            "type": "string",
-            "default": "Error creating a SSV request"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestCreateException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "TokenGuardException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 101110
-          },
-          "message": {
-            "type": "string",
-            "default": "The request could not be performed because the server authorization error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "TokenGuardException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "OperatorsNotEnoughException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111124
-          },
-          "message": {
-            "type": "string",
-            "default": "Not enough available operators"
-          },
-          "name": {
-            "type": "string",
-            "default": "OperatorsNotEnoughException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "SuccessResponse": {
-        "type": "object",
-        "properties": {
-          "error": {
-            "type": "object",
-            "nullable": true,
-            "default": null
-          },
-          "result": {
-            "type": "object"
-          }
-        },
-        "required": [
-          "error",
-          "result"
-        ]
-      },
-      "CreateSsvRequestRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
-          },
-          "validatorsCount": {
-            "type": "number",
-            "description": "Number of validators. One validator is equal to 32 ETH.",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 50,
-            "example": 1
-          },
-          "withdrawalAddress": {
-            "type": "string",
-            "description": "A 0x01 prefixed withdrawal address that gets scheduled rewards as a result of the Beacon chain sweeps.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "feeRecipientAddress": {
-            "type": "string",
-            "description": "An ETH1 address that receives priority fees and MEV rewards that are not related to Beacon chain partial withdrawal sweeps.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "ssvOwnerAddress": {
-            "type": "string",
-            "description": "An ETH1 address from which the registerValidator method of the SSV contract will be called.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "with-encrypt-key",
-              "without-encrypt-key"
-            ],
-            "example": "without-encrypt-key",
-            "default": "without-encrypt-key",
-            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
-          },
-          "operationPeriodInDays": {
-            "type": "number",
-            "example": 365,
-            "description": "Operation period in days.",
-            "minimum": 1,
-            "maximum": 3650,
-            "default": 365
-          },
-          "ecdhPublicKey": {
-            "type": "string",
-            "example": null,
-            "description": "Your ECDH public key for getting the encrypted validator private key."
-          }
-        },
-        "required": [
-          "id",
-          "validatorsCount",
-          "withdrawalAddress",
-          "feeRecipientAddress",
-          "ssvOwnerAddress",
-          "type",
-          "operationPeriodInDays"
-        ]
-      },
-      "SsvRequestNotFoundException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111104
-          },
-          "message": {
-            "type": "string",
-            "default": "The SSV (%s) request not found"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestNotFoundException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "InvalidEncryptedShardesCountException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111127
-          },
-          "message": {
-            "type": "string",
-            "default": "Invalid shardes count"
-          },
-          "name": {
-            "type": "string",
-            "default": "InvalidEncryptedShardesCountException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "SsvRequestGetException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111102
-          },
-          "message": {
-            "type": "string",
-            "default": "Error getting the SSV request"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestGetException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "EncryptedShareResponse": {
-        "type": "object",
-        "properties": {
-          "publicKey": {
-            "type": "string",
-            "description": "Validator public key."
-          },
-          "nonce": {
-            "type": "string",
-            "description": "Nonce used for signature in `sharesData`."
-          },
-          "sharesData": {
-            "type": "string",
-            "description": "Data used in the `registerValidator` Ethereum transaction from the SSV contract to create a validator."
-          },
-          "ecdhEncryptedPrivateKey": {
-            "type": "string",
-            "description": "Encrypted validator private key."
-          }
-        },
-        "required": [
-          "publicKey",
-          "nonce",
-          "sharesData"
-        ]
-      },
-      "ClusterResponse": {
-        "type": "object",
-        "properties": {
-          "operators": {
-            "type": "array",
-            "items": {
-              "type": "number"
-            }
-          }
-        },
-        "required": [
-          "operators"
-        ]
-      },
-      "SsvRequestResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID that was specified in the SSV set-up request."
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "init",
-              "processing",
-              "ready",
-              "validator-ready",
-              "validator-error",
-              "cancel"
-            ],
-            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
-            "example": "processing"
-          },
-          "validatorsCount": {
-            "type": "number",
-            "description": "Number of validators.",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 1,
-            "example": 1
-          },
-          "withdrawalAddress": {
-            "type": "string",
-            "description": "Withdrawal address of the cluster owner.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "feeRecipientAddress": {
-            "type": "string",
-            "description": "Eth1 address that receives fee recipient rewards.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "ssvOwnerAddress": {
-            "type": "string",
-            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "with-encrypt-key",
-              "without-encrypt-key"
-            ],
-            "example": "without-encrypt-key",
-            "default": "without-encrypt-key",
-            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
-          },
-          "operationPeriodInDays": {
-            "type": "number",
-            "example": 31556952,
-            "description": "Operation period in days."
-          },
-          "liquidationPeriodInDays": {
-            "type": "number",
-            "example": 2629746,
-            "description": "Liquidation threshold period in days."
-          },
-          "ecdhPublicKey": {
-            "type": "string",
-            "example": null,
-            "description": "Your ECDH public key for getting the encrypted validator private key."
-          },
-          "validatorRegistrationTxs": {
-            "example": null,
-            "description": "Array of transactions related to validator registration.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "feeRecipientTx": {
-            "example": null,
-            "description": "Array of transaction for setting the fee recipient address.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "approveTx": {
-            "example": null,
-            "description": "Array of transaction to approve SSV transfer.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "encryptedShares": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EncryptedShareResponse"
-            }
-          },
-          "clusters": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ClusterResponse"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "status",
-          "validatorsCount",
-          "withdrawalAddress",
-          "feeRecipientAddress",
-          "ssvOwnerAddress",
-          "type",
-          "operationPeriodInDays",
-          "liquidationPeriodInDays",
-          "encryptedShares",
-          "clusters"
-        ]
-      },
-      "SsvValidatorErrorException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111129
-          },
-          "message": {
-            "type": "string",
-            "default": "The validator was not correctly registered on SSV. Please remove the validator from the cluster"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvValidatorErrorException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "SsvValidatorNotReadyException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111130
-          },
-          "message": {
-            "type": "string",
-            "default": "We cannot confirm the correct registration of the validator on SSV. This could be due to invalid registration or an issue with the SSV API. Please ensure you have correctly broadcasted the validatorRegistrationTxs before calling this endpoint."
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvValidatorNotReadyException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "SsvRequestGetDepositdataException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111131
-          },
-          "message": {
-            "type": "string",
-            "default": "Error getting deposit data"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestGetDepositdataException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "DepositDataResponse": {
-        "type": "object",
-        "properties": {
-          "pubkey": {
-            "type": "string",
-            "description": "Validator public key.",
-            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
-            "pattern": "^0x[a-fA-F0-9]{96}$"
-          },
-          "signature": {
-            "type": "string",
-            "description": "Validator signature.",
-            "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
-            "pattern": "^0x[a-fA-F0-9]{192}$"
-          },
-          "depositDataRoot": {
-            "type": "string",
-            "description": "Hash of the deposit data.",
-            "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
-            "pattern": "^0x[a-fA-F0-9]{64}$"
-          },
-          "withdrawalCredentials": {
-            "type": "string",
-            "description": "Public key for withdrawing balance."
-          },
-          "amount": {
-            "type": "string",
-            "description": "Deposit amount."
-          },
-          "depositMessageRoot": {
-            "type": "string",
-            "description": "Cryptographic hash of the Merkle tree’s root."
-          },
-          "forkVersion": {
-            "type": "string",
-            "description": "Version of the Ethereum fork that the deposit is for."
-          },
-          "eth2NetworkName": {
-            "type": "string",
-            "description": "Eth2 network name."
-          },
-          "depositCliVersion": {
-            "type": "string",
-            "description": "Version of the deposit command-line interface."
-          }
-        },
-        "required": [
-          "pubkey",
-          "signature",
-          "depositDataRoot"
-        ]
-      },
-      "SsvDepositDataResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID that was specified in the SSV set-up request."
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "init",
-              "processing",
-              "ready",
-              "validator-ready",
-              "validator-error",
-              "cancel"
-            ],
-            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
-            "example": "processing"
-          },
-          "depositData": {
-            "minItems": 1,
-            "maxItems": 400,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DepositDataResponse"
-            }
-          }
-        },
-        "required": [
-          "id",
-          "status",
-          "depositData"
-        ]
-      },
-      "SsvRequestGetListException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111101
-          },
-          "message": {
-            "type": "string",
-            "default": "Error getting SSV requests list"
-          },
-          "name": {
-            "type": "string",
-            "default": "SsvRequestGetListException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "GetListSsvRequestResponse": {
-        "type": "object",
-        "properties": {
-          "limit": {
-            "type": "number",
-            "minimum": 1,
-            "default": 50,
-            "description": "Number of resources that a single response page contains."
-          },
-          "offset": {
-            "type": "number",
-            "minimum": 0,
-            "description": "Number of resources to exclude from a response."
-          },
-          "totalCount": {
-            "type": "number",
-            "minimum": 1,
-            "description": "Total count of resources in the response."
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SsvRequestResponse"
-            }
-          }
-        },
-        "required": [
-          "limit",
-          "offset",
-          "totalCount",
-          "list"
-        ]
-      },
-      "NodesRequestIdAlreadyExistException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103121
-          },
-          "message": {
-            "type": "string",
-            "default": "The nodes set-up request could not be performed because the node ID specified already exists."
-          },
-          "name": {
-            "type": "string",
-            "default": "NodesRequestIdAlreadyExistException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "CannotGetPodAddressException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103128
-          },
-          "message": {
-            "type": "string",
-            "default": "The transaction could not be created because the withdrawal address '%s' provided is invalid. For the restaking flow, the withdrawal address corresponds to the EigenPod address set by default or explicitly. Please check the request parameters."
-          },
-          "name": {
-            "type": "string",
-            "default": "CannotGetPodAddressException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "NodesRequestCreateException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103116
-          },
-          "message": {
-            "type": "string",
-            "default": "The nodes set-up request could not be created because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "NodesRequestCreateException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "NodesOptionsRequest": {
-        "type": "object",
-        "properties": {
-          "location": {
-            "type": "string",
-            "enum": [
-              "any"
-            ],
-            "example": "any",
-            "description": "Nodes location. Currently, only `any` is supported.",
-            "default": "any"
-          },
-          "relaysSet": {
-            "type": "string",
-            "description": "MEV Relay selection.",
-            "example": null
-          }
-        },
-        "required": [
-          "location"
-        ]
-      },
-      "CreateNodesRequestRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "REGULAR",
-              "RESTAKING"
-            ],
-            "description": "Type of the nodes request.",
-            "example": "REGULAR"
-          },
-          "validatorsCount": {
-            "type": "number",
-            "description": "Number of validators. One validator is equal to 32 ETH.",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 3125,
-            "example": 1
-          },
-          "withdrawalAddress": {
-            "type": "string",
-            "description": "Withdrawal address for the validators.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "eigenPodOwnerAddress": {
-            "type": "string",
-            "description": "EigenPod owner address.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "controllerAddress": {
-            "type": "string",
-            "description": "Controller address for the validators.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "feeRecipientAddress": {
-            "type": "string",
-            "description": "Fee recipient address.",
-            "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "nodesOptions": {
-            "$ref": "#/components/schemas/NodesOptionsRequest"
-          }
-        },
-        "required": [
-          "id",
-          "validatorsCount",
-          "nodesOptions"
-        ]
-      },
-      "NodesRequestNotFoundException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103114
-          },
-          "message": {
-            "type": "string",
-            "default": "The node request ID provided could not be found. Please specify the correct UUID."
-          },
-          "name": {
-            "type": "string",
-            "default": "NodesRequestNotFoundException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "NodesRequestGetException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103117
-          },
-          "message": {
-            "type": "string",
-            "default": "The status of the node request could not be obtained because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "NodesRequestGetException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "NodesRequestResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID that was specified in the node set-up request."
-          },
-          "type": {
-            "type": "string",
-            "enum": [
-              "REGULAR",
-              "RESTAKING"
-            ],
-            "description": "Type of the nodes request.",
-            "example": "REGULAR"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "init",
-              "processing",
-              "ready",
-              "cancel"
-            ],
-            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
-            "example": "processing"
-          },
-          "validatorsCount": {
-            "type": "number",
-            "description": "Number of validators.",
-            "default": 1,
-            "minimum": 1,
-            "maximum": 3125,
-            "example": 1
-          },
-          "withdrawalAddress": {
-            "type": "string",
-            "description": "Withdrawal address of the validator.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "eigenPodAddress": {
-            "type": "string",
-            "description": "EigenPod address.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "eigenPodOwnerAddress": {
-            "type": "string",
-            "description": "EigenPod owner address.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "controllerAddress": {
-            "type": "string",
-            "description": "Controller address of the validator.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "feeRecipientAddress": {
-            "type": "string",
-            "description": "Fee recipient address of the validator.",
-            "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "depositData": {
-            "minItems": 1,
-            "maxItems": 400,
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DepositDataResponse"
-            }
-          },
-          "createdAt": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Timestamp of the transaction in the ISO 8601 format.",
-            "example": "2023-08-24T08:14:50.455Z"
-          }
-        },
-        "required": [
-          "id",
-          "type",
-          "status",
-          "validatorsCount",
-          "feeRecipientAddress",
-          "createdAt"
-        ]
-      },
-      "NodesRequestGetListException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103120
-          },
-          "message": {
-            "type": "string",
-            "default": "The list of nodes requests statuses could not be obtained because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "NodesRequestGetListException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "GetListNodesRequestResponse": {
-        "type": "object",
-        "properties": {
-          "limit": {
-            "type": "number",
-            "minimum": 1,
-            "default": 50,
-            "description": "Number of resources that a single response page contains."
-          },
-          "offset": {
-            "type": "number",
-            "minimum": 0,
-            "description": "Number of resources to exclude from a response."
-          },
-          "totalCount": {
-            "type": "number",
-            "minimum": 1,
-            "description": "Total count of resources in the response."
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/NodesRequestResponse"
-            }
-          }
-        },
-        "required": [
-          "limit",
-          "offset",
-          "totalCount",
-          "list"
-        ]
-      },
-      "GetRelaysSetsException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103125
-          },
-          "message": {
-            "type": "string",
-            "default": "The list of relay sets could not be obtained because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "GetRelaysSetsException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "RelaysSetResponse": {
-        "type": "object",
-        "properties": {
-          "relaysSet": {
-            "type": "string",
-            "description": "Name of the MEV relay set."
-          }
-        },
-        "required": [
-          "relaysSet"
-        ]
-      },
-      "GetRelaysSetsRequestResponse": {
-        "type": "object",
-        "properties": {
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/RelaysSetResponse"
-            }
-          }
-        },
-        "required": [
-          "list"
-        ]
-      },
       "NetworkIsNotIncludedInListException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 119119
+            "default": 120100
           },
           "message": {
             "type": "string",
-            "default": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: [ 'mainnet', 'testnet' ]."
+            "default": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: [ 'testnet', 'mainnet' ]."
           },
           "name": {
             "type": "string",
@@ -28297,11 +29133,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 119108
+            "default": 120101
           },
           "message": {
             "type": "string",
-            "default": "Transaction not found"
+            "default": "The requested transaction was not found."
           },
           "name": {
             "type": "string",
@@ -28567,7 +29403,7 @@
               "utia",
               "mtia"
             ],
-            "description": "<p>Currency of the tokens:</p><ul><li>`tia` — Celestia native staking token.</li><li>`utia` — 1 TIA = 10^-6 UTIA.</li><li>`mtia` — 1 TIA = 10^-3 MTIA.</li></ul>"
+            "description": "Currency of the tokens:</p><ul><li>`tia` — Celestia native staking token.</li><li>`utia` — 1 TIA = 10^-6 UTIA.</li><li>`mtia` — 1 TIA = 10^-3 MTIA.</li></ul>"
           },
           "validatorAddress": {
             "type": "string",
@@ -28793,6 +29629,99 @@
           "name": {
             "type": "string",
             "default": "GetNetworkExitQueueException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+
+      "GetRelaysSetsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103125
+          },
+          "message": {
+            "type": "string",
+            "default": "The list of relay sets could not be obtained because the internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "GetRelaysSetsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "TokenGuardException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 101110
+          },
+          "message": {
+            "type": "string",
+            "default": "The request could not be performed because the server authorization error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "TokenGuardException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "RelaysSetResponse": {
+        "type": "object",
+        "properties": {
+          "relaysSet": {
+            "type": "string",
+            "description": "Name of the MEV relay set."
+          }
+        },
+        "required": [
+          "relaysSet"
+        ]
+      },
+      "GetRelaysSetsRequestResponse": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RelaysSetResponse"
+            }
+          }
+        },
+        "required": [
+          "list"
+        ]
+      },
+      "Web3CreateTransactionException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103104
+          },
+          "message": {
+            "type": "string",
+            "default": "The Web3 transaction could not be created because the internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "Web3CreateTransactionException"
           }
         },
         "required": [
@@ -30828,6 +31757,396 @@
           "pubkeys"
         ]
       },
+      "NodesRequestIdAlreadyExistException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103121
+          },
+          "message": {
+            "type": "string",
+            "default": "The nodes set-up request could not be performed because the node ID specified already exists."
+          },
+          "name": {
+            "type": "string",
+            "default": "NodesRequestIdAlreadyExistException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "CannotGetPodAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103128
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because the withdrawal address '%s' provided is invalid. For the restaking flow, the withdrawal address corresponds to the EigenPod address set by default or explicitly. Please check the request parameters."
+          },
+          "name": {
+            "type": "string",
+            "default": "CannotGetPodAddressException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "NodesRequestCreateException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103116
+          },
+          "message": {
+            "type": "string",
+            "default": "The nodes set-up request could not be created because the internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "NodesRequestCreateException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "NodesOptionsRequest": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "type": "string",
+            "enum": [
+              "any"
+            ],
+            "example": "any",
+            "description": "Nodes location. Currently, only `any` is supported.",
+            "default": "any"
+          },
+          "relaysSet": {
+            "type": "string",
+            "description": "MEV Relay selection.",
+            "example": null
+          }
+        },
+        "required": [
+          "location"
+        ]
+      },
+      "CreateNodesRequestRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
+            "description": "Type of the nodes request.",
+            "example": "REGULAR"
+          },
+          "validatorsCount": {
+            "type": "number",
+            "description": "Number of validators. One validator is equal to 32 ETH.",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 3125,
+            "example": 1
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "EigenPod owner address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "controllerAddress": {
+            "type": "string",
+            "description": "Controller address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "feeRecipientAddress": {
+            "type": "string",
+            "description": "Fee recipient address.",
+            "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "nodesOptions": {
+            "$ref": "#/components/schemas/NodesOptionsRequest"
+          }
+        },
+        "required": [
+          "id",
+          "validatorsCount",
+          "nodesOptions"
+        ]
+      },
+      "NodesRequestNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103114
+          },
+          "message": {
+            "type": "string",
+            "default": "The node request ID provided could not be found. Please specify the correct UUID."
+          },
+          "name": {
+            "type": "string",
+            "default": "NodesRequestNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "NodesRequestGetException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103117
+          },
+          "message": {
+            "type": "string",
+            "default": "The status of the node request could not be obtained because the internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "NodesRequestGetException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DepositDataResponse": {
+        "type": "object",
+        "properties": {
+          "pubkey": {
+            "type": "string",
+            "description": "Validator public key.",
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
+            "pattern": "^0x[a-fA-F0-9]{96}$"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Validator signature.",
+            "example": "0x15C9D0Bf74BE4ef12b0008Ed53825Da647E0C0FE21c0EfAE2B36E066bf44A5a9b5De0B70cE19F73D8eC5E7237Dde667FE8a99Ad607BddDC4b2aDd4c4Bc57b10ddfe7f0bFb925b48f4d37Cee8f894cEA365CeeA6c4B25a9Ca7DAbDfFdB2EDd6eB",
+            "pattern": "^0x[a-fA-F0-9]{192}$"
+          },
+          "depositDataRoot": {
+            "type": "string",
+            "description": "Hash of the deposit data.",
+            "example": "0xFEDdcB470eAA856c57f466e2f4d4F6971efEA1ED38fdB91bD913EEFFb52C8E24",
+            "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "withdrawalCredentials": {
+            "type": "string",
+            "description": "Public key for withdrawing balance."
+          },
+          "amount": {
+            "type": "string",
+            "description": "Deposit amount."
+          },
+          "depositMessageRoot": {
+            "type": "string",
+            "description": "Cryptographic hash of the Merkle tree’s root."
+          },
+          "forkVersion": {
+            "type": "string",
+            "description": "Version of the Ethereum fork that the deposit is for."
+          },
+          "eth2NetworkName": {
+            "type": "string",
+            "description": "Eth2 network name."
+          },
+          "depositCliVersion": {
+            "type": "string",
+            "description": "Version of the deposit command-line interface."
+          }
+        },
+        "required": [
+          "pubkey",
+          "signature",
+          "depositDataRoot"
+        ]
+      },
+      "NodesRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID that was specified in the node set-up request."
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "REGULAR",
+              "RESTAKING"
+            ],
+            "description": "Type of the nodes request.",
+            "example": "REGULAR"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "cancel"
+            ],
+            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
+            "example": "processing"
+          },
+          "validatorsCount": {
+            "type": "number",
+            "description": "Number of validators.",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 3125,
+            "example": 1
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address of the validator.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "eigenPodAddress": {
+            "type": "string",
+            "description": "EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "EigenPod owner address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "controllerAddress": {
+            "type": "string",
+            "description": "Controller address of the validator.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "feeRecipientAddress": {
+            "type": "string",
+            "description": "Fee recipient address of the validator.",
+            "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "depositData": {
+            "minItems": 1,
+            "maxItems": 400,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepositDataResponse"
+            }
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "status",
+          "validatorsCount",
+          "feeRecipientAddress",
+          "createdAt"
+        ]
+      },
+      "NodesRequestGetListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103120
+          },
+          "message": {
+            "type": "string",
+            "default": "The list of nodes requests statuses could not be obtained because the internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "NodesRequestGetListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "GetListNodesRequestResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodesRequestResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
       "VemIdAlreadyExistException": {
         "type": "object",
         "properties": {
@@ -31070,18 +32389,18 @@
             "type": "string",
             "format": "uuid",
             "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID of the EigenLayer node operator."
+            "description": "UUID of the Eigen operator."
           },
           "address": {
             "type": "string",
-            "description": "Node operator address.",
+            "description": "Operator address.",
             "example": "0xb1bd1266ec811048161424f534e74c76c48e6ce2",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "name": {
             "type": "string",
             "example": "P2P",
-            "description": "Node operator name."
+            "description": "Operator name."
           }
         },
         "required": [
@@ -31593,19 +32912,6 @@
           "name"
         ]
       },
-      "SendRequest": {
-        "type": "object",
-        "properties": {
-          "signedTransaction": {
-            "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
-            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
-          }
-        },
-        "required": [
-          "signedTransaction"
-        ]
-      },
       "TransactionGetListException": {
         "type": "object",
         "properties": {
@@ -31972,7 +33278,7 @@
               "controller",
               "account"
             ],
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferable balance.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -32017,7 +33323,7 @@
               "account"
             ],
             "example": "account",
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferable balance.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -32958,7 +34264,7 @@
               "controller",
               "account"
             ],
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your stash account as transferable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferable balance.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -32967,7 +34273,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           },
           "createdAt": {
@@ -33004,7 +34310,7 @@
               "account"
             ],
             "example": "account",
-            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your stash account as transferable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferable balance.</li></ul>"
+            "description": "<p>Rewards destination type:</p><ul><li>`staked` — rewards will be sent to your Stash account and added to your current bond (compounding rewards).</li><li>`stash` — rewards will be sent to your Stash account as transferrable balance (not compounding rewards).</li><li>`controller` — rewards will be sent to the controller account.</li><li>`account` — rewards will be sent to any account you specify as transferrable balance.</li></ul>"
           },
           "rewardDestination": {
             "type": "string",
@@ -33013,7 +34319,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
@@ -33065,7 +34371,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "example": 1
           }
         },
@@ -33084,7 +34390,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
@@ -33115,7 +34421,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to unbond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
@@ -33192,7 +34498,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to bond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           },
           "createdAt": {
@@ -33326,7 +34632,7 @@
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to unbond. AVAIL is used for the mainnet network.",
+            "description": "Amount of tokens to unbond (in usual DOTs/KSMs/WNDs).",
             "example": 3
           }
         },
@@ -33383,448 +34689,6 @@
         },
         "required": [
           "stashAccountAddress"
-        ]
-      },
-      "SendResponse": {
-        "type": "object",
-        "properties": {
-          "transactionId": {
-            "type": "string",
-            "description": "Block hash in which the transaction was included.",
-            "example": "0x0628743b05ffb4c9d5ea2144b359af38910f0ae439a685f57d85b50b9481ba3f"
-          },
-          "slot": {
-            "type": "number",
-            "description": "Period of time during which each leader collects transactions and creates a block in the Solana network.",
-            "example": "17168395"
-          },
-          "signerAccounts": {
-            "type": "string",
-            "description": "Account addresses that signed the transaction.",
-            "example": [
-              "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-            ]
-          },
-          "createdAt": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Timestamp of the transaction in the ISO 8601 format.",
-            "example": "2023-08-24T08:14:50.455Z"
-          }
-        },
-        "required": [
-          "transactionId",
-          "slot",
-          "signerAccounts",
-          "createdAt"
-        ]
-      },
-      "GetStakingResponse": {
-        "type": "object",
-        "properties": {
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawAuthority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "voteAccount": {
-            "type": "string",
-            "description": "Vote account address.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "status": {
-            "type": "string",
-            "enum": [
-              "active",
-              "inactive",
-              "activating",
-              "deactivating"
-            ],
-            "description": "Stake account status: `active`, `inactive`, `activating`, `deactivating`.",
-            "example": "active"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports).",
-            "minimum": 1,
-            "example": 1
-          }
-        },
-        "required": [
-          "stakeAccount",
-          "stakeAuthority",
-          "withdrawAuthority",
-          "voteAccount",
-          "status",
-          "amount"
-        ]
-      },
-      "StakingResponse": {
-        "type": "object",
-        "properties": {
-          "accounts": {
-            "description": "List of stake accounts.",
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetStakingResponse"
-            }
-          }
-        },
-        "required": [
-          "accounts"
-        ]
-      },
-      "StatusesResponse": {
-        "type": "object",
-        "properties": {
-          "statuses": {
-            "type": "string",
-            "description": "Status of the vote account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          }
-        },
-        "required": [
-          "statuses"
-        ]
-      },
-      "StakeResult": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "fromPublicKey": {
-            "type": "string",
-            "description": "Account address from which the staking account will be created.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawAuthority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
-            "minimum": 1,
-            "example": 1
-          },
-          "unsignedTransaction": {
-            "type": "string",
-            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
-            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
-          },
-          "createdAt": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Timestamp of the transaction in the ISO 8601 format.",
-            "example": "2023-08-24T08:14:50.455Z"
-          }
-        },
-        "required": [
-          "feePayer",
-          "fromPublicKey",
-          "stakeAccount",
-          "stakeAuthority",
-          "withdrawAuthority",
-          "amount",
-          "unsignedTransaction",
-          "createdAt"
-        ]
-      },
-      "StakeRequest": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "fromPublicKey": {
-            "type": "string",
-            "description": "Account address from which the staking account will be created.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawAuthority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operation with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports). Min amount is `1002282880`.",
-            "minimum": 1,
-            "example": 1
-          }
-        },
-        "required": [
-          "feePayer",
-          "fromPublicKey",
-          "amount"
-        ]
-      },
-      "DeactivateResult": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "Fw82VhehY4yazX6tcZfNQWTsqHDSXaGmwVkbJYegDMbG"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "unsignedTransaction": {
-            "type": "string",
-            "description": "Unsigned transaction in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
-            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
-          },
-          "createdAt": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Timestamp of the transaction in the ISO 8601 format.",
-            "example": "2023-08-24T08:14:50.455Z"
-          }
-        },
-        "required": [
-          "feePayer",
-          "unsignedTransaction",
-          "createdAt"
-        ]
-      },
-      "DeactivateRequest": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          }
-        },
-        "required": [
-          "feePayer",
-          "stakeAccount",
-          "stakeAuthority"
-        ]
-      },
-      "WithdrawResult": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawAuthority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "recipient": {
-            "type": "string",
-            "description": "Account address to which tokens will be sent.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
-            "minimum": 1,
-            "example": 1
-          },
-          "unsignedTransaction": {
-            "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
-            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
-          },
-          "createdAt": {
-            "format": "datetime",
-            "type": "string",
-            "description": "Timestamp of the transaction in the ISO 8601 format.",
-            "example": "2023-08-24T08:14:50.455Z"
-          }
-        },
-        "required": [
-          "feePayer",
-          "amount",
-          "unsignedTransaction",
-          "createdAt"
-        ]
-      },
-      "WithdrawRequest": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that stores tokens for staking.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "withdrawAuthority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "recipient": {
-            "type": "string",
-            "description": "Account address to which tokens will be sent.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
-            "minimum": 1,
-            "example": 1
-          }
-        },
-        "required": [
-          "feePayer",
-          "amount"
-        ]
-      },
-      "SplitRequestDto": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "baseAccount": {
-            "type": "string",
-            "description": "Account address to split tokens from.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that will receive split tokens for staking.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "authority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `baseAccount`.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "amount": {
-            "type": "number",
-            "description": "Amount of tokens to move in lamports (1 SOl = 10^9 lamports).",
-            "minimum": 1,
-            "example": 1
-          }
-        },
-        "required": [
-          "feePayer",
-          "baseAccount",
-          "stakeAccount",
-          "amount"
-        ]
-      },
-      "MergeRequest": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that will merge split tokens for staking.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "sourceStakeAccount": {
-            "type": "string",
-            "description": "Account address to merge tokens from.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "authority": {
-            "type": "string",
-            "description": "Account address that can perform withdrawal operations with `stakeAccount` and `sourseStakeAccount`.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          }
-        },
-        "required": [
-          "feePayer",
-          "stakeAccount",
-          "sourceStakeAccount",
-          "authority"
-        ]
-      },
-      "DelegateRequest": {
-        "type": "object",
-        "properties": {
-          "feePayer": {
-            "type": "string",
-            "description": "Account address that will pay the fee for the transaction.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAccount": {
-            "type": "string",
-            "description": "Account address that will be delegated.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "stakeAuthority": {
-            "type": "string",
-            "description": "Account address that can perform staking operations with staking account.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          }
-        },
-        "required": [
-          "feePayer",
-          "stakeAccount",
-          "stakeAuthority"
         ]
       },
       "ApproveRequestDto": {
@@ -33890,21 +34754,20 @@
       "UnstakeRequestDto": {
         "type": "object",
         "properties": {
-          "unbondNonce": {
+          "stakerPublicKey": {
             "type": "string",
-            "description": "Unique identifier of the undelegate request.",
-            "example": "100"
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
           },
-          "stakerAddress": {
+          "stakeTransactionHash": {
             "type": "string",
-            "description": "Staker account address.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
+            "description": "Hash of the initial staking transaction.",
+            "example": "80410b51dabc9d31edab7fbdff26ac3bda70d3131830239ac0e3e9c8c1fc4028"
           }
         },
         "required": [
-          "unbondNonce",
-          "stakerAddress"
+          "stakerPublicKey",
+          "stakeTransactionHash"
         ]
       },
       "WithdrawRequestDto": {
@@ -33987,6 +34850,930 @@
         "required": [
           "signedTransaction",
           "stakerAddress"
+        ]
+      },
+      "InvalidAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 120104
+          },
+          "message": {
+            "type": "string",
+            "default": "The provided address [ 'testnet', 'mainnet' ] is invalid."
+          },
+          "name": {
+            "type": "string",
+            "default": "InvalidAddressException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "StakeResponseDto": {
+        "type": "object",
+        "properties": {
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker taproot address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          },
+          "stakeAmount": {
+            "type": "number",
+            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000000
+          },
+          "stakingDuration": {
+            "type": "number",
+            "description": "Time-lock period for staking in Bitcoin blocks.",
+            "example": 100
+          },
+          "finallyProviderPublicKey": {
+            "type": "string",
+            "description": "Finality provider public key produced by the Schnorr signature algorithm.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakeTransactionHex": {
+            "type": "string",
+            "description": "Unsigned stake transaction in the hexadecimal format. Sign the transaction and submit it to the Bitcoin blockchain to perform the called action.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Total fee in SATOSHI charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000
+          }
+        },
+        "required": [
+          "stakerPublicKey",
+          "stakerAddress",
+          "stakeAmount",
+          "stakingDuration",
+          "finallyProviderPublicKey",
+          "stakeTransactionHex",
+          "fee"
+        ]
+      },
+      "StakeRequestDto": {
+        "type": "object",
+        "properties": {
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker taproot address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          },
+          "stakeAmount": {
+            "type": "number",
+            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
+            "example": 30000
+          },
+          "stakingDuration": {
+            "type": "number",
+            "description": "Time-lock period for staking in Bitcoin blocks.",
+            "example": 150
+          }
+        },
+        "required": [
+          "stakerPublicKey",
+          "stakerAddress",
+          "stakeAmount",
+          "stakingDuration"
+        ]
+      },
+      "WithdrawalResponseDto": {
+        "type": "object",
+        "properties": {
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Staker withdrawal address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          },
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakeTransactionHash": {
+            "type": "string",
+            "description": "Hash of the initial staking transaction.",
+            "example": "80410b51dabc9d31edab7fbdff26ac3bda70d3131830239ac0e3e9c8c1fc4028"
+          },
+          "withdrawalTransactionHex": {
+            "type": "string",
+            "description": "Unsigned transaction for withdrawal request in the hexadecimal format. Sign the transaction and submit it to the Bitcoin blockchain to perform the called action.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Total fee in SATOSHI charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000
+          }
+        },
+        "required": [
+          "withdrawalAddress",
+          "stakerPublicKey",
+          "stakeTransactionHash",
+          "withdrawalTransactionHex",
+          "fee"
+        ]
+      },
+      "WithdrawalRequestDto": {
+        "type": "object",
+        "properties": {
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakeTransactionHash": {
+            "type": "string",
+            "description": "Hash of the initial staking transaction.",
+            "example": "80410b51dabc9d31edab7fbdff26ac3bda70d3131830239ac0e3e9c8c1fc4028"
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Staker withdrawal address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          }
+        },
+        "required": [
+          "stakerPublicKey",
+          "stakeTransactionHash",
+          "withdrawalAddress"
+        ]
+      },
+      "TransactionIsNotStake": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 120102
+          },
+          "message": {
+            "type": "string",
+            "default": "The requested transaction is not a stake transaction. %s"
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionIsNotStake"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "UnstakeResponseDto": {
+        "type": "object",
+        "properties": {
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakeTransactionHash": {
+            "type": "string",
+            "description": "Hash of the initial staking transaction.",
+            "example": ""
+          },
+          "unstakeTransactionHex": {
+            "type": "string",
+            "description": "Unsigned transaction for the unstake request in the hexadecimal format. Sign the transaction to consequently broadcast it to the Bitcoin blockchain.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "unstakeFee": {
+            "type": "number",
+            "description": "Total fee in SATOSHI charged for unlocking the staked assets and processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000
+          }
+        },
+        "required": [
+          "stakerPublicKey",
+          "stakeTransactionHash",
+          "unstakeTransactionHex",
+          "unstakeFee"
+        ]
+      },
+      "SendResponseDto": {
+        "type": "object",
+        "properties": {
+          "transactionHash": {
+            "type": "string",
+            "description": "Transaction hash.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          }
+        },
+        "required": [
+          "transactionHash"
+        ]
+      },
+      "SendRequestDto": {
+        "type": "object",
+        "properties": {
+          "tranasctionHex": {
+            "type": "string",
+            "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "maxFee": {
+            "type": "number",
+            "description": "Maximum fee in SATOSHI that can be charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000000
+          }
+        },
+        "required": [
+          "tranasctionHex",
+          "maxFee"
+        ]
+      },
+      "UnbondingResponseDto": {
+        "type": "object",
+        "properties": {
+          "stakingTxHash": {
+            "type": "string",
+            "description": "Hash of the initial staking transaction.",
+            "example": "80410b51dabc9d31edab7fbdff26ac3bda70d3131830239ac0e3e9c8c1fc4028"
+          },
+          "unbondingTxHex": {
+            "type": "string",
+            "description": "Unsigned transaction for the unbonding request in the hexadecimal format.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "unbondingTxHash": {
+            "type": "string",
+            "description": "Hash of the partially signed unbonding transaction.",
+            "example": "02000000000101e64994aad9ebe5f9bbe8344a743aa6dbbc9d5ecab0cc135b2697bbeef7834bfd0000000000ffffffff017869000000000000225120abc575829d73ef108ceba4f1686f657e6e2f70852208eabaa0cd74e248f203a7034031226d5e6be2988bc81b4ede2e507e8795992e2f8dbf73c3c7887ca611ef74d46e4ddcf41734478e088a2c9f110be6bb29f4d8fc9a6c0aca6b2ba648bdb850208a20be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4ad2017921cf156ccb4e73d428f996ed11b245313e37e27c978ac4d2cc21eca4672e4ac2049766ccd9e3cd94343e2040474a77fb37cdfd30530d05f9f1e96ae1e2102c86eba2076d1ae01f8fb6bf30108731c884cddcf57ef6eef2d9d9559e130894e0e40c62cba529c61c050929b74c1a04954b78b4b6035e97a5e078a5a0f28ec96d547bfee9ace803ac073c168cce70e3d66240fcd3ef216f083436f448372fe7cccb668449cbcb15b26639fa5fb4094c2f7ea65e9c176ccd983b1cda874de942d6fb8cd3b4f2e2aa14b00000000"
+          },
+          "stakerSignature": {
+            "type": "string",
+            "description": "Staker signature of the unbonding transaction.",
+            "example": "304402203f7c0f6c1f7a8f7"
+          }
+        },
+        "required": [
+          "stakingTxHash",
+          "unbondingTxHex",
+          "unbondingTxHash",
+          "stakerSignature"
+        ]
+      },
+      "UnbondingRequestDto": {
+        "type": "object",
+        "properties": {
+          "stakingTxHash": {
+            "type": "string",
+            "description": "Hash of the initial staking transaction.",
+            "example": "80410b51dabc9d31edab7fbdff26ac3bda70d3131830239ac0e3e9c8c1fc4028"
+          },
+          "unbondingTxHex": {
+            "type": "string",
+            "description": "Unsigned transaction for the unbonding request in the hexadecimal format.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          }
+        },
+        "required": [
+          "stakingTxHash",
+          "unbondingTxHex"
+        ]
+      },
+      "Transaction": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Transaction type.",
+            "example": "Stake"
+          },
+          "txHash": {
+            "type": "string",
+            "description": "Transaction hash.",
+            "example": "0x"
+          },
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          },
+          "stakeAmount": {
+            "type": "number",
+            "description": "Stake amount in SATOSHI (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000000
+          },
+          "stakeTime": {
+            "type": "number",
+            "description": "Time-lock period for staking in Bitcoin blocks.",
+            "example": 100
+          },
+          "finallyProviderPublicKey": {
+            "type": "string",
+            "description": "Finality provider public key produced by the Schnorr signature algorithm.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          }
+        },
+        "required": [
+          "type",
+          "txHash",
+          "stakerPublicKey",
+          "stakerAddress",
+          "stakeAmount",
+          "stakeTime",
+          "finallyProviderPublicKey"
+        ]
+      },
+      "GetByAddressResponse": {
+        "type": "object",
+        "properties": {
+          "transactions": {
+            "description": "List of Babylon transactions.",
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Transaction"
+            }
+          }
+        },
+        "required": [
+          "transactions"
+        ]
+      },
+      "GetByHashResponse": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "description": "List of Babylon transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/Transaction"
+              }
+            ]
+          }
+        },
+        "required": [
+          "transaction"
+        ]
+      },
+      "SsvRequestIdAlreadyExistException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111103
+          },
+          "message": {
+            "type": "string",
+            "default": "The SSV request id already exists"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestIdAlreadyExistException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ClusterIsLiquidatedException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111123
+          },
+          "message": {
+            "type": "string",
+            "default": "Cluster is liquidated"
+          },
+          "name": {
+            "type": "string",
+            "default": "ClusterIsLiquidatedException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvRequestCreateException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111100
+          },
+          "message": {
+            "type": "string",
+            "default": "Error creating a SSV request"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestCreateException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "OperatorsNotEnoughException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111124
+          },
+          "message": {
+            "type": "string",
+            "default": "Not enough available operators"
+          },
+          "name": {
+            "type": "string",
+            "default": "OperatorsNotEnoughException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "CreateSsvRequestRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
+          },
+          "validatorsCount": {
+            "type": "number",
+            "description": "Number of validators. One validator is equal to 32 ETH.",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 50,
+            "example": 1
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address of the client.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "feeRecipientAddress": {
+            "type": "string",
+            "description": "Eth1 address that receives fee recipient rewards.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "ssvOwnerAddress": {
+            "type": "string",
+            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "with-encrypt-key",
+              "without-encrypt-key"
+            ],
+            "example": "without-encrypt-key",
+            "default": "without-encrypt-key",
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
+          },
+          "operationPeriodInDays": {
+            "type": "number",
+            "example": 365,
+            "description": "Operation period in days.",
+            "minimum": 1,
+            "maximum": 3650,
+            "default": 365
+          },
+          "ecdhPublicKey": {
+            "type": "string",
+            "example": null,
+            "description": "Your ECDH public key for getting the encrypted validator private key."
+          }
+        },
+        "required": [
+          "id",
+          "validatorsCount",
+          "withdrawalAddress",
+          "feeRecipientAddress",
+          "ssvOwnerAddress",
+          "type",
+          "operationPeriodInDays"
+        ]
+      },
+      "SsvRequestNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111104
+          },
+          "message": {
+            "type": "string",
+            "default": "The SSV (%s) request not found"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "InvalidEncryptedShardesCountException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111127
+          },
+          "message": {
+            "type": "string",
+            "default": "Invalid shardes count"
+          },
+          "name": {
+            "type": "string",
+            "default": "InvalidEncryptedShardesCountException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvRequestGetException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111102
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting the SSV request"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestGetException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "EncryptedShareResponse": {
+        "type": "object",
+        "properties": {
+          "publicKey": {
+            "type": "string",
+            "description": "Validator public key."
+          },
+          "nonce": {
+            "type": "string",
+            "description": "Nonce used for signature in `sharesData`."
+          },
+          "sharesData": {
+            "type": "string",
+            "description": "Data used in the `registerValidator` Ethereum transaction from the SSV contract to create a validator."
+          },
+          "ecdhEncryptedPrivateKey": {
+            "type": "string",
+            "description": "Encrypted validator private key."
+          }
+        },
+        "required": [
+          "publicKey",
+          "nonce",
+          "sharesData"
+        ]
+      },
+      "ClusterResponse": {
+        "type": "object",
+        "properties": {
+          "operators": {
+            "type": "array",
+            "items": {
+              "type": "number"
+            }
+          }
+        },
+        "required": [
+          "operators"
+        ]
+      },
+      "SsvRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID that was specified in the SSV set-up request."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "validator-ready",
+              "validator-error",
+              "cancel"
+            ],
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
+            "example": "processing"
+          },
+          "validatorsCount": {
+            "type": "number",
+            "description": "Number of validators.",
+            "default": 1,
+            "minimum": 1,
+            "maximum": 1,
+            "example": 1
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address of the cluster owner.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "feeRecipientAddress": {
+            "type": "string",
+            "description": "Eth1 address that receives fee recipient rewards.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "ssvOwnerAddress": {
+            "type": "string",
+            "description": "An ETH1 address from which registerValidator method of SSV contract will be called.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "with-encrypt-key",
+              "without-encrypt-key"
+            ],
+            "example": "without-encrypt-key",
+            "default": "without-encrypt-key",
+            "description": "Request type: with or without an encrypted key. If `with-encrypt-key` is selected, fill the `ecdhPublicKey` field."
+          },
+          "operationPeriodInDays": {
+            "type": "number",
+            "example": 31556952,
+            "description": "Operation period in days."
+          },
+          "liquidationPeriodInDays": {
+            "type": "number",
+            "example": 2629746,
+            "description": "Liquidation threshold period in days."
+          },
+          "ecdhPublicKey": {
+            "type": "string",
+            "example": null,
+            "description": "Your ECDH public key for getting the encrypted validator private key."
+          },
+          "validatorRegistrationTxs": {
+            "example": null,
+            "description": "Array of transactions related to validator registration.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "feeRecipientTx": {
+            "example": null,
+            "description": "Array of transaction for setting the fee recipient address.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "approveTx": {
+            "example": null,
+            "description": "Array of transaction to approve SSV transfer.",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "encryptedShares": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EncryptedShareResponse"
+            }
+          },
+          "clusters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClusterResponse"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "validatorsCount",
+          "withdrawalAddress",
+          "feeRecipientAddress",
+          "ssvOwnerAddress",
+          "type",
+          "operationPeriodInDays",
+          "liquidationPeriodInDays",
+          "encryptedShares",
+          "clusters"
+        ]
+      },
+      "SsvValidatorErrorException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111129
+          },
+          "message": {
+            "type": "string",
+            "default": "The validator was not correctly registered on SSV. Please remove the validator from the cluster"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvValidatorErrorException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvValidatorNotReadyException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111130
+          },
+          "message": {
+            "type": "string",
+            "default": "We cannot confirm the correct registration of the validator on SSV. This could be due to invalid registration or an issue with the SSV API. Please ensure you have correctly broadcasted the validatorRegistrationTxs before calling this endpoint."
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvValidatorNotReadyException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvRequestGetDepositdataException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111131
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting deposit data"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestGetDepositdataException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "SsvDepositDataResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "description": "UUID that was specified in the SSV set-up request."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "init",
+              "processing",
+              "ready",
+              "validator-ready",
+              "validator-error",
+              "cancel"
+            ],
+            "description": "<p>Current status of the SSV request:</p><ul><li><i>init</i> — request is stored.</li><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>validator-ready</i> — validator is registered on the SSV network.</li><li><i>validator-error</i> — validator data is not valid.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
+            "example": "processing"
+          },
+          "depositData": {
+            "minItems": 1,
+            "maxItems": 400,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepositDataResponse"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "depositData"
+        ]
+      },
+      "SsvRequestGetListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111101
+          },
+          "message": {
+            "type": "string",
+            "default": "Error getting SSV requests list"
+          },
+          "name": {
+            "type": "string",
+            "default": "SsvRequestGetListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "GetListSsvRequestResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources in the response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SsvRequestResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
         ]
       },
       "RemoveValidatorException": {
