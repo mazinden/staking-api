@@ -29708,22 +29708,6 @@
           "list"
         ]
       },
-      "Web3CreateTransactionException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103104
-          },
-          "message": {
-            "type": "string",
-            "default": "The Web3 transaction could not be created because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "Web3CreateTransactionException"
-          }
-        },
         "required": [
           "code",
           "message",
