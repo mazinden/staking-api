@@ -29226,6 +29226,363 @@
         ]
       }
     },
+    "/api/v1/unified/staking/stake": {
+      "post": {
+        "operationId": "unified-create-stake-transaction",
+        "summary": "Create Unified Staking Request",
+        "description": "Create unified stake request transaction.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnifiedStakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnifiedStakeResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Unified"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/unified/staking/unstake": {
+      "post": {
+        "operationId": "unified-create-unstake-transaction",
+        "summary": "",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnifiedUnstakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnifiedStakeResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Unified"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/unified/staking/withdraw": {
+      "post": {
+        "operationId": "unified-create-withdraw-transaction",
+        "summary": "",
+        "description": "",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnifiedWithdrawRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnifiedStakeResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Unified"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/unified/transaction/broadcast": {
+      "post": {
+        "operationId": "unified-transaction-send",
+        "summary": "Broadcast Transaction",
+        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
+        "parameters": [
+          {
+            "name": "authorization",
+            "required": true,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnifiedTxBroadcastRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/UnifiedTxBroadcastResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Unified"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/ton/{network}/staking/single-nominator/stake": {
       "post": {
         "operationId": "ton-staking-single-nominator-stake",
@@ -29337,6 +29694,136 @@
                       "oneOf": [
                         {
                           "$ref": "#/components/schemas/SingleNominatorUnstakeResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "TON"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/ton/{network}/staking/ton-whales/stake": {
+      "post": {
+        "operationId": "ton-staking-ton-whales-stake",
+        "summary": "Create Stake Request",
+        "description": "Create the stake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>TON network:</p><ul><li>`mainnet` — production network.</li><li>`testnet` — testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TonWhalesStakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TonWhalesStakeResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "TON"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/ton/{network}/staking/ton-whales/unstake": {
+      "post": {
+        "operationId": "ton-staking-ton-whales-unstake",
+        "summary": "Create Unstake Request",
+        "description": "Create the unstake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>TON network:</p><ul><li>`mainnet` — production network.</li><li>`testnet` — testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TonWhalesUnstakeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TonWhalesUnstakeRequest"
                         }
                       ]
                     }
@@ -38280,6 +38767,337 @@
           "list"
         ]
       },
+      "String": {
+        "type": "object",
+        "properties": {}
+      },
+      "CodecDate": {
+        "type": "object",
+        "properties": {}
+      },
+      "UnifiedStakeResponse": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to stake.",
+            "example": 1002282880,
+            "minimum": 0
+          },
+          "stakerAddress": {
+            "description": "Account address that will stake tokens.",
+            "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/String"
+              }
+            ]
+          },
+          "unsignedTransactionData": {
+            "description": "Unsigned transaction data, in Base64 format or as an object.",
+            "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA...",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/String"
+              }
+            ]
+          },
+          "extraData": {
+            "type": "object",
+            "description": "Additional data related to the staking transaction."
+          },
+          "createdAt": {
+            "format": "datetime",
+            "description": "Timestamp when the transaction was created.",
+            "example": "2023-08-24T08:14:50.455Z",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/CodecDate"
+              }
+            ]
+          }
+        },
+        "required": [
+          "amount",
+          "stakerAddress",
+          "unsignedTransactionData",
+          "createdAt"
+        ]
+      },
+      "UnifiedStakeRequest": {
+        "type": "object",
+        "properties": {
+          "chain": {
+            "type": "string",
+            "enum": [
+              "avail",
+              "babylon-btc",
+              "celestia",
+              "cosmos",
+              "polkadot",
+              "polygon",
+              "solana",
+              "eth_ssv"
+            ],
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "example": "avail"
+          },
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "testnet",
+              "testnet",
+              "mainnet",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
+              "cosmoshub-4",
+              "mainnet",
+              "kusama",
+              "westend",
+              "polygon",
+              "mainnet-beta",
+              "testnet",
+              "mainnet",
+              "testnet"
+            ],
+            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "example": "mainnet"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker Address",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to stake.",
+            "minimum": 1,
+            "example": 1
+          },
+          "extra": {
+            "type": "object",
+            "description": "Additional optional parameters.",
+            "example": {
+              "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+            }
+          }
+        },
+        "required": [
+          "chain",
+          "network",
+          "stakerAddress",
+          "amount"
+        ]
+      },
+      "UnifiedUnstakeRequest": {
+        "type": "object",
+        "properties": {
+          "chain": {
+            "type": "string",
+            "enum": [
+              "avail",
+              "babylon-btc",
+              "celestia",
+              "cosmos",
+              "polkadot",
+              "polygon",
+              "solana",
+              "eth_ssv"
+            ],
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "example": "avail"
+          },
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "testnet",
+              "testnet",
+              "mainnet",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
+              "cosmoshub-4",
+              "mainnet",
+              "kusama",
+              "westend",
+              "polygon",
+              "mainnet-beta",
+              "testnet",
+              "mainnet",
+              "testnet"
+            ],
+            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "example": "mainnet"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker Address",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "extra": {
+            "type": "object",
+            "description": "Additional optional parameters.",
+            "example": {
+              "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+            }
+          }
+        },
+        "required": [
+          "chain",
+          "network",
+          "stakerAddress"
+        ]
+      },
+      "UnifiedWithdrawRequest": {
+        "type": "object",
+        "properties": {
+          "chain": {
+            "type": "string",
+            "enum": [
+              "avail",
+              "babylon-btc",
+              "celestia",
+              "cosmos",
+              "polkadot",
+              "polygon",
+              "solana",
+              "eth_ssv"
+            ],
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "example": "avail"
+          },
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "testnet",
+              "testnet",
+              "mainnet",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
+              "cosmoshub-4",
+              "mainnet",
+              "kusama",
+              "westend",
+              "polygon",
+              "mainnet-beta",
+              "testnet",
+              "mainnet",
+              "testnet"
+            ],
+            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "example": "mainnet"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker Address",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "extra": {
+            "type": "object",
+            "description": "Additional optional parameters.",
+            "example": {
+              "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+            }
+          }
+        },
+        "required": [
+          "chain",
+          "network",
+          "stakerAddress"
+        ]
+      },
+      "UnifiedTxBroadcastResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "description": "Status of the broadcast transaction.",
+            "example": "success"
+          },
+          "extraData": {
+            "type": "object",
+            "description": "Additional data related to the broadcast transaction."
+          }
+        },
+        "required": [
+          "status"
+        ]
+      },
+      "UnifiedTxBroadcastRequest": {
+        "type": "object",
+        "properties": {
+          "chain": {
+            "type": "string",
+            "enum": [
+              "avail",
+              "babylon-btc",
+              "celestia",
+              "cosmos",
+              "polkadot",
+              "polygon",
+              "solana",
+              "eth_ssv"
+            ],
+            "description": "The chain in which the broadcast request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "example": "avail"
+          },
+          "network": {
+            "type": "string",
+            "enum": [
+              "mainnet",
+              "testnet",
+              "testnet",
+              "mainnet",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
+              "cosmoshub-4",
+              "mainnet",
+              "kusama",
+              "westend",
+              "polygon",
+              "mainnet-beta",
+              "testnet",
+              "mainnet",
+              "testnet"
+            ],
+            "description": "The network in which the broadcast request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "example": "mainnet"
+          },
+          "signedTransaction": {
+            "description": "Signed transaction.",
+            "example": "0x450284002c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f01befdb7fa39c5a995a8d58676a0513d082be",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/String"
+              }
+            ]
+          },
+          "stakerAddress": {
+            "description": "Staker Address",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/String"
+              }
+            ]
+          },
+          "extra": {
+            "type": "object",
+            "description": "Additional optional parameters.",
+            "example": {
+              "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+            }
+          }
+        },
+        "required": [
+          "chain",
+          "network",
+          "signedTransaction",
+          "stakerAddress"
+        ]
+      },
       "SingleNominatorStakeResponse": {
         "type": "object",
         "properties": {
@@ -38379,7 +39197,102 @@
           "amount": {
             "format": "int64",
             "type": "integer",
-            "description": "Amount of tokens to unstake in nanoTONs (1 TON = 10⁹ nanoTONs).",
+            "description": "The amount to be unstaked in nano tons",
+            "example": "200"
+          },
+          "walletVersion": {
+            "type": "string",
+            "description": "Version of the wallet",
+            "example": "V4",
+            "default": "V4"
+          }
+        },
+        "required": [
+          "publicKey",
+          "amount"
+        ]
+      },
+      "TonWhalesStakeResponse": {
+        "type": "object",
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction for the stake request in the hexadecimal format.",
+            "example": "b5ee9c7241010101003000005c00000000000000039fedeab7a2b56b38f19f60b5b9f70b2f1ba2d89b9c5a756036c7cfad73571fb28188ee6b2800b10cbe42"
+          },
+          "poolAddress": {
+            "type": "string",
+            "description": "Nominator pool address.",
+            "example": "kQDr9Sq482A6ikIUh5mUUjJaBUUJBrye13CJiDB-R31_l7mg"
+          },
+          "walletVersion": {
+            "type": "string",
+            "description": "Version of the smart contract used by the wallet in the TON blockchain.",
+            "example": "V4"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Main account address of the bounceable type which keeps tokens.",
+            "example": "7031f1dcbe0f670daf4094d04ff9a7947bc4ac9174a7d470255d1a664e20b7c6"
+          },
+          "publicKey": {
+            "type": "string",
+            "description": "Public key of the nominator for the TON network.",
+            "example": "7031f1dcbe0f670daf4094d04ff9a7947bc4ac9174a7d470255d1a664e20b7c6"
+          },
+          "amount": {
+            "type": "string",
+            "description": "Amount of tokens to stake in TON.",
+            "example": 2
+          }
+        },
+        "required": [
+          "unsignedTransaction",
+          "poolAddress",
+          "walletVersion",
+          "stakerAddress",
+          "publicKey",
+          "amount"
+        ]
+      },
+      "TonWhalesStakeRequest": {
+        "type": "object",
+        "properties": {
+          "publicKey": {
+            "type": "string",
+            "description": "Public key of the nominator for the TON network.",
+            "example": "7031f1dcbe0f670daf4094d04ff9a7947bc4ac9174a7d470255d1a664e20b7c6"
+          },
+          "amount": {
+            "format": "int64",
+            "type": "integer",
+            "description": "Amount of tokens to stake in nanoTONs (1 TON = 10⁹ nanoTONs).",
+            "example": "20000000000"
+          },
+          "walletVersion": {
+            "type": "string",
+            "description": "Version of the smart contract used by the wallet in the TON blockchain.",
+            "example": "V4",
+            "default": "V4"
+          }
+        },
+        "required": [
+          "publicKey",
+          "amount"
+        ]
+      },
+      "TonWhalesUnstakeRequest": {
+        "type": "object",
+        "properties": {
+          "publicKey": {
+            "type": "string",
+            "description": "Public key of the nominator for the TON network.",
+            "example": "7031f1dcbe0f670daf4094d04ff9a7947bc4ac9174a7d470255d1a664e20b7c6"
+          },
+          "amount": {
+            "format": "int64",
+            "type": "integer",
+            "description": "Amount of tokens to unstake in TON.",
             "example": "200"
           },
           "walletVersion": {
@@ -38572,12 +39485,12 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction.",
+            "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
             "example": "te6ccgEBAQEABgAACCiAmCM="
           },
           "signature": {
             "type": "string",
-            "description": "Signature.",
+            "description": "External message signature which needs to be signed with the private key.",
             "example": "te6ccgEBAQEABgAACCiAmCM="
           },
           "publicKey": {
