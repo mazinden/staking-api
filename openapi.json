@@ -906,7 +906,7 @@
       "post": {
         "operationId": "eth-nodes-request-create",
         "summary": "Create Staking Request",
-        "description": "Set up nodes for staking using P2P infrastructure. For each node request operation, a unique ID is needed as an identifier of the operation, see the [guides](doc:staking-eth) for details.",
+        "description": "Set up nodes for staking using P2P infrastructure.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -1733,12 +1733,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -1956,12 +1955,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -2166,12 +2164,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -2389,12 +2386,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -2612,12 +2608,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -2822,12 +2817,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -3032,12 +3026,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -3242,12 +3235,11 @@
             "name": "network",
             "required": true,
             "in": "path",
-            "example": "theta-testnet-001",
-            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li><li>`theta-testnet-001` — Cosmos testnet.</li></ul>",
+            "example": "cosmoshub-4",
+            "description": "<p>Cosmos network:</p><ul><li>`cosmoshub-4` — Cosmos mainnet.</li></ul>",
             "schema": {
               "enum": [
-                "cosmoshub-4",
-                "theta-testnet-001"
+                "cosmoshub-4"
               ],
               "type": "string"
             }
@@ -15312,7 +15304,7 @@
       "get": {
         "operationId": "polkadot-transaction-list",
         "summary": "List Broadcasted Transactions",
-        "description": "Get a list of all broadcasted transactions.",
+        "description": "Return a list of all broadcasted transactions.",
         "parameters": [
           {
             "name": "network",
@@ -19673,7 +19665,7 @@
       "get": {
         "operationId": "avail-transaction-list",
         "summary": "List Broadcasted Transactions",
-        "description": "Get a list of all broadcasted transactions.",
+        "description": "Return a list of all broadcasted transactions.",
         "parameters": [
           {
             "name": "network",
@@ -29528,16 +29520,7 @@
         "operationId": "unified-transaction-send",
         "summary": "Broadcast Transaction",
         "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
-        "parameters": [
-          {
-            "name": "authorization",
-            "required": true,
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
+        "parameters": [],
         "requestBody": {
           "required": true,
           "content": {
@@ -29587,7 +29570,7 @@
       "post": {
         "operationId": "ton-staking-single-nominator-stake",
         "summary": "Create Stake Request",
-        "description": "Create the stake request transaction.",
+        "description": "Create the stake request transaction in the single nominator pool.",
         "parameters": [
           {
             "name": "network",
@@ -29652,7 +29635,7 @@
       "post": {
         "operationId": "ton-staking-single-nominator-unstake",
         "summary": "Create Unstake Request",
-        "description": "Create the unstake request transaction.",
+        "description": "Create the unstake request transaction in the single nominator pool.",
         "parameters": [
           {
             "name": "network",
@@ -29717,7 +29700,7 @@
       "post": {
         "operationId": "ton-staking-ton-whales-stake",
         "summary": "Create Stake Request",
-        "description": "Create the stake request transaction.",
+        "description": "Create the stake request transaction in the TON Whales pool.",
         "parameters": [
           {
             "name": "network",
@@ -29782,7 +29765,7 @@
       "post": {
         "operationId": "ton-staking-ton-whales-unstake",
         "summary": "Create Unstake Request",
-        "description": "Create the unstake request transaction.",
+        "description": "Create the unstake request transaction in the TON Whales pool.",
         "parameters": [
           {
             "name": "network",
@@ -29843,10 +29826,10 @@
         ]
       }
     },
-    "/api/v1/ton/{network}/transactions/status/{address}/{transactionHash}": {
+    "/api/v1/ton/{network}/transactions/status/{transactionHash}": {
       "get": {
         "operationId": "ton-staking-transaction-status",
-        "summary": "Get Transaction Status by Hash",
+        "summary": "Get Transaction Status",
         "description": "Retrieve a specific transaction from the TON network by its hash and staker address.",
         "parameters": [
           {
@@ -29863,99 +29846,7 @@
             }
           },
           {
-            "name": "address",
-            "description": "Staker account address.",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "transactionHash",
-            "description": "Transaction hash.",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/StatusResponse"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "TON"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/ton/{network}/transactions/status/{address}/{transactionHash}/{lt}": {
-      "get": {
-        "operationId": "ton-staking-transaction-status-by-lt",
-        "summary": "Get Transaction Status by Logical Time",
-        "description": "Retrieve a specific transaction from the TON network by its hash, staker address, and logical time.",
-        "parameters": [
-          {
-            "name": "network",
-            "required": true,
-            "in": "path",
-            "description": "<p>TON network:</p><ul><li>`mainnet` — production network.</li><li>`testnet` — testnet.</li></ul>",
-            "schema": {
-              "enum": [
-                "mainnet",
-                "testnet"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "address",
-            "description": "Staker account address.",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "transactionHash",
-            "description": "Transaction hash.",
-            "required": true,
-            "in": "path",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "lt",
-            "description": "Logical time indicating when the transaction was created.",
             "required": true,
             "in": "path",
             "schema": {
@@ -30002,7 +29893,7 @@
       "get": {
         "operationId": "ton-transaction-list",
         "summary": "List Broadcasted Transactions",
-        "description": "Get a list of all broadcasted transactions.",
+        "description": "Return a list of all broadcasted transactions.",
         "parameters": [
           {
             "name": "network",
@@ -30286,10 +30177,6 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
-    },
-    {
-      "url": "https://api-test-holesky.p2p.org",
-      "description": "Testnet Holesky Staking API"
     }
   ],
   "components": {
@@ -38832,14 +38719,11 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "celestia",
-              "cosmos",
-              "polkadot",
-              "polygon",
               "solana",
-              "eth_ssv"
+              "eth_ssv",
+              "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38847,21 +38731,9 @@
             "enum": [
               "mainnet",
               "testnet",
-              "testnet",
-              "mainnet",
-              "celestia-mainnet-beta",
-              "celestia-mocha-testnet",
-              "cosmoshub-4",
-              "mainnet",
-              "kusama",
-              "westend",
-              "polygon",
-              "mainnet-beta",
-              "testnet",
-              "mainnet",
-              "testnet"
+              "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -38898,14 +38770,11 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "celestia",
-              "cosmos",
-              "polkadot",
-              "polygon",
               "solana",
-              "eth_ssv"
+              "eth_ssv",
+              "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38913,21 +38782,9 @@
             "enum": [
               "mainnet",
               "testnet",
-              "testnet",
-              "mainnet",
-              "celestia-mainnet-beta",
-              "celestia-mocha-testnet",
-              "cosmoshub-4",
-              "mainnet",
-              "kusama",
-              "westend",
-              "polygon",
-              "mainnet-beta",
-              "testnet",
-              "mainnet",
-              "testnet"
+              "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -38957,14 +38814,11 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "celestia",
-              "cosmos",
-              "polkadot",
-              "polygon",
               "solana",
-              "eth_ssv"
+              "eth_ssv",
+              "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38972,21 +38826,9 @@
             "enum": [
               "mainnet",
               "testnet",
-              "testnet",
-              "mainnet",
-              "celestia-mainnet-beta",
-              "celestia-mocha-testnet",
-              "cosmoshub-4",
-              "mainnet",
-              "kusama",
-              "westend",
-              "polygon",
-              "mainnet-beta",
-              "testnet",
-              "mainnet",
-              "testnet"
+              "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -39033,14 +38875,11 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "celestia",
-              "cosmos",
-              "polkadot",
-              "polygon",
               "solana",
-              "eth_ssv"
+              "eth_ssv",
+              "ton_whales"
             ],
-            "description": "The chain in which the broadcast request will be processed (avail,babylon-btc,celestia,cosmos,polkadot,polygon,solana,eth_ssv).",
+            "description": "The chain in which the broadcast request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -39048,21 +38887,9 @@
             "enum": [
               "mainnet",
               "testnet",
-              "testnet",
-              "mainnet",
-              "celestia-mainnet-beta",
-              "celestia-mocha-testnet",
-              "cosmoshub-4",
-              "mainnet",
-              "kusama",
-              "westend",
-              "polygon",
-              "mainnet-beta",
-              "testnet",
-              "mainnet",
-              "testnet"
+              "mainnet-beta"
             ],
-            "description": "The network in which the broadcast request will be processed (mainnet,testnet,testnet,mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,mainnet,kusama,westend,polygon,mainnet-beta,testnet,mainnet,testnet).",
+            "description": "The network in which the broadcast request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
@@ -39469,16 +39296,7 @@
       },
       "BroadcastResponse": {
         "type": "object",
-        "properties": {
-          "transactionHash": {
-            "type": "string",
-            "description": "Transaction hash.",
-            "example": "0x1234567890abcdef1234567890abcdef1234567890abcdef1234567890abcdef"
-          }
-        },
-        "required": [
-          "transactionHash"
-        ]
+        "properties": {}
       },
       "BroadcastRequest": {
         "type": "object",
