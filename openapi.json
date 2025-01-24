@@ -29221,8 +29221,8 @@
     "/api/v1/unified/staking/stake": {
       "post": {
         "operationId": "unified-create-stake-transaction",
-        "summary": "Create Unified Staking Request",
-        "description": "Create unified stake request transaction.",
+        "summary": "Create Staking Request",
+        "description": "Create a unified stake request transaction.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29320,8 +29320,8 @@
     "/api/v1/unified/staking/unstake": {
       "post": {
         "operationId": "unified-create-unstake-transaction",
-        "summary": "",
-        "description": "",
+        "summary": "Create Unstaking Request",
+        "description": "Unstake locked assets within the network before the expiration of their time-lock period.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29419,8 +29419,8 @@
     "/api/v1/unified/staking/withdraw": {
       "post": {
         "operationId": "unified-create-withdraw-transaction",
-        "summary": "",
-        "description": "",
+        "summary": "Create Withdrawal Request",
+        "description": "Withdraw staked assets within the network that were previously unbonded for withdrawal.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29519,7 +29519,7 @@
       "post": {
         "operationId": "unified-transaction-send",
         "summary": "Broadcast Transaction",
-        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
+        "description": "Broadcast signed transaction.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -38681,7 +38681,7 @@
             ]
           },
           "unsignedTransactionData": {
-            "description": "Unsigned transaction data, in Base64 format or as an object.",
+            "description": "Unsigned transaction in Base64 encrypted format or as an object. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA...",
             "allOf": [
               {
@@ -38695,7 +38695,7 @@
           },
           "createdAt": {
             "format": "datetime",
-            "description": "Timestamp when the transaction was created.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2023-08-24T08:14:50.455Z",
             "allOf": [
               {
@@ -38723,7 +38723,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38733,12 +38733,12 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking, and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
@@ -38774,7 +38774,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain in which the unstaking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38784,12 +38784,12 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network in which the unstaking request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "extra": {
@@ -38818,7 +38818,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain in which the withdrawal request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38828,12 +38828,12 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network in which the withdrawal request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "extra": {
@@ -38879,7 +38879,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the broadcast request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain in which the broadcast request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38889,7 +38889,7 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the broadcast request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network in which the broadcast request will be processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
@@ -38902,7 +38902,7 @@
             ]
           },
           "stakerAddress": {
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
             "allOf": [
               {
