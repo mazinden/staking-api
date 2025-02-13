@@ -12370,179 +12370,6 @@
         ]
       }
     },
-    "/api/v1/eth/staking/direct/tx/create-pod": {
-      "post": {
-        "operationId": "eth-staking-create-pod-deprecated",
-        "summary": "Prepare Create EigenPod Transaction",
-        "deprecated": true,
-        "description": "Construct a serialized transaction to create EigenPod. The EigenPod address is required in the Ethereum Restaking flow.",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ValidationException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "ValidationException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The data provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/NoTokenException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongTokenException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "NoTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101111,
-                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  },
-                  "WrongTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101109,
-                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/Web3CreateTransactionException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/TokenGuardException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "Web3CreateTransactionException": {
-                    "value": {
-                      "error": {
-                        "code": 103104,
-                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  },
-                  "TokenGuardException": {
-                    "value": {
-                      "error": {
-                        "code": 101110,
-                        "message": "The request could not be performed because the server authorization error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Ethereum"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/api/v1/eth/staking/direct/tx/deposit": {
       "post": {
         "operationId": "eth-staking-deposit",
@@ -13771,7 +13598,7 @@
         ]
       }
     },
-    "/api/v1/eth/staking/direct/eigenlayer/operator": {
+    "/api/v1/eth/staking/eigenlayer/operator": {
       "get": {
         "operationId": "eth-eigen-operator-list",
         "summary": "Get Operator List",
@@ -13968,7 +13795,7 @@
         ]
       }
     },
-    "/api/v1/eth/staking/direct/eigenlayer/tx/delegate-to": {
+    "/api/v1/eth/staking/eigenlayer/tx/delegate-to": {
       "post": {
         "operationId": "eth-eigen-delegate-to",
         "summary": "Prepare Delegate Restake Transaction",
@@ -14150,11 +13977,11 @@
         ]
       }
     },
-    "/api/v1/eth/staking/direct/eigenlayer/tx/verify-withdrawal-credentials-request": {
+    "/api/v1/eth/staking/eigenlayer/tx/verify-withdrawal-credentials": {
       "post": {
-        "operationId": "eth-eigen-verify-withdrawal-credentials-request",
-        "summary": "Create Activate Restake Request",
-        "description": "Set up a request for constructing a serialized transaction to verify withdrawal credentials.",
+        "operationId": "eth-eigen-verify-withdrawal-credentials",
+        "summary": "Prepare verifyWithdrawalCredentials Transaction",
+        "description": "Construct a serialized transaction to verify the withdrawal credentials of the EigenPod address.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -14166,198 +13993,6 @@
             }
           }
         },
-        "responses": {
-          "201": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "type": "boolean",
-                      "example": true
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ValidationException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsAlreadyExistsException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "ValidationException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The data provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "VerifyWithdrawalCredentialsAlreadyExistsException": {
-                    "value": {
-                      "error": {
-                        "code": 103206,
-                        "message": "The activate restake request could not be created because the transaction to verify withdrawal credentials already exists.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/NoTokenException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongTokenException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "NoTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101111,
-                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  },
-                  "WrongTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101109,
-                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/TokenGuardException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "VerifyWithdrawalCredentialsException": {
-                    "value": {
-                      "error": {
-                        "code": 103202,
-                        "message": "The activate restake request could not be created because the internal server error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  },
-                  "TokenGuardException": {
-                    "value": {
-                      "error": {
-                        "code": 101110,
-                        "message": "The request could not be performed because the server authorization error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "EigenLayer"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/eth/staking/direct/eigenlayer/tx/verify-withdrawal-credentials-status/{id}": {
-      "get": {
-        "operationId": "eth-eigen-verify-withdrawal-credentials-status",
-        "summary": "Get Activate Restake Transaction",
-        "description": "Retrieve a previously requested serialized transaction to verify withdrawal credentials.",
-        "parameters": [
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "UUID that was specified in the node set-up request.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
         "responses": {
           "200": {
             "description": "OK",
@@ -14373,7 +14008,7 @@
                     "result": {
                       "oneOf": [
                         {
-                          "$ref": "#/components/schemas/CredentialRequestResponse"
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
                         }
                       ]
                     }
@@ -14479,14 +14114,14 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsNotFoundException"
+                          "$ref": "#/components/schemas/WithdrawalCredentialsNotFoundException"
                         }
                       ]
                     }
                   }
                 },
                 "examples": {
-                  "VerifyWithdrawalCredentialsNotFoundException": {
+                  "WithdrawalCredentialsNotFoundException": {
                     "value": {
                       "error": {
                         "code": 103201,
@@ -14514,7 +14149,7 @@
                     "error": {
                       "allOf": [
                         {
-                          "$ref": "#/components/schemas/VerifyWithdrawalCredentialsStatusException"
+                          "$ref": "#/components/schemas/WithdrawalCredentialsException"
                         },
                         {
                           "$ref": "#/components/schemas/TokenGuardException"
@@ -14524,11 +14159,11 @@
                   }
                 },
                 "examples": {
-                  "VerifyWithdrawalCredentialsStatusException": {
+                  "WithdrawalCredentialsException": {
                     "value": {
                       "error": {
                         "code": 103200,
-                        "message": "The activate restake transaction could not be obtained because an internal server error occurred.",
+                        "message": "The activate restake request could not be created because the internal server error occurred.",
                         "type": "server"
                       },
                       "result": null
@@ -14559,12 +14194,922 @@
         ]
       }
     },
-    "/api/v1/eth/staking/direct/eigenlayer/tx/create-pod": {
+    "/api/v1/eth/staking/eigenlayer/tx/create-pod": {
       "post": {
         "operationId": "eth-eigen-create-pod",
         "summary": "Prepare Create EigenPod Transaction",
         "description": "Construct a serialized transaction to initiate the process of creating the EigenPod address.",
         "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/eigenlayer/tx/start-checkpoint": {
+      "post": {
+        "operationId": "eth-eigen-start-checkpoint",
+        "summary": "Prepare Start Checkpoint Transaction",
+        "description": "Construct a serialized transaction to start a checkpoint.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EigenPodOwnerAddressRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/eigenlayer/tx/verify-checkpoint-proofs": {
+      "post": {
+        "operationId": "eth-eigen-verify-checkpoint-proofs",
+        "summary": "Prepare verifyCheckpointProofs Transaction",
+        "description": "Construct a serialized transaction to verify the proofs of a checkpoint.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyCheckpointProofsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/eigenlayer/tx/undelegate": {
+      "post": {
+        "operationId": "eth-eigen-undelegate",
+        "summary": "Prepare Undelegate Transaction",
+        "description": "Construct a serialized transaction to undelegate the restaked amount of tokens from a node operator.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EigenPodOwnerAddressRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/eigenlayer/tx/queue-withdrawals": {
+      "post": {
+        "operationId": "eth-eigen-queue-withdrawals",
+        "summary": "Prepare Queue Withdrawals Transaction",
+        "description": "Construct a serialized transaction to queue withdrawals.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/QueueWithdrawalsRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "EigenLayer"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/eigenlayer/tx/complete-queued-withdrawals": {
+      "post": {
+        "operationId": "eth-eigen-complete-queued-withdrawals",
+        "summary": "Prepare complete Queue Withdrawals Transaction",
+        "description": "Construct a serialized transaction to complete queued withdrawals.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CompleteQueuedWithdrawalsRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -23403,6 +23948,71 @@
         ]
       }
     },
+    "/api/v1/solana/{network}/account/create-nonce-account": {
+      "post": {
+        "operationId": "solana-create-nonce-account",
+        "summary": "Create Nonce Account",
+        "description": "Create nonce account.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "<p>Solana network:</p><ul><li>`mainnet-beta` — production network.</li><li>`testnet` — testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet-beta",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateNonceAccountRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakingResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Solana"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/solana/{network}/validator/status": {
       "get": {
         "operationId": "solana-validator-status",
@@ -29221,8 +29831,8 @@
     "/api/v1/unified/staking/stake": {
       "post": {
         "operationId": "unified-create-stake-transaction",
-        "summary": "Create Unified Staking Request",
-        "description": "Create unified stake request transaction.",
+        "summary": "Create Stake Request",
+        "description": "Create a stake request transaction.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29320,8 +29930,8 @@
     "/api/v1/unified/staking/unstake": {
       "post": {
         "operationId": "unified-create-unstake-transaction",
-        "summary": "",
-        "description": "",
+        "summary": "Create Unstake Request",
+        "description": "Unstake the locked assets within the network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29419,8 +30029,8 @@
     "/api/v1/unified/staking/withdraw": {
       "post": {
         "operationId": "unified-create-withdraw-transaction",
-        "summary": "",
-        "description": "",
+        "summary": "Create Withdrawal Request",
+        "description": "Withdraw previously unstaked assets within the network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -29519,7 +30129,7 @@
       "post": {
         "operationId": "unified-transaction-send",
         "summary": "Broadcast Transaction",
-        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
+        "description": "Broadcast the signed transaction to the network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -34934,83 +35544,7 @@
           "operatorAddress"
         ]
       },
-      "VerifyWithdrawalCredentialsAlreadyExistsException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103206
-          },
-          "message": {
-            "type": "string",
-            "default": "The activate restake request could not be created because the transaction to verify withdrawal credentials already exists."
-          },
-          "name": {
-            "type": "string",
-            "default": "VerifyWithdrawalCredentialsAlreadyExistsException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "VerifyWithdrawalCredentialsException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 103202
-          },
-          "message": {
-            "type": "string",
-            "default": "The activate restake request could not be created because the internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "VerifyWithdrawalCredentialsException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "VerifyWithdrawalCredentialsRequest": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "Arbitrary UUID that was specified in the node set-up request."
-          },
-          "eigenPodOwnerAddress": {
-            "type": "string",
-            "description": "Owner of the EigenPod address.",
-            "example": "0x39D02C253dA1d9F85ddbEB3B6Dc30bc1EcBbFA17",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
-          },
-          "pubkeys": {
-            "description": "Validator public keys.",
-            "example": [
-              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
-            ],
-            "items": {
-              "type": "string"
-            },
-            "type": "array"
-          }
-        },
-        "required": [
-          "id",
-          "eigenPodOwnerAddress",
-          "pubkeys"
-        ]
-      },
-      "VerifyWithdrawalCredentialsNotFoundException": {
+      "WithdrawalCredentialsNotFoundException": {
         "type": "object",
         "properties": {
           "code": {
@@ -35023,7 +35557,7 @@
           },
           "name": {
             "type": "string",
-            "default": "VerifyWithdrawalCredentialsNotFoundException"
+            "default": "WithdrawalCredentialsNotFoundException"
           }
         },
         "required": [
@@ -35032,7 +35566,7 @@
           "name"
         ]
       },
-      "VerifyWithdrawalCredentialsStatusException": {
+      "WithdrawalCredentialsException": {
         "type": "object",
         "properties": {
           "code": {
@@ -35041,11 +35575,11 @@
           },
           "message": {
             "type": "string",
-            "default": "The activate restake transaction could not be obtained because an internal server error occurred."
+            "default": "The activate restake request could not be created because the internal server error occurred."
           },
           "name": {
             "type": "string",
-            "default": "VerifyWithdrawalCredentialsStatusException"
+            "default": "WithdrawalCredentialsException"
           }
         },
         "required": [
@@ -35054,41 +35588,96 @@
           "name"
         ]
       },
-      "CredentialRequestResponse": {
+      "VerifyWithdrawalCredentialsRequest": {
         "type": "object",
         "properties": {
-          "id": {
+          "eigenPodOwnerAddress": {
             "type": "string",
-            "format": "uuid",
-            "example": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-            "description": "UUID that was specified in the request."
+            "description": "Owner of the EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
           },
-          "status": {
+          "pubkey": {
             "type": "string",
-            "enum": [
-              "processing",
-              "ready",
-              "cancel"
-            ],
-            "description": "<p>Current status of the request:</p><ul><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li></ul>",
-            "example": "processing"
-          },
-          "message": {
-            "type": "string",
-            "description": "Additional comment on the Beacon chain node status."
-          },
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
-            }
+            "description": "Validator public keys."
           }
         },
         "required": [
-          "id",
-          "status",
-          "message",
-          "list"
+          "eigenPodOwnerAddress",
+          "pubkey"
+        ]
+      },
+      "EigenPodOwnerAddressRequest": {
+        "type": "object",
+        "properties": {
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "Owner of the EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          }
+        },
+        "required": [
+          "eigenPodOwnerAddress"
+        ]
+      },
+      "VerifyCheckpointProofsRequest": {
+        "type": "object",
+        "properties": {
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "Owner of the EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "activateTx": {
+            "type": "string",
+            "description": "Activate transaction hash."
+          }
+        },
+        "required": [
+          "eigenPodOwnerAddress",
+          "activateTx"
+        ]
+      },
+      "QueueWithdrawalsRequest": {
+        "type": "object",
+        "properties": {
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "Owner of the EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "amount": {
+            "type": "number",
+            "description": "Amount of tokens to unstake.",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "eigenPodOwnerAddress",
+          "amount"
+        ]
+      },
+      "CompleteQueuedWithdrawalsRequest": {
+        "type": "object",
+        "properties": {
+          "eigenPodOwnerAddress": {
+            "type": "string",
+            "description": "Owner of the EigenPod address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "queueWithdrawalsTx": {
+            "type": "string",
+            "description": "Queue withdrawal transaction hash"
+          }
+        },
+        "required": [
+          "eigenPodOwnerAddress",
+          "queueWithdrawalsTx"
         ]
       },
       "StatusException": {
@@ -37280,6 +37869,48 @@
           "accounts"
         ]
       },
+      "CreateNonceAccountRequest": {
+        "type": "object",
+        "properties": {
+          "feePayer": {
+            "type": "string",
+            "description": "Account address that will pay the fee for the transaction.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction.",
+            "minimum": 1,
+            "example": 20000
+          },
+          "basePubkey": {
+            "type": "string",
+            "description": "Base address for the nonce account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "authorizePubkey": {
+            "type": "string",
+            "description": "Authority address for the nonce account.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          }
+        },
+        "required": [
+          "feePayer",
+          "basePubkey",
+          "authorizePubkey"
+        ]
+      },
       "StatusesResponse": {
         "type": "object",
         "properties": {
@@ -37363,6 +37994,23 @@
             "description": "Account address from which the staking account will be created.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction in micro lamports.",
+            "minimum": 1,
+            "example": 20000
+          },
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
@@ -37429,6 +38077,23 @@
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction.",
+            "minimum": 1,
+            "example": 20000
           },
           "stakeAccount": {
             "type": "string",
@@ -37523,6 +38188,23 @@
             "description": "Amount of tokens to withdraw in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction in micro lamports.",
+            "minimum": 1,
+            "example": 20000
           }
         },
         "required": [
@@ -37558,6 +38240,23 @@
             "description": "Amount of tokens to move in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction in micro lamports.",
+            "minimum": 1,
+            "example": 20000
           }
         },
         "required": [
@@ -37589,6 +38288,23 @@
             "type": "string",
             "description": "Account address that can perform withdrawal operations with `stakeAccount` and `sourseStakeAccount`.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction in micro lamports.",
+            "minimum": 1,
+            "example": 20000
           }
         },
         "required": [
@@ -37615,6 +38331,23 @@
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction in micro lamports.",
+            "minimum": 1,
+            "example": 20000
           }
         },
         "required": [
@@ -38667,12 +39400,12 @@
         "properties": {
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to stake.",
+            "description": "Amount of tokens to stake in native currency.",
             "example": 1002282880,
             "minimum": 0
           },
           "stakerAddress": {
-            "description": "Account address that will stake tokens.",
+            "description": "Account address receiving the staked tokens.",
             "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E",
             "allOf": [
               {
@@ -38681,7 +39414,7 @@
             ]
           },
           "unsignedTransactionData": {
-            "description": "Unsigned transaction data, in Base64 format or as an object.",
+            "description": "Unsigned transaction data in Base64 encrypted format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAA...",
             "allOf": [
               {
@@ -38691,11 +39424,11 @@
           },
           "extraData": {
             "type": "object",
-            "description": "Additional data related to the staking transaction."
+            "description": "Additional chain-specific transaction details."
           },
           "createdAt": {
             "format": "datetime",
-            "description": "Timestamp when the transaction was created.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2023-08-24T08:14:50.455Z",
             "allOf": [
               {
@@ -38723,7 +39456,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain network (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38733,23 +39466,23 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Environment in which the transaction will be processed, production or testing (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking, and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "amount": {
             "type": "number",
-            "description": "Amount of tokens to stake.",
+            "description": "Amount of tokens to stake in the native currency.",
             "minimum": 1,
             "example": 1
           },
           "extra": {
             "type": "object",
-            "description": "Additional optional parameters.",
+            "description": "Additional chain-specific optional parameters.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
@@ -38774,7 +39507,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain network (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38784,17 +39517,17 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address initiating the unstaking transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "extra": {
             "type": "object",
-            "description": "Additional optional parameters.",
+            "description": "Additional chain-specific optional parameters.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
@@ -38818,7 +39551,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the staking request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain network (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38828,17 +39561,17 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the staking request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
-            "description": "Staker Address",
+            "description": "Account address initiating the withdrawal transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
           },
           "extra": {
             "type": "object",
-            "description": "Additional optional parameters.",
+            "description": "Additional chain-specific transaction details.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
@@ -38860,7 +39593,7 @@
           },
           "extraData": {
             "type": "object",
-            "description": "Additional data related to the broadcast transaction."
+            "description": "Additional chain-specific details related to the broadcast transaction."
           }
         },
         "required": [
@@ -38879,7 +39612,7 @@
               "eth_ssv",
               "ton_whales"
             ],
-            "description": "The chain in which the broadcast request will be processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Blockchain network (avail,babylon-btc,solana,eth_ssv,ton_whales).",
             "example": "avail"
           },
           "network": {
@@ -38889,11 +39622,11 @@
               "testnet",
               "mainnet-beta"
             ],
-            "description": "The network in which the broadcast request will be processed (mainnet,testnet,mainnet-beta).",
+            "description": "Environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
-            "description": "Signed transaction.",
+            "description": "Signed transaction in Base64 encrypted format, which contains all transaction details required to broadcast the transaction to the network.",
             "example": "0x450284002c6eca5cdaa3e87d7f8e06d10015bf0508b52d301c8991af113d5cf49a53553f01befdb7fa39c5a995a8d58676a0513d082be",
             "allOf": [
               {
@@ -38902,7 +39635,7 @@
             ]
           },
           "stakerAddress": {
-            "description": "Staker Address",
+            "description": "Account address responsible for staking, unstaking, and withdrawal operations.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
             "allOf": [
               {
@@ -38912,7 +39645,7 @@
           },
           "extra": {
             "type": "object",
-            "description": "Additional optional parameters.",
+            "description": "Additional chain-specific transaction details.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
