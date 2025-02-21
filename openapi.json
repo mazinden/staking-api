@@ -31875,7 +31875,7 @@
       "post": {
         "operationId": "unified-transaction-send",
         "summary": "Broadcast Transaction",
-        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
+        "description": "Broadcast the signed transaction to the network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -40064,6 +40064,23 @@
             "minimum": 1,
             "example": 20000
           },
+          "nonceAccount": {
+            "type": "string",
+            "description": "Account address for nonce.",
+            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
+          },
+          "computeUnitLimit": {
+            "type": "number",
+            "description": "Compute unit limit for transaction.",
+            "minimum": 1,
+            "example": 300
+          },
+          "computeUnitPrice": {
+            "type": "number",
+            "description": "Price of compute unit for transaction.",
+            "minimum": 1,
+            "example": 20000
+          },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that stores tokens for staking.",
@@ -41374,7 +41391,7 @@
             "minimum": 0
           },
           "stakerAddress": {
-            "description": "Account address initiated the staking, unstaking, or withdrawal operation.",
+            "description": "Account address initiated the staking, unstaking or withdrawal operation.",
             "example": "6ZuLUCwVTvuQJrN1HrpoHJheQUw9Zk8CtiD3CEpHiA9E",
             "allOf": [
               {
@@ -41393,7 +41410,7 @@
           },
           "extraData": {
             "type": "object",
-            "description": "Additional transaction details."
+            "description": "Additional chain-specific transaction details."
           },
           "createdAt": {
             "format": "datetime",
@@ -41451,7 +41468,7 @@
           },
           "extra": {
             "type": "object",
-            "description": "Additional optional parameters.",
+            "description": "Additional chain-specific optional parameters.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
@@ -41562,7 +41579,7 @@
           },
           "extraData": {
             "type": "object",
-            "description": "Additional transaction details specific to the network."
+            "description": "Additional chain-specific details related to the broadcast transaction."
           }
         },
         "required": [
@@ -41604,7 +41621,7 @@
             ]
           },
           "stakerAddress": {
-            "description": "Account address initiating the staking, unstaking, or withdrawal transaction.",
+            "description": "Account address initiating the staking, unstaking or withdrawal transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC",
             "allOf": [
               {
