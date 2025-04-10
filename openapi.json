@@ -1831,7 +1831,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -2262,7 +2262,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -2484,7 +2484,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -2703,7 +2703,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -3570,7 +3570,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -4003,7 +4003,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -4226,7 +4226,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -4446,7 +4446,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -5316,7 +5316,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -5749,7 +5749,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -5972,7 +5972,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -6192,7 +6192,7 @@
                     "value": {
                       "error": {
                         "code": 110113,
-                        "message": "The request could not be performed because the simulation transaction failed.",
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
                         "type": "client"
                       },
                       "result": null
@@ -7406,6 +7406,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -7416,7 +7417,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -7636,6 +7638,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -7646,7 +7649,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -7866,6 +7870,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -7876,7 +7881,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -8160,6 +8166,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -8170,7 +8177,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -8454,6 +8462,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -8464,7 +8473,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -8748,6 +8758,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -8758,7 +8769,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -9042,6 +9054,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -9052,7 +9065,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -9336,6 +9350,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -9346,7 +9361,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -9630,6 +9646,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -9640,7 +9657,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -9911,6 +9929,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -9921,7 +9940,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -10192,6 +10212,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -10202,7 +10223,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -10473,6 +10495,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -10483,7 +10506,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -10754,6 +10778,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -10764,7 +10789,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -11044,7 +11070,8 @@
                 "polygon",
                 "sui",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -11251,6 +11278,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -11261,7 +11289,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -11510,7 +11539,8 @@
                 "vara",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -12151,6 +12181,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -12161,7 +12192,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -12243,7 +12275,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -12269,7 +12301,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -12484,6 +12516,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -12494,7 +12527,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -12567,7 +12601,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Delegator address in the required network",
+            "description": "Delegator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -12576,7 +12610,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -12602,7 +12636,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -12817,6 +12851,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -12827,7 +12862,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -12900,7 +12936,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Delegator address in the required network",
+            "description": "Delegator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -12909,7 +12945,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -12935,7 +12971,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -13150,6 +13186,7 @@
             "description": "Network name.",
             "schema": {
               "enum": [
+                "ethereum-agg",
                 "ethereum",
                 "solana",
                 "cosmoshub",
@@ -13160,7 +13197,8 @@
                 "sui",
                 "polygon",
                 "avail",
-                "ton"
+                "ton",
+                "near"
               ],
               "type": "string"
             }
@@ -13233,7 +13271,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Delegator address in the required network",
+            "description": "Delegator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -13242,7 +13280,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -13268,7 +13306,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -13556,7 +13594,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Delegator address in the required network",
+            "description": "Delegator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -13565,7 +13603,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -13591,7 +13629,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -13879,7 +13917,7 @@
             "name": "address",
             "required": true,
             "in": "query",
-            "description": "Delegator address in the required network",
+            "description": "Delegator address in the required network.",
             "schema": {
               "type": "string"
             }
@@ -13888,7 +13926,7 @@
             "name": "addressType",
             "required": false,
             "in": "query",
-            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
+            "description": "<p>Delegator address type in the required network:</p><ul><li>`deposit` — available for the Ethereum network (used by default)</li><li>`withdrawal` — available for the Ethereum network</li><li>`delegator` — available for the Polygon, Solana, Cosmos, Near, and Sui networks (used by default)</li><li>`stake_account` — available for the Solana</li><li>`nominator` — available for the TON and Polkadot networks (used by default)</li><li>`nominator_reward_account` — available for the Polkadot networks</li></ul>",
             "schema": {
               "enum": [
                 "deposit",
@@ -13914,7 +13952,7 @@
             "name": "groupBy",
             "required": false,
             "in": "query",
-            "description": "<p>Group the report data:</p> <ul><li>`stakingPeriod` — aggregate the results by epoch.</li><li>`day` — aggregate the results by days.</li><li>`all` — aggregate the results over the entire period.</li></ul>.",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
             "schema": {
               "enum": [
                 "stakingPeriod",
@@ -15871,7 +15909,7 @@
                     "value": {
                       "error": {
                         "code": 103201,
-                        "message": "The verify withdrawal credentials transaction could not be obtained because the activate restake request is not found. Please create an activate restake request by calling https://docs.p2p.org/reference/eth-eigen-verify-withdrawal-credentials-request.",
+                        "message": "The verify withdrawal credentials transaction could not be obtained because the activate restake request is not found.",
                         "type": "client"
                       },
                       "result": null
@@ -25698,7 +25736,7 @@
       "post": {
         "operationId": "solana-create-nonce-account",
         "summary": "Create Nonce Account",
-        "description": "Create a nonce account.",
+        "description": "Create a nonce account to sign transactions off-chain which enables keeping them until they are ready to be submitted to the network.",
         "parameters": [
           {
             "name": "network",
@@ -31776,7 +31814,7 @@
       "post": {
         "operationId": "unified-create-withdraw-transaction",
         "summary": "Create Withdrawal Request",
-        "description": "Create a withdrawal request to withdraw previously unstaked assets within the network.",
+        "description": "Create a withdrawal request transaction to withdraw previously unstaked assets within the network.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -31925,8 +31963,8 @@
     "/api/v1/ton/{network}/staking/single-nominator/stake": {
       "post": {
         "operationId": "ton-staking-single-nominator-stake",
-        "summary": "Create Stake Request",
-        "description": "Create the stake request transaction in the single nominator pool.",
+        "summary": "Create Staking Request",
+        "description": "Create the staking request transaction in the single nominator pool.",
         "parameters": [
           {
             "name": "network",
@@ -32055,8 +32093,8 @@
     "/api/v1/ton/{network}/staking/ton-whales/stake": {
       "post": {
         "operationId": "ton-staking-ton-whales-stake",
-        "summary": "Create Stake Request",
-        "description": "Create the stake request transaction in the TON Whales pool.",
+        "summary": "Create Staking Request",
+        "description": "Create the staking request transaction in the TON Whales pool.",
         "parameters": [
           {
             "name": "network",
@@ -32249,7 +32287,7 @@
       "get": {
         "operationId": "ton-transaction-list",
         "summary": "List Broadcasted Transactions",
-        "description": "Return a list of all broadcasted transactions.",
+        "description": "Get a list of all broadcasted transactions.",
         "parameters": [
           {
             "name": "network",
@@ -33153,9 +33191,7 @@
           "pubkey": {
             "type": "string",
             "description": "Validator public key.",
-            "example": [
-              "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0"
-            ],
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "signature": {
@@ -33277,7 +33313,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -33615,7 +33651,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -34466,7 +34502,7 @@
           },
           "fee": {
             "type": "number",
-            "description": "Total fee in the network native currency charged for processing the transaction."
+            "description": "Total fee in SEI charged for processing the transaction."
           },
           "gas": {
             "description": "Computational effort required to execute the transaction measured in gas units.",
@@ -34853,7 +34889,7 @@
         "properties": {
           "stashAccountAddress": {
             "type": "string",
-            "description": "Delegator stash account address which keeps tokens.",
+            "description": "Delegator account address which keeps tokens.",
             "pattern": "^sei[a-zA-Z0-9]{39}$"
           },
           "memo": {
@@ -35479,7 +35515,8 @@
               "MATIC",
               "SUI",
               "AVAIL",
-              "TON"
+              "TON",
+              "NEAR"
             ],
             "description": "Reward currency.",
             "example": "DOT"
@@ -35592,7 +35629,8 @@
               "MATIC",
               "SUI",
               "AVAIL",
-              "TON"
+              "TON",
+              "NEAR"
             ],
             "description": "Reward currency.",
             "example": "DOT"
@@ -35726,7 +35764,8 @@
               "MATIC",
               "SUI",
               "AVAIL",
-              "TON"
+              "TON",
+              "NEAR"
             ],
             "description": "Currency of the tokens."
           },
@@ -36517,7 +36556,8 @@
               "MATIC",
               "SUI",
               "AVAIL",
-              "TON"
+              "TON",
+              "NEAR"
             ],
             "description": "Currency of the tokens."
           },
@@ -36947,9 +36987,7 @@
           "pubkey": {
             "type": "string",
             "description": "Validator public key.",
-            "example": [
-              "0x4Ef81c0018aB0DCbBdC8915D26efAcEa7CDef61eE9aBdddcBdAD2f2F04c5b6E4fBA6F5afD1Ad46267c1DC8544E690fE4"
-            ],
+            "example": "0x4Ef81c0018aB0DCbBdC8915D26efAcEa7CDef61eE9aBdddcBdAD2f2F04c5b6E4fBA6F5afD1Ad46267c1DC8544E690fE4",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "signature": {
@@ -37154,9 +37192,7 @@
           "pubkey": {
             "type": "string",
             "description": "Validator public key.",
-            "example": [
-              "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0"
-            ],
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           },
           "withdrawalAddress": {
@@ -37483,7 +37519,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total number of validators relevant to the current request, based on filters applied."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -37522,7 +37558,7 @@
           },
           "message": {
             "type": "string",
-            "default": "The verify withdrawal credentials transaction could not be obtained because the activate restake request is not found. Please create an activate restake request by calling https://docs.p2p.org/reference/eth-eigen-verify-withdrawal-credentials-request."
+            "default": "The verify withdrawal credentials transaction could not be obtained because the activate restake request is not found."
           },
           "name": {
             "type": "string",
@@ -37568,7 +37604,7 @@
           },
           "pubkey": {
             "type": "string",
-            "description": "Validator public keys."
+            "description": "Validator's public key."
           }
         },
         "required": [
@@ -38077,7 +38113,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -39204,7 +39240,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -40046,23 +40082,6 @@
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
             "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "nonceAccount": {
-            "type": "string",
-            "description": "Account address for nonce.",
-            "example": "C83GxcNFTC2tK22rLCCrLKYRkckbNVGsjethN5iswgfC"
-          },
-          "computeUnitLimit": {
-            "type": "number",
-            "description": "Maximum computational effort limit for the transaction measured in compute units.",
-            "minimum": 1,
-            "example": 300
-          },
-          "computeUnitPrice": {
-            "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
-            "minimum": 1,
-            "example": 20000
           },
           "nonceAccount": {
             "type": "string",
@@ -41232,9 +41251,7 @@
           "pubkey": {
             "type": "string",
             "description": "Validator public key.",
-            "example": [
-              "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0"
-            ],
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           }
         },
@@ -41276,7 +41293,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -41330,9 +41347,7 @@
           "pubkey": {
             "type": "string",
             "description": "Validator public key.",
-            "example": [
-              "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0"
-            ],
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           }
         },
@@ -41357,7 +41372,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
@@ -41438,11 +41453,14 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "polkadot",
+              "sei",
               "solana",
               "eth_ssv",
-              "ton_whales"
+              "ton_whales",
+              "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41450,9 +41468,13 @@
             "enum": [
               "mainnet",
               "testnet",
+              "kusama",
+              "westend",
+              "pacific-1",
+              "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41468,7 +41490,7 @@
           },
           "extra": {
             "type": "object",
-            "description": "Additional chain-specific optional parameters.",
+            "description": "Additional chain-specific request parameters.",
             "example": {
               "stakerPublicKey": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
             }
@@ -41489,11 +41511,14 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "polkadot",
+              "sei",
               "solana",
               "eth_ssv",
-              "ton_whales"
+              "ton_whales",
+              "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41501,9 +41526,13 @@
             "enum": [
               "mainnet",
               "testnet",
+              "kusama",
+              "westend",
+              "pacific-1",
+              "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41533,11 +41562,14 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "polkadot",
+              "sei",
               "solana",
               "eth_ssv",
-              "ton_whales"
+              "ton_whales",
+              "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41545,9 +41577,13 @@
             "enum": [
               "mainnet",
               "testnet",
+              "kusama",
+              "westend",
+              "pacific-1",
+              "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41579,7 +41615,7 @@
           },
           "extraData": {
             "type": "object",
-            "description": "Additional chain-specific details related to the broadcast transaction."
+            "description": "Additional transaction details specific to the network."
           }
         },
         "required": [
@@ -41594,11 +41630,14 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "polkadot",
+              "sei",
               "solana",
               "eth_ssv",
-              "ton_whales"
+              "ton_whales",
+              "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,solana,eth_ssv,ton_whales).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41606,9 +41645,13 @@
             "enum": [
               "mainnet",
               "testnet",
+              "kusama",
+              "westend",
+              "pacific-1",
+              "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
@@ -41649,7 +41692,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction for the stake request in the hexadecimal format.",
+            "description": "Unsigned transaction for the staking request in the hexadecimal format.",
             "example": "b5ee9c7241010101003000005c00000000000000039fedeab7a2b56b38f19f60b5b9f70b2f1ba2d89b9c5a756036c7cfad73571fb28188ee6b2800b10cbe42"
           },
           "walletVersion": {
@@ -41743,12 +41786,12 @@
           "amount": {
             "format": "int64",
             "type": "integer",
-            "description": "The amount to be unstaked in nano tons",
+            "description": "Amount of tokens to unstake in nanoTONs (1 TON = 10⁹ nanoTONs).",
             "example": "200"
           },
           "walletVersion": {
             "type": "string",
-            "description": "Version of the wallet",
+            "description": "Version of the smart contract used by the wallet in the TON blockchain.",
             "example": "V4",
             "default": "V4"
           }
@@ -41763,12 +41806,12 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction for the stake request in the hexadecimal format.",
+            "description": "Unsigned transaction for the staking request in the hexadecimal format.",
             "example": "b5ee9c7241010101003000005c00000000000000039fedeab7a2b56b38f19f60b5b9f70b2f1ba2d89b9c5a756036c7cfad73571fb28188ee6b2800b10cbe42"
           },
           "poolAddress": {
             "type": "string",
-            "description": "Nominator pool address.",
+            "description": "Nominator pool address in the TON network.",
             "example": "kQDr9Sq482A6ikIUh5mUUjJaBUUJBrye13CJiDB-R31_l7mg"
           },
           "walletVersion": {
@@ -41838,7 +41881,7 @@
           "amount": {
             "format": "int64",
             "type": "integer",
-            "description": "Amount of tokens to unstake in TON.",
+            "description": "Amount of tokens to unstake in nanoTONs (1 TON = 10⁹ nanoTONs).",
             "example": "200"
           },
           "walletVersion": {
@@ -41997,7 +42040,7 @@
           "totalCount": {
             "type": "number",
             "minimum": 1,
-            "description": "Total count of resources in the response."
+            "description": "Total count of resources relevant to the current request, based on filters applied."
           },
           "list": {
             "type": "array",
