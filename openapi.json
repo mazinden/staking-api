@@ -9633,6 +9633,290 @@
         ]
       }
     },
+    "/api/v1/{network}/data/network/block-rewards": {
+      "get": {
+        "operationId": "NetworkController_getBlockRewards",
+        "summary": "Get Network Block Rewards",
+        "description": "Get a list of block rewards.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "Network name.",
+            "schema": {
+              "enum": [
+                "solana"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 10000000,
+              "type": "number"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetNetworkQueueResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetNetworkBlockRewardsNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetNetworkBlockRewardsNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 115209,
+                        "message": "The data for the parameters provided could not be found.",
+                        "type": "not_found"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetNetworkBlockRewardsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetNetworkBlockRewardsException": {
+                    "value": {
+                      "error": {
+                        "code": 115210,
+                        "message": "The list of network block rewards could not be obtained because an internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Network"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/{network}/data/validator/summary": {
       "get": {
         "operationId": "data-validator-summary",
@@ -14146,6 +14430,596 @@
         },
         "tags": [
           "Delegator"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/pool/summary": {
+      "get": {
+        "operationId": "data-delegator-pool-summary",
+        "summary": "Get Delegator Pool Summary",
+        "description": "Get a list of delegator pool's rewards, stake and APY.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "Network name.",
+            "schema": {
+              "enum": [
+                "polkadot",
+                "kusama"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 10000000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Pool address in the required network.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delegatorAddress",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address in the required network.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
+            "schema": {
+              "enum": [
+                "stakingPeriod",
+                "day",
+                "all"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorPoolsSummaryResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorPoolsAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorPoolsAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the delegator address provided is not valid on the specified network. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorPoolsSummaryException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorPoolsSummaryException": {
+                    "value": {
+                      "error": {
+                        "code": 115408,
+                        "message": "The delegator pool summary could not be obtained because an internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator Pool"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/{network}/data/delegator/pool/rewards": {
+      "get": {
+        "operationId": "data-delegator-pool-rewards",
+        "summary": "Get Delegator Pool Rewards",
+        "description": "Get a list of delegator pool's rewards.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "description": "Network name.",
+            "schema": {
+              "enum": [
+                "polkadot",
+                "kusama"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "startAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "finishAt",
+            "required": false,
+            "in": "query",
+            "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
+            "example": "2020-01-01T00:00:00.000Z",
+            "schema": {
+              "format": "date-time",
+              "type": "string"
+            }
+          },
+          {
+            "name": "startNumber",
+            "required": false,
+            "in": "query",
+            "description": "Start number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "finishNumber",
+            "required": false,
+            "in": "query",
+            "description": "Finish number of the staking period.",
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "limit",
+            "required": false,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": false,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 10000000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "query",
+            "description": "Pool address in the required network.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "delegatorAddress",
+            "required": false,
+            "in": "query",
+            "description": "Delegator address in the required network.",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "groupBy",
+            "required": false,
+            "in": "query",
+            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
+            "schema": {
+              "enum": [
+                "stakingPeriod",
+                "day",
+                "all"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorPoolsRewardsResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDelegatorPoolsAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDelegatorPoolsAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the delegator address provided is not valid on the specified network. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetDelegatorPoolsSummaryException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetDelegatorPoolsSummaryException": {
+                    "value": {
+                      "error": {
+                        "code": 115408,
+                        "message": "The delegator pools summary could not be obtained because an internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Delegator Pool"
         ],
         "security": [
           {
@@ -32571,6 +33445,10 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
+    },
+    {
+      "url": "https://api-test-holesky.p2p.org",
+      "description": "Testnet Holesky Staking API"
     }
   ],
   "components": {
@@ -35679,6 +36557,50 @@
           "list"
         ]
       },
+      "GetNetworkBlockRewardsNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115209
+          },
+          "message": {
+            "type": "string",
+            "default": "The data for the parameters provided could not be found."
+          },
+          "name": {
+            "type": "string",
+            "default": "GetNetworkBlockRewardsNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "GetNetworkBlockRewardsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115210
+          },
+          "message": {
+            "type": "string",
+            "default": "The list of network block rewards could not be obtained because an internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "GetNetworkBlockRewardsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "InvalidValidatorAddressException": {
         "type": "object",
         "properties": {
@@ -36515,7 +37437,7 @@
           },
           "netApy": {
             "type": "number",
-            "description": "Delegator net annual percentage yield."
+            "description": "Delegator net annual percentage yield (APY)."
           },
           "stake": {
             "type": "number",
@@ -36835,7 +37757,7 @@
           },
           "netApy": {
             "type": "number",
-            "description": "Delegator net annual percentage yield."
+            "description": "Delegator net annual percentage yield (APY)."
           }
         },
         "required": [
@@ -36893,6 +37815,298 @@
           "code",
           "message",
           "name"
+        ]
+      },
+      "InvalidDelegatorPoolsAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115400
+          },
+          "message": {
+            "type": "string",
+            "default": "The request could not be performed because the delegator address provided is not valid on the specified network. Please check the request parameters and try again."
+          },
+          "name": {
+            "type": "string",
+            "default": "InvalidDelegatorPoolsAddressException"
+          },
+          "errors": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidationErrorResponse"
+            }
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name",
+          "errors"
+        ]
+      },
+      "GetDelegatorPoolsSummaryException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 115408
+          },
+          "message": {
+            "type": "string",
+            "default": "The delegator pool summary could not be obtained because an internal server error occurred."
+          },
+          "name": {
+            "type": "string",
+            "default": "GetDelegatorPoolsSummaryException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DelegatorPoolsSummary": {
+        "type": "object",
+        "properties": {
+          "address": {
+            "type": "string",
+            "description": "Pool address."
+          },
+          "poolId": {
+            "type": "number",
+            "description": "Pool ID."
+          },
+          "activeBalance": {
+            "type": "string",
+            "description": "Amount of tokens in the stake."
+          },
+          "activeBalanceUsd": {
+            "type": "number",
+            "description": "Amount of tokens in the stake in USD."
+          },
+          "unbondingBalance": {
+            "type": "string",
+            "description": "Amount of tokens under the unbonding period."
+          },
+          "withdrawableBalance": {
+            "type": "string",
+            "description": "Amount of tokens available to withdraw."
+          },
+          "netRewards": {
+            "type": "string",
+            "description": "Reward amount after the pool's commission is charged."
+          },
+          "netRewardsUsd": {
+            "type": "number",
+            "description": "Reward amount in USD after the pool's commission is charged."
+          },
+          "grossRewards": {
+            "type": "string",
+            "description": "Reward amount before the pool's commission is charged."
+          },
+          "grossRewardsUsd": {
+            "type": "number",
+            "description": "Reward amount in USD before the pool's commission is charged."
+          },
+          "withdrawableRewards": {
+            "type": "string",
+            "description": "Reward amount available to withdraw."
+          },
+          "state": {
+            "type": "string",
+            "description": "State."
+          },
+          "netApy": {
+            "type": "number",
+            "description": "Delegator pool gross annual percentage yield (APY)."
+          },
+          "delegatedAt": {
+            "type": "string",
+            "description": "Timestamp of delegation transaction in the ISO 8601 format."
+          },
+          "undelegatedAt": {
+            "type": "string",
+            "description": "Timestamp of the undelegation transaction in the ISO 8601 format."
+          },
+          "tokenPrice": {
+            "type": "number",
+            "description": "Token price in USD."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "ETH",
+              "SOL",
+              "DOT",
+              "KSM",
+              "GLMR",
+              "VARA",
+              "ATOM",
+              "MATIC",
+              "SUI",
+              "AVAIL",
+              "TON",
+              "NEAR"
+            ],
+            "description": "Currency of the tokens."
+          }
+        },
+        "required": [
+          "address",
+          "poolId",
+          "activeBalance",
+          "activeBalanceUsd",
+          "unbondingBalance",
+          "withdrawableBalance",
+          "netRewards",
+          "netRewardsUsd",
+          "grossRewards",
+          "grossRewardsUsd",
+          "withdrawableRewards",
+          "state",
+          "netApy",
+          "delegatedAt",
+          "undelegatedAt",
+          "tokenPrice",
+          "currency"
+        ]
+      },
+      "GetDelegatorPoolsSummaryResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DelegatorPoolsSummary"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "list"
+        ]
+      },
+      "DelegatorPoolsRewards": {
+        "type": "object",
+        "properties": {
+          "activeBalance": {
+            "type": "string",
+            "description": "Amount of tokens in the stake."
+          },
+          "activeBalanceUsd": {
+            "type": "number",
+            "description": "Amount of tokens in the stake in USD."
+          },
+          "stakingPeriod": {
+            "type": "number",
+            "description": "Timestamp of the staking period start in the ISO 8601 format."
+          },
+          "stakingPeriodEnd": {
+            "type": "string",
+            "description": "Timestamp of the staking period finish in the ISO 8601 format."
+          },
+          "netRewards": {
+            "type": "string",
+            "description": "Reward amount after the pool's commission is charged."
+          },
+          "netRewardsUsd": {
+            "type": "number",
+            "description": "Reward amount in USD after the pool's commission is charged."
+          },
+          "grossRewards": {
+            "type": "string",
+            "description": "Reward amount before the pool's commission is charged."
+          },
+          "grossRewardsUsd": {
+            "type": "number",
+            "description": "Reward amount in USD before the pool's commission is charged."
+          },
+          "netApy": {
+            "type": "number",
+            "description": "Delegator pool net annual percentage yield (APY)."
+          },
+          "grossApy": {
+            "type": "number",
+            "description": "Delegator pool gross annual percentage yield (APY)."
+          },
+          "tokenPrice": {
+            "type": "number",
+            "description": "Token price in USD."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "ETH",
+              "SOL",
+              "DOT",
+              "KSM",
+              "GLMR",
+              "VARA",
+              "ATOM",
+              "MATIC",
+              "SUI",
+              "AVAIL",
+              "TON",
+              "NEAR"
+            ],
+            "description": "Currency of the tokens."
+          }
+        },
+        "required": [
+          "activeBalance",
+          "activeBalanceUsd",
+          "stakingPeriod",
+          "stakingPeriodEnd",
+          "netRewards",
+          "netRewardsUsd",
+          "grossRewards",
+          "grossRewardsUsd",
+          "netApy",
+          "grossApy",
+          "tokenPrice",
+          "currency"
+        ]
+      },
+      "GetDelegatorPoolsRewardsResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DelegatorPoolsRewards"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "list"
         ]
       },
       "Web3CreateTransactionException": {
@@ -38195,6 +39409,63 @@
           "name"
         ]
       },
+      "PolkadotUnsignedTransactionObjectResponse": {
+        "type": "object",
+        "properties": {
+          "blockHash": {
+            "type": "string",
+            "description": "Block hash of the transaction."
+          },
+          "eraPeriod": {
+            "type": "number",
+            "description": "Era period of the transaction."
+          },
+          "currentEra": {
+            "type": "number",
+            "description": "Current era of the transaction."
+          },
+          "genesisHash": {
+            "type": "number",
+            "description": "Genesis hash of the transaction."
+          },
+          "metadataRpc": {
+            "type": "string",
+            "description": "Metadata RPC of the transaction."
+          },
+          "method": {
+            "type": "object",
+            "description": "Method of the transaction."
+          },
+          "nonce": {
+            "type": "number",
+            "description": "Nonce of the transaction."
+          },
+          "specVersion": {
+            "type": "number",
+            "description": "Spec version of the transaction."
+          },
+          "transactionVersion": {
+            "type": "number",
+            "description": "Transaction version of the transaction."
+          },
+          "tip": {
+            "type": "number",
+            "description": "Tip of the transaction."
+          }
+        },
+        "required": [
+          "blockHash",
+          "eraPeriod",
+          "currentEra",
+          "genesisHash",
+          "metadataRpc",
+          "method",
+          "nonce",
+          "specVersion",
+          "transactionVersion",
+          "tip"
+        ]
+      },
       "TransactionResponse": {
         "type": "object",
         "properties": {
@@ -38202,6 +39473,19 @@
             "type": "string",
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xa404160200165874de804160c3cd013d9b6f4bba864657c4c2168a542f78ff14a0253873190200000000"
+          },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
           },
           "createdAt": {
             "format": "datetime",
@@ -38218,6 +39502,11 @@
       "AddRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Proxied account is an address that transfers rights to a proxy account. The original account retains all of its rights, and the proxy account can be removed at any time.",
@@ -38281,6 +39570,11 @@
       "RemoveRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Proxied account is an address that transfers rights to a proxy account. The original account retains all of its rights, and the proxy account can be removed at any time.",
@@ -38349,6 +39643,19 @@
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38393,6 +39700,11 @@
       "BondRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38456,6 +39768,19 @@
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38483,6 +39808,11 @@
       "BondExtraRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38590,6 +39920,11 @@
       "RebondRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38661,6 +39996,19 @@
             "type": "string",
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38694,6 +40042,11 @@
       "NominateRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38751,6 +40104,11 @@
       "UnbondRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38818,6 +40176,24 @@
             "type": "string",
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
+          "unsignedTransactionSerialized": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Payload of the unsigned transaction in hex format",
+            "example": "0x27000700e40b5402ee000000c500100000e1510f001a00000091b171bb158e2d3848fa23a9f1c25182fb8e20313b2c1eb49219da7a70ce90c3898b77c3a2359f56733c56804a1f1539df9dd90e38167bc1ee4090e4ed92ce2100"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding."
@@ -38837,6 +40213,11 @@
       "WithdrawUnbondedRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38877,6 +40258,19 @@
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "amount": {
             "type": "number",
             "description": "Amount of tokens to bond (in usual DOTs/KSMs/WNDs).",
@@ -38898,6 +40292,11 @@
       "PoolBondRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38945,6 +40344,11 @@
       "SetClaimPermissionRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -38976,6 +40380,19 @@
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "amount": {
             "type": "number",
             "description": "Amount of tokens for bond operations (in usual DOTs/KSMs/WNDs).",
@@ -38997,6 +40414,11 @@
       "PoolBondExtraRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -39028,6 +40450,11 @@
       "PoolUnbondRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -39051,6 +40478,19 @@
             "type": "string",
             "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
+          "unsignedTransactionPayload": {
+            "type": "string",
+            "description": "Unsigned transaction in serialized format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "7b226164647265...737326164647265732"
+          },
+          "unsignedTransactionObject": {
+            "description": "Unsigned transaction object.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/PolkadotUnsignedTransactionObjectResponse"
+              }
+            ]
+          },
           "createdAt": {
             "format": "datetime",
             "type": "string",
@@ -39065,6 +40505,11 @@
       "PoolWithdrawUnbondedRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -39106,6 +40551,11 @@
       "ClaimPayoutRequest": {
         "type": "object",
         "properties": {
+          "extended": {
+            "type": "string",
+            "description": "Extend response with additional information.",
+            "example": false
+          },
           "stashAccountAddress": {
             "type": "string",
             "description": "Main stash account address which keeps tokens for bonding.",
@@ -41453,6 +42903,8 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "cosmos",
+              "celestia",
               "polkadot",
               "sei",
               "solana",
@@ -41460,7 +42912,7 @@
               "ton_whales",
               "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41468,13 +42920,16 @@
             "enum": [
               "mainnet",
               "testnet",
+              "cosmoshub-4",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41511,6 +42966,8 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "cosmos",
+              "celestia",
               "polkadot",
               "sei",
               "solana",
@@ -41518,7 +42975,7 @@
               "ton_whales",
               "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41526,13 +42983,16 @@
             "enum": [
               "mainnet",
               "testnet",
+              "cosmoshub-4",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41562,6 +43022,8 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "cosmos",
+              "celestia",
               "polkadot",
               "sei",
               "solana",
@@ -41569,7 +43031,7 @@
               "ton_whales",
               "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41577,13 +43039,16 @@
             "enum": [
               "mainnet",
               "testnet",
+              "cosmoshub-4",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -41630,6 +43095,8 @@
             "enum": [
               "avail",
               "babylon-btc",
+              "cosmos",
+              "celestia",
               "polkadot",
               "sei",
               "solana",
@@ -41637,7 +43104,7 @@
               "ton_whales",
               "near"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
             "example": "avail"
           },
           "network": {
@@ -41645,13 +43112,16 @@
             "enum": [
               "mainnet",
               "testnet",
+              "cosmoshub-4",
+              "celestia-mainnet-beta",
+              "celestia-mocha-testnet",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
