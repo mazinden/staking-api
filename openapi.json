@@ -1111,7 +1111,7 @@
       "get": {
         "operationId": "eth-nodes-request-status",
         "summary": "Get Request Status",
-        "description": "Check the status of the node set-up operation and retrieve the details of the validator by using the node request operation identifier. For several requests, see the [Get All Requests Status](ref:eth-nodes-request-list) method.",
+        "description": "Check the status of the node set-up operation and retrieve the details of the validator by using the node request operation identifier. For several requests, see the [Get All Requests Status](ref:eth-nodes-request-list) endpoint.",
         "parameters": [
           {
             "name": "id",
@@ -39414,27 +39414,27 @@
         "properties": {
           "blockHash": {
             "type": "string",
-            "description": "Block hash of the transaction."
+            "description": "Hash of the checkpoint block in which the transaction was included."
           },
           "eraPeriod": {
             "type": "number",
-            "description": "Era period of the transaction."
+            "description": "Validity period of the transaction, representing the number of blocks after the checkpoint for which the transaction is valid."
           },
           "currentEra": {
             "type": "number",
-            "description": "Current era of the transaction."
+            "description": "Current staking era of the transaction."
           },
           "genesisHash": {
             "type": "number",
-            "description": "Genesis hash of the transaction."
+            "description": "Hash of the genesis block."
           },
           "metadataRpc": {
             "type": "string",
-            "description": "Metadata RPC of the transaction."
+            "description": "Serialized metadata used for offline decoding and transaction signing."
           },
           "method": {
             "type": "object",
-            "description": "Method of the transaction."
+            "description": "List of data field containing information on the method called to construct a transaction."
           },
           "nonce": {
             "type": "number",
@@ -39442,15 +39442,15 @@
           },
           "specVersion": {
             "type": "number",
-            "description": "Spec version of the transaction."
+            "description": "Current version of the chain specification for the runtime."
           },
           "transactionVersion": {
             "type": "number",
-            "description": "Transaction version of the transaction."
+            "description": "Current version of the transaction format."
           },
           "tip": {
             "type": "number",
-            "description": "Tip of the transaction."
+            "description": "Optional fee used to increase the transaction priority."
           }
         },
         "required": [
@@ -39504,7 +39504,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -39572,7 +39572,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -39640,7 +39640,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "unsignedTransactionPayload": {
@@ -39702,7 +39702,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -39810,7 +39810,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -39922,7 +39922,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40015,7 +40015,7 @@
             "example": "5H6ryBWChC5w7eaQ4GZjo329sEnhvjetSr6MBEt42mZ5tPw5"
           },
           "targets": {
-            "description": "Selected validators in the targets.",
+            "description": "Addresses of the validators selected in the targets.",
             "example": [
               "5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY",
               "5HpG9w8EBLe5XCrbczpwq5TSXvedjrBGCwqxK1iQ7qUsSWFc"
@@ -40044,7 +40044,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40106,7 +40106,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40215,7 +40215,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40294,7 +40294,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40346,7 +40346,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40416,7 +40416,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40452,7 +40452,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40507,7 +40507,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40553,7 +40553,7 @@
         "properties": {
           "extended": {
             "type": "string",
-            "description": "Extend response with additional information.",
+            "description": "Optional boolean parameter indicating whether to include additional metadata in the response.",
             "example": false
           },
           "stashAccountAddress": {
@@ -40775,7 +40775,7 @@
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "targets": {
-            "description": "Selected validators in the targets.",
+            "description": "Addresses of the validators selected in the targets.",
             "example": [
               "5GNJqTPyNqANBkUVMN1LPPrxXnFouWXoe2wNSmmEoLctxiZY",
               "5HpG9w8EBLe5XCrbczpwq5TSXvedjrBGCwqxK1iQ7qUsSWFc"
