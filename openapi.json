@@ -33124,7 +33124,7 @@
     "/api/v1/sui/{network}/staking/withdraw": {
       "post": {
         "operationId": "sui-staking-withdraw",
-        "summary": "Create Withdraw Request",
+        "summary": "Create Withdrawal Request",
         "description": "Create a request to withdraw unstaked tokens.",
         "parameters": [
           {
@@ -33190,8 +33190,8 @@
     "/api/v1/sui/{network}/transaction/stake-list/{address}": {
       "get": {
         "operationId": "sui-transactio-get-stake-list",
-        "summary": "Get Stake list",
-        "description": "Get stake list for the address.",
+        "summary": "Get Stake List",
+        "description": "Retrieve a list of stakes for the given account address.",
         "parameters": [
           {
             "name": "network",
@@ -33211,6 +33211,7 @@
             "name": "address",
             "required": true,
             "in": "path",
+            "description": "Staker account address.",
             "schema": {
               "type": "string"
             }
@@ -33254,8 +33255,8 @@
     "/api/v1/sui/{network}/transaction/send": {
       "post": {
         "operationId": "sui-transaction-send",
-        "summary": "Get stake list",
-        "description": "Get stake list for the address.",
+        "summary": "Broadcast Transaction",
+        "description": "Broadcast transaction to the Sui network.",
         "parameters": [
           {
             "name": "network",
@@ -37765,7 +37766,7 @@
           },
           "totalEarnedRewards": {
             "type": "string",
-            "description": "Total amount of earned reward."
+            "description": "Total amount of earned rewards."
           },
           "state": {
             "type": "string",
@@ -41755,12 +41756,12 @@
           },
           "gasPrice": {
             "type": "number",
-            "description": "Price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction.",
+            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
             "example": 1000
           },
           "gasBudget": {
             "type": "number",
-            "description": "Maximum gas limit for the transaction.",
+            "description": "Maximum number of gas units that can be expended by executing this transaction.",
             "example": 1000000
           },
           "stakeId": {
@@ -41873,55 +41874,26 @@
       "StakeRequestDto": {
         "type": "object",
         "properties": {
-          "stakerPublicKey": {
+          "sender": {
             "type": "string",
-            "description": "Staker public key.",
-            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+            "description": "Address of the account.",
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
           },
-          "stakerAddress": {
-            "type": "string",
-            "description": "Staker taproot address.",
-            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
-          },
-          "stakeAmount": {
+          "gasPrice": {
             "type": "number",
-            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
-            "example": 1000000
-          },
-          "stakingDuration": {
-            "type": "number",
-            "description": "Time-lock period for staking in Bitcoin blocks.",
-            "example": 100
-          },
-          "finallyProviderPublicKey": {
-            "type": "string",
-            "description": "Finality provider public key produced by the Schnorr signature algorithm.",
-            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
-          },
-          "stakeTransactionHex": {
-            "type": "string",
-            "description": "Unsigned stake transaction in the hexadecimal format. Sign the transaction and submit it to the Bitcoin blockchain to perform the called action.",
-            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
-          },
-          "fee": {
-            "type": "number",
-            "description": "Total fee in SATOSHI charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
             "example": 1000
           },
-          "stakerAddress": {
-            "type": "string",
-            "description": "Staker taproot address.",
-            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
-          },
-          "stakeAmount": {
+          "gasBudget": {
             "type": "number",
-            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
-            "example": 30000
+            "description": "Maximum number of gas units that can be expended by executing this transaction.",
+            "example": 1500000000
           },
-          "stakingDuration": {
+          "amount": {
             "type": "number",
-            "description": "Time-lock period for staking in Bitcoin blocks.",
-            "example": 150
+            "description": "",
+            "minimum": 1,
+            "example": 1
           }
         },
         "required": [
@@ -42062,20 +42034,20 @@
       "SendRequestDto": {
         "type": "object",
         "properties": {
-          "transactionHex": {
+          "transaction": {
             "type": "string",
             "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
-            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
           },
-          "maxFee": {
-            "type": "number",
-            "description": "Maximum fee in SATOSHI that can be charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
-            "example": 1000000
+          "signature": {
+            "type": "string",
+            "description": "Signature of the sender of the transaction.",
+            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
           }
         },
         "required": [
-          "transactionHex",
-          "maxFee"
+          "transaction",
+          "signature"
         ]
       },
       "UnbondingResponseDto": {
