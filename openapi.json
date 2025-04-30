@@ -7406,19 +7406,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -7638,19 +7635,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -7870,19 +7864,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -8166,19 +8157,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -8462,19 +8450,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -8758,19 +8743,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -9054,19 +9036,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -9350,19 +9329,16 @@
             "description": "Network name.",
             "schema": {
               "enum": [
-                "ethereum-agg",
-                "ethereum",
                 "solana",
                 "cosmoshub",
                 "polkadot",
                 "kusama",
                 "moonbeam",
                 "vara",
-                "sui",
                 "polygon",
+                "sui",
                 "avail",
-                "ton",
-                "near"
+                "ethereum"
               ],
               "type": "string"
             }
@@ -9633,290 +9609,6 @@
         ]
       }
     },
-    "/api/v1/{network}/data/network/block-rewards": {
-      "get": {
-        "operationId": "NetworkController_getBlockRewards",
-        "summary": "Get Network Block Rewards",
-        "description": "Get a list of block rewards.",
-        "parameters": [
-          {
-            "name": "network",
-            "required": true,
-            "in": "path",
-            "description": "Network name.",
-            "schema": {
-              "enum": [
-                "solana"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "startAt",
-            "required": false,
-            "in": "query",
-            "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "finishAt",
-            "required": false,
-            "in": "query",
-            "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "startNumber",
-            "required": false,
-            "in": "query",
-            "description": "Start number of the staking period.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "finishNumber",
-            "required": false,
-            "in": "query",
-            "description": "Finish number of the staking period.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "example": 50,
-            "description": "Number of resources that a single response page contains.",
-            "schema": {
-              "minimum": 1,
-              "maximum": 1000,
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "example": 0,
-            "description": "Number of resources to exclude from a response.",
-            "schema": {
-              "minimum": 0,
-              "maximum": 10000000,
-              "type": "number"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/GetNetworkQueueResponse"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ValidationException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "ValidationException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The data provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "NetworkIsNotIncludedInListException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/NoTokenException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongTokenException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "NoTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101111,
-                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  },
-                  "WrongTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101109,
-                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Not found",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/GetNetworkBlockRewardsNotFoundException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "GetNetworkBlockRewardsNotFoundException": {
-                    "value": {
-                      "error": {
-                        "code": 115209,
-                        "message": "The data for the parameters provided could not be found.",
-                        "type": "not_found"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/GetNetworkBlockRewardsException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "GetNetworkBlockRewardsException": {
-                    "value": {
-                      "error": {
-                        "code": 115210,
-                        "message": "The list of network block rewards could not be obtained because an internal server error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Network"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
     "/api/v1/{network}/data/validator/summary": {
       "get": {
         "operationId": "data-validator-summary",
@@ -9942,7 +9634,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -10225,7 +9918,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -10508,7 +10202,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -10791,7 +10486,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -11074,7 +10770,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -11355,7 +11052,8 @@
                 "sui",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -11574,7 +11272,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -11824,7 +11523,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -12477,7 +12177,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -12812,7 +12513,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -13147,7 +12849,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -13482,7 +13185,8 @@
                 "polygon",
                 "avail",
                 "ton",
-                "near"
+                "near",
+                "cardano"
               ],
               "type": "string"
             }
@@ -13904,7 +13608,7 @@
             "name": "validatorAddress",
             "required": false,
             "in": "query",
-            "description": "Validator address in the required network for this delegator",
+            "description": "Validator address in the required network for this delegator.",
             "schema": {
               "type": "string"
             }
@@ -14458,70 +14162,6 @@
             }
           },
           {
-            "name": "startAt",
-            "required": false,
-            "in": "query",
-            "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "finishAt",
-            "required": false,
-            "in": "query",
-            "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
-            "schema": {
-              "format": "date-time",
-              "type": "string"
-            }
-          },
-          {
-            "name": "startNumber",
-            "required": false,
-            "in": "query",
-            "description": "Start number of the staking period.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "finishNumber",
-            "required": false,
-            "in": "query",
-            "description": "Finish number of the staking period.",
-            "schema": {
-              "type": "number"
-            }
-          },
-          {
-            "name": "limit",
-            "required": false,
-            "in": "query",
-            "example": 50,
-            "description": "Number of resources that a single response page contains.",
-            "schema": {
-              "minimum": 1,
-              "maximum": 1000,
-              "type": "number"
-            }
-          },
-          {
-            "name": "offset",
-            "required": false,
-            "in": "query",
-            "example": 0,
-            "description": "Number of resources to exclude from a response.",
-            "schema": {
-              "minimum": 0,
-              "maximum": 10000000,
-              "type": "number"
-            }
-          },
-          {
             "name": "address",
             "required": true,
             "in": "query",
@@ -14536,20 +14176,6 @@
             "in": "query",
             "description": "Delegator address in the required network.",
             "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "groupBy",
-            "required": false,
-            "in": "query",
-            "description": "<p>Group the report data:</p><ul><li>`stakingPeriod` — aggregate the results by epoch</li><li>`day` — aggregate the results by days</li><li>`all` — aggregate the results over the entire period</li></ul>.",
-            "schema": {
-              "enum": [
-                "stakingPeriod",
-                "day",
-                "all"
-              ],
               "type": "string"
             }
           }
@@ -14712,7 +14338,7 @@
                     "value": {
                       "error": {
                         "code": 115408,
-                        "message": "The delegator pool summary could not be obtained because an internal server error occurred.",
+                        "message": "The delegator pools summary could not be obtained because an internal server error occurred.",
                         "type": "server"
                       },
                       "result": null
@@ -33428,6 +33054,268 @@
           }
         ]
       }
+    },
+    "/api/v1/sui/{network}/staking/stake": {
+      "post": {
+        "operationId": "sui-staking-stake",
+        "summary": "Create Staking Request",
+        "description": "Create staking request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Sui network:</p><ul><li>`mainnet` — Sui mainnet.</li><li>`testnet` — Sui testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sui"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/sui/{network}/staking/withdraw": {
+      "post": {
+        "operationId": "sui-staking-withdraw",
+        "summary": "Create Withdraw Request",
+        "description": "Create a request to withdraw unstaked tokens.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Sui network:</p><ul><li>`mainnet` — Sui mainnet.</li><li>`testnet` — Sui testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/WithdrawRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/WithdrawResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sui"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/sui/{network}/transaction/stake-list/{address}": {
+      "get": {
+        "operationId": "sui-transactio-get-stake-list",
+        "summary": "Get Stake list",
+        "description": "Get stake list for the address.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Sui network:</p><ul><li>`mainnet` — Sui mainnet.</li><li>`testnet` — Sui testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "address",
+            "required": true,
+            "in": "path",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetStakeListResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sui"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/sui/{network}/transaction/send": {
+      "post": {
+        "operationId": "sui-transaction-send",
+        "summary": "Get stake list",
+        "description": "Get stake list for the address.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "testnet",
+            "description": "<p>Sui network:</p><ul><li>`mainnet` — Sui mainnet.</li><li>`testnet` — Sui testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "mainnet",
+                "testnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SendRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/GetStakeListResponseDto"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Sui"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
     }
   },
   "info": {
@@ -36394,7 +36282,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Reward currency.",
             "example": "DOT"
@@ -36508,7 +36397,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Reward currency.",
             "example": "DOT"
@@ -36555,50 +36445,6 @@
           "limit",
           "offset",
           "list"
-        ]
-      },
-      "GetNetworkBlockRewardsNotFoundException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 115209
-          },
-          "message": {
-            "type": "string",
-            "default": "The data for the parameters provided could not be found."
-          },
-          "name": {
-            "type": "string",
-            "default": "GetNetworkBlockRewardsNotFoundException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "GetNetworkBlockRewardsException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 115210
-          },
-          "message": {
-            "type": "string",
-            "default": "The list of network block rewards could not be obtained because an internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "GetNetworkBlockRewardsException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
         ]
       },
       "InvalidValidatorAddressException": {
@@ -36687,7 +36533,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Currency of the tokens."
           },
@@ -37479,7 +37326,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Currency of the tokens."
           },
@@ -37915,6 +37763,10 @@
             "type": "string",
             "description": "Reward amount available to withdraw."
           },
+          "totalEarnedRewards": {
+            "type": "string",
+            "description": "Total amount of earned reward."
+          },
           "state": {
             "type": "string",
             "description": "State."
@@ -37925,11 +37777,11 @@
           },
           "delegatedAt": {
             "type": "string",
-            "description": "Timestamp of delegation transaction in the ISO 8601 format."
+            "description": "Timestamp when the transaction was delegated in the ISO 8601 format."
           },
           "undelegatedAt": {
             "type": "string",
-            "description": "Timestamp of the undelegation transaction in the ISO 8601 format."
+            "description": "Timestamp when the transaction was undelegated in the ISO 8601 format."
           },
           "tokenPrice": {
             "type": "number",
@@ -37949,7 +37801,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Currency of the tokens."
           }
@@ -37966,6 +37819,7 @@
           "grossRewards",
           "grossRewardsUsd",
           "withdrawableRewards",
+          "totalEarnedRewards",
           "state",
           "netApy",
           "delegatedAt",
@@ -38062,7 +37916,8 @@
               "SUI",
               "AVAIL",
               "TON",
-              "NEAR"
+              "NEAR",
+              "ADA"
             ],
             "description": "Currency of the tokens."
           }
@@ -39434,7 +39289,7 @@
           },
           "method": {
             "type": "object",
-            "description": "List of data field containing information on the method called to construct a transaction."
+            "description": "List of data fields containing information on the method called to construct a transaction."
           },
           "nonce": {
             "type": "number",
@@ -41893,15 +41748,32 @@
       "WithdrawRequestDto": {
         "type": "object",
         "properties": {
-          "stakerAddress": {
+          "sender": {
             "type": "string",
             "description": "Staker account address.",
-            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
-            "pattern": "^0x[a-fA-F0-9]{40}$"
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+          },
+          "gasPrice": {
+            "type": "number",
+            "description": "Price per unit of gas in Wei, which is added to the EIP-1559 block's base fee. This added fee is used to incentivize miners to prioritize this transaction.",
+            "example": 1000
+          },
+          "gasBudget": {
+            "type": "number",
+            "description": "Maximum gas limit for the transaction.",
+            "example": 1000000
+          },
+          "stakeId": {
+            "type": "string",
+            "description": "ID of the staking transaction required to create a withdrawal request.",
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
           }
         },
         "required": [
-          "stakerAddress"
+          "sender",
+          "gasPrice",
+          "gasBudget",
+          "stakeId"
         ]
       },
       "RestakeRequestDto": {
@@ -41996,6 +41868,10 @@
       },
       "StakeResponseDto": {
         "type": "object",
+        "properties": {}
+      },
+      "StakeRequestDto": {
+        "type": "object",
         "properties": {
           "stakerPublicKey": {
             "type": "string",
@@ -42031,25 +41907,6 @@
             "type": "number",
             "description": "Total fee in SATOSHI charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
             "example": 1000
-          }
-        },
-        "required": [
-          "stakerPublicKey",
-          "stakerAddress",
-          "stakeAmount",
-          "stakingDuration",
-          "finallyProviderPublicKey",
-          "stakeTransactionHex",
-          "fee"
-        ]
-      },
-      "StakeRequestDto": {
-        "type": "object",
-        "properties": {
-          "stakerPublicKey": {
-            "type": "string",
-            "description": "Staker public key.",
-            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
           },
           "stakerAddress": {
             "type": "string",
@@ -42068,10 +41925,10 @@
           }
         },
         "required": [
-          "stakerPublicKey",
-          "stakerAddress",
-          "stakeAmount",
-          "stakingDuration"
+          "sender",
+          "gasPrice",
+          "gasBudget",
+          "amount"
         ]
       },
       "WithdrawalResponseDto": {
@@ -42903,16 +42760,19 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "cosmos",
+              "cardano",
               "celestia",
+              "cosmos",
               "polkadot",
+              "polygon",
               "sei",
               "solana",
               "eth_ssv",
               "ton_whales",
-              "near"
+              "near",
+              "dydx"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
             "example": "avail"
           },
           "network": {
@@ -42920,16 +42780,16 @@
             "enum": [
               "mainnet",
               "testnet",
-              "cosmoshub-4",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
+              "cosmoshub-4",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -42966,16 +42826,19 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "cosmos",
+              "cardano",
               "celestia",
+              "cosmos",
               "polkadot",
+              "polygon",
               "sei",
               "solana",
               "eth_ssv",
               "ton_whales",
-              "near"
+              "near",
+              "dydx"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
             "example": "avail"
           },
           "network": {
@@ -42983,16 +42846,16 @@
             "enum": [
               "mainnet",
               "testnet",
-              "cosmoshub-4",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
+              "cosmoshub-4",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -43022,16 +42885,19 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "cosmos",
+              "cardano",
               "celestia",
+              "cosmos",
               "polkadot",
+              "polygon",
               "sei",
               "solana",
               "eth_ssv",
               "ton_whales",
-              "near"
+              "near",
+              "dydx"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
             "example": "avail"
           },
           "network": {
@@ -43039,16 +42905,16 @@
             "enum": [
               "mainnet",
               "testnet",
-              "cosmoshub-4",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
+              "cosmoshub-4",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
@@ -43095,16 +42961,19 @@
             "enum": [
               "avail",
               "babylon-btc",
-              "cosmos",
+              "cardano",
               "celestia",
+              "cosmos",
               "polkadot",
+              "polygon",
               "sei",
               "solana",
               "eth_ssv",
               "ton_whales",
-              "near"
+              "near",
+              "dydx"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cosmos,celestia,polkadot,sei,solana,eth_ssv,ton_whales,near).",
+            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
             "example": "avail"
           },
           "network": {
@@ -43112,16 +42981,16 @@
             "enum": [
               "mainnet",
               "testnet",
-              "cosmoshub-4",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
+              "cosmoshub-4",
               "kusama",
               "westend",
               "pacific-1",
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,cosmoshub-4,celestia-mainnet-beta,celestia-mocha-testnet,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
@@ -43560,6 +43429,14 @@
           "signature",
           "publicKey"
         ]
+      },
+      "WithdrawResponseDto": {
+        "type": "object",
+        "properties": {}
+      },
+      "GetStakeListResponseDto": {
+        "type": "object",
+        "properties": {}
       }
     }
   }
