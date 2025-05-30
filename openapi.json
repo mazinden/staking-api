@@ -59,6 +59,12 @@
                         },
                         {
                           "$ref": "#/components/schemas/ClusterIsLiquidatedException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongValidatorSizeException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorSizeHasToBeDefaultException"
                         }
                       ]
                     }
@@ -90,6 +96,26 @@
                       "error": {
                         "code": 111123,
                         "message": "The request could not be performed because the SSV cluster was liquidated. Please register a new cluster and then try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongValidatorSizeException": {
+                    "value": {
+                      "error": {
+                        "code": 103143,
+                        "message": "The size of validators provided is invalid. Please check the request parameters.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorSizeHasToBeDefaultException": {
+                    "value": {
+                      "error": {
+                        "code": 103142,
+                        "message": "The size of validators provided has to be equal to 32 ETH. Please check the request parameters.",
                         "type": "client"
                       },
                       "result": null
@@ -960,6 +986,12 @@
                         },
                         {
                           "$ref": "#/components/schemas/CannotGetPodAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongValidatorSizeException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorSizeHasToBeDefaultException"
                         }
                       ]
                     }
@@ -979,7 +1011,7 @@
                   "NodesRequestIdAlreadyExistException": {
                     "value": {
                       "error": {
-                        "code": 103121,
+                        "code": 103122,
                         "message": "The nodes set-up request could not be performed because the node ID specified already exists.",
                         "type": "client"
                       },
@@ -989,8 +1021,28 @@
                   "CannotGetPodAddressException": {
                     "value": {
                       "error": {
-                        "code": 103128,
+                        "code": 103129,
                         "message": "The transaction could not be created because the withdrawal address 'undefined' provided is invalid. For the restaking flow, the withdrawal address corresponds to the EigenPod address set by default or explicitly. Please check the request parameters.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongValidatorSizeException": {
+                    "value": {
+                      "error": {
+                        "code": 103143,
+                        "message": "The size of validators provided is invalid. Please check the request parameters.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorSizeHasToBeDefaultException": {
+                    "value": {
+                      "error": {
+                        "code": 103142,
+                        "message": "The size of validators provided has to be equal to 32 ETH. Please check the request parameters.",
                         "type": "client"
                       },
                       "result": null
@@ -1075,7 +1127,7 @@
                   "NodesRequestCreateException": {
                     "value": {
                       "error": {
-                        "code": 103116,
+                        "code": 103117,
                         "message": "The nodes set-up request could not be created because the internal server error occurred.",
                         "type": "server"
                       },
@@ -1254,7 +1306,7 @@
                   "NodesRequestNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 103114,
+                        "code": 103115,
                         "message": "The node request ID provided could not be found. Please specify the correct UUID.",
                         "type": "not_found"
                       },
@@ -1292,7 +1344,7 @@
                   "NodesRequestGetException": {
                     "value": {
                       "error": {
-                        "code": 103117,
+                        "code": 103118,
                         "message": "The status of the node request could not be obtained because the internal server error occurred.",
                         "type": "server"
                       },
@@ -1519,7 +1571,7 @@
                   "NodesRequestGetListException": {
                     "value": {
                       "error": {
-                        "code": 103120,
+                        "code": 103121,
                         "message": "The list of nodes requests statuses could not be obtained because the internal server error occurred.",
                         "type": "server"
                       },
@@ -1691,7 +1743,7 @@
                   "GetRelaysSetsException": {
                     "value": {
                       "error": {
-                        "code": 103125,
+                        "code": 103126,
                         "message": "The list of relay sets could not be obtained because the internal server error occurred.",
                         "type": "server"
                       },
@@ -7882,8 +7934,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -7893,8 +7945,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8175,8 +8227,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8186,8 +8238,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8468,8 +8520,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8479,8 +8531,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8761,8 +8813,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -8772,8 +8824,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9054,8 +9106,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9065,8 +9117,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9347,8 +9399,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9358,8 +9410,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9644,8 +9696,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9655,8 +9707,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9928,8 +9980,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -9939,8 +9991,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10212,8 +10264,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10223,8 +10275,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10496,8 +10548,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10507,8 +10559,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10780,8 +10832,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -10791,8 +10843,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -11533,8 +11585,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -11544,8 +11596,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12187,8 +12239,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12198,8 +12250,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12523,8 +12575,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12534,8 +12586,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12859,8 +12911,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -12870,8 +12922,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13195,8 +13247,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13206,8 +13258,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13518,8 +13570,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13529,8 +13581,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13841,8 +13893,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -13852,8 +13904,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -14382,8 +14434,8 @@
             "name": "startAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period start in the ISO 8601 format. If not specified, the default value is the one month ago.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -14393,8 +14445,8 @@
             "name": "finishAt",
             "required": false,
             "in": "query",
+            "example": "2024-01-01T00:00:00.000Z",
             "description": "Timestamp of the report data period finish in the ISO 8601 format. If not specified, the default value is the current date.",
-            "example": "2020-01-01T00:00:00.000Z",
             "schema": {
               "format": "date-time",
               "type": "string"
@@ -14839,8 +14891,8 @@
     "/api/v1/eth/staking/direct/tx/withdrawal": {
       "post": {
         "operationId": "eth-staking-withdrawal",
-        "summary": "Prepare Withdrawal Transaction",
-        "description": "Construct a serialized transaction to initiate the withdrawal process for active validators, utilizing the functionalities of P2P smart contract.",
+        "summary": "Prepare Withdrawal Transaction for EOA Validators",
+        "description": "Construct a serialized transaction to initiate the withdrawal process for EOA validators validators, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -14900,6 +14952,9 @@
                         },
                         {
                           "$ref": "#/components/schemas/ValidatorNotActiveException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeysDuplicatesException"
                         }
                       ]
                     }
@@ -14919,7 +14974,7 @@
                   "InvalidDepositDataSignException": {
                     "value": {
                       "error": {
-                        "code": 103113,
+                        "code": 103114,
                         "message": "The withdrawal transaction could not be created because the signature of the deposit data is invalid. Please re-sign the serialized transaction by following https://docs.p2p.org/docs/signing-transaction-eth.",
                         "type": "client"
                       },
@@ -14930,7 +14985,7 @@
                     "value": {
                       "error": {
                         "code": 103105,
-                        "message": "The withdrawal transaction could not be created because the validator public keys provided are invalid or do not exist.",
+                        "message": "The transaction could not be created because the validator public keys provided are invalid or do not exist.",
                         "type": "client"
                       },
                       "result": null
@@ -14940,7 +14995,17 @@
                     "value": {
                       "error": {
                         "code": 103106,
-                        "message": "The withdrawal transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "message": "The transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeysDuplicatesException": {
+                    "value": {
+                      "error": {
+                        "code": 103152,
+                        "message": "Error while pubkeys has duplicates",
                         "type": "client"
                       },
                       "result": null
@@ -15070,6 +15135,292 @@
         ]
       }
     },
+    "/api/v1/eth/staking/direct/tx/withdrawal/partial": {
+      "post": {
+        "operationId": "eth-staking-withdrawal-partial",
+        "summary": "Prepare Partial or Full Withdrawal Transaction",
+        "description": "Construct a serialized transaction to initiate the partial or full withdrawal process for active validators.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PartialWithdrawalEthereumRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDepositDataSignException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeyDoNotExistsException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotActiveException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotConsolidatedException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongAmountLenghtException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotOldEnoughException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeysDuplicatesException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PartialWithdrawalWrongAmountException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDepositDataSignException": {
+                    "value": {
+                      "error": {
+                        "code": 103114,
+                        "message": "The withdrawal transaction could not be created because the signature of the deposit data is invalid. Please re-sign the serialized transaction by following https://docs.p2p.org/docs/signing-transaction-eth.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeyDoNotExistsException": {
+                    "value": {
+                      "error": {
+                        "code": 103105,
+                        "message": "The transaction could not be created because the validator public keys provided are invalid or do not exist.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotActiveException": {
+                    "value": {
+                      "error": {
+                        "code": 103106,
+                        "message": "The transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotConsolidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 103147,
+                        "message": "The transaction could not be created because the validator is not consolidated.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongAmountLenghtException": {
+                    "value": {
+                      "error": {
+                        "code": 103148,
+                        "message": "The transaction could not be created because the amount of Gwei provided is invalid.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotOldEnoughException": {
+                    "value": {
+                      "error": {
+                        "code": 103150,
+                        "message": "The transaction could not be created because the validator is not old enough.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeysDuplicatesException": {
+                    "value": {
+                      "error": {
+                        "code": 103152,
+                        "message": "Error while pubkeys has duplicates",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PartialWithdrawalWrongAmountException": {
+                    "value": {
+                      "error": {
+                        "code": 103153,
+                        "message": "The transaction could not be created due to wrong amount",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/eth/staking/direct/tx/convert-tx-data": {
       "post": {
         "operationId": "eth-staking-convert-tx-data",
@@ -15153,7 +15504,7 @@
                   "InvalidDepositDataSignException": {
                     "value": {
                       "error": {
-                        "code": 103113,
+                        "code": 103114,
                         "message": "The withdrawal transaction could not be created because the signature of the deposit data is invalid. Please re-sign the serialized transaction by following https://docs.p2p.org/docs/signing-transaction-eth.",
                         "type": "client"
                       },
@@ -15164,7 +15515,7 @@
                     "value": {
                       "error": {
                         "code": 103105,
-                        "message": "The withdrawal transaction could not be created because the validator public keys provided are invalid or do not exist.",
+                        "message": "The transaction could not be created because the validator public keys provided are invalid or do not exist.",
                         "type": "client"
                       },
                       "result": null
@@ -15174,7 +15525,7 @@
                     "value": {
                       "error": {
                         "code": 103106,
-                        "message": "The withdrawal transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "message": "The transaction could not be created because one or more validators are not participating currently in the validator activities.",
                         "type": "client"
                       },
                       "result": null
@@ -15284,6 +15635,253 @@
                       "error": {
                         "code": 103107,
                         "message": "The withdrawal transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/tx/consolidation-validators": {
+      "post": {
+        "operationId": "eth-staking-consolidation-validators",
+        "summary": "Prepare Consolidation Transaction",
+        "description": "Construct a serialized transaction to consolidate multiple validators into a single entity.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConsolidationValidatorsRequestDto"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidDepositDataSignException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeyDoNotExistsException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotActiveException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongValidatorWithdrawalAddressException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeysDuplicatesException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidDepositDataSignException": {
+                    "value": {
+                      "error": {
+                        "code": 103114,
+                        "message": "The withdrawal transaction could not be created because the signature of the deposit data is invalid. Please re-sign the serialized transaction by following https://docs.p2p.org/docs/signing-transaction-eth.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeyDoNotExistsException": {
+                    "value": {
+                      "error": {
+                        "code": 103105,
+                        "message": "The transaction could not be created because the validator public keys provided are invalid or do not exist.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotActiveException": {
+                    "value": {
+                      "error": {
+                        "code": 103106,
+                        "message": "The transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongValidatorWithdrawalAddressException": {
+                    "value": {
+                      "error": {
+                        "code": 103108,
+                        "message": "The transaction could not be created because the validator withdrawal address doesn't match with the withdrawalAddress.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeysDuplicatesException": {
+                    "value": {
+                      "error": {
+                        "code": 103152,
+                        "message": "Error while pubkeys has duplicates",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/Web3CreateTransactionException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "Web3CreateTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 103104,
+                        "message": "The Web3 transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
                         "type": "server"
                       },
                       "result": null
@@ -15419,6 +16017,441 @@
                         "code": 101109,
                         "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
                         "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/increment-request/create": {
+      "post": {
+        "operationId": "eth-increment-request-create",
+        "summary": "Create Staking Increment Request",
+        "description": "Set up a new increment request.",
+        "parameters": [],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateIncrementRequestRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "type": "boolean",
+                      "example": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/IncrementRequestIdAlreadyExistException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotActiveException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/PubkeysDuplicatesException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorNotConsolidatedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "IncrementRequestIdAlreadyExistException": {
+                    "value": {
+                      "error": {
+                        "code": 103139,
+                        "message": "Increment request with this ID already exists.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotActiveException": {
+                    "value": {
+                      "error": {
+                        "code": 103106,
+                        "message": "The transaction could not be created because one or more validators are not participating currently in the validator activities.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "PubkeysDuplicatesException": {
+                    "value": {
+                      "error": {
+                        "code": 103152,
+                        "message": "Error while pubkeys has duplicates",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorNotConsolidatedException": {
+                    "value": {
+                      "error": {
+                        "code": 103147,
+                        "message": "The transaction could not be created because the validator is not consolidated.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/IncrementRequestSendException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "IncrementRequestSendException": {
+                    "value": {
+                      "error": {
+                        "code": 103141,
+                        "message": "Error while sending increment request",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/increment-request/status/{id}": {
+      "get": {
+        "operationId": "eth-increment-request-status",
+        "summary": "Get Increment Request Status",
+        "description": "Check the status of the increment request.",
+        "parameters": [
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "UUID of the increment request.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/IncrementRequestResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/IncrementRequestNotFoundException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "IncrementRequestNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 103140,
+                        "message": "Increment request not found",
+                        "type": "not_found"
                       },
                       "result": null
                     }
@@ -15882,6 +16915,707 @@
         ]
       }
     },
+    "/api/v1/eth/staking/direct/p2p/deposit": {
+      "get": {
+        "operationId": "p2p-transaction-direct-deposit",
+        "summary": "Prepare Proxy Staking Transaction",
+        "description": "Construct a serialized transaction to deposit ETH to the proxy smart contract.",
+        "parameters": [
+          {
+            "name": "amount",
+            "required": true,
+            "in": "query",
+            "description": "Amount of ETH to deposit.",
+            "example": 32,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "amountPerValidator",
+            "required": false,
+            "in": "query",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withdrawalCredentialsType",
+            "required": false,
+            "in": "query",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "schema": {
+              "enum": [
+                "0x01",
+                "0x02"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withdrawalAddress",
+            "required": true,
+            "in": "query",
+            "description": "Withdrawal address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "schema": {
+              "pattern": "^0x[a-fA-F0-9]{40}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "controllerAddress",
+            "required": false,
+            "in": "query",
+            "description": "Controller address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "schema": {
+              "pattern": "^0x[a-fA-F0-9]{40}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "feeRecipientAddress",
+            "required": false,
+            "in": "query",
+            "description": "Fee recipient address.",
+            "example": "0x53da3c92fCCEb0CFE1764f65DDfF1564A2b15585",
+            "schema": {
+              "pattern": "^0x[a-fA-F0-9]{40}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/DepositException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "DepositException": {
+                    "value": {
+                      "error": {
+                        "code": 103145,
+                        "message": "Failed to create P2P deposit transaction",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/p2p/deposits": {
+      "get": {
+        "operationId": "p2p-transaction-deposit-list",
+        "summary": "Get List of Deposits With Validators",
+        "description": "Get a list of deposits with validators.",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "type",
+            "required": true,
+            "in": "query",
+            "description": "Type of the request.",
+            "example": {
+              "WITHDRAWAL_ADDRESS": "withdrawalAddress",
+              "TRANSACTION_HASH": "transactionHash",
+              "DEPOSIT_IDS": "depositIds"
+            },
+            "schema": {
+              "enum": [
+                "withdrawalAddress",
+                "transactionHash",
+                "depositIds"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "withdrawalAddress",
+            "required": false,
+            "in": "query",
+            "description": "Withdrawal address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "schema": {
+              "pattern": "^0x[a-fA-F0-9]{40}$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionHash",
+            "required": false,
+            "in": "query",
+            "description": "Hash of the deposit transaction.",
+            "example": "0x2b1c6bbdeadb0b23ca8260a819fde1c0b0347b0fd42c33a9b2513b36d6521dc6",
+            "schema": {
+              "pattern": "^0x([A-Fa-f0-9])+$",
+              "nullable": false,
+              "type": "string"
+            }
+          },
+          {
+            "name": "depositIds",
+            "required": false,
+            "in": "query",
+            "description": "Deposit ID list.",
+            "schema": {
+              "minimum": 1,
+              "format": "uuid",
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/DepositListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/DepositListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "DepositListException": {
+                    "value": {
+                      "error": {
+                        "code": 103146,
+                        "message": "Failed to get list of deposits",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/eth/staking/direct/p2p/validators": {
+      "get": {
+        "operationId": "p2p-transaction-validator",
+        "summary": "Get List of Validators",
+        "description": "Get a list of validators by address.",
+        "parameters": [
+          {
+            "name": "limit",
+            "required": true,
+            "in": "query",
+            "example": 50,
+            "description": "Number of resources that a single response page contains.",
+            "schema": {
+              "minimum": 1,
+              "maximum": 1000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "offset",
+            "required": true,
+            "in": "query",
+            "example": 0,
+            "description": "Number of resources to exclude from a response.",
+            "schema": {
+              "minimum": 0,
+              "maximum": 100000,
+              "type": "number"
+            }
+          },
+          {
+            "name": "withdrawalAddress",
+            "required": true,
+            "in": "query",
+            "description": "Withdrawal address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "schema": {
+              "pattern": "^0x[a-fA-F0-9]{40}$",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidatorListResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/TokenGuardException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/ValidatorsException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "TokenGuardException": {
+                    "value": {
+                      "error": {
+                        "code": 101110,
+                        "message": "The request could not be performed because the server authorization error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  },
+                  "ValidatorsException": {
+                    "value": {
+                      "error": {
+                        "code": 103144,
+                        "message": "Failed to get list of validators",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Ethereum"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/eth/staking/eigenlayer/operator": {
       "get": {
         "operationId": "eth-eigen-operator-list",
@@ -16047,7 +17781,7 @@
                   "EigenOperatorGetListException": {
                     "value": {
                       "error": {
-                        "code": 103120,
+                        "code": 103121,
                         "message": "The list of node operators could not be obtained because an internal server error occurred.",
                         "type": "server"
                       },
@@ -29948,7 +31682,7 @@
             "required": true,
             "in": "query",
             "example": "1000",
-            "description": "Amount to be withdrawn",
+            "description": "SSV Amount to be withdrawn. The amount must be divisible by 10000000.",
             "schema": {
               "type": "string"
             }
@@ -29993,6 +31727,9 @@
                       "allOf": [
                         {
                           "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientSsvException"
                         }
                       ]
                     }
@@ -30004,6 +31741,16 @@
                       "error": {
                         "code": 100101,
                         "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientSsvException": {
+                    "value": {
+                      "error": {
+                        "code": 111150,
+                        "message": "The transaction could not be created because insufficient amount of SSV tokens",
                         "type": "client"
                       },
                       "result": null
@@ -31036,11 +32783,34 @@
             "name": "amount",
             "required": true,
             "in": "query",
-            "description": "Amount of ETH to deposit. The amount must be in multiples of 32 ETH.",
+            "description": "Amount of ETH to deposit.",
             "example": 32,
             "schema": {
-              "minimum": 32,
               "type": "number"
+            }
+          },
+          {
+            "name": "amountPerValidator",
+            "required": false,
+            "in": "query",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withdrawalCredentialsType",
+            "required": false,
+            "in": "query",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "schema": {
+              "enum": [
+                "0x01",
+                "0x02"
+              ],
+              "type": "string"
             }
           },
           {
@@ -33334,10 +35104,6 @@
     {
       "url": "https://api-test.p2p.org",
       "description": "Testnet Staking API"
-    },
-    {
-      "url": "https://api-test-holesky.p2p.org",
-      "description": "Testnet Holesky Staking API"
     }
   ],
   "components": {
@@ -33504,6 +35270,50 @@
           "name"
         ]
       },
+      "WrongValidatorSizeException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103143
+          },
+          "message": {
+            "type": "string",
+            "default": "The size of validators provided is invalid. Please check the request parameters."
+          },
+          "name": {
+            "type": "string",
+            "default": "WrongValidatorSizeException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ValidatorSizeHasToBeDefaultException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103142
+          },
+          "message": {
+            "type": "string",
+            "default": "The size of validators provided has to be equal to 32 ETH. Please check the request parameters."
+          },
+          "name": {
+            "type": "string",
+            "default": "ValidatorSizeHasToBeDefaultException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
       "SsvRequestCreateException": {
         "type": "object",
         "properties": {
@@ -33603,6 +35413,20 @@
             "minimum": 1,
             "maximum": 50,
             "example": 1
+          },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000"
+          },
+          "withdrawalCredentialsType": {
+            "type": "string",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "enum": [
+              "0x01",
+              "0x02"
+            ]
           },
           "withdrawalAddress": {
             "type": "string",
@@ -33792,6 +35616,20 @@
             "maximum": 1,
             "example": 1
           },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000"
+          },
+          "withdrawalCredentialsType": {
+            "type": "string",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "enum": [
+              "0x01",
+              "0x02"
+            ]
+          },
           "withdrawalAddress": {
             "type": "string",
             "description": "Withdrawal address of the cluster owner.",
@@ -33876,6 +35714,8 @@
           "id",
           "status",
           "validatorsCount",
+          "amountPerValidator",
+          "withdrawalCredentialsType",
           "withdrawalAddress",
           "feeRecipientAddress",
           "ssvOwnerAddress",
@@ -34101,7 +35941,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103121
+            "default": 103122
           },
           "message": {
             "type": "string",
@@ -34123,7 +35963,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103128
+            "default": 103129
           },
           "message": {
             "type": "string",
@@ -34145,7 +35985,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103116
+            "default": 103117
           },
           "message": {
             "type": "string",
@@ -34204,11 +36044,25 @@
           },
           "validatorsCount": {
             "type": "number",
-            "description": "Number of validators. One validator is equal to 32 ETH.",
+            "description": "Number of validators: each validator stakes from 32 to 2048 ETH.",
             "default": 1,
             "minimum": 1,
             "maximum": 3125,
             "example": 1
+          },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000"
+          },
+          "withdrawalCredentialsType": {
+            "type": "string",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "enum": [
+              "0x01",
+              "0x02"
+            ]
           },
           "withdrawalAddress": {
             "type": "string",
@@ -34249,7 +36103,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103114
+            "default": 103115
           },
           "message": {
             "type": "string",
@@ -34271,7 +36125,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103117
+            "default": 103118
           },
           "message": {
             "type": "string",
@@ -34325,6 +36179,20 @@
             "maximum": 3125,
             "example": 1
           },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000"
+          },
+          "withdrawalCredentialsType": {
+            "type": "string",
+            "description": "Withdrawal credentials preference.",
+            "example": "0x02",
+            "enum": [
+              "0x01",
+              "0x02"
+            ]
+          },
           "withdrawalAddress": {
             "type": "string",
             "description": "Withdrawal address of the validator.",
@@ -34375,6 +36243,8 @@
           "type",
           "status",
           "validatorsCount",
+          "amountPerValidator",
+          "withdrawalCredentialsType",
           "feeRecipientAddress",
           "createdAt"
         ]
@@ -34384,7 +36254,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103120
+            "default": 103121
           },
           "message": {
             "type": "string",
@@ -34439,7 +36309,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103125
+            "default": 103126
           },
           "message": {
             "type": "string",
@@ -38071,6 +39941,10 @@
             "description": "Hash of the deposit data.",
             "example": "0x784bfffb4DfEFb457BA9187B38E49a1Bc0f4af50EDDDaca9581AA0aA7F98E96C",
             "pattern": "^0x[a-fA-F0-9]{64}$"
+          },
+          "withdrawalCredentials": {
+            "type": "string",
+            "description": "Public key for withdrawing balance."
           }
         },
         "required": [
@@ -38107,7 +39981,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 103113
+            "default": 103114
           },
           "message": {
             "type": "string",
@@ -38133,7 +40007,7 @@
           },
           "message": {
             "type": "string",
-            "default": "The withdrawal transaction could not be created because the validator public keys provided are invalid or do not exist."
+            "default": "The transaction could not be created because the validator public keys provided are invalid or do not exist."
           },
           "name": {
             "type": "string",
@@ -38155,11 +40029,33 @@
           },
           "message": {
             "type": "string",
-            "default": "The withdrawal transaction could not be created because one or more validators are not participating currently in the validator activities."
+            "default": "The transaction could not be created because one or more validators are not participating currently in the validator activities."
           },
           "name": {
             "type": "string",
             "default": "ValidatorNotActiveException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "PubkeysDuplicatesException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103152
+          },
+          "message": {
+            "type": "string",
+            "default": "Error while pubkeys has duplicates"
+          },
+          "name": {
+            "type": "string",
+            "default": "PubkeysDuplicatesException"
           }
         },
         "required": [
@@ -38208,6 +40104,134 @@
           "pubkeys"
         ]
       },
+      "ValidatorNotConsolidatedException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103147
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because the validator is not consolidated."
+          },
+          "name": {
+            "type": "string",
+            "default": "ValidatorNotConsolidatedException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "WrongAmountLenghtException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103148
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because the amount of Gwei provided is invalid."
+          },
+          "name": {
+            "type": "string",
+            "default": "WrongAmountLenghtException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ValidatorNotOldEnoughException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103150
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because the validator is not old enough."
+          },
+          "name": {
+            "type": "string",
+            "default": "ValidatorNotOldEnoughException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "PartialWithdrawalWrongAmountException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103153
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created due to wrong amount"
+          },
+          "name": {
+            "type": "string",
+            "default": "PartialWithdrawalWrongAmountException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "EthereumUnsignedTransactionListResponse": {
+        "type": "object",
+        "properties": {
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
+            }
+          }
+        },
+        "required": [
+          "list"
+        ]
+      },
+      "PartialWithdrawalEthereumRequest": {
+        "type": "object",
+        "properties": {
+          "pubkey": {
+            "description": "Validator public key.",
+            "example": [
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "amount": {
+            "description": "Amount to partially withdraw in ETH. Can be a single number, an array of numbers, or null. If specified as 0, the validator will be fully withdrawn.",
+            "example": "1",
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "pubkey"
+        ]
+      },
       "EthereumConvertTxDataRequestDto": {
         "type": "object",
         "properties": {
@@ -38231,6 +40255,61 @@
           "to",
           "value",
           "data"
+        ]
+      },
+      "WrongValidatorWithdrawalAddressException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103108
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because the validator withdrawal address doesn't match with the withdrawalAddress."
+          },
+          "name": {
+            "type": "string",
+            "default": "WrongValidatorWithdrawalAddressException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ConsolidationValidatorsRequestDto": {
+        "type": "object",
+        "properties": {
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address for target.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "sourcePubkeys": {
+            "description": "List of source validators public keys.",
+            "example": [
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39",
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "targetPubkey": {
+            "type": "string",
+            "description": "Target validator public key.",
+            "example": "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39",
+            "pattern": "^0x[a-fA-F0-9]{96}$"
+          }
+        },
+        "required": [
+          "withdrawalAddress",
+          "sourcePubkeys",
+          "targetPubkey"
         ]
       },
       "ValidatorResponse": {
@@ -38308,6 +40387,182 @@
         },
         "required": [
           "pubkeys"
+        ]
+      },
+      "IncrementRequestIdAlreadyExistException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103139
+          },
+          "message": {
+            "type": "string",
+            "default": "Increment request with this ID already exists"
+          },
+          "name": {
+            "type": "string",
+            "default": "IncrementRequestIdAlreadyExistException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "IncrementRequestSendException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103141
+          },
+          "message": {
+            "type": "string",
+            "default": "Error while sending increment request"
+          },
+          "name": {
+            "type": "string",
+            "default": "IncrementRequestSendException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "CreateIncrementRequestRequest": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "8c48cd8d-99cb-4149-8975-f0822fe46d06",
+            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address for the validators.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "pubkeys": {
+            "description": "List of validator public keys.",
+            "example": [
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwai to stake per validator.",
+            "example": "32000000000"
+          }
+        },
+        "required": [
+          "id",
+          "pubkeys",
+          "amountPerValidator"
+        ]
+      },
+      "IncrementRequestNotFoundException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 103140
+          },
+          "message": {
+            "type": "string",
+            "default": "Increment request not found"
+          },
+          "name": {
+            "type": "string",
+            "default": "IncrementRequestNotFoundException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "IncrementRequestResponse": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "example": "8c48cd8d-99cb-4149-8975-f0822fe46d06",
+            "description": "UUID of the increment request."
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "processing",
+              "ready",
+              "cancel",
+              "error"
+            ],
+            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
+            "example": "processing"
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address of the validator.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "pubkeys": {
+            "description": "List of validator public keys.",
+            "example": [
+              "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "amountPerValidator": {
+            "type": "string",
+            "description": "Amount of Gwei to stake per validator.",
+            "example": "32000000000"
+          },
+          "depositData": {
+            "minItems": 1,
+            "maxItems": 400,
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepositDataResponse"
+            }
+          },
+          "incrementTxs": {
+            "example": [],
+            "description": "Transactions to increment the validator stake.",
+            "items": {
+              "type": "array"
+            },
+            "type": "array"
+          },
+          "createdAt": {
+            "format": "datetime",
+            "type": "string",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
+            "example": "2023-08-24T08:14:50.455Z"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "pubkeys",
+          "amountPerValidator",
+          "incrementTxs",
+          "createdAt"
         ]
       },
       "VemIdAlreadyExistException": {
@@ -38523,12 +40778,260 @@
           "type"
         ]
       },
+      "DepositException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111140
+          },
+          "message": {
+            "type": "string",
+            "default": "Failed to create P2P SSV deposit transaction"
+          },
+          "name": {
+            "type": "string",
+            "default": "DepositException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DepositListException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111144
+          },
+          "message": {
+            "type": "string",
+            "default": "Failed to get list of deposits"
+          },
+          "name": {
+            "type": "string",
+            "default": "DepositListException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "DepositDepoResponse": {
+        "type": "object",
+        "properties": {
+          "depositId": {
+            "type": "string",
+            "description": "Deposit ID which our contract generates when addEth is called.",
+            "example": "49851686-9058-491f-a393-9ca477a7063a"
+          },
+          "transactionHash": {
+            "type": "string",
+            "description": "Transaction with addEth method.",
+            "example": "0xc6180e03f1ea7e30eba1c0870471516c575e695afa5066b55038ca73df242e33"
+          },
+          "senderAddress": {
+            "type": "string",
+            "description": "Sender address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "withdrawalAddress": {
+            "type": "string",
+            "description": "Withdrawal address of the validator.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "feeRecipientAddress": {
+            "type": "string",
+            "description": "Fee recipient address.",
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Total amount of the deposit.",
+            "example": "32000000000"
+          },
+          "unprocessedAmount": {
+            "type": "string",
+            "description": "Amount of the deposit that was not processed by the contract.",
+            "example": "0"
+          }
+        },
+        "required": [
+          "depositId",
+          "transactionHash",
+          "senderAddress",
+          "withdrawalAddress",
+          "feeRecipientAddress",
+          "totalAmount",
+          "unprocessedAmount"
+        ]
+      },
+      "DepositValidatorResponse": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "unknown",
+              "not_found",
+              "pending_initialized",
+              "pending_queued",
+              "active_ongoing",
+              "active_exiting",
+              "active_slashed",
+              "exited_unslashed",
+              "exited_slashed",
+              "withdrawal_possible",
+              "withdrawal_done"
+            ],
+            "description": "<p>State of the validator:</p><ul><li>`not_found` — specified validator could not be located.</li><li>`pending_initialized` — validator is initialized but not yet in the queue for activation.</li><li>`pending_queued` — validator entered a queue for activation.</li><li>`active_ongoing` — validator was activated and currently participates in attesting and proposing blocks.</li><li>`active_exiting` — validator is in process of exiting the network while participating in the validator activities.</li><li>`active_slashed` — validator was slashed due to misbehaviors.</li><li>`exited_unslashed` — validator has exited the network without being slashed and is no longer acting as a validator.</li><li>`exited_slashed` — validator has exited the network after being slashed and is no longer acting as a validator.</li><li>`withdrawal_possible` — validator has a non-zero balance.</li><li>`withdrawal_done` — validator completed the withdrawal process.</li></ul>",
+            "example": "active_ongoing"
+          },
+          "amount": {
+            "type": "string",
+            "example": "1",
+            "description": "Total stake amount for the validator at the moment."
+          },
+          "pubkey": {
+            "type": "string",
+            "description": "Validator public key.",
+            "example": "0xbe5E9c3Bb9eba1BF4C5eC1c1cbcF85ee2CE2fEC66Ce5460C23eF82332A044FDCabF7011F588CCbD77E73CCe6c4accDF0",
+            "pattern": "^0x[a-fA-F0-9]{96}$"
+          }
+        },
+        "required": [
+          "status",
+          "amount",
+          "pubkey"
+        ]
+      },
+      "DepositResponse": {
+        "type": "object",
+        "properties": {
+          "deposit": {
+            "$ref": "#/components/schemas/DepositDepoResponse"
+          },
+          "validator": {
+            "$ref": "#/components/schemas/DepositValidatorResponse"
+          }
+        },
+        "required": [
+          "deposit",
+          "validator"
+        ]
+      },
+      "DepositListResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources relevant to the current request, based on filters applied."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DepositResponse"
+            }
+          },
+          "totalAmount": {
+            "type": "string",
+            "description": "Total amount of deposits."
+          },
+          "unprocessedAmount": {
+            "type": "string",
+            "description": "Total amount of unprocessed deposits."
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list",
+          "totalAmount",
+          "unprocessedAmount"
+        ]
+      },
+      "ValidatorsException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111143
+          },
+          "message": {
+            "type": "string",
+            "default": "Failed to get list of validators"
+          },
+          "name": {
+            "type": "string",
+            "default": "ValidatorsException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "ValidatorListResponse": {
+        "type": "object",
+        "properties": {
+          "limit": {
+            "type": "number",
+            "minimum": 1,
+            "default": 50,
+            "description": "Number of resources that a single response page contains."
+          },
+          "offset": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Number of resources to exclude from a response."
+          },
+          "totalCount": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Total count of resources relevant to the current request, based on filters applied."
+          },
+          "list": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ValidatorResponse"
+            }
+          }
+        },
+        "required": [
+          "limit",
+          "offset",
+          "totalCount",
+          "list"
+        ]
+      },
       "EigenOperatorGetListException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 103130
+            "default": 103131
           },
           "message": {
             "type": "string",
@@ -42202,20 +44705,6 @@
           "name"
         ]
       },
-      "EthereumUnsignedTransactionListResponse": {
-        "type": "object",
-        "properties": {
-          "list": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EthereumUnsignedTransactionResponse"
-            }
-          }
-        },
-        "required": [
-          "list"
-        ]
-      },
       "ExitValidatorException": {
         "type": "object",
         "properties": {
@@ -42230,6 +44719,28 @@
           "name": {
             "type": "string",
             "default": "ExitValidatorException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "InsufficientSsvException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 111150
+          },
+          "message": {
+            "type": "string",
+            "default": "The transaction could not be created because insufficient amount of SSV tokens"
+          },
+          "name": {
+            "type": "string",
+            "default": "InsufficientSsvException"
           }
         },
         "required": [
@@ -42274,28 +44785,6 @@
           "name": {
             "type": "string",
             "default": "SetFeeRecipientAddressException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "DepositException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111140
-          },
-          "message": {
-            "type": "string",
-            "default": "Failed to create P2P SSV deposit transaction"
-          },
-          "name": {
-            "type": "string",
-            "default": "DepositException"
           }
         },
         "required": [
@@ -42419,28 +44908,6 @@
           "name": {
             "type": "string",
             "default": "ClaimException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "DepositListException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111144
-          },
-          "message": {
-            "type": "string",
-            "default": "Failed to get list of deposits"
-          },
-          "name": {
-            "type": "string",
-            "default": "DepositListException"
           }
         },
         "required": [
@@ -42596,28 +45063,6 @@
           "list",
           "totalAmount",
           "unprocessedAmount"
-        ]
-      },
-      "ValidatorsException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 111143
-          },
-          "message": {
-            "type": "string",
-            "default": "Failed to get list of validators"
-          },
-          "name": {
-            "type": "string",
-            "default": "ValidatorsException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
         ]
       },
       "SsvValidatorResponse": {
