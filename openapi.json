@@ -16850,7 +16850,7 @@
             "name": "withdrawalCredentialsType",
             "required": false,
             "in": "query",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "schema": {
               "enum": [
@@ -18368,7 +18368,7 @@
             "name": "withdrawalCredentialsType",
             "required": false,
             "in": "query",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "schema": {
               "enum": [
@@ -35413,7 +35413,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -35575,7 +35575,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -35749,7 +35749,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -35950,7 +35950,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -36143,7 +36143,7 @@
     "/api/v1/aptos/{network}/staking/delegated/unlock": {
       "post": {
         "operationId": "aptos-staking-delegated-unlock",
-        "summary": "Create Unlock Stake Request",
+        "summary": "Create Unstake Request",
         "description": "Construct a serialized transaction to undelegate tokens from the delegator's active stake in the delegation pool.",
         "parameters": [
           {
@@ -36151,7 +36151,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -36352,7 +36352,7 @@
             "required": true,
             "in": "path",
             "example": "testnet",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "schema": {
               "enum": [
                 "mainnet",
@@ -36875,7 +36875,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37030,6 +37030,7 @@
         "type": "object",
         "properties": {
           "operators": {
+            "description": "Number of operators in the cluster.",
             "type": "array",
             "items": {
               "type": "number"
@@ -37077,7 +37078,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37511,7 +37512,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37640,7 +37641,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preference.",
+            "description": "Withdrawal credentials preferred type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -41627,7 +41628,7 @@
           },
           "withdrawalCredentials": {
             "type": "string",
-            "description": "Public key for withdrawing balance."
+            "description": "Public key for withdrawal address balance."
           }
         },
         "required": [
@@ -41967,12 +41968,12 @@
         "properties": {
           "withdrawalAddress": {
             "type": "string",
-            "description": "Withdrawal address for target.",
+            "description": "Withdrawal address for the target validator.",
             "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           },
           "sourcePubkeys": {
-            "description": "List of source validators public keys.",
+            "description": "List of the source validators' public keys.",
             "example": [
               "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39",
               "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39"
@@ -41984,7 +41985,7 @@
           },
           "targetPubkey": {
             "type": "string",
-            "description": "Target validator public key.",
+            "description": "Public key of the target validator.",
             "example": "0xffC08FcD7cFeF5c70fB2b0e1f2A8EaA690AaE2bDFfa5dBEc4dEef31DcC0B19eB1f9Cebe3E2fe9eefBD9a1BDF6FD89b39",
             "pattern": "^0x[a-fA-F0-9]{96}$"
           }
@@ -47638,7 +47639,7 @@
         "properties": {
           "network": {
             "type": "string",
-            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos testnet.</li></ul>",
+            "description": "<p>Aptos network:</p><ul><li>`mainnet` — Aptos mainnet.</li><li>`testnet` — Aptos devnet.</li></ul>",
             "enum": [
               "mainnet",
               "testnet"
@@ -47647,7 +47648,7 @@
           },
           "senderAddress": {
             "type": "string",
-            "description": "Account address that sent the transaction.",
+            "description": "Transaction sender address.",
             "example": "0xa571a5bc9b1bfd5fe58e6e09a5be251a3299985494d022959ce206f1f23f752e"
           },
           "transaction": {
@@ -47672,7 +47673,7 @@
             "example": "0x8d80b8ed85b578eeb873731101a926221701ee48318f6c9b83895f7ac1535640"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/GasDataDto"
@@ -47707,7 +47708,7 @@
           },
           "signature": {
             "type": "string",
-            "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
+            "description": "Delegator signature of the transaction.",
             "example": "0x0020b92f133c8e4768d990f39853f1931eb0481ea289a985687f0b7e59e83456333140960e71dc383c5e0660940bbe476499ed8b64bc37efff47db1c20274f20b39d5858737269d6c7bcb1b9fc88dce0f0f7cc12b5e86516cf9f8d787827eaedf9f906",
             "nullable": false
           }
@@ -47727,7 +47728,7 @@
             "example": "2023-08-24T08:14:50.455Z"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/GasDataDto"
@@ -47741,7 +47742,7 @@
           },
           "sequenceNumber": {
             "type": "number",
-            "description": "Sequence number of the transaction.",
+            "description": "Number of transactions that have been submitted and committed on chain from the sender account.",
             "example": 42,
             "minimum": 0
           },
@@ -47841,7 +47842,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to stake in Octas.",
+            "description": "Amount of tokens to stake in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -47878,7 +47879,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to stake in Octas.",
+            "description": "Amount of tokens to stake in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -47889,7 +47890,7 @@
             "example": "0xd890b1115b39c8d182aeac6cae313cc713cd93922135f8a5893c34fce4e0f32a"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "nullable": false,
             "allOf": [
               {
@@ -47910,7 +47911,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to stake in Octas.",
+            "description": "Amount of tokens to stake in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -47947,7 +47948,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to reactivate in Octas.",
+            "description": "Amount of tokens to reactivate in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -47958,7 +47959,7 @@
             "example": "0xd890b1115b39c8d182aeac6cae313cc713cd93922135f8a5893c34fce4e0f32a"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "nullable": false,
             "allOf": [
               {
@@ -47979,7 +47980,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to unlock in Octas.",
+            "description": "Amount of tokens to unlock in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -48016,7 +48017,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to unlock in Octas.",
+            "description": "Amount of tokens to unlock in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -48027,7 +48028,7 @@
             "example": "0xd890b1115b39c8d182aeac6cae313cc713cd93922135f8a5893c34fce4e0f32a"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "nullable": false,
             "allOf": [
               {
@@ -48048,7 +48049,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to withdraw in Octas.",
+            "description": "Amount of tokens to withdraw in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -48085,7 +48086,7 @@
           "amount": {
             "format": "datetime",
             "type": "string",
-            "description": "Amount of tokens to withdraw in Octas.",
+            "description": "Amount of tokens to withdraw in Octas (1 APT = 10⁸ Octas).",
             "example": 1100000000,
             "nullable": false
           },
@@ -48096,7 +48097,7 @@
             "example": "0xd890b1115b39c8d182aeac6cae313cc713cd93922135f8a5893c34fce4e0f32a"
           },
           "gas": {
-            "description": "Details on gas usage for the transaction.",
+            "description": "Computational effort required to execute the transaction, measured in gas units.",
             "nullable": false,
             "allOf": [
               {
