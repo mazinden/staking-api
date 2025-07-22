@@ -7005,6 +7005,1306 @@
         ]
       }
     },
+    "/api/v1/babylon/{network}/staking/stake": {
+      "post": {
+        "operationId": "create-babylon-stake-transaction",
+        "summary": "Create Staking Request",
+        "description": "Create stake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeOrUnstakeStakingBabylonRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeOrUnstakeTransactionStakingBabylonResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientFundsOnCosmosAccountException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientFundsOnCosmosAccountException": {
+                    "value": {
+                      "error": {
+                        "code": 110101,
+                        "message": "The request could not be performed because the amount of tokens in the stash account is insufficient. Please check the balance and specify the correct request parameters.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateStakeTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateStakeTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110103,
+                        "message": "The staking request transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon/{network}/staking/unstake": {
+      "post": {
+        "operationId": "create-babylon-unstake-transaction",
+        "summary": "Create Unstake Request",
+        "description": "Create unstake request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StakeOrUnstakeStakingBabylonRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/StakeOrUnstakeTransactionStakingBabylonResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InsufficientFundsOnCosmosValidatorException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InsufficientFundsOnCosmosValidatorException": {
+                    "value": {
+                      "error": {
+                        "code": 110102,
+                        "message": "The request could not be performed because the amount of tokens staked in the Validator account is insufficient. Please check the balance and specify the correct request parameters.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateUnstakeTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateUnstakeTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110104,
+                        "message": "The staking request transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon/{network}/staking/claim-rewards": {
+      "post": {
+        "operationId": "create-babylon-claim-rewards-transaction",
+        "summary": "Create Claim Rewards Request",
+        "description": "Create claim rewards request transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BaseStakingBabylonRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/ClaimRewardsTransactionStakingBabylonResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/SimulationTransactionOnCosmosException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "SimulationTransactionOnCosmosException": {
+                    "value": {
+                      "error": {
+                        "code": 110113,
+                        "message": "The request could not be performed because the simulation transaction failed. undefined",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/CreateClaimRewardsTransactionException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "CreateClaimRewardsTransactionException": {
+                    "value": {
+                      "error": {
+                        "code": 110106,
+                        "message": "The claiming rewards request transaction could not be created because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon/{network}/transaction/encode": {
+      "post": {
+        "operationId": "encode-babylon-transaction",
+        "summary": "Encode Transaction",
+        "description": "Prepare an encoded transaction in the hexadecimal format for signing within a third-party service.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EncodeTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/EncodeTransactionResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "The transaction could not be found. Please specify the correct transaction data.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/EncodeTransactionFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "EncodeTransactionFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110115,
+                        "message": "The transaction could not be signed because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon/{network}/transaction/send": {
+      "post": {
+        "operationId": "broadcast-babylon-transaction",
+        "summary": "Broadcast Transaction",
+        "description": "Broadcast transaction to the Babylon network.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BroadcastTransactionRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionStatusResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "The transaction could not be found. Please specify the correct transaction data.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/BroadcastTransactionFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "BroadcastTransactionFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110109,
+                        "message": "The transaction could not be broadcasted because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
+    "/api/v1/babylon/{network}/transaction/status/{transactionHash}": {
+      "get": {
+        "operationId": "get-babylon-transaction-status",
+        "summary": "Check Transaction Status",
+        "description": "Check the status of the transaction.",
+        "parameters": [
+          {
+            "name": "network",
+            "required": true,
+            "in": "path",
+            "example": "babylon-mainnet",
+            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "schema": {
+              "enum": [
+                "babylon-testnet",
+                "babylon-mainnet"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "name": "transactionHash",
+            "required": true,
+            "in": "path",
+            "example": "EDDA3AE81ACBF56CB1F154F4957779C04F10B6F4C23B13597EFFC61FE05A02D2",
+            "description": "Hash of the transaction.",
+            "schema": {
+              "format": "[A-Z0-9]{64}",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponse"
+                    }
+                  ],
+                  "properties": {
+                    "result": {
+                      "oneOf": [
+                        {
+                          "$ref": "#/components/schemas/TransactionStatusResponse"
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/ValidationException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionNotFoundException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/InvalidTransactionHashException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionAlreadyBroadcastException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "ValidationException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The data provided is not valid. Please check the request parameters and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionNotFoundException": {
+                    "value": {
+                      "error": {
+                        "code": 110107,
+                        "message": "The transaction could not be found. Please specify the correct transaction data.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "InvalidTransactionHashException": {
+                    "value": {
+                      "error": {
+                        "code": 110111,
+                        "message": "The transaction status could not be obtained because the transaction hash provided is invalid. Please check the transaction hash satisfies the regular expression undefined format and try again.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "NetworkIsNotIncludedInListException": {
+                    "value": {
+                      "error": {
+                        "code": 100101,
+                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionAlreadyBroadcastException": {
+                    "value": {
+                      "error": {
+                        "code": 110110,
+                        "message": "The transaction status could not be obtained because the transaction has been already broadcasted.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/NoTokenException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/WrongTokenException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "NoTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101111,
+                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  },
+                  "WrongTokenException": {
+                    "value": {
+                      "error": {
+                        "code": 101109,
+                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
+                        "type": "authentication"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/ExceptionResponse"
+                    }
+                  ],
+                  "properties": {
+                    "error": {
+                      "allOf": [
+                        {
+                          "$ref": "#/components/schemas/GetTransactionStatusFailedException"
+                        }
+                      ]
+                    }
+                  }
+                },
+                "examples": {
+                  "GetTransactionStatusFailedException": {
+                    "value": {
+                      "error": {
+                        "code": 110108,
+                        "message": "The transaction status could not be obtained because the internal server error occurred.",
+                        "type": "server"
+                      },
+                      "result": null
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Babylon"
+        ],
+        "security": [
+          {
+            "bearer": []
+          }
+        ]
+      }
+    },
     "/api/v1/{network}/data/network/exit-queue": {
       "get": {
         "operationId": "data-network-exit-queue",
@@ -12329,7 +13629,7 @@
             "name": "validatorAddress",
             "required": false,
             "in": "query",
-            "description": "Validator address in the required network for this delegator",
+            "description": "Validator address in the required network for this delegator.",
             "schema": {
               "type": "string"
             }
@@ -12665,7 +13965,7 @@
             "name": "validatorAddress",
             "required": false,
             "in": "query",
-            "description": "Validator address in the required network for this delegator",
+            "description": "Validator address in the required network for this delegator.",
             "schema": {
               "type": "string"
             }
@@ -13001,7 +14301,7 @@
             "name": "validatorAddress",
             "required": false,
             "in": "query",
-            "description": "Validator address in the required network for this delegator",
+            "description": "Validator address in the required network for this delegator.",
             "schema": {
               "type": "string"
             }
@@ -13337,7 +14637,7 @@
             "name": "validatorAddress",
             "required": false,
             "in": "query",
-            "description": "Validator address in the required network for this delegator",
+            "description": "Validator address in the required network for this delegator.",
             "schema": {
               "type": "string"
             }
@@ -14286,7 +15586,7 @@
                     "value": {
                       "error": {
                         "code": 115408,
-                        "message": "The delegator pools summary could not be obtained because an internal server error occurred.",
+                        "message": "The delegator pool summary could not be obtained because an internal server error occurred.",
                         "type": "server"
                       },
                       "result": null
@@ -14581,7 +15881,7 @@
                     "value": {
                       "error": {
                         "code": 115408,
-                        "message": "The delegator pools summary could not be obtained because an internal server error occurred.",
+                        "message": "The delegator pool summary could not be obtained because an internal server error occurred.",
                         "type": "server"
                       },
                       "result": null
@@ -14594,411 +15894,6 @@
         },
         "tags": [
           "Delegator Pool"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/{network}/data/ledger/summary": {
-      "get": {
-        "operationId": "data-tonwhales-summary",
-        "summary": "Get TON Whales Summary",
-        "description": "Get a list of the nominator's for TON Whales network rewards, stake and APY.",
-        "parameters": [
-          {
-            "name": "network",
-            "required": true,
-            "in": "path",
-            "description": "Network name.",
-            "schema": {
-              "enum": [
-                "tonwhales"
-              ],
-              "type": "string"
-            }
-          },
-          {
-            "name": "address",
-            "required": true,
-            "in": "query",
-            "description": "Nominator address in the TON Whales network.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/GetTonWhalesSummaryResponse"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ValidationException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/InvalidTonWhalesAddressException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "ValidationException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The data provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "InvalidTonWhalesAddressException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The request could not be performed because the TON Whales address provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "NetworkIsNotIncludedInListException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/NoTokenException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongTokenException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "NoTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101111,
-                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  },
-                  "WrongTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101109,
-                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/GetTonWhalesSummaryException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "GetTonWhalesSummaryException": {
-                    "value": {
-                      "error": {
-                        "code": 115411,
-                        "message": "The TON Whales summary could not be obtained because an internal server error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Ledger"
-        ],
-        "security": [
-          {
-            "bearer": []
-          }
-        ]
-      }
-    },
-    "/api/v1/{network}/data/ledger/grow": {
-      "get": {
-        "operationId": "data-tonwhales-grow",
-        "summary": "Get Tonwhales Grow",
-        "description": "Method to retrieve tonwhales grow.",
-        "parameters": [
-          {
-            "name": "network",
-            "required": true,
-            "in": "path",
-            "description": "Network name.",
-            "schema": {
-              "enum": [
-                "tonwhales"
-              ],
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/SuccessResponse"
-                    }
-                  ],
-                  "properties": {
-                    "result": {
-                      "oneOf": [
-                        {
-                          "$ref": "#/components/schemas/GetTonWhalesGrowResponse"
-                        }
-                      ]
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad request",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/ValidationException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/InvalidTonWhalesAddressException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/NetworkIsNotIncludedInListException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "ValidationException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The data provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "InvalidTonWhalesAddressException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The request could not be performed because the tonwhales address provided is not valid. Please check the request parameters and try again.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  },
-                  "NetworkIsNotIncludedInListException": {
-                    "value": {
-                      "error": {
-                        "code": 100101,
-                        "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
-                        "type": "client"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "401": {
-            "description": "Unauthorized",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/NoTokenException"
-                        },
-                        {
-                          "$ref": "#/components/schemas/WrongTokenException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "NoTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101111,
-                        "message": "No Bearer token has been provided. To obtain an authentication token, follow the instructions at https://docs.p2p.org/docs/authentication.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  },
-                  "WrongTokenException": {
-                    "value": {
-                      "error": {
-                        "code": 101109,
-                        "message": "An invalid Bearer token has been provided. Please specify the correct authentication token.",
-                        "type": "authentication"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Internal server error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "allOf": [
-                    {
-                      "$ref": "#/components/schemas/ExceptionResponse"
-                    }
-                  ],
-                  "properties": {
-                    "error": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/GetTonWhalesGrowException"
-                        }
-                      ]
-                    }
-                  }
-                },
-                "examples": {
-                  "GetTonWhalesGrowException": {
-                    "value": {
-                      "error": {
-                        "code": 115412,
-                        "message": "The tonwhales grow could not be obtained because an internal server error occurred.",
-                        "type": "server"
-                      },
-                      "result": null
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "tags": [
-          "Ledger"
         ],
         "security": [
           {
@@ -16850,7 +17745,7 @@
             "name": "withdrawalCredentialsType",
             "required": false,
             "in": "query",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "schema": {
               "enum": [
@@ -17281,7 +18176,7 @@
     },
     "/api/v1/eth/staking/ssv/p2p/deposits": {
       "get": {
-        "operationId": "ssv-p2p-transaction-deposit-list",
+        "operationId": "p2p-ssv-transaction-deposit-list",
         "summary": "Get List of Deposits With Validators",
         "description": "Get a list of deposits with validators.",
         "parameters": [
@@ -17723,7 +18618,7 @@
     },
     "/api/v1/eth/staking/ssv/p2p/validators": {
       "get": {
-        "operationId": "ssv-p2p-transaction-validator",
+        "operationId": "p2p-ssv-transaction-validator",
         "summary": "Get List of Validators",
         "description": "Get a list of validators by address.",
         "parameters": [
@@ -18368,7 +19263,7 @@
             "name": "withdrawalCredentialsType",
             "required": false,
             "in": "query",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "schema": {
               "enum": [
@@ -29306,7 +30201,7 @@
             "required": false,
             "in": "query",
             "description": "List of account addresses that can perform staking operations with staking accounts.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "minItems": 1,
               "maxItems": 30,
@@ -29318,7 +30213,7 @@
             "required": false,
             "in": "query",
             "description": "List of staking account addresses.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "minItems": 1,
               "maxItems": 30,
@@ -29330,7 +30225,7 @@
             "required": false,
             "in": "query",
             "description": "List of account addresses that can perform withdrawal operation with staking accounts.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "minItems": 1,
               "maxItems": 30,
@@ -29478,7 +30373,7 @@
             "required": true,
             "in": "query",
             "description": "List of the validator's vote account public keys.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw,AaMC5y1RofbY3unyrahRzyCzsesp7rfGuaGegbAg1Hxb",
             "schema": {
               "minItems": 1,
               "maxItems": 30,
@@ -34915,7 +35810,7 @@
             "required": true,
             "in": "query",
             "description": "Staker account address.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw",
             "schema": {
               "type": "string"
             }
@@ -35165,7 +36060,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/StakeRequestDto"
+                "$ref": "#/components/schemas/SuiStakeRequestDto"
               }
             }
           }
@@ -35185,7 +36080,7 @@
                     "result": {
                       "oneOf": [
                         {
-                          "$ref": "#/components/schemas/StakeResponseDto"
+                          "$ref": "#/components/schemas/SuiStakeResponseDto"
                         }
                       ]
                     }
@@ -35231,7 +36126,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/WithdrawRequestDto"
+                "$ref": "#/components/schemas/SuiWithdrawRequestDto"
               }
             }
           }
@@ -35251,7 +36146,7 @@
                     "result": {
                       "oneOf": [
                         {
-                          "$ref": "#/components/schemas/WithdrawResponseDto"
+                          "$ref": "#/components/schemas/SuiWithdrawResponseDto"
                         }
                       ]
                     }
@@ -35275,7 +36170,7 @@
       "get": {
         "operationId": "sui-transactio-get-stake-list",
         "summary": "Get Stake List",
-        "description": "Retrieve a list of stakes for the given account address.",
+        "description": "Retrieve a list of stakes for account address specified.",
         "parameters": [
           {
             "name": "network",
@@ -35362,7 +36257,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/SendRequestDto"
+                "$ref": "#/components/schemas/SuiSendRequestDto"
               }
             }
           }
@@ -35475,6 +36370,12 @@
                         },
                         {
                           "$ref": "#/components/schemas/InvalidSignatureException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionExpiredException"
+                        },
+                        {
+                          "$ref": "#/components/schemas/TransactionSequenceNumberTooOldException"
                         }
                       ]
                     }
@@ -35484,7 +36385,7 @@
                   "InvalidRawTransactionException": {
                     "value": {
                       "error": {
-                        "code": 121113,
+                        "code": 124104,
                         "message": "The request could not be performed because the raw transaction provided is not valid.",
                         "type": "client"
                       },
@@ -35494,8 +36395,28 @@
                   "InvalidSignatureException": {
                     "value": {
                       "error": {
-                        "code": 121114,
+                        "code": 124105,
                         "message": "The request could not be performed because the signature provided is not valid.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionExpiredException": {
+                    "value": {
+                      "error": {
+                        "code": 124111,
+                        "message": "The request could not be performed because the transaction has expired.",
+                        "type": "client"
+                      },
+                      "result": null
+                    }
+                  },
+                  "TransactionSequenceNumberTooOldException": {
+                    "value": {
+                      "error": {
+                        "code": 124112,
+                        "message": "The request could not be performed because a transaction with that sequence number already exists. Create a new transaction and try again.",
                         "type": "client"
                       },
                       "result": null
@@ -35648,7 +36569,7 @@
                   "NetworkIsNotIncludedInListException": {
                     "value": {
                       "error": {
-                        "code": 121109,
+                        "code": 124100,
                         "message": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: undefined.",
                         "type": "client"
                       },
@@ -35658,7 +36579,7 @@
                   "InvalidTransactionHashException": {
                     "value": {
                       "error": {
-                        "code": 121111,
+                        "code": 124102,
                         "message": "The request could not be performed because the transaction hash provided is not valid.",
                         "type": "client"
                       },
@@ -35668,7 +36589,7 @@
                   "TransactionNotFoundException": {
                     "value": {
                       "error": {
-                        "code": 121112,
+                        "code": 124103,
                         "message": "The request could not be performed because the transaction hash provided does not exist.",
                         "type": "client"
                       },
@@ -35829,7 +36750,7 @@
                   "GasUnitPriceTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121115,
+                        "code": 124106,
                         "message": "The request could not be performed because the gas unit price provided is too low.",
                         "type": "client"
                       },
@@ -35839,7 +36760,7 @@
                   "InsufficientBalanceException": {
                     "value": {
                       "error": {
-                        "code": 121118,
+                        "code": 124109,
                         "message": "The request could not be performed because the account does not have enough balance to perform the transaction.",
                         "type": "client"
                       },
@@ -35849,7 +36770,7 @@
                   "InvalidDelegatorAddressException": {
                     "value": {
                       "error": {
-                        "code": 121117,
+                        "code": 124108,
                         "message": "The request could not be performed because the delegator address provided is not valid.",
                         "type": "client"
                       },
@@ -35859,7 +36780,7 @@
                   "MaxGasAmountTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121116,
+                        "code": 124107,
                         "message": "The request could not be performed because the max gas amount provided is too low.",
                         "type": "client"
                       },
@@ -35869,7 +36790,7 @@
                   "SimulateTransactionException": {
                     "value": {
                       "error": {
-                        "code": 121119,
+                        "code": 124110,
                         "message": "The request could not be performed because the simulation of the transaction failed. Reason: undefined.",
                         "type": "client"
                       },
@@ -36030,7 +36951,7 @@
                   "GasUnitPriceTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121115,
+                        "code": 124106,
                         "message": "The request could not be performed because the gas unit price provided is too low.",
                         "type": "client"
                       },
@@ -36040,7 +36961,7 @@
                   "InsufficientBalanceException": {
                     "value": {
                       "error": {
-                        "code": 121118,
+                        "code": 124109,
                         "message": "The request could not be performed because the account does not have enough balance to perform the transaction.",
                         "type": "client"
                       },
@@ -36050,7 +36971,7 @@
                   "InvalidDelegatorAddressException": {
                     "value": {
                       "error": {
-                        "code": 121117,
+                        "code": 124108,
                         "message": "The request could not be performed because the delegator address provided is not valid.",
                         "type": "client"
                       },
@@ -36060,7 +36981,7 @@
                   "MaxGasAmountTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121116,
+                        "code": 124107,
                         "message": "The request could not be performed because the max gas amount provided is too low.",
                         "type": "client"
                       },
@@ -36070,7 +36991,7 @@
                   "SimulateTransactionException": {
                     "value": {
                       "error": {
-                        "code": 121119,
+                        "code": 124110,
                         "message": "The request could not be performed because the simulation of the transaction failed. Reason: undefined.",
                         "type": "client"
                       },
@@ -36231,7 +37152,7 @@
                   "GasUnitPriceTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121115,
+                        "code": 124106,
                         "message": "The request could not be performed because the gas unit price provided is too low.",
                         "type": "client"
                       },
@@ -36241,7 +37162,7 @@
                   "InsufficientBalanceException": {
                     "value": {
                       "error": {
-                        "code": 121118,
+                        "code": 124109,
                         "message": "The request could not be performed because the account does not have enough balance to perform the transaction.",
                         "type": "client"
                       },
@@ -36251,7 +37172,7 @@
                   "InvalidDelegatorAddressException": {
                     "value": {
                       "error": {
-                        "code": 121117,
+                        "code": 124108,
                         "message": "The request could not be performed because the delegator address provided is not valid.",
                         "type": "client"
                       },
@@ -36261,7 +37182,7 @@
                   "MaxGasAmountTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121116,
+                        "code": 124107,
                         "message": "The request could not be performed because the max gas amount provided is too low.",
                         "type": "client"
                       },
@@ -36271,7 +37192,7 @@
                   "SimulateTransactionException": {
                     "value": {
                       "error": {
-                        "code": 121119,
+                        "code": 124110,
                         "message": "The request could not be performed because the simulation of the transaction failed. Reason: undefined.",
                         "type": "client"
                       },
@@ -36432,7 +37353,7 @@
                   "GasUnitPriceTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121115,
+                        "code": 124106,
                         "message": "The request could not be performed because the gas unit price provided is too low.",
                         "type": "client"
                       },
@@ -36442,7 +37363,7 @@
                   "InsufficientBalanceException": {
                     "value": {
                       "error": {
-                        "code": 121118,
+                        "code": 124109,
                         "message": "The request could not be performed because the account does not have enough balance to perform the transaction.",
                         "type": "client"
                       },
@@ -36452,7 +37373,7 @@
                   "InvalidDelegatorAddressException": {
                     "value": {
                       "error": {
-                        "code": 121117,
+                        "code": 124108,
                         "message": "The request could not be performed because the delegator address provided is not valid.",
                         "type": "client"
                       },
@@ -36462,7 +37383,7 @@
                   "MaxGasAmountTooLowException": {
                     "value": {
                       "error": {
-                        "code": 121116,
+                        "code": 124107,
                         "message": "The request could not be performed because the max gas amount provided is too low.",
                         "type": "client"
                       },
@@ -36472,7 +37393,7 @@
                   "SimulateTransactionException": {
                     "value": {
                       "error": {
-                        "code": 121119,
+                        "code": 124110,
                         "message": "The request could not be performed because the simulation of the transaction failed. Reason: undefined.",
                         "type": "client"
                       },
@@ -36875,7 +37796,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37078,7 +37999,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37512,7 +38433,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37641,7 +38562,7 @@
           },
           "withdrawalCredentialsType": {
             "type": "string",
-            "description": "Withdrawal credentials preferred type.",
+            "description": "Withdrawal credentials type.",
             "example": "0x02",
             "enum": [
               "0x01",
@@ -37812,11 +38733,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 120100
+            "default": 124100
           },
           "message": {
             "type": "string",
-            "default": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: [ 'testnet', 'mainnet' ]."
+            "default": "The request could not be performed because the network provided is not supported. Please specify the network from the list of available ones: [ 'mainnet', 'testnet' ]."
           },
           "name": {
             "type": "string",
@@ -38013,7 +38934,9 @@
               "/cosmos.staking.v1beta1.MsgUndelegate",
               "/cosmos.staking.v1beta1.MsgBeginRedelegate",
               "/cosmos.distribution.v1beta1.MsgWithdrawDelegatorReward",
-              "/cosmos.crypto.secp256k1.PubKey"
+              "/cosmos.crypto.secp256k1.PubKey",
+              "/babylon.epoching.v1.MsgWrappedDelegate",
+              "/babylon.epoching.v1.MsgWrappedUndelegate"
             ],
             "example": "/cosmos.staking.v1beta1.Tx",
             "description": "Cosmos-based network operation type."
@@ -38459,11 +39382,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 120101
+            "default": 124103
           },
           "message": {
             "type": "string",
-            "default": "The requested transaction was not found."
+            "default": "The request could not be performed because the transaction hash provided does not exist."
           },
           "name": {
             "type": "string",
@@ -38503,7 +39426,7 @@
         "properties": {
           "encodedTransaction": {
             "type": "string",
-            "description": "Encoded transaction in the hexadecimal format that needs to be broadcast to the network."
+            "description": "Encoded transaction in the hexadecimal format that needs to be broadcasted to the network."
           }
         },
         "required": [
@@ -38516,7 +39439,7 @@
           "stashAccountAddress": {
             "type": "string",
             "description": "Delegator account address which keeps tokens.",
-            "pattern": "^sei[a-zA-Z0-9]{39}$"
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
           },
           "signature": {
             "type": "string",
@@ -38635,11 +39558,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 110111
+            "default": 124102
           },
           "message": {
             "type": "string",
-            "default": "The transaction status could not be obtained because the transaction hash provided is invalid. Please check the transaction hash satisfies the regular expression /^[A-Z0-9]{64}$/ format and try again."
+            "default": "The request could not be performed because the transaction hash provided is not valid."
           },
           "name": {
             "type": "string",
@@ -39131,6 +40054,140 @@
             "type": "string",
             "description": "Delegator account address which keeps tokens.",
             "pattern": "^sei[a-zA-Z0-9]{39}$"
+          },
+          "memo": {
+            "type": "string",
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
+          }
+        },
+        "required": [
+          "stashAccountAddress"
+        ]
+      },
+      "StakeOrUnstakeTransactionStakingBabylonResponse": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator stash account address which keeps tokens.",
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
+          },
+          "transactionData": {
+            "description": "List of data fields to be used to construct the staking transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionData"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens."
+          },
+          "currency": {
+            "type": "string",
+            "enum": [
+              "bbn",
+              "ubbn",
+              "mbbn"
+            ],
+            "description": "Currency of the tokens:</p><ul><li>`BBN` — Babylon native staking token.</li><li>`uBBN` — 1 BBN = 10⁻⁶ uBBN.</li><li>`mBBN` — 1 BBN = 10⁻³ mBBN.</li></ul>"
+          },
+          "validatorAddress": {
+            "type": "string",
+            "description": "Validator address to which tokens are delegated.",
+            "example": "babylonvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^bbnvaloper[a-zA-Z0-9]{39}$"
+          },
+          "rewardDestinationAddress": {
+            "type": "string",
+            "description": "Reward destination account address.",
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "transactionData",
+          "createdAt",
+          "amount",
+          "currency",
+          "validatorAddress",
+          "rewardDestinationAddress"
+        ]
+      },
+      "StakeOrUnstakeStakingBabylonRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator account address which keeps tokens.",
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
+          },
+          "memo": {
+            "type": "string",
+            "example": "This is your memo message",
+            "description": "Arbitrary text data to add to the transactions."
+          },
+          "amount": {
+            "type": "number",
+            "format": "decimal",
+            "description": "Amount of tokens to stake in BBN."
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "amount"
+        ]
+      },
+      "ClaimRewardsTransactionStakingBabylonResponse": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator stash account address which keeps tokens.",
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
+          },
+          "transactionData": {
+            "description": "List of data fields to be used to construct the staking transactions.",
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/TransactionData"
+              }
+            ]
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp of the transaction in the ISO 8601 format."
+          },
+          "validatorAddress": {
+            "type": "string",
+            "description": "Validator address to which tokens are delegated.",
+            "example": "babylonvaloperjj5m7nku1ZlgyUJJ5kH1Rln3bER6eWHAKwKsgC9",
+            "pattern": "^bbnvaloper[a-zA-Z0-9]{39}$"
+          }
+        },
+        "required": [
+          "stashAccountAddress",
+          "transactionData",
+          "createdAt",
+          "validatorAddress"
+        ]
+      },
+      "BaseStakingBabylonRequest": {
+        "type": "object",
+        "properties": {
+          "stashAccountAddress": {
+            "type": "string",
+            "description": "Delegator account address which keeps tokens.",
+            "pattern": "^bbn[a-zA-Z0-9]{39}$"
           },
           "memo": {
             "type": "string",
@@ -40543,11 +41600,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 115400
+            "default": 124108
           },
           "message": {
             "type": "string",
-            "default": "The request could not be performed because the delegator address provided is not valid on the specified network. Please check the request parameters and try again."
+            "default": "The request could not be performed because the delegator address provided is not valid."
           },
           "name": {
             "type": "string",
@@ -41091,7 +42148,7 @@
           },
           "totalEarnedRewards": {
             "type": "string",
-            "description": "Total amount of earned rewards."
+            "description": "Total amount of the rewards earned."
           },
           "state": {
             "type": "string",
@@ -41290,235 +42347,6 @@
           "list"
         ]
       },
-      "InvalidTonWhalesAddressException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 115410
-          },
-          "message": {
-            "type": "string",
-            "default": "The request could not be performed because the tonwhales address provided is not valid. Please check the request parameters and try again."
-          },
-          "name": {
-            "type": "string",
-            "default": "InvalidTonWhalesAddressException"
-          },
-          "errors": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/ValidationErrorResponse"
-            }
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name",
-          "errors"
-        ]
-      },
-      "GetTonWhalesSummaryException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 115411
-          },
-          "message": {
-            "type": "string",
-            "default": "The tonwhales summary could not be obtained because an internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "GetTonWhalesSummaryException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "Id": {
-        "type": "object",
-        "properties": {
-          "network": {
-            "type": "string",
-            "description": "Network of the nominator."
-          },
-          "address": {
-            "type": "string",
-            "description": "Nominator address."
-          }
-        },
-        "required": [
-          "network",
-          "address"
-        ]
-      },
-      "Interest": {
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "The type of interest."
-          },
-          "value": {
-            "type": "number",
-            "description": "The value of the interest."
-          }
-        },
-        "required": [
-          "type",
-          "value"
-        ]
-      },
-      "Details": {
-        "type": "object",
-        "properties": {
-          "pool_id": {
-            "type": "string",
-            "description": "Pool ID."
-          }
-        },
-        "required": [
-          "pool_id"
-        ]
-      },
-      "Stake": {
-        "type": "object",
-        "properties": {
-          "protocol_name": {
-            "type": "string",
-            "description": "Protocol name."
-          },
-          "currency": {
-            "type": "string",
-            "description": "Currency used."
-          },
-          "interest": {
-            "description": "The interest information.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Interest"
-              }
-            ]
-          },
-          "since": {
-            "type": "string",
-            "description": "The date of the first delegation."
-          },
-          "staked_balance": {
-            "type": "number",
-            "description": "The staked balance of the nominator."
-          },
-          "status": {
-            "type": "string",
-            "description": "The status of the nominator in the pool."
-          },
-          "commission": {
-            "type": "string",
-            "description": "The commission type."
-          },
-          "rewards": {
-            "description": "The rewards information.",
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "details": {
-            "description": "The details of the pool.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Details"
-              }
-            ]
-          }
-        },
-        "required": [
-          "protocol_name",
-          "currency",
-          "interest",
-          "since",
-          "staked_balance",
-          "status",
-          "commission",
-          "rewards",
-          "details"
-        ]
-      },
-      "GetTonWhalesSummaryResponse": {
-        "type": "object",
-        "properties": {
-          "id": {
-            "description": "ID of the nominator.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Id"
-              }
-            ]
-          },
-          "stake": {
-            "description": "The staking information of the nominator.",
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/Stake"
-              }
-            ]
-          }
-        },
-        "required": [
-          "id",
-          "stake"
-        ]
-      },
-      "GetTonWhalesGrowException": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number",
-            "default": 115412
-          },
-          "message": {
-            "type": "string",
-            "default": "The tonwhales grow could not be obtained because an internal server error occurred."
-          },
-          "name": {
-            "type": "string",
-            "default": "GetTonWhalesGrowException"
-          }
-        },
-        "required": [
-          "code",
-          "message",
-          "name"
-        ]
-      },
-      "GetTonWhalesGrowResponse": {
-        "type": "object",
-        "properties": {
-          "network": {
-            "type": "string",
-            "description": "Network name."
-          },
-          "deposit_token": {
-            "type": "string",
-            "description": "Deposit token."
-          },
-          "interest": {
-            "type": "object",
-            "description": "Interest details"
-          }
-        },
-        "required": [
-          "network",
-          "deposit_token",
-          "interest"
-        ]
-      },
       "Web3CreateTransactionException": {
         "type": "object",
         "properties": {
@@ -41628,7 +42456,7 @@
           },
           "withdrawalCredentials": {
             "type": "string",
-            "description": "Public key for withdrawal address balance."
+            "description": "Public key for withdrawing balance."
           }
         },
         "required": [
@@ -41904,7 +42732,7 @@
             "type": "array"
           },
           "amount": {
-            "description": "Amount to partially withdraw in ETH. Can be a single number, an array of numbers, or null. If specified as 0, the validator will be fully withdrawn.",
+            "description": "Amount of tokens to withdraw in ETH. Can be a single number, an array of numbers, or null. If specified as 0, the validator will be fully withdrawn.",
             "example": "1",
             "type": "array",
             "items": {
@@ -42165,9 +42993,9 @@
             "type": "array"
           },
           "amountPerValidator": {
-            "type": "string",
+            "type": "number",
             "description": "Amount of tokens to stake in Gwei per validator.",
-            "example": "32000000000",
+            "example": "1000000000",
             "minimum": 1000000000,
             "maximum": 2016000000000
           }
@@ -42819,7 +43647,7 @@
         "properties": {
           "depositId": {
             "type": "string",
-            "description": "Deposit ID which our contract generates when addEth is called.",
+            "description": "Deposit ID generated by the P2P.org contract when addEth is called.",
             "example": "49851686-9058-491f-a393-9ca477a7063a"
           },
           "transactionHash": {
@@ -43083,7 +43911,7 @@
         "properties": {
           "operatorAddress": {
             "type": "string",
-            "description": "Аddress of the EigenLayer node operator where the restaked assets are delegated.",
+            "description": "Address of the EigenLayer node operator where the restaked assets are delegated.",
             "example": "0xb1bd1266ec811048161424f534e74c76c48e6ce2",
             "pattern": "^0x[a-fA-F0-9]{40}$"
           }
@@ -43721,11 +44549,11 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 119102
+            "default": 124109
           },
           "message": {
             "type": "string",
-            "default": "The request could not be performed because the amount of tokens on account is insufficient. Please check that the balance is more than %s."
+            "default": "The request could not be performed because the account does not have enough balance to perform the transaction."
           },
           "name": {
             "type": "string",
@@ -43969,7 +44797,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "unsignedTransactionPayload": {
@@ -44094,7 +44922,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "unsignedTransactionPayload": {
@@ -44323,7 +45151,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "unsignedTransactionPayload": {
             "type": "string",
@@ -44503,7 +45331,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "unsignedTransactionSerialized": {
             "type": "string",
@@ -44584,7 +45412,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "unsignedTransactionPayload": {
@@ -44706,7 +45534,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "unsignedTransactionPayload": {
@@ -44805,7 +45633,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "unsignedTransactionPayload": {
             "type": "string",
@@ -44987,7 +45815,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xa404160200165874de804160c3cd013d9b6f4bba864657c4c2168a542f78ff14a0253873190200000000"
           },
           "createdAt": {
@@ -45100,7 +45928,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "targets": {
@@ -45197,7 +46025,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "stashAccountAddress": {
@@ -45298,7 +46126,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "stashAccountAddress": {
             "type": "string",
@@ -45356,7 +46184,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "amount": {
@@ -45433,7 +46261,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xac0406000b0030ef7dba0203ded255321b86f5f975cf04fd0e9d2b1d941469d469dcc93b89441cdfe6c39f7b"
           },
           "amount": {
@@ -45509,7 +46337,7 @@
         "properties": {
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action."
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action."
           },
           "createdAt": {
             "format": "datetime",
@@ -45571,7 +46399,7 @@
             "type": "string",
             "description": "Account addresses that signed the transaction.",
             "example": [
-              "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+              "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
             ]
           },
           "createdAt": {
@@ -45599,17 +46427,17 @@
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "withdrawAuthority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "voteAccount": {
             "type": "string",
             "description": "Vote account address.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "status": {
             "type": "string",
@@ -45627,6 +46455,12 @@
             "description": "Amount of tokens to stake in lamports (1 SOl = 10^9 lamports).",
             "minimum": 1,
             "example": 1
+          },
+          "amountWithoutRentExemption": {
+            "type": "number",
+            "description": "Amount of tokens to stake without rent exemption in lamports (1 SOl = 10^9 lamports).",
+            "minimum": 1,
+            "example": 1
           }
         },
         "required": [
@@ -45635,7 +46469,8 @@
           "withdrawAuthority",
           "voteAccount",
           "status",
-          "amount"
+          "amount",
+          "amountWithoutRentExemption"
         ]
       },
       "StakingResponse": {
@@ -45659,12 +46494,12 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "nonceAccount": {
             "type": "string",
             "description": "Account address that keeps the value of the nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -45681,12 +46516,12 @@
           "basePubkey": {
             "type": "string",
             "description": "Account address from which the nonce account is created.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "authorizePubkey": {
             "type": "string",
             "description": "Authority address that controls the nonce account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           }
         },
         "required": [
@@ -45701,7 +46536,7 @@
           "statuses": {
             "type": "string",
             "description": "Status of the vote account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           }
         },
         "required": [
@@ -45714,12 +46549,12 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "fromPublicKey": {
             "type": "string",
             "description": "Account address from which the staking account will be created.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
@@ -45729,12 +46564,12 @@
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "withdrawAuthority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -45771,17 +46606,17 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "fromPublicKey": {
             "type": "string",
             "description": "Account address from which the staking account will be created.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "nonceAccount": {
             "type": "string",
-            "description": "Account address for nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "description": "Account address that keeps the value of the nonce.",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -45791,19 +46626,19 @@
           },
           "computeUnitPrice": {
             "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
+            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 10⁻⁶ lamports).",
             "minimum": 1,
             "example": 20000
           },
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "withdrawAuthority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operation with staking account. If not specified, rights will be taken from the `fromPublicKey` parameter.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -45824,7 +46659,7 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
@@ -45834,7 +46669,7 @@
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "unsignedTransaction": {
             "type": "string",
@@ -45860,16 +46695,16 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "nonceAccount": {
             "type": "string",
-            "description": "Account address for nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "description": "Account address that keeps the value of the nonce.",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
-            "description": "Compute unit limit for transaction.",
+            "description": "Maximum computational effort limit for the transaction measured in compute units.",
             "minimum": 1,
             "example": 300
           },
@@ -45882,12 +46717,12 @@
           "stakeAccount": {
             "type": "string",
             "description": "Account address that stores tokens for staking.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           }
         },
         "required": [
@@ -45902,22 +46737,22 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that stores tokens for staking.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "withdrawAuthority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operation with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "recipient": {
             "type": "string",
             "description": "Account address to which tokens will be sent.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -45927,7 +46762,7 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hex format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           },
           "createdAt": {
@@ -45950,22 +46785,22 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that stores tokens for staking.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "withdrawAuthority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "recipient": {
             "type": "string",
             "description": "Account address to which tokens will be sent.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -45975,8 +46810,8 @@
           },
           "nonceAccount": {
             "type": "string",
-            "description": "Account address for nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "description": "Account address that keeps the value of the nonce.",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -45986,7 +46821,7 @@
           },
           "computeUnitPrice": {
             "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
+            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 10⁻⁶ lamports).",
             "minimum": 1,
             "example": 20000
           }
@@ -46002,22 +46837,22 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "baseAccount": {
             "type": "string",
             "description": "Account address to split tokens from.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that will receive split tokens for staking.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "authority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operations with `stakeAccount` and `baseAccount`.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -46028,7 +46863,7 @@
           "nonceAccount": {
             "type": "string",
             "description": "Account address that keeps the value of the nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -46038,7 +46873,7 @@
           },
           "computeUnitPrice": {
             "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
+            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 10⁻⁶ lamports).",
             "minimum": 1,
             "example": 20000
           }
@@ -46056,27 +46891,27 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that will merge split tokens for staking.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "sourceStakeAccount": {
             "type": "string",
             "description": "Account address to merge tokens from.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "authority": {
             "type": "string",
             "description": "Account address that can perform withdrawal operations with `stakeAccount` and `sourseStakeAccount`.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "nonceAccount": {
             "type": "string",
             "description": "Account address that keeps the value of the nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -46086,7 +46921,7 @@
           },
           "computeUnitPrice": {
             "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
+            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 10⁻⁶ lamports).",
             "minimum": 1,
             "example": 20000
           }
@@ -46104,22 +46939,22 @@
           "feePayer": {
             "type": "string",
             "description": "Account address that will pay the fee for the transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAccount": {
             "type": "string",
             "description": "Account address that will be delegated.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "stakeAuthority": {
             "type": "string",
             "description": "Account address that can perform staking operations with staking account.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "nonceAccount": {
             "type": "string",
             "description": "Account address that keeps the value of the nonce.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "computeUnitLimit": {
             "type": "number",
@@ -46129,7 +46964,7 @@
           },
           "computeUnitPrice": {
             "type": "number",
-            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 0.000001 lamports).",
+            "description": "Price of a compute unit for the transaction in micro-lamports (1 microLamport = 10⁻⁶ lamports).",
             "minimum": 1,
             "example": 20000
           }
@@ -46222,32 +47057,15 @@
       "WithdrawRequestDto": {
         "type": "object",
         "properties": {
-          "sender": {
+          "stakerAddress": {
             "type": "string",
             "description": "Staker account address.",
-            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
-          },
-          "gasPrice": {
-            "type": "number",
-            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
-            "example": 1000
-          },
-          "gasBudget": {
-            "type": "number",
-            "description": "Maximum number of gas units that can be expended by executing this transaction.",
-            "example": 1000000
-          },
-          "stakeId": {
-            "type": "string",
-            "description": "ID of the staking transaction required to create a withdrawal request.",
-            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+            "example": "0x338EF19fA2eC0fc4d1277B1307a613fA1FBbc0cb",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
           }
         },
         "required": [
-          "sender",
-          "gasPrice",
-          "gasBudget",
-          "stakeId"
+          "stakerAddress"
         ]
       },
       "RestakeRequestDto": {
@@ -46342,38 +47160,82 @@
       },
       "StakeResponseDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "stakerPublicKey": {
+            "type": "string",
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker taproot address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
+          },
+          "stakeAmount": {
+            "type": "number",
+            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000000
+          },
+          "stakingDuration": {
+            "type": "number",
+            "description": "Time-lock period for staking in Bitcoin blocks.",
+            "example": 100
+          },
+          "finallyProviderPublicKey": {
+            "type": "string",
+            "description": "Finality provider public key produced by the Schnorr signature algorithm.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
+          },
+          "stakeTransactionHex": {
+            "type": "string",
+            "description": "Unsigned stake transaction in the hexadecimal format. Sign the transaction and submit it to the Bitcoin blockchain to perform the called action.",
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
+          },
+          "fee": {
+            "type": "number",
+            "description": "Total fee in SATOSHI charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000
+          }
+        },
+        "required": [
+          "stakerPublicKey",
+          "stakerAddress",
+          "stakeAmount",
+          "stakingDuration",
+          "finallyProviderPublicKey",
+          "stakeTransactionHex",
+          "fee"
+        ]
       },
       "StakeRequestDto": {
         "type": "object",
         "properties": {
-          "sender": {
+          "stakerPublicKey": {
             "type": "string",
-            "description": "Address of the account.",
-            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+            "description": "Staker public key.",
+            "example": "02be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4"
           },
-          "gasPrice": {
-            "type": "number",
-            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
-            "example": 1000
+          "stakerAddress": {
+            "type": "string",
+            "description": "Staker taproot address.",
+            "example": "tb1p3e5dfkaxxqgq4vgv4peujcg8dwqe7ry9ky9702hx7jfmvrk5a3yq4q5ua9"
           },
-          "gasBudget": {
+          "stakeAmount": {
             "type": "number",
-            "description": "Maximum number of gas units that can be expended by executing this transaction.",
-            "example": 1500000000
+            "description": "Amount to stake in SATOSHI (1 BTC = 10⁸ SATOSHI).",
+            "example": 30000
           },
-          "amount": {
+          "stakingDuration": {
             "type": "number",
-            "description": "",
-            "minimum": 1,
-            "example": 1
+            "description": "Time-lock period for staking in Bitcoin blocks.",
+            "example": 150
           }
         },
         "required": [
-          "sender",
-          "gasPrice",
-          "gasBudget",
-          "amount"
+          "stakerPublicKey",
+          "stakerAddress",
+          "stakeAmount",
+          "stakingDuration"
         ]
       },
       "WithdrawalResponseDto": {
@@ -46507,20 +47369,20 @@
       "SendRequestDto": {
         "type": "object",
         "properties": {
-          "transaction": {
+          "transactionHex": {
             "type": "string",
             "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
-            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
+            "example": "70736274ff0100e402000000014f0d8e70d376cda7200bc900803d35dab2658fad9ce15454326b642523660ae90200000000fdffffff04b80b000000000000225120df0ec02350705a695b526f5c7662f33d8f8256cbd80cf8cda6d7c46d7d1578d00000000000000000496a4762626434002be65fdd561fee421c4f4564b02e4de31f74836b9b8cd1bbbf9d9c544733614e4bf609ba8977d3fbf4dee7f9d993c41f2fa584ccd27b3e4bf04a5376267e13c000c8025d0000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec48102700000000000000000000000001012bc5690000000000002251208e68d4dba630100ab10ca873c961076b819f0c85b10be7aae6f493b60ed4ec480000000000"
           },
-          "signature": {
-            "type": "string",
-            "description": "Signature of the sender of the transaction.",
-            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
+          "maxFee": {
+            "type": "number",
+            "description": "Maximum fee in SATOSHI that can be charged for processing the transaction (1 BTC = 10⁸ SATOSHI).",
+            "example": 1000000
           }
         },
         "required": [
-          "transaction",
-          "signature"
+          "transactionHex",
+          "maxFee"
         ]
       },
       "UnbondingResponseDto": {
@@ -46883,8 +47745,10 @@
           "chain": {
             "type": "string",
             "enum": [
+              "aptos",
               "avail",
               "babylon-btc",
+              "babylon",
               "cardano",
               "celestia",
               "cosmos",
@@ -46895,16 +47759,21 @@
               "eth_ssv",
               "ton_whales",
               "near",
-              "dydx"
+              "dydx",
+              "sui",
+              "grt",
+              "xtz"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
-            "example": "avail"
+            "description": "Target blockchain network in which the transaction is processed (aptos,avail,babylon-btc,babylon,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx,sui,grt,xtz).",
+            "example": "aptos"
           },
           "network": {
             "type": "string",
             "enum": [
               "mainnet",
               "testnet",
+              "babylon-testnet",
+              "babylon-mainnet",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
               "cosmoshub-4",
@@ -46914,13 +47783,13 @@
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,babylon-testnet,babylon-mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
             "description": "Account address initiating the staking transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "amount": {
             "type": "number",
@@ -46949,8 +47818,10 @@
           "chain": {
             "type": "string",
             "enum": [
+              "aptos",
               "avail",
               "babylon-btc",
+              "babylon",
               "cardano",
               "celestia",
               "cosmos",
@@ -46961,16 +47832,21 @@
               "eth_ssv",
               "ton_whales",
               "near",
-              "dydx"
+              "dydx",
+              "sui",
+              "grt",
+              "xtz"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
-            "example": "avail"
+            "description": "Target blockchain network in which the transaction is processed (aptos,avail,babylon-btc,babylon,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx,sui,grt,xtz).",
+            "example": "aptos"
           },
           "network": {
             "type": "string",
             "enum": [
               "mainnet",
               "testnet",
+              "babylon-testnet",
+              "babylon-mainnet",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
               "cosmoshub-4",
@@ -46980,13 +47856,13 @@
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,babylon-testnet,babylon-mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
             "description": "Account address initiating the unstaking transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "extra": {
             "type": "object",
@@ -47008,8 +47884,10 @@
           "chain": {
             "type": "string",
             "enum": [
+              "aptos",
               "avail",
               "babylon-btc",
+              "babylon",
               "cardano",
               "celestia",
               "cosmos",
@@ -47020,16 +47898,21 @@
               "eth_ssv",
               "ton_whales",
               "near",
-              "dydx"
+              "dydx",
+              "sui",
+              "grt",
+              "xtz"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
-            "example": "avail"
+            "description": "Target blockchain network in which the transaction is processed (aptos,avail,babylon-btc,babylon,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx,sui,grt,xtz).",
+            "example": "aptos"
           },
           "network": {
             "type": "string",
             "enum": [
               "mainnet",
               "testnet",
+              "babylon-testnet",
+              "babylon-mainnet",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
               "cosmoshub-4",
@@ -47039,13 +47922,13 @@
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,babylon-testnet,babylon-mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "stakerAddress": {
             "type": "string",
             "description": "Account address initiating the withdrawal transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf"
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw"
           },
           "extra": {
             "type": "object",
@@ -47084,8 +47967,10 @@
           "chain": {
             "type": "string",
             "enum": [
+              "aptos",
               "avail",
               "babylon-btc",
+              "babylon",
               "cardano",
               "celestia",
               "cosmos",
@@ -47096,16 +47981,21 @@
               "eth_ssv",
               "ton_whales",
               "near",
-              "dydx"
+              "dydx",
+              "sui",
+              "grt",
+              "xtz"
             ],
-            "description": "Target blockchain network in which the transaction is processed (avail,babylon-btc,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx).",
-            "example": "avail"
+            "description": "Target blockchain network in which the transaction is processed (aptos,avail,babylon-btc,babylon,cardano,celestia,cosmos,polkadot,polygon,sei,solana,eth_ssv,ton_whales,near,dydx,sui,grt,xtz).",
+            "example": "aptos"
           },
           "network": {
             "type": "string",
             "enum": [
               "mainnet",
               "testnet",
+              "babylon-testnet",
+              "babylon-mainnet",
               "celestia-mainnet-beta",
               "celestia-mocha-testnet",
               "cosmoshub-4",
@@ -47115,7 +48005,7 @@
               "atlantic-2",
               "mainnet-beta"
             ],
-            "description": "Network environment in which the transaction is processed (mainnet,testnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
+            "description": "Network environment in which the transaction is processed (mainnet,testnet,babylon-testnet,babylon-mainnet,celestia-mainnet-beta,celestia-mocha-testnet,cosmoshub-4,kusama,westend,pacific-1,atlantic-2,mainnet-beta).",
             "example": "mainnet"
           },
           "signedTransaction": {
@@ -47128,8 +48018,8 @@
             ]
           },
           "stakerAddress": {
-            "description": "Account address initiating the staking, unstaking or withdrawal transaction.",
-            "example": "7E5LgJx7w7AfoeA5YgLPZFdBptz18nhdT7hxZuDA9aQf",
+            "description": "Account address initiating the staking, unstaking, or withdrawal transaction.",
+            "example": "9i5cTqci1W6DHdYfT7WbiNhP5DXvnPNTXvS9fTBFfuSw",
             "allOf": [
               {
                 "$ref": "#/components/schemas/String"
@@ -47555,20 +48445,122 @@
           "publicKey"
         ]
       },
-      "WithdrawResponseDto": {
+      "SuiStakeResponseDto": {
         "type": "object",
-        "properties": {}
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "0xa404160200165874de804160c3cd013d9b6f4bba864657c4c2168a542f78ff14a0253873190200000000"
+          }
+        },
+        "required": [
+          "unsignedTransaction"
+        ]
+      },
+      "SuiStakeRequestDto": {
+        "type": "object",
+        "properties": {
+          "sender": {
+            "type": "string",
+            "description": "Address of the account.",
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+          },
+          "gasPrice": {
+            "type": "number",
+            "description": "Number of native tokens in MIST per gas unit this transaction will pay..",
+            "example": 1000,
+            "default": 1000
+          },
+          "gasBudget": {
+            "type": "number",
+            "example": 1000000,
+            "default": 1000000
+          },
+          "amount": {
+            "type": "number",
+            "description": "",
+            "minimum": 1,
+            "example": 1
+          }
+        },
+        "required": [
+          "sender",
+          "amount"
+        ]
+      },
+      "SuiWithdrawResponseDto": {
+        "type": "object",
+        "properties": {
+          "unsignedTransaction": {
+            "type": "string",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "example": "0xa404160200165874de804160c3cd013d9b6f4bba864657c4c2168a542f78ff14a0253873190200000000"
+          }
+        },
+        "required": [
+          "unsignedTransaction"
+        ]
+      },
+      "SuiWithdrawRequestDto": {
+        "type": "object",
+        "properties": {
+          "sender": {
+            "type": "string",
+            "description": "Address of the account.",
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+          },
+          "gasPrice": {
+            "type": "number",
+            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
+            "example": 1000
+          },
+          "gasBudget": {
+            "type": "number",
+            "example": 1000000
+          },
+          "stakeId": {
+            "type": "string",
+            "description": "ID of the staking transaction required to create a withdrawal request.",
+            "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
+          }
+        },
+        "required": [
+          "sender",
+          "gasPrice",
+          "gasBudget",
+          "stakeId"
+        ]
       },
       "GetStakeListResponseDto": {
         "type": "object",
         "properties": {}
+      },
+      "SuiSendRequestDto": {
+        "type": "object",
+        "properties": {
+          "transaction": {
+            "type": "string",
+            "description": "Signed transaction in the hexadecimal format which needs to be broadcasted to the network.",
+            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
+          },
+          "signature": {
+            "type": "string",
+            "description": "Signature of the sender of the transaction.",
+            "example": "0x1f2e3d4c5b6a7e8f9a0b1c2d3e4f5g6h7i8j9k0l1m2n3o4p5q6r7s8t9u0v1w2x3y4z5a6b7c8d9e0f1g2h3i4j5k6l7m8n9o0p"
+          }
+        },
+        "required": [
+          "transaction",
+          "signature"
+        ]
       },
       "InvalidRawTransactionException": {
         "type": "object",
         "properties": {
           "code": {
             "type": "number",
-            "default": 121113
+            "default": 124104
           },
           "message": {
             "type": "string",
@@ -47590,7 +48582,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 121114
+            "default": 124105
           },
           "message": {
             "type": "string",
@@ -47599,6 +48591,50 @@
           "name": {
             "type": "string",
             "default": "InvalidSignatureException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "TransactionExpiredException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 124111
+          },
+          "message": {
+            "type": "string",
+            "default": "The request could not be performed because the transaction has expired."
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionExpiredException"
+          }
+        },
+        "required": [
+          "code",
+          "message",
+          "name"
+        ]
+      },
+      "TransactionSequenceNumberTooOldException": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number",
+            "default": 124112
+          },
+          "message": {
+            "type": "string",
+            "default": "The request could not be performed because a transaction with that sequence number already exists. Create a new transaction and try again."
+          },
+          "name": {
+            "type": "string",
+            "default": "TransactionSequenceNumberTooOldException"
           }
         },
         "required": [
@@ -47775,7 +48811,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 121115
+            "default": 124106
           },
           "message": {
             "type": "string",
@@ -47797,7 +48833,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 121116
+            "default": 124107
           },
           "message": {
             "type": "string",
@@ -47819,7 +48855,7 @@
         "properties": {
           "code": {
             "type": "number",
-            "default": 121119
+            "default": 124110
           },
           "message": {
             "type": "string",
