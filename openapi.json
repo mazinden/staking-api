@@ -7232,14 +7232,14 @@
       "post": {
         "operationId": "create-babylon-unstake-transaction",
         "summary": "Create Unstake Request",
-        "description": "Create unstake request transaction.",
+        "description": "Construct a serialized transaction to create the unstake request.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
@@ -7442,14 +7442,14 @@
       "post": {
         "operationId": "create-babylon-claim-rewards-transaction",
         "summary": "Create Claim Rewards Request",
-        "description": "Create claim rewards request transaction.",
+        "description": "Construct a serialized transaction to create claim rewards request.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
@@ -7659,7 +7659,7 @@
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
@@ -7862,14 +7862,14 @@
       "post": {
         "operationId": "broadcast-babylon-transaction",
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Babylon network.",
+        "description": "Broadcast transaction to the Babylon Genesis network.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
@@ -8079,7 +8079,7 @@
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
