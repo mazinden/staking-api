@@ -7009,14 +7009,14 @@
       "post": {
         "operationId": "create-babylon-stake-transaction",
         "summary": "Create Staking Request",
-        "description": "Create stake request transaction.",
+        "description": "Construct a serialized transaction to create a staking request.",
         "parameters": [
           {
             "name": "network",
             "required": true,
             "in": "path",
             "example": "babylon-mainnet",
-            "description": "<p>Babylon network:</p><ul><li>`mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
+            "description": "<p>Babylon Genesis network:</p><ul><li>`babylon-mainnet` — Babylon mainnet.</li><li>`babylon-testnet` — Babylon testnet.</li></ul>",
             "schema": {
               "enum": [
                 "babylon-testnet",
@@ -16087,8 +16087,8 @@
     "/api/v1/eth/staking/direct/tx/withdrawal": {
       "post": {
         "operationId": "eth-staking-withdrawal",
-        "summary": "Prepare Withdrawal Transaction for EOA Validators",
-        "description": "Construct a serialized transaction to initiate the withdrawal process for EOA validators validators, utilizing the functionalities of P2P smart contract.",
+        "summary": "Prepare Withdrawal Transaction",
+        "description": "Construct a serialized transaction to initiate the withdrawal process for EOA validators, utilizing the functionalities of P2P smart contract.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -16334,8 +16334,8 @@
     "/api/v1/eth/staking/direct/tx/withdrawal/partial": {
       "post": {
         "operationId": "eth-staking-withdrawal-partial",
-        "summary": "Prepare Partial or Full Withdrawal Transaction",
-        "description": "Construct a serialized transaction to initiate the partial or full withdrawal process for active validators.",
+        "summary": "Prepare Partial Withdrawal Transaction",
+        "description": "Construct a serialized transaction to initiate the partial or full withdrawal process for active validators, using `0x02` type of withdrawal credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -16855,7 +16855,7 @@
       "post": {
         "operationId": "eth-staking-consolidation-validators",
         "summary": "Consolidate Multiple Validators",
-        "description": "Construct a serialized transaction to consolidate multiple validators into a single entity.",
+        "description": "Construct a serialized transaction to consolidate multiple validators into a single entity. For validators using `0x02` type of withdrawal credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17271,7 +17271,7 @@
       "post": {
         "operationId": "eth-increment-request-create",
         "summary": "Create Staking Increment Request",
-        "description": "Set up a new increment request.",
+        "description": "Set up a new increment request to increase the validator's stake. For validators using `0x02` type of withdrawal credentials.",
         "parameters": [],
         "requestBody": {
           "required": true,
@@ -17718,14 +17718,14 @@
     "/api/v1/eth/staking/ssv/p2p/deposit": {
       "get": {
         "operationId": "p2p-transaction-deposit",
-        "summary": "Prepare SSV Proxy Staking Transaction",
-        "description": "Construct a serialized transaction to deposit ETH to the SSV proxy smart contract.",
+        "summary": "Prepare Staking Transaction",
+        "description": "Construct a serialized transaction to deposit ETH to the SSV proxy smart contract. For validators using `0x02` type of withdrawal credentials.",
         "parameters": [
           {
             "name": "amount",
             "required": true,
             "in": "query",
-            "description": "Amount of ETH to deposit.",
+            "description": "Amount of tokens in ETH to deposit.",
             "example": 32,
             "schema": {
               "type": "number"
@@ -17735,7 +17735,7 @@
             "name": "amountPerValidator",
             "required": false,
             "in": "query",
-            "description": "Amount of tokens to stake in Gwei per validator.",
+            "description": "Amount of tokens in Gwei to stake per validator.",
             "example": "32000000000",
             "schema": {
               "type": "string"
@@ -17958,7 +17958,7 @@
     "/api/v1/eth/staking/ssv/p2p/claim": {
       "get": {
         "operationId": "p2p-transaction-claim",
-        "summary": "Prepare SSV Proxy Claim Transaction",
+        "summary": "Prepare Claim Transaction",
         "description": "Construct a serialized transaction to claim ETH from the SSV proxy smart contract.",
         "parameters": [
           {
@@ -18177,8 +18177,8 @@
     "/api/v1/eth/staking/ssv/p2p/deposits": {
       "get": {
         "operationId": "p2p-ssv-transaction-deposit-list",
-        "summary": "Get List of Deposits With Validators",
-        "description": "Get a list of deposits with validators.",
+        "summary": "Get List Deposits",
+        "description": "Retrieve a list of all deposits along with the validator status either by withdrawal address, transaction hash or deposit ID.",
         "parameters": [
           {
             "name": "limit",
@@ -18208,7 +18208,7 @@
             "name": "type",
             "required": true,
             "in": "query",
-            "description": "Type of the request",
+            "description": "Type of the request.",
             "example": {
               "WITHDRAWAL_ADDRESS": "withdrawalAddress",
               "TRANSACTION_HASH": "transactionHash",
@@ -18238,7 +18238,7 @@
             "name": "transactionHash",
             "required": false,
             "in": "query",
-            "description": "Tx hash of the deposit transaction.",
+            "description": "Hash of the deposit transaction.",
             "example": "0x2b1c6bbdeadb0b23ca8260a819fde1c0b0347b0fd42c33a9b2513b36d6521dc6",
             "schema": {
               "pattern": "^0x([A-Fa-f0-9])+$",
@@ -18250,7 +18250,7 @@
             "name": "depositIds",
             "required": false,
             "in": "query",
-            "description": "Deposit ID list",
+            "description": "Deposit ID list.",
             "schema": {
               "minimum": 1,
               "format": "uuid",
@@ -18430,7 +18430,7 @@
     "/api/v1/eth/staking/ssv/p2p/withdraw": {
       "post": {
         "operationId": "p2p-transaction-withdraw",
-        "summary": "Prepare SSV Proxy Withdrawal Transaction",
+        "summary": "Prepare Withdrawal Transaction",
         "description": "Construct a serialized transaction to withdraw ETH from the SSV proxy smart contract.",
         "parameters": [
           {
@@ -18619,8 +18619,8 @@
     "/api/v1/eth/staking/ssv/p2p/validators": {
       "get": {
         "operationId": "p2p-ssv-transaction-validator",
-        "summary": "Get List of Validators",
-        "description": "Get a list of validators by address.",
+        "summary": "Get List Validators",
+        "description": "Retrieve a list of validators by withdrawal address.",
         "parameters": [
           {
             "name": "limit",
@@ -19236,14 +19236,14 @@
     "/api/v1/eth/staking/direct/p2p/deposit": {
       "get": {
         "operationId": "p2p-transaction-direct-deposit",
-        "summary": "Prepare Proxy Staking Transaction",
-        "description": "Construct a serialized transaction to deposit ETH to the proxy smart contract.",
+        "summary": "Prepare Staking Proxy Transaction",
+        "description": "Construct a serialized transaction to deposit ETH to the proxy smart contract. For validators using `0x02` type of withdrawal credentials.",
         "parameters": [
           {
             "name": "amount",
             "required": true,
             "in": "query",
-            "description": "Amount of ETH to deposit.",
+            "description": "Amount of tokens in ETH to deposit.",
             "example": 32,
             "schema": {
               "type": "number"
@@ -19253,7 +19253,7 @@
             "name": "amountPerValidator",
             "required": false,
             "in": "query",
-            "description": "Amount of tokens to stake in Gwei per validator.",
+            "description": "Amount of tokens in Gwei to stake per validator.",
             "example": "32000000000",
             "schema": {
               "type": "string"
@@ -19476,8 +19476,8 @@
     "/api/v1/eth/staking/direct/p2p/deposits": {
       "get": {
         "operationId": "eth-p2p-transaction-deposit-list",
-        "summary": "Get List of Deposits With Validators",
-        "description": "Get a list of deposits with validators.",
+        "summary": "Get List Deposits",
+        "description": "Retrieve a list of all deposits along with the validator status either by withdrawal address, transaction hash or deposit ID.",
         "parameters": [
           {
             "name": "limit",
@@ -19729,8 +19729,8 @@
     "/api/v1/eth/staking/direct/p2p/validators": {
       "get": {
         "operationId": "eth-p2p-transaction-validator",
-        "summary": "Get List of Validators",
-        "description": "Get a list of validators by address.",
+        "summary": "Get List Validators",
+        "description": "Retrieve a list of validators by withdrawal address.",
         "parameters": [
           {
             "name": "limit",
@@ -32139,7 +32139,7 @@
       "post": {
         "operationId": "babylon-stake",
         "summary": "Create Staking Request",
-        "description": "Create staking request transaction.",
+        "description": "Construct a serialized transaction to create staking request.",
         "parameters": [
           {
             "name": "network",
@@ -34000,7 +34000,7 @@
             "required": true,
             "in": "query",
             "example": "1000",
-            "description": "SSV Amount to be withdrawn. The amount must be divisible by 10000000.",
+            "description": "Amount of tokens in ETH to withdraw from the SSV proxy smart contract. The amount must be divisible by 10⁷.",
             "schema": {
               "type": "string"
             }
@@ -36104,7 +36104,7 @@
       "post": {
         "operationId": "sui-staking-withdraw",
         "summary": "Create Withdrawal Request",
-        "description": "Create a request to withdraw unstaked tokens.",
+        "description": "Create a request to withdraw staked tokens.",
         "parameters": [
           {
             "name": "network",
@@ -36168,8 +36168,8 @@
     },
     "/api/v1/sui/{network}/transaction/stake-list/{address}": {
       "get": {
-        "operationId": "sui-transactio-get-stake-list",
-        "summary": "Get Stake List",
+        "operationId": "sui-transaction-get-stake-list",
+        "summary": "Get List Stakes",
         "description": "Retrieve a list of stakes for account address specified.",
         "parameters": [
           {
@@ -36235,7 +36235,7 @@
       "post": {
         "operationId": "sui-transaction-send",
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Sui network.",
+        "description": "Broadcast signed transaction to the Sui network.",
         "parameters": [
           {
             "name": "network",
@@ -38203,7 +38203,7 @@
           },
           "forkVersion": {
             "type": "string",
-            "description": "Version of the Ethereum fork that the deposit is for."
+            "description": "Version of the Ethereum fork."
           },
           "eth2NetworkName": {
             "type": "string",
@@ -40098,7 +40098,7 @@
               "ubbn",
               "mbbn"
             ],
-            "description": "Currency of the tokens:</p><ul><li>`BBN` — Babylon native staking token.</li><li>`uBBN` — 1 BBN = 10⁻⁶ uBBN.</li><li>`mBBN` — 1 BBN = 10⁻³ mBBN.</li></ul>"
+            "description": "Currency of the tokens:</p><ul><li>`BBN` — BBN, Babylon Genesis native staking token.</li><li>`uBBN` — 1 BBN = 10⁻⁶ uBBN.</li><li>`mBBN` — 1 BBN = 10⁻³ mBBN.</li></ul>"
           },
           "validatorAddress": {
             "type": "string",
@@ -42732,7 +42732,7 @@
             "type": "array"
           },
           "amount": {
-            "description": "Amount of tokens to withdraw in ETH. Can be a single number, an array of numbers, or null. If specified as 0, the validator will be fully withdrawn.",
+            "description": "Amount of tokens in ETH to withdraw. For a partial withdrawal, specify a single number or an array of numbers. For a full withdrawal, specify 0.",
             "example": "1",
             "type": "array",
             "items": {
@@ -42974,7 +42974,7 @@
             "type": "string",
             "format": "uuid",
             "example": "8c48cd8d-99cb-4149-8975-f0822fe46d06",
-            "description": "Arbitrary UUID. You can later use that UUID to check the status of the set-up operation."
+            "description": "Arbitrary UUID. You can later use that UUID to check the status of the increment operation."
           },
           "withdrawalAddress": {
             "type": "string",
@@ -42994,7 +42994,7 @@
           },
           "amountPerValidator": {
             "type": "number",
-            "description": "Amount of tokens to stake in Gwei per validator.",
+            "description": "Amount of tokens in Gwei to stake per validator.",
             "example": "1000000000",
             "minimum": 1000000000,
             "maximum": 2016000000000
@@ -43045,7 +43045,7 @@
               "cancel",
               "error"
             ],
-            "description": "<p>Current status of the nodes request:</p><ul><li><i>init</i> — node request was created.</li><li><i>processing</i> — node request is in work.</li><li><i>ready</i> — backend has deposit data for the node request.</li><li><i>cancel</i> — something went wrong and the deposit data did not create.</li></ul>",
+            "description": "<p>Current status of the increment request:</p><ul><li><i>processing</i> — request in progress, please wait.</li><li><i>ready</i> — request is ready.</li><li><i>cancel</i> — request canceled due to an error or timeout.</li><li><i>error</i> — validator data is not valid.</li></ul>",
             "example": "processing"
           },
           "withdrawalAddress": {
@@ -43066,7 +43066,7 @@
           },
           "amountPerValidator": {
             "type": "string",
-            "description": "Amount of tokens to stake in Gwei per validator.",
+            "description": "Amount of tokens in Gwei to stake per validator.",
             "example": "32000000000"
           },
           "depositData": {
@@ -43194,12 +43194,12 @@
         "properties": {
           "depositId": {
             "type": "string",
-            "description": "Deposit id which our contract generates when addEth is called",
+            "description": "Deposit ID generated by the P2P smart contract.",
             "example": "49851686-9058-491f-a393-9ca477a7063a"
           },
           "transactionHash": {
             "type": "string",
-            "description": "Transaction with addEth method.",
+            "description": "Hash of the deposit transaction.",
             "example": "0xc6180e03f1ea7e30eba1c0870471516c575e695afa5066b55038ca73df242e33"
           },
           "senderAddress": {
@@ -43222,12 +43222,12 @@
           },
           "totalAmount": {
             "type": "string",
-            "description": "Total amount of the deposit.",
+            "description": "Total amount of tokens deposited.",
             "example": "32"
           },
           "unprocessedAmount": {
             "type": "string",
-            "description": "Amount of the deposit that was not processed by the contract.",
+            "description": "Amount of tokens that was not processed by the contract.",
             "example": "0"
           }
         },
@@ -43322,11 +43322,11 @@
           },
           "totalAmount": {
             "type": "string",
-            "description": "Total amount of deposits"
+            "description": "Total amount of tokens in the deposits."
           },
           "unprocessedAmount": {
             "type": "string",
-            "description": "Total amount of unprocessed deposits"
+            "description": "Total amount of unprocessed tokens in the deposits."
           }
         },
         "required": [
@@ -43647,12 +43647,12 @@
         "properties": {
           "depositId": {
             "type": "string",
-            "description": "Deposit ID generated by the P2P.org contract when addEth is called.",
+            "description": "Deposit ID generated by the P2P smart contract.",
             "example": "49851686-9058-491f-a393-9ca477a7063a"
           },
           "transactionHash": {
             "type": "string",
-            "description": "Transaction with addEth method.",
+            "description": "Hash of the deposit transaction.",
             "example": "0xc6180e03f1ea7e30eba1c0870471516c575e695afa5066b55038ca73df242e33"
           },
           "senderAddress": {
@@ -43675,12 +43675,12 @@
           },
           "totalAmount": {
             "type": "string",
-            "description": "Total amount of the deposit.",
+            "description": "Total amount of tokens deposited.",
             "example": "32000000000"
           },
           "unprocessedAmount": {
             "type": "string",
-            "description": "Amount of the deposit that was not processed by the contract.",
+            "description": "Amount of tokens that was not processed by the contract.",
             "example": "0"
           }
         },
@@ -43775,11 +43775,11 @@
           },
           "totalAmount": {
             "type": "string",
-            "description": "Total amount of deposits."
+            "description": "Total amount of tokens in the deposits."
           },
           "unprocessedAmount": {
             "type": "string",
-            "description": "Total amount of unprocessed deposits."
+            "description": "Total amount of unprocessed tokens in the deposits."
           }
         },
         "required": [
@@ -48463,23 +48463,24 @@
         "properties": {
           "sender": {
             "type": "string",
-            "description": "Address of the account.",
+            "description": "Sender account address.",
             "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
           },
           "gasPrice": {
             "type": "number",
-            "description": "Number of native tokens in MIST per gas unit this transaction will pay..",
+            "description": "Price per unit of gas in MIST for processing the Sui transaction.",
             "example": 1000,
             "default": 1000
           },
           "gasBudget": {
             "type": "number",
+            "description": "Maximum gas limit for the transaction.",
             "example": 1000000,
             "default": 1000000
           },
           "amount": {
             "type": "number",
-            "description": "",
+            "description": "Amount of tokens to stake in MIST (1 SUI = 10⁹ MIST).",
             "minimum": 1,
             "example": 1
           }
@@ -48507,21 +48508,22 @@
         "properties": {
           "sender": {
             "type": "string",
-            "description": "Address of the account.",
+            "description": "Staker account address.",
             "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
           },
           "gasPrice": {
             "type": "number",
-            "description": "Number of native tokens in MIST per gas unit this transaction will pay.",
+            "description": "Price per unit of gas in MIST for processing the Sui transaction.",
             "example": 1000
           },
           "gasBudget": {
             "type": "number",
+            "description": "Maximum gas limit for the transaction.",
             "example": 1000000
           },
           "stakeId": {
             "type": "string",
-            "description": "ID of the staking transaction required to create a withdrawal request.",
+            "description": "Identifier of the stake to withdraw from.",
             "example": "0x2c0def86e107ae6ca6a610b4188bb3c2802c30350ac01817be6a02d2a247faf5"
           }
         },
@@ -48689,7 +48691,7 @@
           },
           "transaction": {
             "type": "string",
-            "description": "Signed transaction in hexadecimal format.",
+            "description": "Signed transaction in the hexadecimal format.",
             "example": "0x0020b92f133c8e4768d990f39853f1931eb0481ea289a985687f0b7e59e83456333140d386bb294c9a3ce9c8e6b49c4d6dba1bbf4d99b7803f9947bcec59855414d064bf138d29c14e884fb0e7f18c35fd39ffcae96fe767a3ddcbdc6603e407673006",
             "nullable": false
           },
@@ -48773,7 +48775,7 @@
           },
           "senderAddress": {
             "type": "string",
-            "description": "Address of the transaction sender.",
+            "description": "Transaction sender address.",
             "example": "0xd890b1115b39c8d182aeac6cae313cc713cd93922135f8a5893c34fce4e0f32a"
           },
           "sequenceNumber": {
@@ -48890,7 +48892,7 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xa571a5bc9b1bfd5fe58e6e09a5be251a3299985494d022959ce206f1f23f752e21000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002207a2ddb6af66beb0d9987c6c9010cb9053454f067e16775a8ecf19961195c3d28080100000000000000400d0300000000006400000000000000e5742068000000000200",
             "nullable": false
           },
@@ -49028,7 +49030,7 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xa571a5bc9b1bfd5fe58e6e09a5be251a3299985494d022959ce206f1f23f752e21000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002207a2ddb6af66beb0d9987c6c9010cb9053454f067e16775a8ecf19961195c3d28080100000000000000400d0300000000006400000000000000e5742068000000000200",
             "nullable": false
           },
@@ -49097,7 +49099,7 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "Unsigned transaction in hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0xa571a5bc9b1bfd5fe58e6e09a5be251a3299985494d022959ce206f1f23f752e21000000000000000200000000000000000000000000000000000000000000000000000000000000010f64656c65676174696f6e5f706f6f6c096164645f7374616b650002207a2ddb6af66beb0d9987c6c9010cb9053454f067e16775a8ecf19961195c3d28080100000000000000400d0300000000006400000000000000e5742068000000000200",
             "nullable": false
           },
