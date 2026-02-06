@@ -3017,7 +3017,7 @@
     "/api/v1/cosmos/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Cosmos network.",
+        "description": "Broadcast a signed transaction to the Cosmos network.",
         "operationId": "broadcast-cosmos-transaction",
         "parameters": [
           {
@@ -3220,7 +3220,7 @@
     },
     "/api/v1/cosmos/{network}/transaction/status/{transactionHash}": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "operationId": "get-cosmos-transaction-status",
         "parameters": [
@@ -4728,7 +4728,7 @@
     "/api/v1/celestia/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Celestia network.",
+        "description": "Broadcast a signed transaction to the Celestia network.",
         "operationId": "broadcast-celestia-transaction",
         "parameters": [
           {
@@ -4931,7 +4931,7 @@
     },
     "/api/v1/celestia/{network}/transaction/status/{transactionHash}": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "operationId": "get-celestia-transaction-status",
         "parameters": [
@@ -6426,7 +6426,7 @@
     "/api/v1/sei/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Sei network.",
+        "description": "Broadcast a signed transaction to the Sei network.",
         "operationId": "broadcast-sei-transaction",
         "parameters": [
           {
@@ -6629,7 +6629,7 @@
     },
     "/api/v1/sei/{network}/transaction/status/{transactionHash}": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "operationId": "get-sei-transaction-status",
         "parameters": [
@@ -7920,7 +7920,7 @@
     "/api/v2/osmosis/{network}/transactions": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Osmosis network.",
+        "description": "Broadcast a signed transaction to the Osmosis network.",
         "operationId": "broadcast-osmosis-transaction",
         "parameters": [
           {
@@ -8149,7 +8149,7 @@
     },
     "/api/v2/osmosis/{network}/transactions/{transactionHash}/status": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "operationId": "get-osmosis-transaction-status",
         "parameters": [
@@ -9210,7 +9210,7 @@
     "/api/v1/babylon/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Babylon Genesis network.",
+        "description": "Broadcast a signed transaction to the Babylon Genesis network.",
         "operationId": "broadcast-babylon-transaction",
         "parameters": [
           {
@@ -9413,7 +9413,7 @@
     },
     "/api/v1/babylon/{network}/transaction/status/{transactionHash}": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Check the status of the transaction.",
         "operationId": "get-babylon-transaction-status",
         "parameters": [
@@ -19449,7 +19449,7 @@
     "/api/v1/eth/staking/ssv/p2p/claim": {
       "get": {
         "summary": "Prepare Claim Transaction",
-        "description": "Construct a serialized transaction to claim ETH from the SSV proxy smart contract.",
+        "description": "Construct a serialized transaction to claim SSV tokens from the SSV proxy smart contract.",
         "operationId": "p2p-transaction-claim",
         "parameters": [
           {
@@ -25109,7 +25109,7 @@
     "/api/v1/polkadot/{network}/tx/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Polkadot network.",
+        "description": "Broadcast a signed transaction to the Polkadot network.",
         "operationId": "polkadot-transaction-send",
         "parameters": [
           {
@@ -29346,7 +29346,7 @@
     "/api/v1/avail/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast transaction to the Avail network.",
+        "description": "Broadcast a signed transaction to the Avail network.",
         "operationId": "avail-transaction-send",
         "parameters": [
           {
@@ -36500,7 +36500,7 @@
     },
     "/api/v1/babylon-btc/{network}/transaction/get-by-tx-hash/{txHash}": {
       "get": {
-        "summary": "Check Transaction Status",
+        "summary": "Get Transaction Status",
         "description": "Retrieve a specific transaction from the Bitcoin network by its hash to check the status.",
         "operationId": "babylon-transaction-get-by-tx-hash",
         "parameters": [
@@ -38578,7 +38578,7 @@
     "/api/v1/unified/transaction/broadcast": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast the signed transaction to the network.",
+        "description": "Broadcast a signed transaction to the network.",
         "operationId": "unified-transaction-send",
         "parameters": [],
         "requestBody": {
@@ -39772,7 +39772,7 @@
     "/api/v1/tron/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast the signed transaction to the TRON network.",
+        "description": "Broadcast a signed transaction to the TRON network.",
         "operationId": "tron-transaction-send",
         "parameters": [
           {
@@ -40442,7 +40442,7 @@
     "/api/v1/aptos/{network}/transaction/send": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast the signed transaction to the Aptos network.",
+        "description": "Broadcast a signed transaction to the Aptos network.",
         "operationId": "aptos-transaction-send",
         "parameters": [
           {
@@ -43058,7 +43058,7 @@
       },
       "get": {
         "summary": "Get List Delegations",
-        "description": "Retrieve the list of current delegations associated with a specified delegator address.",
+        "description": "Retrieve a list of current delegations by the delegator address.",
         "operationId": "monad-delegators-get-delegations",
         "parameters": [
           {
@@ -43249,7 +43249,7 @@
     "/api/v2/monad/{network}/delegators/{delegatorAddress}/stakes/undelegations": {
       "post": {
         "summary": "Create Undelegate Request",
-        "description": "Create a request to undelegate staked tokens from a validator. The undelegated tokens will be subject to an unbonding period before they can be withdrawn.",
+        "description": "Create a request to undelegate staked tokens from a validator.",
         "operationId": "monad-delegators-create-undelegation",
         "parameters": [
           {
@@ -43729,7 +43729,7 @@
     "/api/v2/monad/{network}/delegators/{delegatorAddress}/stakes/compound-rewards": {
       "post": {
         "summary": "Create Compound Rewards Request",
-        "description": "Create a request to compound accumulated staking rewards by re-delegating them to the same validator.",
+        "description": "Create a request to compound accumulated staking rewards by redelegating them to the same validator.",
         "operationId": "monad-delegators-compound-rewards",
         "parameters": [
           {
@@ -43969,7 +43969,7 @@
     "/api/v2/monad/{network}/delegators/{delegatorAddress}/stakes/claim-rewards": {
       "post": {
         "summary": "Create Claim Rewards Request",
-        "description": "Create a request to claim accumulated staking rewards and transfer them to the delegator wallet.",
+        "description": "Create a request to claim the accumulated staking rewards and transfer them to the delegator address.",
         "operationId": "monad-delegators-claim-rewards",
         "parameters": [
           {
@@ -44209,7 +44209,7 @@
     "/api/v2/monad/{network}/transactions": {
       "post": {
         "summary": "Broadcast Transaction",
-        "description": "Broadcast a signed transaction to the network.",
+        "description": "Broadcast a signed transaction to the Monad network.",
         "operationId": "monad-transactions-broadcast-transaction",
         "parameters": [
           {
@@ -46763,7 +46763,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network."
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network."
           }
         },
         "required": ["signedTransaction"]
@@ -47049,7 +47049,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network."
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network."
           }
         },
         "required": ["signedTransaction"]
@@ -52256,7 +52256,7 @@
           },
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
@@ -52483,7 +52483,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network.",
             "example": "AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAcJjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+jagnMHpK8BDHt0PpssHwXGD2fBxS6MWBoxptD2u9TvrgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA1NjSeWM5+GSJdoQd43Al9SVVXC9FfWGwbe7icpomwAUGodgXkTdUKpg0N73+KnqyVX9TXIp4citopJ3AAAAAAAah2BelAgULaAeR5s5tuI4eW3FQ9h/GeQpOtNEAAAAABqfVFxjHdMkoVmOYaR1etoteuKObS21cc1VbIQAAAAAGp9UXGSxcUSGMyUw9SvF/WNruCJuh/UTj29mKAAAAAAan1RcZNYTQ/u2bs0MdEyBr5UQoG1e4VmzFN1/0AAAAijW940iwWddz25ZC37fI0ue5fa+eTbC2ynBM3b0t4pcDAgMAAQBgAwAAAI5ELeF3F+N1ZPBWe0G1FV0heaKPY7e8dg5tBPbrf8voBAAAAAAAAABzZWVkgJaYAAAAAADIAAAAAAAAAAah2BeRN1QqmDQ3vf4qerJVf1NcinhyK2ikncAAAAAABAIBB3QAAAAAjkQt4XcX43Vk8FZ7QbUVXSF5oo9jt7x2Dm0E9ut/y+iORC3hdxfjdWTwVntBtRVdIXmij2O3vHYObQT263/L6AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQGAQMGCAUABAIAAAA="
           }
         },
@@ -52518,7 +52518,7 @@
           },
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
@@ -53701,7 +53701,7 @@
           },
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
@@ -53761,7 +53761,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed transaction in Base64 encrypted format which needs to be broadcast to the network.",
+            "description": "Signed transaction in Base64 encrypted format which needs to be broadcasted to the network.",
             "example": "0xbd018400cc7cb7325ad1208212e2d8ee41a7572e816d53ac1bcac1be5df433486819213c011a6fc75a4d779e13a789ce9fe03d5cbb090b1e9833ae38c2c873571b73e2d7393f30bf097d93ca1692d426196f263d609e4d421cef3e017ad8bd388604e47e839502a80006010700e40b5402",
             "pattern": "^0x([A-Fa-f0-9])+$",
             "nullable": false
@@ -58099,7 +58099,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "Signed serialized transaction which needs to be broadcast to the network."
+            "description": "Signed serialized transaction which needs to be broadcasted to the network."
           }
         },
         "required": ["signedTransaction"]
@@ -58199,17 +58199,17 @@
         "properties": {
           "gasLimit": {
             "type": "string",
-            "description": "Gas limit for the transaction.",
+            "description": "Maximum gas limit for the transaction.",
             "example": "260850"
           },
           "priorityPricePerGas": {
             "type": "string",
-            "description": "Priority fee per gas in wei. Tip paid to validators on top of base fee.",
+            "description": "Price per unit of gas in Wei (1 Wei = 10⁻¹⁸ MON), which is added to the EIP-1559 block's base fee. This added fee is used to incentivize validators to prioritize this transaction.",
             "example": "1000000000"
           },
           "maxPricePerGas": {
             "type": "string",
-            "description": "Maximum fee per gas in wei. Includes base fee and priority fee.",
+            "description": "Maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei (1 Wei = 10⁻¹⁸ MON).",
             "example": "2000000000"
           }
         },
@@ -58220,12 +58220,12 @@
         "properties": {
           "amount": {
             "type": "string",
-            "description": "Amount of tokens in Wei (1 MON = 10¹⁸ Wei).",
+            "description": "Amount of tokens to delegate in Wei (1 MON = 10¹⁸ Wei).",
             "example": "1000000000000000000"
           },
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "delegatorAddress": {
@@ -58234,7 +58234,7 @@
             "example": "0x1234567890abcdef1234567890abcdef12345678"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction.",
+            "description": "Computational effort required to execute the transaction measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasResponseDto"
@@ -58243,12 +58243,12 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "The unsigned transaction in hex format ready to be signed.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0x02f8758301e24004..."
           },
           "validatorId": {
             "type": "number",
-            "description": "The validator ID to which the delegation was made.",
+            "description": "ID of the validator to which the tokens are delegated.",
             "example": 1
           }
         },
@@ -58266,12 +58266,12 @@
         "properties": {
           "priorityPricePerGas": {
             "type": "string",
-            "description": "Tip in MON-wei (1 wei = 10⁻¹⁸ MON), per unit of gas in EIP-1559 transactions, paid on top of base_price_per_gas to incentivize validators and prioritize inclusion",
+            "description": "Price per unit of gas in Wei (1 Wei = 10⁻¹⁸ MON), which is added to the EIP-1559 block's base fee. This added fee is used to incentivize validators to prioritize this transaction.",
             "example": "21000"
           },
           "maxPricePerGas": {
             "type": "string",
-            "description": "Maximum price in MON-wei (1 wei = 10⁻¹⁸ MON), per unit user is willing to pay in EIP-1559 transactions. This includes base_price_per_gas and priority_price_per_gas",
+            "description": "Maximum price per unit of gas this transaction will pay for the combined EIP-1559 block's base fee and this transaction's priority fee in Wei (1 Wei = 10⁻¹⁸ MON).",
             "example": "1000000000"
           }
         }
@@ -58285,7 +58285,7 @@
             "example": "1000000000000000000"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction. If not provided, default gas settings will be used.",
+            "description": "Computational effort required to execute the transaction measured in gas units. If not specified, default gas settings are used.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasRequestDto"
@@ -58354,12 +58354,12 @@
         "properties": {
           "amount": {
             "type": "string",
-            "description": "Amount of tokens in Wei (1 MON = 10¹⁸ Wei).",
+            "description": "Amount of tokens to undelegate in Wei (1 MON = 10¹⁸ Wei).",
             "example": "1000000000000000000"
           },
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "delegatorAddress": {
@@ -58368,7 +58368,7 @@
             "example": "0x1234567890abcdef1234567890abcdef12345678"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction.",
+            "description": "Computational effort required to execute the transaction measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasResponseDto"
@@ -58377,17 +58377,17 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "The unsigned transaction in hex format ready to be signed.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0x02f8758301e24004..."
           },
           "validatorId": {
             "type": "number",
-            "description": "The id of the validator to which sender previously delegated, from which we now is removing the delegation",
+            "description": "ID of the validator to which the tokens were delegated.",
             "example": 1
           },
           "withdrawId": {
             "type": "number",
-            "description": "integer between 0 and 255, inclusive, which serves as the identifier for a delegator's withdrawal. For each (validator, delegator) tuple, there can be a maximum of 256 in-flight withdrawal requests",
+            "description": "Identifier of the withdrawal request. For each pair of validator and delegator, up to 256 in-flight withdrawal requests are available.",
             "example": 0,
             "minimum": 0,
             "maximum": 255
@@ -58412,7 +58412,7 @@
             "example": "1000000000000000000"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction. If not provided, default gas settings will be used.",
+            "description": "Computational effort required to execute the transaction measured in gas units. If not specified, default gas settings are used.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasRequestDto"
@@ -58463,7 +58463,7 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "description" :"Timestamp of the transaction in ISO 8601 format.",
+            "description" :"Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "delegatorAddress": {
@@ -58472,7 +58472,7 @@
             "example": "0x1234567890abcdef1234567890abcdef12345678"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction.",
+            "description": "Computational effort required to execute the transaction measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasResponseDto"
@@ -58481,17 +58481,17 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "The unsigned transaction in hex format ready to be signed.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0x02f8758301e24004..."
           },
           "validatorId": {
             "type": "number",
-            "description": "The id of the validator to which sender previously delegated, from which we now is removing the delegation",
+            "description": "ID of the validator to which the tokens were delegated.",
             "example": 1
           },
           "withdrawId": {
             "type": "number",
-            "description": "integer between 0 and 255, inclusive, which serves as the identifier for a delegator's withdrawal. For each (validator, delegator) tuple, there can be a maximum of 256 in-flight withdrawal requests",
+            "description": "Identifier of the withdrawal request.",
             "example": 0,
             "minimum": 0,
             "maximum": 255
@@ -58511,13 +58511,13 @@
         "properties": {
           "withdrawId": {
             "type": "number",
-            "description": "integer between 0 and 255, inclusive, which serves as the identifier for a delegator's withdrawal. For each (validator, delegator) tuple, there can be a maximum of 256 in-flight withdrawal requests",
+            "description": "Identifier of the withdrawal request.",
             "example": 0,
             "minimum": 0,
             "maximum": 255
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction. If not provided, default gas settings will be used.",
+            "description": "Computational effort required to execute the transaction measured in gas units. If not specified, default gas settings are used.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasRequestDto"
@@ -58586,7 +58586,7 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "delegatorAddress": {
@@ -58595,7 +58595,7 @@
             "example": "0x1234567890abcdef1234567890abcdef12345678"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction.",
+            "description": "Computational effort required to execute the transaction measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasResponseDto"
@@ -58604,12 +58604,12 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "The unsigned transaction in hex format ready to be signed.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0x02f8758301e24004..."
           },
           "validatorId": {
             "type": "number",
-            "description": "The validator ID from which rewards are compounded. The accumulated rewards are delegated back to the validator.",
+            "description": "ID of the validator to which the accumulated rewards are delegated back.",
             "example": 1
           }
         },
@@ -58625,7 +58625,7 @@
         "type": "object",
         "properties": {
           "gas": {
-            "description": "Gas parameters for the delegation transaction. If not provided, default gas settings will be used.",
+            "description": "Computational effort required to execute the transaction measured in gas units. If not specified, default gas settings are used.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasRequestDto"
@@ -58657,7 +58657,7 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "delegatorAddress": {
@@ -58666,7 +58666,7 @@
             "example": "0x1234567890abcdef1234567890abcdef12345678"
           },
           "gas": {
-            "description": "Gas parameters for the delegation transaction.",
+            "description": "Computational effort required to execute the transaction measured in gas units.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasResponseDto"
@@ -58675,12 +58675,12 @@
           },
           "unsignedTransaction": {
             "type": "string",
-            "description": "The unsigned transaction in hex format ready to be signed.",
+            "description": "Unsigned transaction in the hexadecimal format. Sign the transaction and submit it to the blockchain to perform the called action.",
             "example": "0x02f8758301e24004..."
           },
           "validatorId": {
             "type": "number",
-            "description": "The validator ID from which rewards are claimed. The accumulated rewards are transferred to the delegator balance.",
+            "description": "ID of the validator from which the accumulated rewards are claimed and then transferred to the delegator balance.",
             "example": 1
           }
         },
@@ -58696,7 +58696,7 @@
         "type": "object",
         "properties": {
           "gas": {
-            "description": "Gas parameters for the delegation transaction. If not provided, default gas settings will be used.",
+            "description": "Computational effort required to execute the transaction measured in gas units. If not specified, default gas settings are used.",
             "allOf": [
               {
                 "$ref": "#/components/schemas/MonadGasRequestDto"
@@ -58733,7 +58733,7 @@
           },
           "inEpochDelayPeriod": {
             "type": "boolean",
-            "description": "False if the boundary block has not been reached yet, otherwise true",
+            "description": "Boolean flag indicating if the boundary block has been reached.",
             "example": false
           }
         },
@@ -58744,22 +58744,22 @@
         "properties": {
           "accumulatedRewards": {
             "type": "string",
-            "description": "Last checked accumulated rewards in wei.",
+            "description": "Current amount of accumulated rewards in Wei (1 MON = 10¹⁸ Wei).",
             "example": "1000000000000000000"
           },
           "activeAmount": {
             "type": "string",
-            "description": "Current active stake in wei.",
+            "description": "Current amount of tokens in the active stake denominated in Wei (1 MON = 10¹⁸ Wei).",
             "example": "2000000000000000000"
           },
           "amountToBeActivatedInNextEpoch": {
             "type": "string",
-            "description": "Stake to be activated next epoch in wei.",
+            "description": "Amount of tokens to be staked next epoch denominated in Wei (1 MON = 10¹⁸ Wei).",
             "example": "500000000000000000"
           },
           "amountToBeActivatedInTwoEpochs": {
             "type": "string",
-            "description": "Stake to be activated in 2 epochs in wei.",
+            "description": "Amount of tokens to be staked in 2 epochs denominated in Wei (1 MON = 10¹⁸ Wei).",
             "example": "300000000000000000"
           }
         },
@@ -58775,22 +58775,22 @@
         "properties": {
           "accumulatedReward": {
             "type": "string",
-            "description": "Accumulated reward for this withdrawal in wei.",
+            "description": "Amount of accumulated rewards for this withdrawal in Wei (1 MON = 10¹⁸ Wei).",
             "example": "1000000000000000000"
           },
           "releaseEpoch": {
             "type": "string",
-            "description": "Epoch when withdrawal is released.",
+            "description": "Epoch number of the withdrawal release.",
             "example": "124"
           },
           "withdrawAmount": {
             "type": "string",
-            "description": "Amount to withdraw in wei.",
+            "description": "Amount of tokens to withdraw in Wei (1 MON = 10¹⁸ Wei).",
             "example": "500000000000000000"
           },
           "withdrawId": {
             "type": "number",
-            "description": "Withdrawal ID.",
+            "description": "Identifier of the withdrawal request.",
             "example": 0,
             "minimum": 0,
             "maximum": 255
@@ -58808,7 +58808,7 @@
         "properties": {
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           },
           "currentEpoch": {
@@ -58834,11 +58834,11 @@
           },
           "validatorId": {
             "type": "number",
-            "description": "Validator ID from which delegation are delegated and rewards are claimed.",
+            "description": "ID of the validator from which tokens are delegated and rewards are claimed.",
             "example": 1
           },
           "withdrawals": {
-            "description": "List of withdrawal by withdraw ID.",
+            "description": "List of withdrawal requests grouped by ID.",
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/WithdrawalDto"
@@ -58936,7 +58936,7 @@
           },
           "broadcastedAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           }
         },
@@ -58947,7 +58947,7 @@
         "properties": {
           "signedTransaction": {
             "type": "string",
-            "description": "The serialized signed transaction in hex format.",
+            "description": "Signed serialized transaction in the hexadecimal format which needs to be broadcasted to the network.",
             "example": "0x02f8758301e24004..."
           }
         },
@@ -58987,17 +58987,17 @@
           },
           "blockNumber": {
             "type": "number",
-            "description": "Block number where the transaction was included. Only defined if the transaction is in status `success` or `reverted`.",
+            "description": "Unique identifier of the block in which the transaction has been included. Only defined if the transaction status is `success` or `reverted`.",
             "example": 1234567
           },
           "gasUsed": {
             "type": "number",
-            "description": "Amount of gas used by the transaction.",
+            "description": "Amount of gas spent for the transaction.",
             "example": 21000
           },
           "createdAt": {
             "type": "string",
-            "description": "Timestamp of the transaction in ISO 8601 format.",
+            "description": "Timestamp of the transaction in the ISO 8601 format.",
             "example": "2025-05-06T10:40:00.000Z"
           }
         },
